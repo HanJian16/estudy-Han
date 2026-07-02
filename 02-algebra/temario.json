@@ -1,0 +1,312 @@
+{
+  "curso": "Álgebra",
+  "objetivo_del_curso": "Resolver con fluidez problemas de álgebra del nivel del examen de admisión UNI: desde operatoria (exponentes, polinomios, factorización) hasta ecuaciones, inecuaciones, funciones y logaritmos. Es el curso de mayor peso en la prueba de Matemática y base operativa de Trigonometría y Física.",
+  "bibliografia": [
+    {
+      "titulo": "Álgebra — Colección Compendios Académicos",
+      "autor": "Lumbreras Editores",
+      "capitulos_relevantes": "Referencial: marca nivel y cobertura. El agente genera teoría y ejercicios equivalentes a su estilo; el usuario no posee el libro."
+    },
+    {
+      "titulo": "Compendio Académico de Álgebra",
+      "autor": "ADUNI",
+      "capitulos_relevantes": "Referencial: fuente alternativa de estilo de problemas tipo UNI."
+    },
+    {
+      "titulo": "Exámenes de admisión UNI (años anteriores, con solucionario)",
+      "autor": "Universidad Nacional de Ingeniería",
+      "capitulos_relevantes": "Preguntas de álgebra de las pruebas de Matemática; se usan como ejercicios de nivel real desde mitad del curso."
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cuaderno físico",
+      "url": null,
+      "uso": "Instrumento principal: el desarrollo algebraico se hace a mano, como en el examen.",
+      "para_temas": null
+    },
+    {
+      "nombre": "WolframAlpha",
+      "url": "https://www.wolframalpha.com",
+      "uso": "Verificar soluciones de ecuaciones, factorizaciones y simplificaciones cuando el usuario dude de su resultado.",
+      "para_temas": null
+    },
+    {
+      "nombre": "Desmos",
+      "url": "https://www.desmos.com/calculator",
+      "uso": "Graficar funciones para visualizar dominio, rango, raíces e intersecciones.",
+      "para_temas": ["13-inecuaciones-valor-absoluto", "14-funciones", "15-logaritmos"]
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-leyes-exponentes",
+      "nombre": "Teoría de exponentes",
+      "descripcion": "Leyes de exponentes y radicales, ecuaciones exponenciales básicas y simplificación de expresiones con potencias.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Simplificar expresiones con exponentes enteros, fraccionarios y anidados",
+        "Resolver ecuaciones exponenciales por igualación de bases y cambio de variable",
+        "Aplicar propiedades de radicales para reducir expresiones"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios variados de exponentes tipo examen sin ayuda y sin errores de signo",
+      "referencias": ["Lumbreras Álgebra — cap. Teoría de exponentes"]
+    },
+    {
+      "id": "02-polinomios",
+      "nombre": "Polinomios",
+      "descripcion": "Grado, valor numérico, polinomios especiales (homogéneos, idénticos, completos y ordenados) y cambio de variable.",
+      "prerrequisitos_internos": ["01-leyes-exponentes"],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular grados absolutos y relativos de expresiones algebraicas",
+        "Aplicar valor numérico y suma de coeficientes (P(1), P(0)) en problemas",
+        "Identificar condiciones de polinomios idénticos, homogéneos y completos"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de polinomios tipo examen sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. Polinomios"]
+    },
+    {
+      "id": "03-productos-notables",
+      "nombre": "Productos notables",
+      "descripcion": "Identidades algebraicas clásicas (binomio al cuadrado/cubo, diferencia de cuadrados, Legendre, Argand, condicionales) y su uso en simplificación.",
+      "prerrequisitos_internos": ["02-polinomios"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar las identidades notables en ambos sentidos (expandir y reconocer)",
+        "Resolver problemas con identidades condicionales (a+b+c=0)",
+        "Calcular expresiones simétricas (x+1/x y potencias asociadas)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de productos notables nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. Productos notables"]
+    },
+    {
+      "id": "04-division-algebraica",
+      "nombre": "División algebraica y cocientes notables",
+      "descripcion": "División de polinomios por Horner y Ruffini, teorema del resto, divisibilidad polinómica y cocientes notables.",
+      "prerrequisitos_internos": ["02-polinomios"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Dividir polinomios aplicando Horner y Ruffini según convenga",
+        "Aplicar el teorema del resto sin efectuar la división completa",
+        "Determinar términos de un cociente notable y condiciones para que exista"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de división y cocientes notables sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. División algebraica"]
+    },
+    {
+      "id": "05-factorizacion",
+      "nombre": "Factorización",
+      "descripcion": "Factor común, agrupación, identidades, aspa simple y doble, divisores binómicos; conteo de factores primos.",
+      "prerrequisitos_internos": ["03-productos-notables", "04-division-algebraica"],
+      "sesiones_estimadas": 3,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Seleccionar y aplicar el método de factorización adecuado a cada polinomio",
+        "Factorizar por aspa doble y aspa doble especial",
+        "Contar factores primos algebraicos de un polinomio factorizado"
+      ],
+      "criterio_dominio": "Factoriza correctamente 8/10 polinomios variados nivel examen sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. Factorización", "Exámenes UNI: preguntas de factorización"]
+    },
+    {
+      "id": "06-fracciones-algebraicas",
+      "nombre": "Fracciones algebraicas",
+      "descripcion": "Simplificación, operaciones y descomposición en fracciones parciales básicas.",
+      "prerrequisitos_internos": ["05-factorizacion"],
+      "sesiones_estimadas": 1,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Simplificar fracciones algebraicas factorizando numerador y denominador",
+        "Operar (sumar, multiplicar, dividir) fracciones algebraicas complejas"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de simplificación de fracciones algebraicas sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. Fracciones algebraicas"]
+    },
+    {
+      "id": "07-radicacion-racionalizacion",
+      "nombre": "Radicación y racionalización",
+      "descripcion": "Radicales dobles, transformación a radicales simples y racionalización de denominadores.",
+      "prerrequisitos_internos": ["01-leyes-exponentes", "03-productos-notables"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Transformar radicales dobles en simples (fórmula y por inspección)",
+        "Racionalizar denominadores con factores mono y binómicos"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de radicales dobles y racionalización sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. Radicación"]
+    },
+    {
+      "id": "08-binomio-newton",
+      "nombre": "Binomio de Newton",
+      "descripcion": "Coeficientes binomiales, término general del desarrollo y término independiente. Frecuencia media en el examen.",
+      "prerrequisitos_internos": ["02-polinomios"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": true,
+      "objetivos_aprendizaje": [
+        "Calcular el término general de un desarrollo binomial",
+        "Determinar término independiente o de grado dado en (ax^m + bx^n)^k"
+      ],
+      "criterio_dominio": "Resuelve 7/10 ejercicios de término general sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. Binomio de Newton"]
+    },
+    {
+      "id": "09-numeros-complejos",
+      "nombre": "Números complejos",
+      "descripcion": "Unidad imaginaria, operaciones, conjugado, módulo, forma polar básica y potencias de i.",
+      "prerrequisitos_internos": ["01-leyes-exponentes", "03-productos-notables"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Operar números complejos en forma binómica (suma, producto, cociente)",
+        "Calcular módulo y conjugado, y aplicar sus propiedades",
+        "Reducir potencias de i y resolver ecuaciones simples en C"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de complejos tipo examen sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. Números complejos"]
+    },
+    {
+      "id": "10-ecuaciones-1-2-grado",
+      "nombre": "Ecuaciones de primer y segundo grado",
+      "descripcion": "Resolución y análisis de ecuaciones lineales y cuadráticas: discriminante, propiedades de raíces (suma y producto), formación de ecuaciones.",
+      "prerrequisitos_internos": ["05-factorizacion"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver ecuaciones lineales y cuadráticas por factorización y fórmula general",
+        "Analizar la naturaleza de las raíces con el discriminante",
+        "Aplicar propiedades de suma y producto de raíces sin resolver la ecuación"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de ecuaciones cuadráticas con análisis de raíces sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. Ecuaciones"]
+    },
+    {
+      "id": "11-ecuaciones-grado-superior",
+      "nombre": "Ecuaciones polinomiales de grado superior",
+      "descripcion": "Teorema fundamental del álgebra, teorema de Cardano-Viète, raíces racionales y paridad de raíces irracionales/complejas.",
+      "prerrequisitos_internos": ["10-ecuaciones-1-2-grado", "04-division-algebraica"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar el teorema de Cardano-Viète para relacionar raíces y coeficientes",
+        "Resolver ecuaciones cúbicas y cuárticas con raíces racionales evidentes"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas con relaciones de Cardano sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. Ecuaciones polinomiales"]
+    },
+    {
+      "id": "12-sistemas-ecuaciones",
+      "nombre": "Sistemas de ecuaciones",
+      "descripcion": "Sistemas lineales (compatibilidad, métodos de resolución) y sistemas no lineales clásicos; problemas de planteo.",
+      "prerrequisitos_internos": ["10-ecuaciones-1-2-grado"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver sistemas lineales 2x2 y 3x3 y analizar su compatibilidad",
+        "Resolver sistemas no lineales por sustitución y artificios",
+        "Traducir problemas verbales a sistemas de ecuaciones"
+      ],
+      "criterio_dominio": "Resuelve 8/10 sistemas y problemas de planteo tipo examen sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. Sistemas de ecuaciones"]
+    },
+    {
+      "id": "13-inecuaciones-valor-absoluto",
+      "nombre": "Desigualdades, inecuaciones y valor absoluto",
+      "descripcion": "Propiedades de desigualdades, inecuaciones lineales, cuadráticas y de grado superior (puntos críticos), inecuaciones racionales y con valor absoluto.",
+      "prerrequisitos_internos": ["10-ecuaciones-1-2-grado"],
+      "sesiones_estimadas": 3,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver inecuaciones polinomiales por el método de puntos críticos",
+        "Resolver inecuaciones racionales considerando restricciones del denominador",
+        "Resolver ecuaciones e inecuaciones con valor absoluto aplicando sus propiedades",
+        "Expresar soluciones en notación de intervalos correctamente"
+      ],
+      "criterio_dominio": "Resuelve 7/10 inecuaciones variadas nivel UNI sin ayuda, con intervalos correctos",
+      "referencias": ["Lumbreras Álgebra — cap. Desigualdades e inecuaciones", "Exámenes UNI: preguntas de inecuaciones"]
+    },
+    {
+      "id": "14-funciones",
+      "nombre": "Funciones",
+      "descripcion": "Dominio y rango, funciones especiales (lineal, cuadrática, valor absoluto, raíz), gráficas y desplazamientos, composición e inversa.",
+      "prerrequisitos_internos": ["12-sistemas-ecuaciones", "13-inecuaciones-valor-absoluto"],
+      "sesiones_estimadas": 3,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular dominio y rango de funciones algebraicas",
+        "Graficar funciones básicas y sus transformaciones (traslación, reflexión)",
+        "Calcular composición de funciones y función inversa verificando inyectividad",
+        "Resolver problemas de máximos/mínimos con la función cuadrática"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de funciones tipo examen sin ayuda, incluyendo una gráfica correcta",
+      "referencias": ["Lumbreras Álgebra — cap. Funciones", "Exámenes UNI: preguntas de funciones"]
+    },
+    {
+      "id": "15-logaritmos",
+      "nombre": "Logaritmos",
+      "descripcion": "Definición y propiedades, cambio de base, ecuaciones e inecuaciones logarítmicas y exponenciales, función logaritmo.",
+      "prerrequisitos_internos": ["01-leyes-exponentes", "13-inecuaciones-valor-absoluto"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar propiedades de logaritmos para simplificar expresiones",
+        "Resolver ecuaciones logarítmicas verificando restricciones de existencia",
+        "Resolver inecuaciones logarítmicas considerando la base (mayor o menor que 1)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de logaritmos tipo examen sin ayuda, sin olvidar restricciones",
+      "referencias": ["Lumbreras Álgebra — cap. Logaritmos"]
+    },
+    {
+      "id": "16-progresiones",
+      "nombre": "Progresiones y sucesiones",
+      "descripcion": "Progresión aritmética y geométrica: término general, sumas, medios; suma límite de PG infinita.",
+      "prerrequisitos_internos": ["10-ecuaciones-1-2-grado"],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular término general y suma de términos en PA y PG",
+        "Resolver problemas de interpolación de medios aritméticos y geométricos",
+        "Calcular la suma límite de una PG infinita con |q| < 1"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de progresiones tipo examen sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. Progresiones"]
+    },
+    {
+      "id": "17-matrices-determinantes",
+      "nombre": "Matrices y determinantes",
+      "descripcion": "Operaciones con matrices, determinantes 2x2 y 3x3, matriz inversa y regla de Cramer. Frecuencia media-baja en el examen.",
+      "prerrequisitos_internos": ["12-sistemas-ecuaciones"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": true,
+      "objetivos_aprendizaje": [
+        "Operar matrices (suma, producto, potencias) y calcular determinantes 2x2 y 3x3",
+        "Resolver sistemas lineales con la regla de Cramer y discutir según el determinante"
+      ],
+      "criterio_dominio": "Resuelve 7/10 ejercicios de matrices y determinantes sin ayuda",
+      "referencias": ["Lumbreras Álgebra — cap. Matrices"]
+    }
+  ]
+}

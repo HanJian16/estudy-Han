@@ -1,0 +1,127 @@
+{
+  "curso": "Simulacros y Estrategia de Examen",
+  "objetivo_del_curso": "Convertir el conocimiento acumulado en puntaje real: dominar la estrategia del examen UNI (gestión del tiempo, decisión de responder/omitir bajo puntaje en contra) y resolver exámenes de admisión reales de años anteriores para detectar y cerrar vacíos antes del examen 2027-1.",
+  "bibliografia": [
+    {
+      "titulo": "Exámenes de admisión UNI (banco histórico con solucionario)",
+      "autor": "Universidad Nacional de Ingeniería",
+      "capitulos_relevantes": "Exámenes ordinarios de admisión de años anteriores (aprox. 2015-2026), ambas fechas anuales. Fuente principal del curso."
+    },
+    {
+      "titulo": "Prospecto de Admisión UNI (vigente)",
+      "autor": "Universidad Nacional de Ingeniería",
+      "capitulos_relevantes": "Estructura oficial de la prueba, número de preguntas, puntaje por acierto/error/omisión y temario oficial. Revisar la versión del proceso 2027-1 cuando se publique."
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cronómetro / temporizador",
+      "url": null,
+      "uso": "Reproducir las condiciones reales de tiempo del examen en cada simulacro.",
+      "para_temas": null
+    },
+    {
+      "nombre": "Hoja de respuestas y registro de puntajes",
+      "url": null,
+      "uso": "Registrar puntaje por prueba en cada simulacro para medir tendencia; el agente lleva el histórico en las dificultades y el README de cada clase.",
+      "para_temas": null
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-estructura-estrategia-examen",
+      "nombre": "Estructura del examen UNI y estrategia de puntaje",
+      "descripcion": "Formato oficial de la prueba (secciones, número de preguntas, tiempo), sistema de puntaje con penalización y estrategia de decisión responder/omitir.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 1,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Describir la estructura oficial del examen UNI y el sistema de puntaje del proceso vigente",
+        "Aplicar el criterio de valor esperado para decidir cuándo responder y cuándo omitir",
+        "Planificar la distribución de tiempo por sección"
+      ],
+      "criterio_dominio": "Explica la estrategia de puntaje y la aplica correctamente en un simulacro corto",
+      "referencias": ["Prospecto de Admisión UNI (proceso 2027-1)"]
+    },
+    {
+      "id": "02-simulacros-parciales-matematica",
+      "nombre": "Simulacros parciales: Matemática",
+      "descripcion": "Resolución cronometrada de la sección de Matemática (aritmética, álgebra, geometría, trigonometría) de exámenes reales, con análisis de errores.",
+      "prerrequisitos_internos": ["01-estructura-estrategia-examen"],
+      "sesiones_estimadas": 4,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver la sección de Matemática de exámenes reales dentro del tiempo asignado",
+        "Clasificar cada error (concepto, operatoria, tiempo) y registrarlo en el curso de origen",
+        "Elevar progresivamente el porcentaje de aciertos entre simulacros sucesivos"
+      ],
+      "criterio_dominio": "Alcanza un porcentaje de acierto estable y creciente en la sección de Matemática de 3 simulacros seguidos",
+      "referencias": ["Banco de exámenes UNI — sección Matemática"]
+    },
+    {
+      "id": "03-simulacros-parciales-fisica-quimica",
+      "nombre": "Simulacros parciales: Física y Química",
+      "descripcion": "Resolución cronometrada de la sección de Física y Química de exámenes reales, con análisis de errores.",
+      "prerrequisitos_internos": ["01-estructura-estrategia-examen"],
+      "sesiones_estimadas": 3,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver la sección de Física-Química de exámenes reales dentro del tiempo asignado",
+        "Detectar temas débiles y devolverlos como dificultades a los cursos 05 y 06",
+        "Elevar progresivamente el porcentaje de aciertos entre simulacros"
+      ],
+      "criterio_dominio": "Alcanza un porcentaje de acierto estable y creciente en Física-Química de 3 simulacros seguidos",
+      "referencias": ["Banco de exámenes UNI — sección Física y Química"]
+    },
+    {
+      "id": "04-simulacros-parciales-aptitud",
+      "nombre": "Simulacros parciales: Aptitud Académica y Letras",
+      "descripcion": "Resolución cronometrada de la Prueba 1 (razonamiento y humanidades) de exámenes reales.",
+      "prerrequisitos_internos": ["01-estructura-estrategia-examen"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver la sección de aptitud y letras dentro del tiempo asignado",
+        "Optimizar el orden de resolución para maximizar aciertos por minuto"
+      ],
+      "criterio_dominio": "Alcanza un porcentaje de acierto estable en la Prueba 1 de 3 simulacros seguidos",
+      "referencias": ["Banco de exámenes UNI — Prueba 1"]
+    },
+    {
+      "id": "05-simulacros-completos",
+      "nombre": "Simulacros completos cronometrados",
+      "descripcion": "Rendir exámenes UNI completos bajo condiciones reales (tiempo total, sin ayuda, sin pausas), simulando el día del examen.",
+      "prerrequisitos_internos": ["02-simulacros-parciales-matematica", "03-simulacros-parciales-fisica-quimica", "04-simulacros-parciales-aptitud"],
+      "sesiones_estimadas": 6,
+      "dificultad": 5,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Completar exámenes UNI enteros bajo condiciones reales de tiempo y presión",
+        "Gestionar energía y concentración a lo largo de toda la prueba",
+        "Analizar cada simulacro y priorizar los repasos de la semana siguiente según los errores"
+      ],
+      "criterio_dominio": "Obtiene un puntaje total competitivo y estable en al menos 3 simulacros completos consecutivos",
+      "referencias": ["Banco de exámenes UNI — exámenes completos"]
+    },
+    {
+      "id": "06-repaso-final-cierre-vacios",
+      "nombre": "Repaso final y cierre de vacíos",
+      "descripcion": "Semanas previas al examen: repaso intensivo de las dificultades sin resolver acumuladas en todos los cursos y de los temas de mayor frecuencia y peso.",
+      "prerrequisitos_internos": ["05-simulacros-completos"],
+      "sesiones_estimadas": 4,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Cerrar las dificultades con resuelto:false de mayor impacto en el puntaje",
+        "Repasar los temas de alta frecuencia identificados en los simulacros",
+        "Llegar al examen con las fórmulas y métodos clave consolidados"
+      ],
+      "criterio_dominio": "No quedan dificultades sin resolver marcadas como prerrequisito directo de temas de alta frecuencia",
+      "referencias": ["dificultades.json de todos los cursos", "Banco de exámenes UNI"]
+    }
+  ]
+}

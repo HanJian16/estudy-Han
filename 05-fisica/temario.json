@@ -1,0 +1,319 @@
+{
+  "curso": "Física",
+  "objetivo_del_curso": "Resolver problemas de física del nivel del examen de admisión UNI con métodos preuniversitarios rápidos (sin cálculo diferencial): mecánica, fluidos, calor, electricidad y magnetismo, aprovechando la base conceptual universitaria del usuario para priorizar destreza de resolución.",
+  "bibliografia": [
+    {
+      "titulo": "Física — Colección Compendios Académicos",
+      "autor": "Lumbreras Editores",
+      "capitulos_relevantes": "Referencial: marca nivel, cobertura y métodos preuniversitarios. El agente genera teoría y ejercicios equivalentes a su estilo; el usuario no posee el libro."
+    },
+    {
+      "titulo": "Compendio Académico de Física",
+      "autor": "ADUNI",
+      "capitulos_relevantes": "Referencial: fuente alternativa de estilo de problemas tipo UNI."
+    },
+    {
+      "titulo": "Física (Serway / Sears-Zemansky)",
+      "autor": "Serway; Sears-Zemansky",
+      "capitulos_relevantes": "Solo consulta conceptual puntual (el usuario los conoce de la UNFV). No es la guía del curso: su enfoque con cálculo difiere del examen de admisión."
+    },
+    {
+      "titulo": "Exámenes de admisión UNI (años anteriores, con solucionario)",
+      "autor": "Universidad Nacional de Ingeniería",
+      "capitulos_relevantes": "Preguntas de física de la Prueba 3; se usan como ejercicios de nivel real desde mitad del curso."
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cuaderno físico",
+      "url": null,
+      "uso": "Instrumento principal: diagramas de cuerpo libre, esquemas y desarrollo a mano.",
+      "para_temas": null
+    },
+    {
+      "nombre": "PhET Simulations",
+      "url": "https://phet.colorado.edu/es/",
+      "uso": "Simulaciones interactivas para reactivar intuición física (movimiento, circuitos, ondas) cuando un concepto no cierre.",
+      "para_temas": null
+    },
+    {
+      "nombre": "Desmos",
+      "url": "https://www.desmos.com/calculator",
+      "uso": "Graficar posición/velocidad vs tiempo en cinemática y verificar relaciones funcionales.",
+      "para_temas": ["03-cinematica-rectilinea", "04-caida-libre-parabolico", "10-mas-ondas"]
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-analisis-dimensional",
+      "nombre": "Análisis dimensional y unidades",
+      "descripcion": "Magnitudes y dimensiones del SI, principio de homogeneidad y fórmulas empíricas.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 1,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Determinar las dimensiones de cualquier magnitud derivada",
+        "Aplicar el principio de homogeneidad para hallar dimensiones de constantes en fórmulas",
+        "Deducir fórmulas empíricas a partir de dependencias dimensionales"
+      ],
+      "criterio_dominio": "Resuelve 9/10 ejercicios de análisis dimensional tipo examen sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Análisis dimensional"]
+    },
+    {
+      "id": "02-vectores",
+      "nombre": "Vectores",
+      "descripcion": "Suma y resta de vectores (paralelogramo, polígono), descomposición rectangular, vectores unitarios y métodos geométricos.",
+      "prerrequisitos_internos": ["01-analisis-dimensional"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular la resultante de sistemas de vectores por descomposición rectangular",
+        "Aplicar los métodos del paralelogramo y del polígono con los casos notables (60°, 90°, 120°)",
+        "Resolver problemas geométricos de vectores (punto medio, vectores en figuras)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de vectores tipo examen sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Vectores", "Trigonometría: temas 03-04 (razones y triángulos)"]
+    },
+    {
+      "id": "03-cinematica-rectilinea",
+      "nombre": "Cinemática: MRU y MRUV",
+      "descripcion": "Movimiento rectilíneo uniforme y uniformemente variado: ecuaciones, gráficas x-t y v-t, tiempo de encuentro y alcance.",
+      "prerrequisitos_internos": ["02-vectores"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver problemas de MRU y MRUV seleccionando la ecuación adecuada",
+        "Interpretar y construir gráficas x-t y v-t, extrayendo información de pendientes y áreas",
+        "Resolver problemas de encuentro, alcance y trenes/túneles"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de cinemática rectilínea (incluye gráficas) sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Cinemática"]
+    },
+    {
+      "id": "04-caida-libre-parabolico",
+      "nombre": "Caída libre y movimiento parabólico",
+      "descripcion": "Movimiento vertical de caída libre (MVCL) y movimiento parabólico de caída libre (MPCL): números de la caída, alcance y altura máxima.",
+      "prerrequisitos_internos": ["03-cinematica-rectilinea"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver problemas de caída libre aplicando los números de la caída (con g = 10 m/s²)",
+        "Descomponer el movimiento parabólico en sus componentes horizontal y vertical",
+        "Calcular alcance, altura máxima y tiempo de vuelo en MPCL"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de caída libre y parabólico tipo examen sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Caída libre / Movimiento parabólico"]
+    },
+    {
+      "id": "05-movimiento-circular",
+      "nombre": "Movimiento circular",
+      "descripcion": "MCU y MCUV: velocidad angular, aceleración centrípeta, transmisión de movimiento (poleas y engranajes).",
+      "prerrequisitos_internos": ["03-cinematica-rectilinea"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Relacionar magnitudes angulares y lineales en el movimiento circular",
+        "Calcular aceleración centrípeta y resolver problemas de MCU/MCUV",
+        "Resolver problemas de transmisión (fajas, engranajes, ruedas concéntricas)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de movimiento circular sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Movimiento circular"]
+    },
+    {
+      "id": "06-estatica",
+      "nombre": "Estática",
+      "descripcion": "Diagrama de cuerpo libre, primera condición de equilibrio, teorema de Lamy, momento de fuerza y segunda condición de equilibrio; rozamiento estático.",
+      "prerrequisitos_internos": ["02-vectores"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Construir diagramas de cuerpo libre correctos en sistemas con cuerdas, poleas y superficies",
+        "Aplicar la primera condición de equilibrio y el teorema de Lamy",
+        "Aplicar momentos de fuerza y la segunda condición de equilibrio en barras y estructuras",
+        "Resolver problemas de equilibrio con rozamiento estático"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de estática tipo examen con DCL correcto sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Estática"]
+    },
+    {
+      "id": "07-dinamica",
+      "nombre": "Dinámica lineal y circular",
+      "descripcion": "Segunda ley de Newton, sistemas de bloques y poleas, rozamiento cinético y dinámica circular (fuerza centrípeta).",
+      "prerrequisitos_internos": ["04-caida-libre-parabolico", "05-movimiento-circular", "06-estatica"],
+      "sesiones_estimadas": 2,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar la segunda ley de Newton a sistemas de bloques, poleas y planos inclinados",
+        "Resolver problemas con rozamiento cinético",
+        "Aplicar la ecuación de la fuerza centrípeta en curvas, péndulos cónicos y ascensores"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de dinámica nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Dinámica", "Exámenes UNI: preguntas de dinámica"]
+    },
+    {
+      "id": "08-trabajo-energia",
+      "nombre": "Trabajo, potencia y energía",
+      "descripcion": "Trabajo mecánico, potencia, energía cinética y potencial, teorema trabajo-energía y conservación de la energía mecánica.",
+      "prerrequisitos_internos": ["07-dinamica"],
+      "sesiones_estimadas": 2,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular trabajo neto de fuerzas constantes y por gráficas F-x",
+        "Aplicar el teorema de la energía cinética y la conservación de energía mecánica",
+        "Resolver problemas de potencia y eficiencia de máquinas"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de energía nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Trabajo y energía"]
+    },
+    {
+      "id": "09-cantidad-movimiento",
+      "nombre": "Cantidad de movimiento y choques",
+      "descripcion": "Impulso, conservación de la cantidad de movimiento, choques elásticos e inelásticos y coeficiente de restitución.",
+      "prerrequisitos_internos": ["08-trabajo-energia"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar la conservación de la cantidad de movimiento en choques y explosiones",
+        "Clasificar choques por el coeficiente de restitución y resolver casos 1D"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de choques tipo examen sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Cantidad de movimiento"]
+    },
+    {
+      "id": "10-mas-ondas",
+      "nombre": "Movimiento armónico simple y ondas",
+      "descripcion": "MAS (resorte y péndulo simple): ecuaciones, periodo y energía; ondas mecánicas y sonido (frecuencia, longitud de onda).",
+      "prerrequisitos_internos": ["08-trabajo-energia"],
+      "sesiones_estimadas": 2,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular periodo y frecuencia de sistemas masa-resorte y péndulo simple",
+        "Aplicar las ecuaciones de posición/velocidad del MAS y su conservación de energía",
+        "Resolver problemas de ondas con v = λf, incluidas cuerdas tensas y sonido"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de MAS y ondas nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Física — cap. MAS / Ondas"]
+    },
+    {
+      "id": "11-hidrostatica",
+      "nombre": "Hidrostática",
+      "descripcion": "Presión y densidad, principio de Pascal (prensa hidráulica), principio de Arquímedes (empuje) y vasos comunicantes.",
+      "prerrequisitos_internos": ["06-estatica"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular presiones hidrostáticas y aplicar vasos comunicantes con varios líquidos",
+        "Aplicar el principio de Pascal en prensas hidráulicas",
+        "Resolver problemas de flotación y cuerpo sumergido con el empuje de Arquímedes"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de hidrostática tipo examen sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Hidrostática"]
+    },
+    {
+      "id": "12-calor-termodinamica",
+      "nombre": "Calor, temperatura y termodinámica",
+      "descripcion": "Escalas termométricas, dilatación, calorimetría (calor sensible y latente), gases ideales y primera ley de la termodinámica.",
+      "prerrequisitos_internos": ["08-trabajo-energia"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Convertir entre escalas termométricas y resolver problemas de dilatación",
+        "Resolver problemas de calorimetría con cambios de fase (equilibrio térmico)",
+        "Aplicar la ecuación de los gases ideales y la primera ley de la termodinámica a procesos simples"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de calor y termodinámica tipo examen sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Calor / Termodinámica"]
+    },
+    {
+      "id": "13-electrostatica",
+      "nombre": "Electrostática",
+      "descripcion": "Carga eléctrica, ley de Coulomb, campo eléctrico, potencial eléctrico y condensadores básicos.",
+      "prerrequisitos_internos": ["02-vectores", "08-trabajo-energia"],
+      "sesiones_estimadas": 2,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar la ley de Coulomb en sistemas de cargas puntuales (incluye equilibrio)",
+        "Calcular campo eléctrico y potencial de cargas puntuales y configuraciones simples",
+        "Resolver problemas de trabajo del campo eléctrico y energía potencial electrostática"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de electrostática nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Electrostática", "Exámenes UNI: preguntas de electrostática"]
+    },
+    {
+      "id": "14-electrodinamica",
+      "nombre": "Electrodinámica: circuitos eléctricos",
+      "descripcion": "Corriente, ley de Ohm, resistencias en serie y paralelo, leyes de Kirchhoff, potencia eléctrica y efecto Joule.",
+      "prerrequisitos_internos": ["13-electrostatica"],
+      "sesiones_estimadas": 2,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Reducir circuitos de resistencias en serie, paralelo y mixtos (incluye puente de Wheatstone)",
+        "Aplicar las leyes de Kirchhoff en circuitos con varias fuentes",
+        "Calcular potencia disipada y consumo de energía eléctrica"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de circuitos nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Electrodinámica"]
+    },
+    {
+      "id": "15-electromagnetismo",
+      "nombre": "Electromagnetismo",
+      "descripcion": "Campo magnético de conductores, fuerza magnética sobre cargas y conductores, e inducción electromagnética (ley de Faraday-Lenz).",
+      "prerrequisitos_internos": ["14-electrodinamica"],
+      "sesiones_estimadas": 2,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular el campo magnético de conductores rectos y espiras",
+        "Aplicar la fuerza magnética sobre cargas en movimiento y conductores con corriente",
+        "Resolver problemas de fem inducida con la ley de Faraday y el sentido con Lenz"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de electromagnetismo tipo examen sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Electromagnetismo"]
+    },
+    {
+      "id": "16-optica",
+      "nombre": "Óptica",
+      "descripcion": "Reflexión y espejos, refracción (ley de Snell), lentes delgadas y ecuación de los focos.",
+      "prerrequisitos_internos": ["10-mas-ondas"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver problemas de espejos planos y esféricos con la ecuación de espejos",
+        "Aplicar la ley de Snell en refracción y ángulo límite",
+        "Calcular posición y naturaleza de imágenes en lentes delgadas"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de óptica tipo examen sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Óptica"]
+    },
+    {
+      "id": "17-fisica-moderna",
+      "nombre": "Física moderna: nociones",
+      "descripcion": "Efecto fotoeléctrico, cuantización de la energía y nociones de relatividad. Frecuencia baja en el examen.",
+      "prerrequisitos_internos": ["16-optica"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": true,
+      "objetivos_aprendizaje": [
+        "Resolver problemas básicos de efecto fotoeléctrico (E = hf, función trabajo)",
+        "Identificar los postulados básicos de la relatividad especial en preguntas conceptuales"
+      ],
+      "criterio_dominio": "Resuelve 7/10 preguntas de física moderna de exámenes pasados sin ayuda",
+      "referencias": ["Lumbreras Física — cap. Física moderna"]
+    }
+  ]
+}

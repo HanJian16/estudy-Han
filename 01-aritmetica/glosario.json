@@ -1,0 +1,123 @@
+[
+  {
+    "termino": "Conjunto",
+    "definicion": "Una agrupación de varios elementos.",
+    "curso": "Aritmética",
+    "tema_id": "01-conjuntos",
+    "ejemplo": "A = {1, 2, 3}",
+    "terminos_relacionados": ["pertenencia", "subconjunto", "conjunto vacío"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-02",
+    "fecha_ultimo_uso": "2026-07-02"
+  },
+  {
+    "termino": "Pertenencia (∈)",
+    "definicion": "Símbolo que indica que un elemento forma parte de un conjunto.",
+    "curso": "Aritmética",
+    "tema_id": "01-conjuntos",
+    "ejemplo": "3 ∈ A significa que el 3 es elemento de A",
+    "terminos_relacionados": ["subconjunto"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-02",
+    "fecha_ultimo_uso": "2026-07-02"
+  },
+  {
+    "termino": "Subconjunto (⊂)",
+    "definicion": "Cuando todos los elementos de un conjunto también pertenecen a otro conjunto (compara conjunto con conjunto, no elemento con conjunto como la pertenencia).",
+    "curso": "Aritmética",
+    "tema_id": "01-conjuntos",
+    "ejemplo": "{1,2} ⊂ {1,2,3}",
+    "terminos_relacionados": ["pertenencia", "conjunto"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-02",
+    "fecha_ultimo_uso": "2026-07-02"
+  },
+  {
+    "termino": "Conjunto vacío (∅)",
+    "definicion": "Un conjunto sin elementos, o el resultado de una intersección cuando dos conjuntos no comparten nada.",
+    "curso": "Aritmética",
+    "tema_id": "01-conjuntos",
+    "ejemplo": "Si A y B no comparten elementos, A ∩ B = ∅",
+    "terminos_relacionados": ["intersección"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-02",
+    "fecha_ultimo_uso": "2026-07-02"
+  },
+  {
+    "termino": "Fórmula de cardinalidad (inclusión-exclusión)",
+    "definicion": "Al sumar los elementos de dos o más conjuntos, los que se repiten (intersecciones) quedan contados de más, así que hay que restarlos; con 3 conjuntos la intersección triple queda restada de más y se vuelve a sumar una vez.",
+    "curso": "Aritmética",
+    "tema_id": "01-conjuntos",
+    "ejemplo": "n(A∪B) = n(A) + n(B) − n(A∩B); n(A∪B∪C) = n(A)+n(B)+n(C) − n(A∩B) − n(A∩C) − n(B∩C) + n(A∩B∩C)",
+    "terminos_relacionados": ["cardinalidad", "diagrama de Venn"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-02",
+    "fecha_ultimo_uso": "2026-07-02"
+  },
+  {
+    "termino": "Exactamente uno vs. al menos uno",
+    "definicion": "En problemas de cardinalidad, 'al menos uno' incluye las regiones de intersección (dobles y triples), mientras que 'exactamente uno' es solo la región de ese conjunto sin ninguna intersección.",
+    "curso": "Aritmética",
+    "tema_id": "01-conjuntos",
+    "ejemplo": "Con 'solo fútbol'=9, 'solo vóley'=13, 'solo básquet'=11 y varias intersecciones: 'exactamente uno' = 9+13+11=33; 'al menos uno' = suma de todas las regiones = 53",
+    "terminos_relacionados": ["fórmula de cardinalidad"],
+    "nivel_dominio": "vacilante",
+    "fecha_aprendido": "2026-07-02",
+    "fecha_ultimo_uso": "2026-07-02"
+  },
+  {
+    "termino": "Leyes de De Morgan (conjuntos)",
+    "definicion": "El complemento de una unión es la intersección de los complementos, y el complemento de una intersección es la unión de los complementos. Al complementar, se invierten tanto los conjuntos como la operación (unión pasa a intersección y viceversa). Aplicar el complemento dos veces devuelve el conjunto original (doble complemento).",
+    "curso": "Aritmética",
+    "tema_id": "01-conjuntos",
+    "ejemplo": "(A∪B)′ = A′∩B′; (A∩B)′ = A′∪B′; (A′∩B′)′ = (A∪B)",
+    "terminos_relacionados": ["complemento", "conjunto vacío"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-02",
+    "fecha_ultimo_uso": "2026-07-02"
+  },
+  {
+    "termino": "Descomposición polinómica",
+    "definicion": "Escribir un numeral como la suma de cada cifra multiplicada por la potencia de la base que le corresponde según su posición (empezando en 0 desde la derecha). Sirve tanto para convertir un numeral de cualquier base a base 10, como para plantear ecuaciones cuando las cifras son desconocidas.",
+    "curso": "Aritmética",
+    "tema_id": "02-numeracion",
+    "ejemplo": "1101 en base 2 = 1x2^3 + 1x2^2 + 0x2^1 + 1x2^0 = 13; un numeral de 2 cifras 'ab' en base 10 = 10a + b",
+    "terminos_relacionados": ["sistema posicional", "cambio de base"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-02",
+    "fecha_ultimo_uso": "2026-07-02"
+  },
+  {
+    "termino": "Cifra máxima de una base",
+    "definicion": "En cualquier base b, la cifra más grande que se puede usar es b-1 (igual que en base 10 el 9 es la cifra máxima). Una cifra igual o mayor a la base no es válida.",
+    "curso": "Aritmética",
+    "tema_id": "02-numeracion",
+    "ejemplo": "En base 6 la cifra máxima es 5; en base 7 la cifra máxima es 6 (el numeral '57' en base 7 no existe)",
+    "terminos_relacionados": ["sistema posicional", "cambio de base"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-02",
+    "fecha_ultimo_uso": "2026-07-02"
+  },
+  {
+    "termino": "Cambio de base entre bases distintas de 10",
+    "definicion": "Para convertir un numeral de una base A a una base B (ninguna de las dos es 10), primero se pasa de base A a base 10 con descomposición polinómica, y luego de base 10 a base B con divisiones sucesivas.",
+    "curso": "Aritmética",
+    "tema_id": "02-numeracion",
+    "ejemplo": "Para pasar un numeral de base 5 a base 8: primero descomposición polinómica (base 5 -> base 10), luego divisiones sucesivas entre 8 (base 10 -> base 8)",
+    "terminos_relacionados": ["descomposición polinómica", "cambio de base"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-02",
+    "fecha_ultimo_uso": "2026-07-02"
+  },
+  {
+    "termino": "Numeral capicúa",
+    "definicion": "Numeral que se lee igual de izquierda a derecha que de derecha a izquierda (palíndromo numérico). En un capicúa de 3 cifras la forma es 'aba' (101a+10b); en uno de 4 cifras, 'abba'.",
+    "curso": "Aritmética",
+    "tema_id": "02-numeracion",
+    "ejemplo": "636 es capicúa de 3 cifras; 1221 es capicúa de 4 cifras",
+    "terminos_relacionados": ["descomposición polinómica"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-02",
+    "fecha_ultimo_uso": "2026-07-02"
+  }
+]

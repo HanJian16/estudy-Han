@@ -162,6 +162,7 @@ Cuando el usuario indique que terminó, actualiza estos archivos:
 ### `clases/NN-tema/README.md`
 - Si no existe la carpeta de la clase, créala copiando `_plantillas/plantilla-README-clase.md`.
 - Completa apuntes y dudas.
+- **Regla obligatoria para las secciones "Ejercicios trabajados" y "Feynman de cierre":** no resumas ni parafrasees. Cita el enunciado completo (o la consulta exacta del agente, en el caso de Feynman) y la respuesta del usuario copiada de forma **textual/verbatim** — tal cual la escribió, incluso con errores de tipeo. Después de cada cita, agrega una **anotación propia del agente** (qué reveló esa respuesta: método usado, acierto, error, duda, ideas para sesiones futuras). Esto preserva la voz real del usuario para diagnóstico futuro en vez de una versión reinterpretada por el agente. Ver el formato exacto en `_plantillas/plantilla-README-clase.md`.
 
 ---
 
@@ -341,6 +342,11 @@ Este proyecto usa un conjunto específico de técnicas pedagógicas con respaldo
 
 ### Reglas generales de comportamiento
 
+- **Notación matemática (LaTeX): cómo mostrarla bien al usuario**. El usuario quiere ayuda visual con fórmulas (le importa cada vez más de cara a física, química y matemática avanzada). El punto clave, confirmado en la práctica: **escribir LaTeX como texto plano en el chat NO se renderiza en este entorno** (app de escritorio de Claude / Claude Code); el `$...$` o `$$...$$` aparece crudo sin importar que la sintaxis sea correcta — no es un problema del modelo ni de la sintaxis, sino de que el renderer del chat es Markdown sin motor matemático (KaTeX/MathJax). NO insistas escribiendo LaTeX suelto en el chat esperando que se dibuje. En su lugar, usa una de estas **dos vías que SÍ funcionan**, según el caso:
+    1. **Fórmulas para conservar/repasar → archivo `.md` de la clase.** Escribe la teoría, apuntes y fórmulas en `clases/NN-tema/README.md` usando LaTeX normal (`$...$`). El usuario las abre en la vista previa de VS Code / Obsidian (Markdown+Math) y ahí renderizan perfecto. Es el destino por defecto para fórmulas serias.
+    2. **Fórmulas puntuales durante la conversación → widget de visualización.** Si una fórmula importante ayuda verla dibujada en el momento del chat, renderízala con un widget HTML que cargue MathJax (probado y funciona: CDN `mathjax@3/es5/tex-svg.js`, con `tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }`). Reserva esto para fórmulas que de verdad aportan (no cada línea), porque cuesta más armarlo que texto normal.
+  - Para expresiones triviales (un exponente, una raíz, una fracción simple) basta texto plano/Unicode en el chat (`x^2`, `√`, `a/b`, `2^2 = 4`) — no montes un widget para eso.
+  - Ante la duda de si algo se verá bien: prefiere el archivo `.md` (vía 1), que es la más confiable y además deja registro para el repaso espaciado.
 - Nunca asumas el nivel del usuario — léelo de `progreso.json`, `dificultades.json` y `glosario.json`.
 - Prioriza las dificultades sin resolver si son prerrequisito del tema actual.
 - Si el usuario pregunta "¿por dónde empiezo?", lee todos los `progreso.json` y recomienda según las dependencias declaradas en cada `README.md` de curso.
@@ -354,7 +360,8 @@ Este proyecto usa un conjunto específico de técnicas pedagógicas con respaldo
 
 ```
 estudios/
-├── README.md                     ← Este archivo (algoritmo de arranque + protocolos)
+├── README.md                     ← Este archivo (algoritmo de arranque + protocolos). Fuente única de verdad.
+├── CLAUDE.md                     ← Puntero que Claude Code carga automáticamente al iniciar; solo redirige a README.md (no duplica contenido).
 ├── .gitignore                    ← Ignora _backups/ y archivos temporales típicos
 ├── objetivo.json                 ← Se genera en el setup inicial (no existe al principio)
 ├── configuracion.json            ← Ajustes del proyecto (ej: modo un tema por sesión). Se crea con defaults si falta.

@@ -1,0 +1,184 @@
+{
+  "curso": "Aptitud Académica y Humanidades",
+  "objetivo_del_curso": "Rendir bien la Prueba 1 del examen UNI: razonamiento matemático y verbal (el grueso del peso) más un repaso dirigido de humanidades (lenguaje, historia, geografía, economía, cívica/filosofía), priorizando lo que la UNI realmente pregunta y con práctica constante en dosis pequeñas.",
+  "bibliografia": [
+    {
+      "titulo": "Razonamiento Matemático — Colección Compendios Académicos",
+      "autor": "Lumbreras / ADUNI",
+      "capitulos_relevantes": "Referencial para el bloque de razonamiento matemático. El agente genera ejercicios equivalentes a su estilo."
+    },
+    {
+      "titulo": "Razonamiento Verbal — Colección Compendios Académicos",
+      "autor": "Lumbreras / ADUNI",
+      "capitulos_relevantes": "Referencial para comprensión lectora, analogías y series verbales."
+    },
+    {
+      "titulo": "Compendios de Humanidades (Lenguaje, Historia, Geografía, Economía, Filosofía-Cívica)",
+      "autor": "Lumbreras / ADUNI",
+      "capitulos_relevantes": "Referencial de temario para el repaso dirigido de letras; se prioriza lo que aparece en exámenes UNI."
+    },
+    {
+      "titulo": "Exámenes de admisión UNI (años anteriores, con solucionario)",
+      "autor": "Universidad Nacional de Ingeniería",
+      "capitulos_relevantes": "Preguntas de la Prueba 1; definen el alcance real de humanidades y el estilo de razonamiento."
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cuaderno físico",
+      "url": null,
+      "uso": "Práctica de razonamiento a mano, contra reloj para entrenar velocidad.",
+      "para_temas": null
+    },
+    {
+      "nombre": "Cronómetro / temporizador",
+      "url": null,
+      "uso": "Entrenar la resolución rápida: el razonamiento se penaliza más por lentitud que por dificultad.",
+      "para_temas": ["01-rm-series-sucesiones", "02-rm-planteo-edades", "03-rm-conteo-logica", "05-rv-comprension-lectora"]
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-rm-series-sucesiones",
+      "nombre": "RM: Series, sucesiones y analogías numéricas",
+      "descripcion": "Sucesiones numéricas, literales y gráficas; analogías y distribuciones numéricas.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Identificar la ley de formación de sucesiones numéricas, literales y gráficas",
+        "Resolver analogías y distribuciones numéricas hallando el operador oculto",
+        "Resolver contra reloj (menos de 1 minuto por ítem promedio)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ítems tipo examen en tiempo limitado sin ayuda",
+      "referencias": ["Lumbreras RM — cap. Series y sucesiones"]
+    },
+    {
+      "id": "02-rm-planteo-edades",
+      "nombre": "RM: Planteo de ecuaciones, edades y móviles",
+      "descripcion": "Traducción de enunciados verbales a ecuaciones, problemas de edades, móviles y cronometría.",
+      "prerrequisitos_internos": ["01-rm-series-sucesiones"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Traducir enunciados verbales a ecuaciones de forma sistemática",
+        "Resolver problemas de edades (pasado/presente/futuro) con cuadros",
+        "Resolver problemas de móviles y cronometría (relojes, campanadas)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de planteo y edades tipo examen sin ayuda",
+      "referencias": ["Lumbreras RM — cap. Planteo de ecuaciones / Edades"]
+    },
+    {
+      "id": "03-rm-conteo-logica",
+      "nombre": "RM: Conteo de figuras, razonamiento lógico e inductivo-deductivo",
+      "descripcion": "Conteo de figuras, razonamiento inductivo y deductivo, situaciones lógicas (verdades y mentiras), orden de información y certezas.",
+      "prerrequisitos_internos": ["01-rm-series-sucesiones"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Contar figuras aplicando fórmulas y conteo sistemático",
+        "Resolver problemas por inducción (casos particulares → patrón general)",
+        "Resolver situaciones lógicas de orden de información, parentesco y certezas"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ítems variados de razonamiento lógico sin ayuda",
+      "referencias": ["Lumbreras RM — cap. Razonamiento inductivo-deductivo / Situaciones lógicas"]
+    },
+    {
+      "id": "04-rm-operadores-suficiencia",
+      "nombre": "RM: Operadores matemáticos y suficiencia de datos",
+      "descripcion": "Operadores matemáticos arbitrarios, funciones definidas por tablas y análisis de suficiencia de datos.",
+      "prerrequisitos_internos": ["02-rm-planteo-edades"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Evaluar operadores matemáticos definidos arbitrariamente",
+        "Resolver problemas de suficiencia de datos decidiendo qué información basta"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ítems de operadores y suficiencia sin ayuda",
+      "referencias": ["Lumbreras RM — cap. Operadores matemáticos"]
+    },
+    {
+      "id": "05-rv-comprension-lectora",
+      "nombre": "RV: Comprensión lectora",
+      "descripcion": "Tipos de pregunta (tema central, idea principal, inferencia, sentido contextual), estrategias de lectura y jerarquización de ideas.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 3,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Distinguir tema, idea principal y título de un texto",
+        "Responder preguntas de inferencia y sentido contextual justificando con el texto",
+        "Aplicar una estrategia de lectura eficiente bajo presión de tiempo"
+      ],
+      "criterio_dominio": "Acierta 8/10 preguntas de comprensión en textos tipo examen dentro del tiempo",
+      "referencias": ["Lumbreras RV — cap. Comprensión de lectura", "Exámenes UNI: textos de la Prueba 1"]
+    },
+    {
+      "id": "06-rv-analogias-conectores",
+      "nombre": "RV: Analogías, oraciones incompletas y eliminación de oraciones",
+      "descripcion": "Analogías verbales, conectores lógico-textuales, oraciones incompletas y eliminación de oraciones por impertinencia o redundancia.",
+      "prerrequisitos_internos": ["05-rv-comprension-lectora"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver analogías identificando la relación exacta entre el par base",
+        "Completar oraciones con conectores y términos según coherencia y precisión léxica",
+        "Eliminar la oración impertinente o redundante de un conjunto"
+      ],
+      "criterio_dominio": "Acierta 8/10 ítems variados de aptitud verbal sin ayuda",
+      "referencias": ["Lumbreras RV — cap. Analogías / Oraciones incompletas / Eliminación"]
+    },
+    {
+      "id": "07-hum-lenguaje-literatura",
+      "nombre": "Humanidades: Lenguaje y Literatura",
+      "descripcion": "Categorías gramaticales, acentuación, ortografía, corrección idiomática y nociones básicas de literatura peruana y universal.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar reglas de acentuación y ortografía en casos tipo examen",
+        "Identificar categorías gramaticales y errores de corrección idiomática",
+        "Reconocer autores y obras representativas frecuentes en el examen UNI"
+      ],
+      "criterio_dominio": "Acierta 8/10 preguntas de lenguaje y literatura tipo examen sin ayuda",
+      "referencias": ["Compendio Lenguaje — Lumbreras/ADUNI", "Exámenes UNI: preguntas de lenguaje"]
+    },
+    {
+      "id": "08-hum-historia-geografia",
+      "nombre": "Humanidades: Historia y Geografía",
+      "descripcion": "Repaso dirigido de Historia del Perú y Universal (hitos frecuentes) y Geografía del Perú y general, enfocado en lo que la UNI pregunta.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Ubicar hitos clave de la historia peruana y universal en su contexto",
+        "Responder preguntas de geografía física y política del Perú",
+        "Descartar distractores en preguntas de opción múltiple de letras"
+      ],
+      "criterio_dominio": "Acierta 8/10 preguntas de historia y geografía tipo examen sin ayuda",
+      "referencias": ["Compendios Historia/Geografía — Lumbreras/ADUNI", "Exámenes UNI: preguntas de letras"]
+    },
+    {
+      "id": "09-hum-economia-filosofia-civica",
+      "nombre": "Humanidades: Economía, Filosofía y Cívica",
+      "descripcion": "Nociones básicas de economía, conceptos fundamentales de filosofía y educación cívica. Bloque de menor frecuencia; repaso ligero.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 1,
+      "dificultad": 2,
+      "opcional": true,
+      "objetivos_aprendizaje": [
+        "Reconocer conceptos económicos básicos (oferta, demanda, mercado, agentes)",
+        "Identificar corrientes y conceptos filosóficos elementales y nociones de cívica frecuentes"
+      ],
+      "criterio_dominio": "Acierta 7/10 preguntas de estos temas en exámenes pasados sin ayuda",
+      "referencias": ["Compendios Economía/Filosofía/Cívica — Lumbreras/ADUNI"]
+    }
+  ]
+}

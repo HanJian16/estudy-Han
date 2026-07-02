@@ -1,0 +1,22 @@
+{
+  "curso": "Física",
+  "progreso": [
+    { "tema_id": "01-analisis-dimensional", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "02-vectores", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "03-cinematica-rectilinea", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "04-caida-libre-parabolico", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "05-movimiento-circular", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "06-estatica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "07-dinamica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "08-trabajo-energia", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "09-cantidad-movimiento", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "10-mas-ondas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "11-hidrostatica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "12-calor-termodinamica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "13-electrostatica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "14-electrodinamica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "15-electromagnetismo", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "16-optica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "17-fisica-moderna", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 }
+  ]
+}

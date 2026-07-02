@@ -1,0 +1,249 @@
+{
+  "curso": "Geometría",
+  "objetivo_del_curso": "Resolver problemas de geometría plana, del espacio y analítica del nivel del examen de admisión UNI, dominando el uso de trazos auxiliares, propiedades métricas y cálculo de áreas y volúmenes.",
+  "bibliografia": [
+    {
+      "titulo": "Geometría — Colección Compendios Académicos",
+      "autor": "Lumbreras Editores",
+      "capitulos_relevantes": "Referencial: marca nivel y cobertura. El agente genera teoría y ejercicios equivalentes a su estilo; el usuario no posee el libro."
+    },
+    {
+      "titulo": "Compendio Académico de Geometría",
+      "autor": "ADUNI",
+      "capitulos_relevantes": "Referencial: fuente alternativa de estilo de problemas tipo UNI."
+    },
+    {
+      "titulo": "Exámenes de admisión UNI (años anteriores, con solucionario)",
+      "autor": "Universidad Nacional de Ingeniería",
+      "capitulos_relevantes": "Preguntas de geometría de las pruebas de Matemática; se usan como ejercicios de nivel real desde mitad del curso."
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cuaderno físico",
+      "url": null,
+      "uso": "Instrumento principal: dibujar la figura y los trazos auxiliares a mano es parte esencial del método.",
+      "para_temas": null
+    },
+    {
+      "nombre": "GeoGebra",
+      "url": "https://www.geogebra.org/calculator",
+      "uso": "Construir figuras interactivas para verificar propiedades y visualizar problemas difíciles; el agente puede generar el código de la construcción.",
+      "para_temas": null
+    },
+    {
+      "nombre": "Desmos",
+      "url": "https://www.desmos.com/calculator",
+      "uso": "Verificación rápida en geometría analítica (rectas, circunferencias, cónicas).",
+      "para_temas": ["12-geometria-analitica", "13-conicas"]
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-segmentos-angulos",
+      "nombre": "Segmentos y ángulos",
+      "descripcion": "Operaciones con segmentos, punto medio, ángulos y su clasificación, ángulos entre paralelas y una secante.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 2,
+      "dificultad": 1,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver problemas de operaciones con segmentos colineales y punto medio",
+        "Calcular ángulos usando complemento, suplemento y bisectrices",
+        "Aplicar propiedades de ángulos entre rectas paralelas (alternos, conjugados, dientes de sierra)"
+      ],
+      "criterio_dominio": "Resuelve 9/10 ejercicios básicos de segmentos y ángulos sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Segmentos y ángulos"]
+    },
+    {
+      "id": "02-triangulos",
+      "nombre": "Triángulos: propiedades fundamentales",
+      "descripcion": "Clasificación, suma de ángulos, existencia (desigualdad triangular), líneas notables (mediana, bisectriz, altura, mediatriz) y propiedades angulares con líneas notables.",
+      "prerrequisitos_internos": ["01-segmentos-angulos"],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar propiedades angulares del triángulo (suma interior, exterior, propiedades de la mariposa y pescadito)",
+        "Aplicar la desigualdad triangular para acotar lados",
+        "Calcular ángulos formados por líneas notables (bisectrices interiores/exteriores, alturas)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de ángulos en triángulos tipo examen sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Triángulos"]
+    },
+    {
+      "id": "03-congruencia",
+      "nombre": "Congruencia de triángulos",
+      "descripcion": "Casos de congruencia y sus aplicaciones: teorema de la bisectriz, mediatriz, base media y menor mediana en el triángulo rectángulo.",
+      "prerrequisitos_internos": ["02-triangulos"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Identificar el caso de congruencia aplicable (LAL, ALA, LLL) en una figura",
+        "Aplicar los teoremas de base media y de la menor mediana",
+        "Resolver problemas que exigen trazos auxiliares para formar triángulos congruentes"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de congruencia con trazo auxiliar sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Congruencia"]
+    },
+    {
+      "id": "04-poligonos-cuadrilateros",
+      "nombre": "Polígonos y cuadriláteros",
+      "descripcion": "Suma de ángulos y diagonales de polígonos; clasificación y propiedades de trapecios y paralelogramos.",
+      "prerrequisitos_internos": ["02-triangulos"],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular ángulos interiores/exteriores y número de diagonales de polígonos",
+        "Aplicar propiedades de la mediana del trapecio y del segmento entre diagonales",
+        "Resolver problemas con propiedades de paralelogramos, rombos y rectángulos"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de polígonos y cuadriláteros tipo examen sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Polígonos / Cuadriláteros"]
+    },
+    {
+      "id": "05-circunferencia",
+      "nombre": "Circunferencia",
+      "descripcion": "Ángulos en la circunferencia (central, inscrito, semiinscrito, interior, exterior), propiedades de tangentes, teorema de Poncelet y Pitot.",
+      "prerrequisitos_internos": ["03-congruencia"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular ángulos asociados a la circunferencia según su posición",
+        "Aplicar propiedades de tangentes desde un punto exterior",
+        "Aplicar los teoremas de Poncelet y Pitot en triángulos y cuadriláteros circunscritos"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de circunferencia tipo examen sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Circunferencia"]
+    },
+    {
+      "id": "06-puntos-notables",
+      "nombre": "Puntos notables del triángulo",
+      "descripcion": "Baricentro, incentro, circuncentro, ortocentro y excentro: propiedades y relaciones angulares.",
+      "prerrequisitos_internos": ["03-congruencia", "05-circunferencia"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Identificar cada punto notable y sus propiedades métricas (razón 2:1 del baricentro, etc.)",
+        "Calcular ángulos que involucran incentro, circuncentro y excentro"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de puntos notables sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Puntos notables"]
+    },
+    {
+      "id": "07-proporcionalidad-semejanza",
+      "nombre": "Proporcionalidad y semejanza",
+      "descripcion": "Teorema de Thales, teorema de la bisectriz (interior y exterior), semejanza de triángulos y sus casos.",
+      "prerrequisitos_internos": ["04-poligonos-cuadrilateros", "05-circunferencia"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar el teorema de Thales y de la bisectriz en cálculo de segmentos",
+        "Identificar triángulos semejantes y plantear la proporción correcta",
+        "Resolver problemas de semejanza con circunferencias (cuerdas y tangentes)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de semejanza tipo examen sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Semejanza"]
+    },
+    {
+      "id": "08-relaciones-metricas",
+      "nombre": "Relaciones métricas",
+      "descripcion": "Relaciones métricas en el triángulo rectángulo, oblicuángulo (teoremas de Euclides, mediana, Herón) y en la circunferencia (cuerdas, secantes, tangente).",
+      "prerrequisitos_internos": ["07-proporcionalidad-semejanza"],
+      "sesiones_estimadas": 3,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar las relaciones métricas del triángulo rectángulo (alturas, proyecciones)",
+        "Aplicar los teoremas de Euclides y de la mediana en triángulos oblicuángulos",
+        "Aplicar los teoremas de cuerdas, secantes y tangente en la circunferencia"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de relaciones métricas nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Relaciones métricas", "Exámenes UNI: preguntas de relaciones métricas"]
+    },
+    {
+      "id": "09-areas",
+      "nombre": "Áreas de regiones planas",
+      "descripcion": "Área de regiones triangulares, cuadrangulares y circulares; relación de áreas (razón de semejanza, regiones con misma base o altura).",
+      "prerrequisitos_internos": ["08-relaciones-metricas"],
+      "sesiones_estimadas": 3,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular áreas de regiones triangulares con las fórmulas adecuadas (básica, Herón, inradio, circunradio)",
+        "Aplicar relaciones de áreas entre regiones semejantes o con elementos comunes",
+        "Calcular áreas de regiones sombreadas combinando figuras circulares y poligonales"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de áreas (incluye sombreadas) nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Áreas", "Exámenes UNI: preguntas de áreas sombreadas"]
+    },
+    {
+      "id": "10-geometria-del-espacio",
+      "nombre": "Geometría del espacio: poliedros, prisma y pirámide",
+      "descripcion": "Rectas y planos en el espacio, ángulo diedro, poliedros regulares, prisma y pirámide: áreas y volúmenes.",
+      "prerrequisitos_internos": ["09-areas"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar el teorema de las tres perpendiculares y calcular ángulos entre rectas y planos",
+        "Calcular áreas y volúmenes de prismas y pirámides",
+        "Resolver problemas con poliedros regulares (teorema de Euler)"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de geometría del espacio tipo examen sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Geometría del espacio"]
+    },
+    {
+      "id": "11-solidos-revolucion",
+      "nombre": "Sólidos de revolución",
+      "descripcion": "Cilindro, cono, esfera y teoremas de Pappus-Guldin: áreas y volúmenes.",
+      "prerrequisitos_internos": ["10-geometria-del-espacio"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular áreas y volúmenes de cilindro, cono y esfera (incluye troncos)",
+        "Aplicar los teoremas de Pappus-Guldin para sólidos generados por rotación",
+        "Resolver problemas de sólidos inscritos y circunscritos"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de sólidos de revolución tipo examen sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Sólidos de revolución"]
+    },
+    {
+      "id": "12-geometria-analitica",
+      "nombre": "Geometría analítica: recta y circunferencia",
+      "descripcion": "Plano cartesiano, distancia, división de segmentos, ecuación de la recta (pendiente, paralelismo, perpendicularidad) y de la circunferencia.",
+      "prerrequisitos_internos": ["08-relaciones-metricas"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular distancias, puntos medios y división de segmentos en razón dada",
+        "Determinar ecuaciones de rectas y aplicar condiciones de paralelismo/perpendicularidad",
+        "Determinar la ecuación de una circunferencia y su posición relativa con rectas"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de recta y circunferencia analítica sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Geometría analítica"]
+    },
+    {
+      "id": "13-conicas",
+      "nombre": "Cónicas: parábola, elipse e hipérbola",
+      "descripcion": "Ecuaciones canónicas de las cónicas, elementos (foco, directriz, ejes) y problemas de aplicación. Frecuencia media en el examen.",
+      "prerrequisitos_internos": ["12-geometria-analitica"],
+      "sesiones_estimadas": 1,
+      "dificultad": 4,
+      "opcional": true,
+      "objetivos_aprendizaje": [
+        "Identificar los elementos de cada cónica desde su ecuación canónica",
+        "Determinar la ecuación de una cónica a partir de sus elementos"
+      ],
+      "criterio_dominio": "Resuelve 7/10 ejercicios de cónicas canónicas sin ayuda",
+      "referencias": ["Lumbreras Geometría — cap. Cónicas"]
+    }
+  ]
+}

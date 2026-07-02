@@ -1,0 +1,278 @@
+{
+  "curso": "Trigonometría",
+  "objetivo_del_curso": "Resolver problemas de trigonometría del nivel del examen de admisión UNI: razones trigonométricas, circunferencia trigonométrica, identidades, funciones y ecuaciones trigonométricas; y dominar las herramientas trigonométricas que exige Física (vectores, descomposición).",
+  "bibliografia": [
+    {
+      "titulo": "Trigonometría — Colección Compendios Académicos",
+      "autor": "Lumbreras Editores",
+      "capitulos_relevantes": "Referencial: marca nivel y cobertura. El agente genera teoría y ejercicios equivalentes a su estilo; el usuario no posee el libro."
+    },
+    {
+      "titulo": "Compendio Académico de Trigonometría",
+      "autor": "ADUNI",
+      "capitulos_relevantes": "Referencial: fuente alternativa de estilo de problemas tipo UNI."
+    },
+    {
+      "titulo": "Exámenes de admisión UNI (años anteriores, con solucionario)",
+      "autor": "Universidad Nacional de Ingeniería",
+      "capitulos_relevantes": "Preguntas de trigonometría de las pruebas de Matemática; se usan como ejercicios de nivel real desde mitad del curso."
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cuaderno físico",
+      "url": null,
+      "uso": "Instrumento principal: desarrollo de identidades y gráficas a mano alzada, como en el examen.",
+      "para_temas": null
+    },
+    {
+      "nombre": "Desmos",
+      "url": "https://www.desmos.com/calculator",
+      "uso": "Visualizar la circunferencia unitaria, gráficas de funciones trigonométricas y verificar soluciones de ecuaciones.",
+      "para_temas": ["07-circunferencia-trigonometrica", "12-funciones-trigonometricas", "14-ecuaciones-trigonometricas"]
+    },
+    {
+      "nombre": "WolframAlpha",
+      "url": "https://www.wolframalpha.com",
+      "uso": "Verificar identidades y valores exactos cuando el usuario dude de su desarrollo.",
+      "para_temas": null
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-sistemas-medicion-angular",
+      "nombre": "Sistemas de medición angular",
+      "descripcion": "Sistemas sexagesimal, centesimal y radial; conversiones y fórmula general de conversión.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 1,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Convertir ángulos entre los tres sistemas de medición",
+        "Resolver problemas con la relación S/180 = C/200 = R/π"
+      ],
+      "criterio_dominio": "Resuelve 9/10 ejercicios de conversión y relación entre sistemas sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Sistemas de medición angular"]
+    },
+    {
+      "id": "02-sector-circular",
+      "nombre": "Longitud de arco y sector circular",
+      "descripcion": "Longitud de arco, área de sector y trapecio circular, número de vueltas de una rueda y poleas.",
+      "prerrequisitos_internos": ["01-sistemas-medicion-angular"],
+      "sesiones_estimadas": 1,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular longitudes de arco y áreas de sectores circulares",
+        "Resolver problemas de ruedas, poleas y número de vueltas"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de arcos y poleas tipo examen sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Sector circular"]
+    },
+    {
+      "id": "03-razones-angulos-agudos",
+      "nombre": "Razones trigonométricas de ángulos agudos",
+      "descripcion": "Definición en el triángulo rectángulo, triángulos notables (30-60, 45, 37-53), razones recíprocas y complementarias.",
+      "prerrequisitos_internos": ["01-sistemas-medicion-angular"],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular las seis razones trigonométricas en triángulos rectángulos",
+        "Aplicar los valores de los triángulos notables sin tabla",
+        "Aplicar propiedades de razones recíprocas y de ángulos complementarios"
+      ],
+      "criterio_dominio": "Resuelve 9/10 ejercicios con triángulos notables sin ayuda y sin tabla",
+      "referencias": ["Lumbreras Trigonometría — cap. Razones trigonométricas"]
+    },
+    {
+      "id": "04-triangulos-rectangulos-angulos-verticales",
+      "nombre": "Resolución de triángulos rectángulos y ángulos verticales",
+      "descripcion": "Lados en función de razones trigonométricas, ángulos de elevación y depresión, problemas de alturas y distancias.",
+      "prerrequisitos_internos": ["03-razones-angulos-agudos"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Expresar lados desconocidos de un triángulo rectángulo en función de un lado y un ángulo",
+        "Resolver problemas de ángulos de elevación y depresión",
+        "Resolver problemas geométricos combinando dos o más triángulos rectángulos"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de alturas y distancias tipo examen sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Resolución de triángulos rectángulos"]
+    },
+    {
+      "id": "05-angulos-posicion-normal",
+      "nombre": "Razones trigonométricas de ángulos en posición normal",
+      "descripcion": "Ángulos en el plano cartesiano, signos por cuadrante, ángulos cuadrantales y coterminales.",
+      "prerrequisitos_internos": ["03-razones-angulos-agudos"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular razones trigonométricas de ángulos en posición normal desde un punto de su lado final",
+        "Determinar signos de las razones según el cuadrante",
+        "Resolver problemas con ángulos cuadrantales y coterminales"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de posición normal sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Ángulos en posición normal"]
+    },
+    {
+      "id": "06-reduccion-primer-cuadrante",
+      "nombre": "Reducción al primer cuadrante",
+      "descripcion": "Fórmulas de reducción para ángulos de cualquier magnitud, incluidos negativos y mayores a una vuelta.",
+      "prerrequisitos_internos": ["05-angulos-posicion-normal"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Reducir razones de ángulos de cualquier cuadrante al primer cuadrante",
+        "Calcular razones de ángulos negativos y mayores a 360°"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de reducción sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Reducción al primer cuadrante"]
+    },
+    {
+      "id": "07-circunferencia-trigonometrica",
+      "nombre": "Circunferencia trigonométrica",
+      "descripcion": "Representación de seno, coseno y tangente como segmentos; variaciones, acotación y comparación de valores.",
+      "prerrequisitos_internos": ["06-reduccion-primer-cuadrante"],
+      "sesiones_estimadas": 2,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Representar razones trigonométricas como segmentos dirigidos en la CT",
+        "Comparar y acotar valores de expresiones trigonométricas usando la CT",
+        "Determinar variaciones (máximos y mínimos) de expresiones con seno y coseno"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de CT nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Circunferencia trigonométrica", "Exámenes UNI: preguntas de CT"]
+    },
+    {
+      "id": "08-identidades-fundamentales",
+      "nombre": "Identidades trigonométricas fundamentales",
+      "descripcion": "Identidades pitagóricas, recíprocas y por cociente; demostración, simplificación y problemas condicionales.",
+      "prerrequisitos_internos": ["05-angulos-posicion-normal"],
+      "sesiones_estimadas": 3,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Simplificar expresiones trigonométricas aplicando identidades fundamentales",
+        "Demostrar identidades trabajando desde el lado más complejo",
+        "Resolver problemas condicionales (dado senx + cosx = a, calcular...)"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de identidades nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Identidades trigonométricas"]
+    },
+    {
+      "id": "09-angulos-compuestos",
+      "nombre": "Identidades de ángulos compuestos",
+      "descripcion": "Seno, coseno y tangente de suma y diferencia de ángulos; propiedades asociadas (a·senx + b·cosx).",
+      "prerrequisitos_internos": ["08-identidades-fundamentales"],
+      "sesiones_estimadas": 2,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar las fórmulas de suma y diferencia de ángulos en cálculo y simplificación",
+        "Calcular máximos y mínimos de a·senx + b·cosx",
+        "Resolver problemas con tangentes de suma (propiedad de los 45°, ángulos que suman condiciones)"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de ángulos compuestos tipo examen sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Ángulos compuestos"]
+    },
+    {
+      "id": "10-angulos-multiples",
+      "nombre": "Ángulos múltiples",
+      "descripcion": "Identidades del ángulo doble, mitad y triple; degradación de potencias.",
+      "prerrequisitos_internos": ["09-angulos-compuestos"],
+      "sesiones_estimadas": 2,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar identidades de ángulo doble y triple en cálculo y simplificación",
+        "Aplicar las fórmulas de ángulo mitad con el signo correcto según el cuadrante",
+        "Degradar potencias de seno y coseno (sen²x, cos³x) para simplificar expresiones"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de ángulos múltiples nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Ángulos múltiples"]
+    },
+    {
+      "id": "11-transformaciones",
+      "nombre": "Transformaciones trigonométricas",
+      "descripcion": "Conversión de suma a producto y de producto a suma; series trigonométricas básicas.",
+      "prerrequisitos_internos": ["10-angulos-multiples"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Transformar sumas y diferencias de senos/cosenos en productos y viceversa",
+        "Simplificar expresiones y calcular sumas de senos o cosenos en progresión"
+      ],
+      "criterio_dominio": "Resuelve 7/10 ejercicios de transformaciones sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Transformaciones"]
+    },
+    {
+      "id": "12-funciones-trigonometricas",
+      "nombre": "Funciones trigonométricas",
+      "descripcion": "Dominio, rango, periodo y gráficas de las funciones trigonométricas; amplitud y desplazamientos.",
+      "prerrequisitos_internos": ["07-circunferencia-trigonometrica", "10-angulos-multiples"],
+      "sesiones_estimadas": 2,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Determinar dominio, rango y periodo de funciones trigonométricas compuestas",
+        "Graficar funciones senoidales identificando amplitud, periodo y desfase",
+        "Resolver problemas de máximos y mínimos de funciones trigonométricas"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de funciones trigonométricas nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Funciones trigonométricas", "Exámenes UNI: preguntas de funciones trigonométricas"]
+    },
+    {
+      "id": "13-funciones-inversas",
+      "nombre": "Funciones trigonométricas inversas",
+      "descripcion": "Definición, dominio y rango de arcoseno, arcocoseno y arcotangente; propiedades y cálculo de valores. Frecuencia media en el examen.",
+      "prerrequisitos_internos": ["12-funciones-trigonometricas"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": true,
+      "objetivos_aprendizaje": [
+        "Calcular valores exactos de expresiones con funciones trigonométricas inversas",
+        "Aplicar propiedades de composición (sen(arcsen x), arcsen(sen x)) respetando dominios"
+      ],
+      "criterio_dominio": "Resuelve 7/10 ejercicios de funciones inversas sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Funciones inversas"]
+    },
+    {
+      "id": "14-ecuaciones-trigonometricas",
+      "nombre": "Ecuaciones trigonométricas",
+      "descripcion": "Soluciones principales y generales de ecuaciones trigonométricas elementales y reducibles a elementales.",
+      "prerrequisitos_internos": ["12-funciones-trigonometricas"],
+      "sesiones_estimadas": 2,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver ecuaciones trigonométricas elementales expresando la solución general",
+        "Resolver ecuaciones reducibles mediante identidades y factorización",
+        "Contar soluciones de una ecuación en un intervalo dado"
+      ],
+      "criterio_dominio": "Resuelve 7/10 ecuaciones trigonométricas nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Ecuaciones trigonométricas"]
+    },
+    {
+      "id": "15-triangulos-oblicuangulos",
+      "nombre": "Resolución de triángulos oblicuángulos",
+      "descripcion": "Ley de senos, ley de cosenos, ley de tangentes y ley de proyecciones; aplicaciones geométricas.",
+      "prerrequisitos_internos": ["09-angulos-compuestos"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar la ley de senos y cosenos para resolver triángulos",
+        "Seleccionar la ley adecuada según los datos del problema",
+        "Resolver problemas geométricos que combinan leyes con propiedades de triángulos"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de triángulos oblicuángulos sin ayuda",
+      "referencias": ["Lumbreras Trigonometría — cap. Triángulos oblicuángulos"]
+    }
+  ]
+}

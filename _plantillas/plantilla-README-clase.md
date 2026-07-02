@@ -14,7 +14,11 @@ Qué recordó el usuario al arrancar (del tema anterior o de sesiones previas de
 Puntos clave trabajados en la sesión. Definiciones, ejemplos resueltos, patrones y trucos observados.
 
 ## Ejercicios trabajados
-1. [Enunciado] — Resultado / observación / dónde se trabó
+> Regla obligatoria: no resumas ni parafrasees la respuesta del usuario. Cita el enunciado completo y su respuesta tal cual la escribió (verbatim, incluso con errores de tipeo), y agrega tu propia anotación aparte.
+
+1. **Enunciado:** [enunciado completo del ejercicio]
+   **Respuesta del usuario (textual):** "[copia exacta de lo que escribió]"
+   **Anotación del agente:** [qué reveló esta respuesta: método usado, acierto, error, duda — tu interpretación, no la suya]
 2. ...
 
 ## Herramientas usadas
@@ -24,7 +28,11 @@ Puntos clave trabajados en la sesión. Definiciones, ejemplos resueltos, patrone
 Lo que quedó sin resolver o no terminó de asentarse. Estos puntos deben reflejarse en `dificultades.json`.
 
 ## Feynman de cierre
-Cómo explicó el usuario el tema "a alguien que no sabe nada". Anotar dónde tuvo lagunas al explicar.
+> Misma regla: cita textual, no resumen.
+
+**Consulta del agente (textual):** "[la pregunta/consigna exacta que se le hizo al usuario para el cierre Feynman]"
+**Respuesta del usuario (textual):** "[copia exacta y completa de su explicación]"
+**Anotación del agente:** [dónde hubo lagunas al explicar, qué quedó sólido, ideas para sesiones futuras]
 
 ## Próximos pasos
 Qué tema o dificultad continuar en la siguiente sesión.

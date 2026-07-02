@@ -1,0 +1,281 @@
+{
+  "curso": "Química",
+  "objetivo_del_curso": "Resolver problemas de química del nivel del examen de admisión UNI: estructura atómica, tabla periódica, enlace, nomenclatura, estequiometría, soluciones y química orgánica básica, combinando comprensión con la memorización sistemática que el curso exige.",
+  "bibliografia": [
+    {
+      "titulo": "Química — Colección Compendios Académicos",
+      "autor": "Lumbreras Editores",
+      "capitulos_relevantes": "Referencial: marca nivel y cobertura. El agente genera teoría y ejercicios equivalentes a su estilo; el usuario no posee el libro."
+    },
+    {
+      "titulo": "Compendio Académico de Química",
+      "autor": "ADUNI",
+      "capitulos_relevantes": "Referencial: fuente alternativa de estilo de problemas tipo UNI."
+    },
+    {
+      "titulo": "Exámenes de admisión UNI (años anteriores, con solucionario)",
+      "autor": "Universidad Nacional de Ingeniería",
+      "capitulos_relevantes": "Preguntas de química de la Prueba 3; se usan como ejercicios de nivel real desde mitad del curso."
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cuaderno físico",
+      "url": null,
+      "uso": "Instrumento principal: nomenclatura, balanceo y cálculos estequiométricos a mano.",
+      "para_temas": null
+    },
+    {
+      "nombre": "Tabla periódica interactiva (ptable)",
+      "url": "https://ptable.com/?lang=es",
+      "uso": "Consulta y estudio de propiedades periódicas; en el examen se da la tabla con masas atómicas, no memorizarlas.",
+      "para_temas": null
+    },
+    {
+      "nombre": "WolframAlpha",
+      "url": "https://www.wolframalpha.com",
+      "uso": "Verificar cálculos estequiométricos y de soluciones cuando el usuario dude de su resultado.",
+      "para_temas": ["09-estequiometria", "10-soluciones"]
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-materia",
+      "nombre": "Materia y su clasificación",
+      "descripcion": "Estados y propiedades de la materia, sustancias puras y mezclas, cambios físicos y químicos, métodos de separación.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 1,
+      "dificultad": 1,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Clasificar sistemas materiales (elemento, compuesto, mezcla homogénea/heterogénea)",
+        "Identificar cambios físicos, químicos y alotrópicos en ejemplos concretos",
+        "Seleccionar el método de separación adecuado para una mezcla dada"
+      ],
+      "criterio_dominio": "Responde 9/10 preguntas conceptuales tipo examen sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Materia"]
+    },
+    {
+      "id": "02-estructura-atomica",
+      "nombre": "Estructura atómica y números cuánticos",
+      "descripcion": "Partículas subatómicas, núclidos e iones, isótopos; números cuánticos y configuración electrónica.",
+      "prerrequisitos_internos": ["01-materia"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular protones, neutrones y electrones de núclidos e iones",
+        "Escribir configuraciones electrónicas (regla de Möbius/Aufbau) incluyendo iones y anomalías de Cu/Cr",
+        "Determinar los números cuánticos válidos de un electrón dado"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de estructura atómica y configuración sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Estructura atómica"]
+    },
+    {
+      "id": "03-tabla-periodica",
+      "nombre": "Tabla periódica y propiedades periódicas",
+      "descripcion": "Organización por grupos y periodos, ubicación de elementos por configuración, propiedades periódicas (radio, electronegatividad, energía de ionización).",
+      "prerrequisitos_internos": ["02-estructura-atomica"],
+      "sesiones_estimadas": 1,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Ubicar un elemento (grupo y periodo) a partir de su configuración electrónica",
+        "Comparar propiedades periódicas entre elementos según su posición",
+        "Identificar familias representativas y sus características (alcalinos, halógenos, etc.)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de ubicación y propiedades periódicas sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Tabla periódica"]
+    },
+    {
+      "id": "04-enlace-quimico",
+      "nombre": "Enlace químico",
+      "descripcion": "Enlace iónico, covalente (normal, dativo, polar/apolar) y metálico; estructuras de Lewis, geometría molecular básica y fuerzas intermoleculares.",
+      "prerrequisitos_internos": ["03-tabla-periodica"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Clasificar el enlace de un compuesto según la diferencia de electronegatividad",
+        "Construir estructuras de Lewis y contar enlaces sigma/pi, pares libres y dativos",
+        "Relacionar fuerzas intermoleculares con propiedades físicas (punto de ebullición, solubilidad)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de enlace y Lewis tipo examen sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Enlace químico"]
+    },
+    {
+      "id": "05-nomenclatura",
+      "nombre": "Nomenclatura inorgánica",
+      "descripcion": "Estados de oxidación, óxidos, hidróxidos, ácidos, sales e hidruros en nomenclatura clásica, Stock e IUPAC.",
+      "prerrequisitos_internos": ["04-enlace-quimico"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular estados de oxidación en compuestos e iones",
+        "Nombrar y formular óxidos, hidróxidos, ácidos y sales en los tres sistemas",
+        "Identificar la función química de un compuesto a partir de su fórmula"
+      ],
+      "criterio_dominio": "Nombra/formula correctamente 8/10 compuestos variados sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Nomenclatura"]
+    },
+    {
+      "id": "06-unidades-quimicas",
+      "nombre": "Unidades químicas de masa",
+      "descripcion": "Mol, masa molar, número de Avogadro, composición centesimal, fórmula empírica y molecular.",
+      "prerrequisitos_internos": ["02-estructura-atomica"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Convertir entre masa, moles, número de partículas y volumen molar",
+        "Calcular composición centesimal de compuestos",
+        "Determinar fórmulas empíricas y moleculares a partir de datos experimentales"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de unidades químicas tipo examen sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Unidades químicas de masa"]
+    },
+    {
+      "id": "07-estado-gaseoso",
+      "nombre": "Estado gaseoso",
+      "descripcion": "Ecuación universal de los gases, procesos restringidos (Boyle, Charles, Gay-Lussac), mezcla de gases y presiones parciales.",
+      "prerrequisitos_internos": ["06-unidades-quimicas"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar la ecuación universal y la ley general de los gases",
+        "Resolver problemas de mezclas gaseosas con presiones parciales (Dalton)",
+        "Calcular densidades y masas molares de gases en condiciones dadas"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de gases tipo examen sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Estado gaseoso"]
+    },
+    {
+      "id": "08-reacciones-quimicas",
+      "nombre": "Reacciones químicas y balanceo",
+      "descripcion": "Tipos de reacciones, balanceo por tanteo y por método redox (agente oxidante y reductor).",
+      "prerrequisitos_internos": ["05-nomenclatura"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Clasificar reacciones (combinación, descomposición, desplazamiento, combustión, exo/endotérmicas)",
+        "Balancear ecuaciones por el método redox identificando agente oxidante y reductor",
+        "Calcular la suma de coeficientes de ecuaciones balanceadas"
+      ],
+      "criterio_dominio": "Balancea correctamente 8/10 ecuaciones redox tipo examen sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Reacciones químicas"]
+    },
+    {
+      "id": "09-estequiometria",
+      "nombre": "Estequiometría",
+      "descripcion": "Relaciones molares y de masa en reacciones, reactivo limitante, pureza de reactivos y rendimiento de reacción.",
+      "prerrequisitos_internos": ["06-unidades-quimicas", "08-reacciones-quimicas"],
+      "sesiones_estimadas": 2,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular cantidades de productos/reactivos a partir de ecuaciones balanceadas",
+        "Resolver problemas con reactivo limitante y en exceso",
+        "Incorporar pureza y rendimiento porcentual en los cálculos"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de estequiometría nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Estequiometría", "Exámenes UNI: preguntas de estequiometría"]
+    },
+    {
+      "id": "10-soluciones",
+      "nombre": "Soluciones",
+      "descripcion": "Unidades de concentración física y química (% masa, molaridad, normalidad), dilución, mezcla de soluciones y neutralización.",
+      "prerrequisitos_internos": ["09-estequiometria"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular molaridad, normalidad y porcentajes de soluciones",
+        "Resolver problemas de dilución y mezcla de soluciones",
+        "Aplicar la relación de neutralización ácido-base en titulaciones simples"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de soluciones tipo examen sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Soluciones"]
+    },
+    {
+      "id": "11-cinetica-equilibrio",
+      "nombre": "Cinética y equilibrio químico",
+      "descripcion": "Velocidad de reacción, factores que la afectan, constante de equilibrio Kc/Kp y principio de Le Chatelier.",
+      "prerrequisitos_internos": ["09-estequiometria"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Plantear la expresión de Kc y Kp de un equilibrio dado y calcularlas",
+        "Predecir el desplazamiento del equilibrio con el principio de Le Chatelier"
+      ],
+      "criterio_dominio": "Resuelve 7/10 ejercicios de equilibrio tipo examen sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Equilibrio químico"]
+    },
+    {
+      "id": "12-acidos-bases",
+      "nombre": "Ácidos, bases y pH",
+      "descripcion": "Teorías ácido-base (Arrhenius, Brønsted-Lowry), escala de pH y pOH, cálculo en ácidos y bases fuertes.",
+      "prerrequisitos_internos": ["10-soluciones"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Identificar pares conjugados ácido-base según Brønsted-Lowry",
+        "Calcular pH y pOH de soluciones de ácidos y bases fuertes",
+        "Clasificar soluciones como ácidas, básicas o neutras a partir de concentraciones"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de pH tipo examen sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Ácidos y bases"]
+    },
+    {
+      "id": "13-electroquimica",
+      "nombre": "Electroquímica",
+      "descripcion": "Celdas galvánicas y electrolíticas, leyes de Faraday de la electrólisis. Frecuencia media-baja en el examen.",
+      "prerrequisitos_internos": ["08-reacciones-quimicas", "10-soluciones"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": true,
+      "objetivos_aprendizaje": [
+        "Identificar ánodo, cátodo y flujo de electrones en celdas galvánicas y electrolíticas",
+        "Aplicar las leyes de Faraday en cálculos de electrólisis"
+      ],
+      "criterio_dominio": "Resuelve 7/10 ejercicios de electroquímica sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Electroquímica"]
+    },
+    {
+      "id": "14-quimica-organica-hidrocarburos",
+      "nombre": "Química orgánica: carbono e hidrocarburos",
+      "descripcion": "Propiedades del carbono, tipos de carbono, alcanos, alquenos, alquinos y aromáticos: nomenclatura IUPAC e isomería básica.",
+      "prerrequisitos_internos": ["04-enlace-quimico"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Clasificar carbonos (primario a cuaternario) y contar enlaces sigma/pi en moléculas orgánicas",
+        "Nombrar y formular hidrocarburos (alcanos, alquenos, alquinos, aromáticos) según IUPAC",
+        "Identificar isómeros de cadena y posición"
+      ],
+      "criterio_dominio": "Nombra/formula correctamente 8/10 hidrocarburos variados sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Química orgánica"]
+    },
+    {
+      "id": "15-funciones-organicas",
+      "nombre": "Funciones orgánicas oxigenadas y nitrogenadas",
+      "descripcion": "Alcoholes, aldehídos, cetonas, ácidos carboxílicos, ésteres, éteres, aminas y amidas: reconocimiento y nomenclatura básica.",
+      "prerrequisitos_internos": ["14-quimica-organica-hidrocarburos"],
+      "sesiones_estimadas": 1,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Identificar el grupo funcional y la función química de moléculas orgánicas",
+        "Nombrar compuestos monofuncionales sencillos según IUPAC",
+        "Ordenar funciones por prioridad en compuestos con más de un grupo"
+      ],
+      "criterio_dominio": "Identifica/nombra correctamente 8/10 compuestos funcionales sin ayuda",
+      "referencias": ["Lumbreras Química — cap. Funciones orgánicas"]
+    }
+  ]
+}

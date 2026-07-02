@@ -1,0 +1,29 @@
+{
+  "objetivo_actual": {
+    "id": "obj-1",
+    "objetivo_final": "Ingresar a la Universidad Nacional de Ingeniería (UNI, Perú) vía el examen de admisión 2027-1, postulando a Ingeniería Mecatrónica, Electrónica o carrera afín",
+    "fecha_limite": "2027-02-15",
+    "horas_semanales": 20,
+    "nivel_actual_al_inicio": "Egresado de secundaria hace ~10 años. Actualmente cursa Ing. Mecatrónica en la UNFV: llevó Cálculo y Física 1-2 universitarios, pero con una pausa de 3 años. Bases de matemática escolar (aritmética, álgebra, geometría, trigonometría), física y química comprometidas por el tiempo; hay memoria latente pero requiere reconstrucción sólida de fundamentos.",
+    "motivacion": "Deseo de probar la postulación a la UNI (influencia de su padre, poco apego a la UNFV) y evaluar reiniciar la carrera allí. Motivación laxa reconocida por el usuario; beneficio secundario fuerte: reforzar bases le ayuda directamente en sus semestres actuales de la UNFV. Cursará la UNFV en paralelo y dejará su trabajo de medio tiempo para liberar las 20 h semanales.",
+    "fecha_inicio": "2026-07-01",
+    "estado_setup": "completo",
+    "puntaje_objetivo": {
+      "escala": "0 a 20",
+      "rango_ingreso_referencia": "15.7 - 16.5",
+      "carrera_referencia": "Ingeniería Mecatrónica (UNI)",
+      "nota": "Puntaje aproximado del último ingresante a Mecatrónica en procesos recientes. La meta no es solo aprobar (>10) sino competir por un puntaje de ~16, que ubica en el tercio superior. Tenerlo presente al calibrar el nivel de exigencia de ejercicios y simulacros: la UNI exige precisión y velocidad, no solo saber el tema. Verificar el corte oficial del proceso 2027-1 cuando se publique."
+    },
+    "cursos_generados": [
+      "01-aritmetica",
+      "02-algebra",
+      "03-geometria",
+      "04-trigonometria",
+      "05-fisica",
+      "06-quimica",
+      "07-aptitud-academica",
+      "08-simulacros"
+    ]
+  },
+  "objetivos_completados": []
+}

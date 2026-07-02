@@ -1,0 +1,67 @@
+[
+  {
+    "id": "dif-01-01",
+    "curso": "Aritmética",
+    "tema_id": "01-conjuntos",
+    "tipo": "aplicacion",
+    "descripcion": "En un problema de cardinalidad con 3 conjuntos, al pedir 'cuántas personas practican exactamente un deporte', sumó todas las regiones del diagrama (equivalente a 'al menos uno') en vez de solo las regiones de un único conjunto.",
+    "error_tipico": "Confundir 'exactamente uno' con 'al menos uno' al leer el enunciado, sumando de más las regiones de intersección.",
+    "fecha_deteccion": "2026-07-02",
+    "fecha_ultimo_repaso": "2026-07-02",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Releer literalmente qué pide la pregunta antes de sumar regiones del diagrama; distinguir explícitamente 'exactamente' (solo esa región) de 'al menos' (esa región más todas las que la contienen)."
+  },
+  {
+    "id": "dif-02-01",
+    "curso": "Aritmética",
+    "tema_id": "02-numeracion",
+    "tipo": "aplicacion",
+    "descripcion": "Al resolver una ecuación con cifras desconocidas (numeral de dos cifras donde la decena es el doble de la unidad, y su inverso disminuye en 27), calculó correctamente el valor de la variable auxiliar (x=3) pero al principio la dio como respuesta final en vez de traducirla de vuelta a las cifras (a=2x, b=x) y armar el numeral completo (63).",
+    "error_tipico": "Confundir el valor de la variable auxiliar usada para plantear la ecuación con la respuesta final que pide el problema (el numeral completo, no la cifra).",
+    "fecha_deteccion": "2026-07-02",
+    "fecha_ultimo_repaso": "2026-07-02",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Antes de responder, preguntarse explícitamente qué representa cada variable (¿el numeral completo o una sola cifra?) y armar el numeral final combinando las cifras halladas."
+  },
+  {
+    "id": "dif-02-02",
+    "curso": "Aritmética",
+    "tema_id": "02-numeracion",
+    "tipo": "conceptual",
+    "descripcion": "En un problema de conteo de numerales capicúas de 4 cifras (forma abba), asumió sin justificación que la cifra b no podía tomar el mismo valor que la cifra a por estar representadas con letras distintas, contando 9x9=81 en vez de 9x10=90.",
+    "error_tipico": "Asumir que dos variables con nombres distintos (a, b) deben tener valores distintos, sin que el enunciado lo exija.",
+    "fecha_deteccion": "2026-07-02",
+    "fecha_ultimo_repaso": "2026-07-02",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Probar con un caso concreto (ej. 1111) para verificar si la restricción asumida realmente aplica antes de contar."
+  },
+  {
+    "id": "dif-02-03",
+    "curso": "Aritmética",
+    "tema_id": "02-numeracion",
+    "tipo": "conceptual",
+    "descripcion": "Durante el Feynman de cierre, al explicar el multiplicador posicional de una centena en base 2, respondió 'x200' (aplicando el patrón de escritura de base 10 de agregar dos ceros) en vez de calcular la potencia real 2^2=4.",
+    "error_tipico": "Calcular el multiplicador de una posición copiando la convención de nomenclatura de base 10 ('centena' = agregar '00') en vez de aplicar base elevado al exponente de la posición.",
+    "fecha_deteccion": "2026-07-02",
+    "fecha_ultimo_repaso": "2026-07-02",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Comparar siempre con un ejemplo ya resuelto con exponentes explícitos (como 7^1, 7^0) para verificar el patrón antes de generalizar a otra base."
+  },
+  {
+    "id": "dif-02-04",
+    "curso": "Aritmética",
+    "tema_id": "02-numeracion",
+    "tipo": "conceptual",
+    "descripcion": "Al inventar un ejemplo propio para el Feynman de cierre, escribió el numeral '57 en base 7', usando la cifra 7 que no es válida en base 7 (el máximo permitido es 6 = base-1), a pesar de haber enunciado correctamente esa misma regla minutos antes en otro contexto (base 6).",
+    "error_tipico": "No aplicar de forma reflexiva la regla de cifra máxima (base-1) al momento de inventar o revisar un numeral propio, aunque la regla esté clara al enunciarla en abstracto.",
+    "fecha_deteccion": "2026-07-02",
+    "fecha_ultimo_repaso": "2026-07-02",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Usar la regla de cifra máxima como checklist rápido cada vez que se escribe o inventa un numeral en una base específica."
+  }
+]

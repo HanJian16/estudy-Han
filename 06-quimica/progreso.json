@@ -1,0 +1,20 @@
+{
+  "curso": "Química",
+  "progreso": [
+    { "tema_id": "01-materia", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "02-estructura-atomica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "03-tabla-periodica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "04-enlace-quimico", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "05-nomenclatura", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "06-unidades-quimicas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "07-estado-gaseoso", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "08-reacciones-quimicas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "09-estequiometria", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "10-soluciones", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "11-cinetica-equilibrio", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "12-acidos-bases", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "13-electroquimica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "14-quimica-organica-hidrocarburos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "15-funciones-organicas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 }
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "curso": "Aritmética",
+  "objetivo_del_curso": "Resolver problemas de aritmética del nivel del examen de admisión UNI (numeración, divisibilidad, fracciones, proporcionalidad, porcentajes) con rapidez y enfoque de razonamiento, sirviendo además de base numérica para Álgebra, Química y Aptitud Académica.",
+  "bibliografia": [
+    {
+      "titulo": "Aritmética — Colección Compendios Académicos",
+      "autor": "Lumbreras Editores",
+      "capitulos_relevantes": "Referencial: marca el nivel y la cobertura. El usuario no tiene el libro; el agente genera teoría y ejercicios equivalentes a su estilo."
+    },
+    {
+      "titulo": "Compendio Académico de Aritmética",
+      "autor": "ADUNI",
+      "capitulos_relevantes": "Referencial: fuente alternativa de estilo de problemas tipo UNI."
+    },
+    {
+      "titulo": "Exámenes de admisión UNI (años anteriores, con solucionario)",
+      "autor": "Universidad Nacional de Ingeniería",
+      "capitulos_relevantes": "Preguntas de aritmética de las pruebas de Matemática; se usan como ejercicios de nivel real desde mitad del curso."
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cuaderno físico",
+      "url": null,
+      "uso": "Instrumento principal: todo desarrollo se hace a mano, como en el examen (sin calculadora).",
+      "para_temas": null
+    },
+    {
+      "nombre": "WolframAlpha",
+      "url": "https://www.wolframalpha.com",
+      "uso": "Verificar resultados numéricos cuando el usuario dude de su respuesta (no para resolver).",
+      "para_temas": null
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-conjuntos",
+      "nombre": "Teoría de conjuntos",
+      "descripcion": "Notación, operaciones entre conjuntos (unión, intersección, diferencia, complemento), diagramas de Venn y problemas con cardinales.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Traducir enunciados verbales a operaciones entre conjuntos y diagramas de Venn",
+        "Resolver problemas de cardinales con 2 y 3 conjuntos",
+        "Aplicar leyes de conjuntos para simplificar expresiones"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de cardinales tipo examen (incluyendo 3 conjuntos) sin ayuda",
+      "referencias": ["Lumbreras Aritmética — cap. Conjuntos", "Exámenes UNI: preguntas de conjuntos"]
+    },
+    {
+      "id": "02-numeracion",
+      "nombre": "Numeración y cambio de base",
+      "descripcion": "Sistemas posicionales, descomposición polinómica, cambio de base y propiedades de numerales.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Convertir numerales entre bases arbitrarias en ambos sentidos",
+        "Aplicar descomposición polinómica para plantear ecuaciones con cifras",
+        "Resolver problemas de numerales capicúas y condiciones sobre cifras"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios variados de cambio de base y descomposición polinómica sin ayuda",
+      "referencias": ["Lumbreras Aritmética — cap. Numeración"]
+    },
+    {
+      "id": "03-cuatro-operaciones",
+      "nombre": "Cuatro operaciones y sucesiones",
+      "descripcion": "Propiedades de suma, resta, multiplicación y división entera; sumatorias notables y conteo de cifras; problemas de planteo.",
+      "prerrequisitos_internos": ["02-numeracion"],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar propiedades de la división entera (D = d·q + r) en problemas",
+        "Calcular sumas notables (naturales, pares, impares, cuadrados)",
+        "Resolver problemas de planteo con las cuatro operaciones (método del cangrejo, rombo, rectángulo)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de planteo y sumas notables tipo examen sin ayuda",
+      "referencias": ["Lumbreras Aritmética — cap. Cuatro operaciones"]
+    },
+    {
+      "id": "04-divisibilidad",
+      "nombre": "Divisibilidad",
+      "descripcion": "Múltiplos y divisores, notación de congruencia (°), criterios de divisibilidad, restos y ecuaciones diofánticas básicas.",
+      "prerrequisitos_internos": ["02-numeracion", "03-cuatro-operaciones"],
+      "sesiones_estimadas": 3,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar la notación de múltiplos (n° + r) para operar con restos",
+        "Aplicar criterios de divisibilidad (2,3,4,5,7,8,9,11,13) a numerales con cifras desconocidas",
+        "Resolver problemas de conteo de múltiplos en intervalos y por principio de inclusión-exclusión"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de divisibilidad nivel UNI (incluye restos y criterios combinados) sin ayuda",
+      "referencias": ["Lumbreras Aritmética — cap. Divisibilidad", "Exámenes UNI: preguntas de divisibilidad"]
+    },
+    {
+      "id": "05-primos-mcd-mcm",
+      "nombre": "Números primos, MCD y MCM",
+      "descripcion": "Descomposición canónica, cantidad y suma de divisores, máximo común divisor y mínimo común múltiplo con sus propiedades y aplicaciones.",
+      "prerrequisitos_internos": ["04-divisibilidad"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular cantidad, suma y producto de divisores desde la descomposición canónica",
+        "Calcular MCD y MCM por descomposición y por algoritmo de Euclides",
+        "Resolver problemas de aplicación (cortes, losetas, encuentros periódicos) identificando si piden MCD o MCM"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios variados (estudio de divisores + aplicaciones MCD/MCM) sin ayuda",
+      "referencias": ["Lumbreras Aritmética — cap. Números primos, MCD-MCM"]
+    },
+    {
+      "id": "06-fracciones",
+      "nombre": "Fracciones y números decimales",
+      "descripcion": "Operaciones con fracciones, comparación, fracciones equivalentes, números decimales exactos y periódicos, fracción generatriz.",
+      "prerrequisitos_internos": ["05-primos-mcd-mcm"],
+      "sesiones_estimadas": 3,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Operar y comparar fracciones con fluidez y sin calculadora",
+        "Determinar la fracción generatriz de decimales exactos y periódicos",
+        "Resolver problemas de partes de un todo (ganancias, pérdidas, llaves y tanques)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de fracciones tipo examen (incluye generatriz y problemas de tanques) sin ayuda",
+      "referencias": ["Lumbreras Aritmética — cap. Fracciones"]
+    },
+    {
+      "id": "07-razones-proporciones",
+      "nombre": "Razones y proporciones",
+      "descripcion": "Razón aritmética y geométrica, proporciones, propiedades de series de razones geométricas equivalentes, cuarta y media proporcional.",
+      "prerrequisitos_internos": ["06-fracciones"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Plantear razones y proporciones desde enunciados verbales",
+        "Aplicar propiedades de series de razones geométricas equivalentes",
+        "Resolver problemas con cuarta, tercera y media proporcional"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de razones y series de razones nivel UNI sin ayuda",
+      "referencias": ["Lumbreras Aritmética — cap. Razones y proporciones"]
+    },
+    {
+      "id": "08-magnitudes-regla-de-tres",
+      "nombre": "Magnitudes proporcionales y regla de tres",
+      "descripcion": "Magnitudes directa e inversamente proporcionales, reparto proporcional, regla de tres simple y compuesta.",
+      "prerrequisitos_internos": ["07-razones-proporciones"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Identificar si dos magnitudes son DP o IP y plantear la relación",
+        "Resolver repartos proporcionales simples y compuestos",
+        "Resolver reglas de tres compuestas (obreros, obra, días, rendimiento)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas variados de proporcionalidad y regla de tres compuesta sin ayuda",
+      "referencias": ["Lumbreras Aritmética — cap. Magnitudes proporcionales"]
+    },
+    {
+      "id": "09-porcentajes",
+      "nombre": "Porcentajes y aplicaciones comerciales",
+      "descripcion": "Tanto por ciento, variaciones porcentuales, descuentos y aumentos sucesivos, precio de costo/venta/lista, ganancia y pérdida.",
+      "prerrequisitos_internos": ["08-magnitudes-regla-de-tres"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular variaciones porcentuales y porcentajes sucesivos sin fórmulas memorizadas",
+        "Resolver problemas comerciales relacionando precio de costo, venta, lista, ganancia y descuento",
+        "Traducir enunciados de porcentaje encadenado ('el 20% del 30% de...') a operaciones directas"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de porcentaje y aplicaciones comerciales tipo examen sin ayuda",
+      "referencias": ["Lumbreras Aritmética — cap. Tanto por ciento", "Exámenes UNI: preguntas de porcentajes"]
+    },
+    {
+      "id": "10-promedios-mezclas",
+      "nombre": "Promedios, mezclas y aleaciones",
+      "descripcion": "Promedio aritmético, geométrico y armónico; propiedades; mezclas (precio medio), aleaciones y ley del oro.",
+      "prerrequisitos_internos": ["09-porcentajes"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular y relacionar los tres promedios clásicos (MA ≥ MG ≥ MH)",
+        "Resolver problemas de precio medio en mezclas",
+        "Resolver problemas de aleaciones y ley (quilates)"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas variados de promedios, mezclas y aleaciones sin ayuda",
+      "referencias": ["Lumbreras Aritmética — cap. Promedios / Mezclas"]
+    },
+    {
+      "id": "11-interes-simple",
+      "nombre": "Interés simple y descuento",
+      "descripcion": "Interés simple, capital, tasa y tiempo; descuento comercial. Tema de baja frecuencia en el examen UNI.",
+      "prerrequisitos_internos": ["09-porcentajes"],
+      "sesiones_estimadas": 1,
+      "dificultad": 2,
+      "opcional": true,
+      "objetivos_aprendizaje": [
+        "Calcular interés, capital, tasa o tiempo despejando desde I = C·r·t",
+        "Resolver problemas con tasas y periodos no homogéneos (convertir unidades)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de interés simple con unidades mixtas sin ayuda",
+      "referencias": ["Lumbreras Aritmética — cap. Interés simple"]
+    },
+    {
+      "id": "12-estadistica",
+      "nombre": "Estadística descriptiva y análisis de gráficos",
+      "descripcion": "Tablas de frecuencias, media, mediana, moda, e interpretación de gráficos estadísticos (barras, circulares, histogramas).",
+      "prerrequisitos_internos": ["09-porcentajes"],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Calcular media, mediana y moda desde tablas de frecuencias (datos simples y agrupados)",
+        "Interpretar gráficos estadísticos y extraer porcentajes o totales pedidos",
+        "Resolver problemas que combinan frecuencias relativas con porcentajes"
+      ],
+      "criterio_dominio": "Resuelve 8/10 preguntas de estadística/gráficos tipo examen sin ayuda",
+      "referencias": ["Lumbreras Aritmética — cap. Estadística", "Exámenes UNI: preguntas de gráficos"]
+    }
+  ]
+}

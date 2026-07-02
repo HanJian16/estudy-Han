@@ -1,0 +1,14 @@
+{
+  "curso": "Aptitud Académica y Humanidades",
+  "progreso": [
+    { "tema_id": "01-rm-series-sucesiones", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "02-rm-planteo-edades", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "03-rm-conteo-logica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "04-rm-operadores-suficiencia", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "05-rv-comprension-lectora", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "06-rv-analogias-conectores", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "07-hum-lenguaje-literatura", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "08-hum-historia-geografia", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "09-hum-economia-filosofia-civica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 }
+  ]
+}

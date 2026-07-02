@@ -1,0 +1,11 @@
+{
+  "curso": "Simulacros y Estrategia de Examen",
+  "progreso": [
+    { "tema_id": "01-estructura-estrategia-examen", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "02-simulacros-parciales-matematica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "03-simulacros-parciales-fisica-quimica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "04-simulacros-parciales-aptitud", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "05-simulacros-completos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
+    { "tema_id": "06-repaso-final-cierre-vacios", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 }
+  ]
+}
