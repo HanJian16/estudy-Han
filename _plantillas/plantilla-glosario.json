@@ -1,0 +1,13 @@
+[
+  {
+    "termino": "Ejemplo de término",
+    "definicion": "Definición breve en las palabras del usuario (no copiar de libro).",
+    "curso": "Nombre del curso donde apareció",
+    "tema_id": "id del tema en temario.json donde se introdujo",
+    "ejemplo": "Un uso concreto del término (ecuación, aplicación, frase)",
+    "terminos_relacionados": ["otro-termino", "concepto-vinculado"],
+    "nivel_dominio": "reconoce",
+    "fecha_aprendido": "YYYY-MM-DD",
+    "fecha_ultimo_uso": "YYYY-MM-DD"
+  }
+]

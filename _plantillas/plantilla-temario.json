@@ -1,0 +1,36 @@
+{
+  "curso": "Nombre del curso",
+  "objetivo_del_curso": "Qué debe saber hacer el usuario al terminar este curso — orientado al objetivo global",
+  "bibliografia": [
+    {
+      "titulo": "Nombre del libro o recurso",
+      "autor": "Autor(es)",
+      "capitulos_relevantes": "Rango o lista de capítulos usados"
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Nombre de la herramienta",
+      "url": "URL o null si es física/local",
+      "uso": "Para qué se usa dentro del curso",
+      "para_temas": null
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-slug-corto-y-estable",
+      "nombre": "Nombre legible del tema",
+      "descripcion": "Qué cubre este tema en 1-2 frases",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 2,
+      "dificultad": 1,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Verbo de acción + qué debe poder hacer el usuario",
+        "Otro objetivo observable y verificable"
+      ],
+      "criterio_dominio": "Cómo se verifica que el tema se dominó (ej: resuelve 8/10 ejercicios, explica sin apoyo, aplica en caso real)",
+      "referencias": ["Libro cap X-Y", "Recurso extra si aplica"]
+    }
+  ]
+}

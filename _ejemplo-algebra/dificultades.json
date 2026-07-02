@@ -1,0 +1,28 @@
+[
+  {
+    "id": "dif-001",
+    "curso": "Álgebra",
+    "tema_id": "04-factorizacion",
+    "tipo": "operativa",
+    "descripcion": "Confunde los signos al factorizar trinomios cuadrados de la forma x²-bx+c cuando ambos signos son negativos por dentro.",
+    "error_tipico": "Para x²-5x+6 escribe (x-2)(x+3) en lugar de (x-2)(x-3) — el término independiente positivo requiere ambos factores del mismo signo.",
+    "fecha_deteccion": "2026-06-15",
+    "fecha_ultimo_repaso": "2026-06-18",
+    "veces_repasado": 2,
+    "resuelto": false,
+    "estrategia_que_ayuda": "Verificar multiplicando los factores propuestos y comparar el signo del término independiente antes de dar la respuesta."
+  },
+  {
+    "id": "dif-002",
+    "curso": "Álgebra",
+    "tema_id": "02-exponentes-y-radicales",
+    "tipo": "conceptual",
+    "descripcion": "No termina de asimilar que un exponente negativo NO significa que el resultado sea negativo, sino un recíproco.",
+    "error_tipico": "Calcula 2⁻³ = -8 cuando en realidad es 1/8.",
+    "fecha_deteccion": "2026-06-10",
+    "fecha_ultimo_repaso": "2026-06-20",
+    "veces_repasado": 3,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Recordar mentalmente 'exponente negativo = doy la vuelta a la fracción'. Practicar con base 2 primero (2⁻¹=1/2, 2⁻²=1/4, 2⁻³=1/8)."
+  }
+]

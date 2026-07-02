@@ -1,0 +1,14 @@
+{
+  "objetivo_actual": {
+    "id": "obj-1",
+    "objetivo_final": "Descripción concreta de qué se quiere aprender/lograr",
+    "fecha_limite": "YYYY-MM-DD o null si no hay",
+    "horas_semanales": 0,
+    "nivel_actual_al_inicio": "Descripción honesta del punto de partida al iniciar este objetivo",
+    "motivacion": "Por qué se quiere aprender esto (contexto)",
+    "fecha_inicio": "YYYY-MM-DD",
+    "estado_setup": "incompleto",
+    "cursos_generados": []
+  },
+  "objetivos_completados": []
+}

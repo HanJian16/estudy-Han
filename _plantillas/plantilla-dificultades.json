@@ -1,0 +1,15 @@
+[
+  {
+    "id": "dif-001",
+    "curso": "Nombre del curso",
+    "tema_id": "id del tema en temario.json",
+    "tipo": "conceptual",
+    "descripcion": "Qué parte específicamente se le complicó al usuario",
+    "error_tipico": "El error concreto que comete (con ejemplo si aplica)",
+    "fecha_deteccion": "YYYY-MM-DD",
+    "fecha_ultimo_repaso": "YYYY-MM-DD",
+    "veces_repasado": 0,
+    "resuelto": false,
+    "estrategia_que_ayuda": null
+  }
+]

@@ -1,0 +1,236 @@
+{
+  "curso": "Álgebra",
+  "objetivo_del_curso": "Manejar con soltura expresiones, ecuaciones (lineales, cuadráticas y sistemas), factorización, funciones básicas e inecuaciones — nivel suficiente para arrancar trigonometría, cálculo u otros cursos integradores sin fricción algebraica.",
+  "bibliografia": [
+    {
+      "titulo": "Álgebra",
+      "autor": "Aurelio Baldor",
+      "capitulos_relevantes": "1-25, 32-36"
+    },
+    {
+      "titulo": "College Algebra",
+      "autor": "Michael Sullivan",
+      "capitulos_relevantes": "R, 1-3, 5"
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cuaderno físico",
+      "url": null,
+      "uso": "Resolver ejercicios paso a paso a mano — la escritura manual ayuda a consolidar signos y jerarquía de operaciones",
+      "para_temas": null
+    },
+    {
+      "nombre": "WolframAlpha",
+      "url": "https://www.wolframalpha.com",
+      "uso": "Verificar resultados de ecuaciones, factorizaciones y simplificaciones",
+      "para_temas": null
+    },
+    {
+      "nombre": "Symbolab",
+      "url": "https://www.symbolab.com",
+      "uso": "Ver la resolución paso a paso cuando el usuario no encuentra dónde se trabó",
+      "para_temas": ["04-factorizacion", "06-ecuaciones-lineales", "08-ecuaciones-cuadraticas", "10-inecuaciones"]
+    },
+    {
+      "nombre": "Desmos",
+      "url": "https://www.desmos.com/calculator",
+      "uso": "Graficar funciones lineales y cuadráticas, visualizar raíces y vértice",
+      "para_temas": ["09-funciones-basicas", "10-inecuaciones"]
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-expresiones-algebraicas",
+      "nombre": "Expresiones algebraicas básicas",
+      "descripcion": "Lenguaje algebraico: variables, coeficientes, constantes, términos y grado. Suma y resta de términos semejantes.",
+      "prerrequisitos_internos": [],
+      "sesiones_estimadas": 2,
+      "dificultad": 1,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Identificar variables, coeficientes, constantes y grado en una expresión algebraica",
+        "Simplificar expresiones combinando términos semejantes",
+        "Traducir enunciados verbales a expresiones algebraicas"
+      ],
+      "criterio_dominio": "Resuelve correctamente 8/10 ejercicios de traducción y simplificación sin ayuda",
+      "referencias": ["Baldor cap 1-3", "Sullivan cap R.1"]
+    },
+    {
+      "id": "02-exponentes-y-radicales",
+      "nombre": "Exponentes y radicales",
+      "descripcion": "Leyes de los exponentes (enteros y racionales), notación científica, simplificación de radicales y racionalización.",
+      "prerrequisitos_internos": ["01-expresiones-algebraicas"],
+      "sesiones_estimadas": 3,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Aplicar las 7 leyes de exponentes en expresiones combinadas",
+        "Convertir entre notación radical y exponentes fraccionarios",
+        "Simplificar y racionalizar expresiones con radicales"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios mezclados de leyes de exponentes y simplificación de radicales",
+      "referencias": ["Baldor cap 17-19, 34", "Sullivan cap R.2, R.8"]
+    },
+    {
+      "id": "03-productos-notables",
+      "nombre": "Productos notables",
+      "descripcion": "Cuadrado del binomio, cubo del binomio, suma por diferencia, y binomios con término común.",
+      "prerrequisitos_internos": ["01-expresiones-algebraicas", "02-exponentes-y-radicales"],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Reconocer los patrones de productos notables sin desarrollarlos manualmente",
+        "Aplicar productos notables para simplificar cálculos",
+        "Identificar cuándo una expresión encaja en un patrón de producto notable"
+      ],
+      "criterio_dominio": "Reconoce y desarrolla correctamente 9/10 productos notables mezclados en <5 min",
+      "referencias": ["Baldor cap 10", "Sullivan cap R.4"]
+    },
+    {
+      "id": "04-factorizacion",
+      "nombre": "Factorización",
+      "descripcion": "Factor común, agrupación, trinomio cuadrado perfecto, trinomio de la forma x²+bx+c y ax²+bx+c, diferencia de cuadrados, suma y diferencia de cubos.",
+      "prerrequisitos_internos": ["01-expresiones-algebraicas", "03-productos-notables"],
+      "sesiones_estimadas": 4,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Identificar el caso de factorización aplicable a una expresión dada",
+        "Factorizar polinomios aplicando los 8 casos principales",
+        "Combinar varios casos de factorización en un solo problema"
+      ],
+      "criterio_dominio": "Factoriza correctamente 8/10 polinomios variados (casos mezclados) sin pistas del caso",
+      "referencias": ["Baldor cap 12-15", "Sullivan cap R.5"]
+    },
+    {
+      "id": "05-fracciones-algebraicas",
+      "nombre": "Fracciones algebraicas",
+      "descripcion": "Simplificación, suma, resta, multiplicación y división de fracciones algebraicas. MCD y MCM de polinomios.",
+      "prerrequisitos_internos": ["04-factorizacion"],
+      "sesiones_estimadas": 3,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Simplificar fracciones algebraicas factorizando numerador y denominador",
+        "Sumar y restar fracciones algebraicas encontrando el MCM del denominador",
+        "Multiplicar y dividir fracciones algebraicas simplificando antes de operar"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de operaciones combinadas con fracciones algebraicas",
+      "referencias": ["Baldor cap 20-22", "Sullivan cap R.7"]
+    },
+    {
+      "id": "06-ecuaciones-lineales",
+      "nombre": "Ecuaciones lineales de una variable",
+      "descripcion": "Resolución de ecuaciones de primer grado, incluyendo con fracciones y con paréntesis. Verificación de soluciones.",
+      "prerrequisitos_internos": ["01-expresiones-algebraicas"],
+      "sesiones_estimadas": 2,
+      "dificultad": 2,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver ecuaciones lineales despejando la incógnita paso a paso",
+        "Resolver ecuaciones que involucran fracciones y paréntesis eliminando denominadores",
+        "Verificar sustitutivamente si un valor es solución de una ecuación"
+      ],
+      "criterio_dominio": "Resuelve correctamente 9/10 ecuaciones lineales variadas sin errores de signo",
+      "referencias": ["Baldor cap 27-28", "Sullivan cap 1.1"]
+    },
+    {
+      "id": "07-sistemas-lineales",
+      "nombre": "Sistemas de ecuaciones lineales",
+      "descripcion": "Resolución de sistemas 2×2 y 3×3 por sustitución, igualación, reducción y método gráfico. Clasificación de soluciones (única, infinitas, ninguna).",
+      "prerrequisitos_internos": ["06-ecuaciones-lineales"],
+      "sesiones_estimadas": 3,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver sistemas 2×2 por los 4 métodos y elegir el más eficiente según el caso",
+        "Resolver sistemas 3×3 por reducción sistemática",
+        "Interpretar geométricamente si un sistema tiene una, infinitas o ninguna solución"
+      ],
+      "criterio_dominio": "Resuelve 7/10 sistemas (mezcla de 2×2 y 3×3) e identifica correctamente casos sin solución o con infinitas",
+      "referencias": ["Baldor cap 32-33", "Sullivan cap 12.1-12.2"]
+    },
+    {
+      "id": "08-ecuaciones-cuadraticas",
+      "nombre": "Ecuaciones cuadráticas",
+      "descripcion": "Resolución por factorización, completar el cuadrado y fórmula general. Discriminante y naturaleza de las raíces.",
+      "prerrequisitos_internos": ["04-factorizacion", "06-ecuaciones-lineales"],
+      "sesiones_estimadas": 3,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver ecuaciones cuadráticas por los tres métodos y elegir el más adecuado",
+        "Predecir la naturaleza de las raíces usando el discriminante",
+        "Aplicar la fórmula general derivándola a partir de completar el cuadrado"
+      ],
+      "criterio_dominio": "Resuelve correctamente 8/10 cuadráticas (mezcla de las 3 técnicas) y clasifica raíces por discriminante",
+      "referencias": ["Baldor cap 35-36", "Sullivan cap 1.2"]
+    },
+    {
+      "id": "09-funciones-basicas",
+      "nombre": "Funciones lineales y cuadráticas",
+      "descripcion": "Concepto de función, dominio y rango. Función lineal: pendiente, ordenada, formas. Función cuadrática: vértice, eje, raíces, gráfica.",
+      "prerrequisitos_internos": ["06-ecuaciones-lineales", "08-ecuaciones-cuadraticas"],
+      "sesiones_estimadas": 3,
+      "dificultad": 3,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Determinar dominio, rango y evaluar una función en puntos dados",
+        "Graficar funciones lineales identificando pendiente y ordenada",
+        "Graficar parábolas identificando vértice, eje de simetría, raíces y concavidad"
+      ],
+      "criterio_dominio": "Grafica correctamente 8/10 funciones (lineales y cuadráticas mezcladas) y extrae sus características clave",
+      "referencias": ["Sullivan cap 2.1-2.4, 3.1-3.3"]
+    },
+    {
+      "id": "10-inecuaciones",
+      "nombre": "Inecuaciones lineales y cuadráticas",
+      "descripcion": "Resolución de inecuaciones lineales, cuadráticas y con valor absoluto. Representación en la recta y en notación de intervalo.",
+      "prerrequisitos_internos": ["06-ecuaciones-lineales", "08-ecuaciones-cuadraticas"],
+      "sesiones_estimadas": 3,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Resolver inecuaciones lineales cuidando el signo al multiplicar/dividir por negativo",
+        "Resolver inecuaciones cuadráticas por análisis de signos de los factores",
+        "Resolver inecuaciones con valor absoluto separando en casos"
+      ],
+      "criterio_dominio": "Resuelve 7/10 inecuaciones mezcladas y expresa el resultado en notación de intervalo",
+      "referencias": ["Sullivan cap 1.5-1.7"]
+    },
+    {
+      "id": "11-problemas-de-planteo",
+      "nombre": "Problemas de planteo (aplicaciones)",
+      "descripcion": "Traducción de problemas verbales a ecuaciones/sistemas/cuadráticas y su resolución. Edades, mezclas, movimiento, geometría, trabajo.",
+      "prerrequisitos_internos": ["06-ecuaciones-lineales", "07-sistemas-lineales", "08-ecuaciones-cuadraticas"],
+      "sesiones_estimadas": 3,
+      "dificultad": 4,
+      "opcional": false,
+      "objetivos_aprendizaje": [
+        "Identificar la incógnita relevante y traducir un enunciado verbal a una ecuación o sistema",
+        "Resolver el modelo algebraico y verificar que la solución tenga sentido en el contexto",
+        "Aplicar la técnica a problemas de al menos 4 familias: edades, mezclas, movimiento, geometría"
+      ],
+      "criterio_dominio": "Plantea y resuelve correctamente 6/10 problemas verbales de familias distintas sin guía",
+      "referencias": ["Baldor cap 24, 29, 34"]
+    },
+    {
+      "id": "12-progresiones",
+      "nombre": "Progresiones aritméticas y geométricas",
+      "descripcion": "Término n-ésimo y suma parcial de progresiones aritméticas y geométricas. Aplicación a series financieras y patrones.",
+      "prerrequisitos_internos": ["01-expresiones-algebraicas", "02-exponentes-y-radicales"],
+      "sesiones_estimadas": 2,
+      "dificultad": 3,
+      "opcional": true,
+      "objetivos_aprendizaje": [
+        "Determinar el término n-ésimo de una progresión aritmética o geométrica",
+        "Calcular la suma parcial de los primeros n términos",
+        "Modelar situaciones de patrones recurrentes usando progresiones"
+      ],
+      "criterio_dominio": "Resuelve 6/10 problemas mezclados de progresiones aritméticas y geométricas",
+      "referencias": ["Baldor cap XX (secciones de progresiones)"]
+    }
+  ]
+}

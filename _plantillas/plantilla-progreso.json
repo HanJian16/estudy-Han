@@ -1,0 +1,12 @@
+{
+  "curso": "{{CURSO}}",
+  "progreso": [
+    {
+      "tema_id": "referencia al id definido en temario.json",
+      "estado": "no_iniciado",
+      "porcentaje": 0,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0
+    }
+  ]
+}
