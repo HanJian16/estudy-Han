@@ -110,6 +110,17 @@
     "fecha_ultimo_uso": "2026-07-02"
   },
   {
+    "termino": "Diferencia al invertir las cifras de un numeral de 2 cifras",
+    "definicion": "Si a un numeral de dos cifras 'ab' (en base 10) se le invierten las cifras para formar 'ba', la diferencia entre ambos numerales es siempre 9 veces la diferencia entre sus cifras: |ba - ab| = 9|a-b|. Útil para verificar si los datos de un problema son consistentes antes de resolverlo, y para saber si una ecuación de este tipo tiene solución única, ninguna o infinitas (si el dato de la diferencia coincide exactamente con 9×(diferencia de cifras), la ecuación se vuelve una identidad con múltiples soluciones).",
+    "curso": "Aritmética",
+    "tema_id": "02-numeracion",
+    "ejemplo": "12 y 21: diferencia de cifras = 1, diferencia de numerales = 9 (9x1). 58 y 85: diferencia de cifras = 3, diferencia de numerales = 27 (9x3).",
+    "terminos_relacionados": ["descomposición polinómica"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-02",
+    "fecha_ultimo_uso": "2026-07-02"
+  },
+  {
     "termino": "Numeral capicúa",
     "definicion": "Numeral que se lee igual de izquierda a derecha que de derecha a izquierda (palíndromo numérico). En un capicúa de 3 cifras la forma es 'aba' (101a+10b); en uno de 4 cifras, 'abba'.",
     "curso": "Aritmética",

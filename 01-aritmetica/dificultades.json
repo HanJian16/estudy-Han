@@ -47,7 +47,7 @@
     "error_tipico": "Calcular el multiplicador de una posición copiando la convención de nomenclatura de base 10 ('centena' = agregar '00') en vez de aplicar base elevado al exponente de la posición.",
     "fecha_deteccion": "2026-07-02",
     "fecha_ultimo_repaso": "2026-07-02",
-    "veces_repasado": 1,
+    "veces_repasado": 2,
     "resuelto": true,
     "estrategia_que_ayuda": "Comparar siempre con un ejemplo ya resuelto con exponentes explícitos (como 7^1, 7^0) para verificar el patrón antes de generalizar a otra base."
   },
@@ -60,7 +60,7 @@
     "error_tipico": "No aplicar de forma reflexiva la regla de cifra máxima (base-1) al momento de inventar o revisar un numeral propio, aunque la regla esté clara al enunciarla en abstracto.",
     "fecha_deteccion": "2026-07-02",
     "fecha_ultimo_repaso": "2026-07-02",
-    "veces_repasado": 1,
+    "veces_repasado": 2,
     "resuelto": true,
     "estrategia_que_ayuda": "Usar la regla de cifra máxima como checklist rápido cada vez que se escribe o inventa un numeral en una base específica."
   }

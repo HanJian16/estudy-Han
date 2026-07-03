@@ -2,7 +2,7 @@
   "curso": "Aritmética",
   "progreso": [
     { "tema_id": "01-conjuntos", "estado": "completado", "porcentaje": 100, "ultima_sesion": "2026-07-02", "sesiones_dedicadas": 1 },
-    { "tema_id": "02-numeracion", "estado": "en_progreso", "porcentaje": 65, "ultima_sesion": "2026-07-02", "sesiones_dedicadas": 1 },
+    { "tema_id": "02-numeracion", "estado": "completado", "porcentaje": 100, "ultima_sesion": "2026-07-02", "sesiones_dedicadas": 2 },
     { "tema_id": "03-cuatro-operaciones", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
     { "tema_id": "04-divisibilidad", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
     { "tema_id": "05-primos-mcd-mcm", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
