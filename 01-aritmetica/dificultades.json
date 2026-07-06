@@ -63,5 +63,57 @@
     "veces_repasado": 2,
     "resuelto": true,
     "estrategia_que_ayuda": "Usar la regla de cifra máxima como checklist rápido cada vez que se escribe o inventa un numeral en una base específica."
+  },
+  {
+    "id": "dif-03-01",
+    "curso": "Aritmética",
+    "tema_id": "03-cuatro-operaciones",
+    "tipo": "operativa",
+    "descripcion": "Al contar la cantidad de números en un intervalo cerrado (del 20 al 60 inclusive) para sumar la serie, calculó 60-20=40 en vez de 60-20+1=41, omitiendo el '+1' de conteo inclusivo (error de los postes de la cerca / fencepost).",
+    "error_tipico": "Contar términos de un intervalo cerrado como (mayor - menor) sin sumar 1, obteniendo una cantidad de términos con un elemento de menos.",
+    "fecha_deteccion": "2026-07-03",
+    "fecha_ultimo_repaso": "2026-07-03",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Verificar la regla de conteo con un caso chico (¿cuántos números del 20 al 22? son 3, no 2) antes de aplicarla; recordar el '+1' de conteo inclusivo. El usuario detectó y corrigió el error solo al probar el caso pequeño."
+  },
+  {
+    "id": "dif-03-02",
+    "curso": "Aritmética",
+    "tema_id": "03-cuatro-operaciones",
+    "tipo": "notacion",
+    "descripcion": "En el Feynman de cierre, al escribir la fórmula del residuo por exceso la anotó como '(q - r)' (cociente menos residuo) aunque en palabras dijo correctamente 'el divisor menos el residuo'. La fórmula correcta es d - r. Confundió el símbolo del divisor (d) con el del cociente (q).",
+    "error_tipico": "Intercambiar los símbolos d (divisor) y q (cociente) al escribir una fórmula, pese a tener claro el concepto verbalmente.",
+    "fecha_deteccion": "2026-07-03",
+    "fecha_ultimo_repaso": "2026-07-04",
+    "veces_repasado": 2,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Fijar el mapeo de letras al inicio de cada problema de división (D=dividendo, d=divisor, q=cociente, r=residuo) y releer la fórmula escrita contrastándola con su versión en palabras. Vigilar en 04-divisibilidad, donde confundir d y q cuesta puntos."
+  },
+  {
+    "id": "dif-03-03",
+    "curso": "Aritmética",
+    "tema_id": "03-cuatro-operaciones",
+    "tipo": "aplicacion",
+    "descripcion": "En dos ejercicios de la sesión 2 (suma de los primeros n pares = 240; total de cifras = 297 al numerar un libro), interpretó el dato numérico del enunciado como una cantidad distinta a la indicada (trató la suma total como si fuera el último término de la secuencia; y el total de cifras como si fuera el total de páginas), aplicando la fórmula equivocada hasta que se le pidió releer el enunciado literalmente.",
+    "error_tipico": "Asignar un dato del enunciado al rol equivocado (suma total vs. último término; total de cifras vs. total de elementos) sin releer literalmente qué representa cada número antes de plantear la ecuación.",
+    "fecha_deteccion": "2026-07-04",
+    "fecha_ultimo_repaso": "2026-07-04",
+    "veces_repasado": 2,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Antes de plantear la ecuación, anotar por escrito junto a cada dato qué representa exactamente (ej. 'Sum. cifras totales = 618', no solo '618'), y releer qué pide la pregunta hasta el final del enunciado. Confirmado en sesión de repaso: aplicó esto por su cuenta en 2 problemas distintos (conteo de cifras y edades con paso extra) sin caer en la trampa. Causa raíz identificada por el usuario mismo: leer de forma parcial/impulsiva captando el contexto general pero no los matices."
+  },
+  {
+    "id": "dif-04-01",
+    "curso": "Aritmética",
+    "tema_id": "04-divisibilidad",
+    "tipo": "aplicacion",
+    "descripcion": "En un problema de notación de múltiplos (N=9°+8, N múltiplo de 5, 90<N<130), planteó y ejecutó correctamente todo el razonamiento hasta hallar el múltiplo de 9 buscado (117), pero dio esa cifra intermedia como respuesta final en vez de sumarle el residuo 8 para obtener N=125, pese a tener la ecuación N=9()+8 escrita explícitamente arriba.",
+    "error_tipico": "Confundir una variable/cantidad intermedia hallada durante el desarrollo con la respuesta final que pide el problema. Es el mismo patrón que dif-02-01 (numeración: valor de x vs. numeral completo) y dif-03-03 (cuatro operaciones: último término vs. suma total), reapareciendo ahora en un tercer tema distinto pese a haberse marcado resuelto en los dos anteriores.",
+    "fecha_deteccion": "2026-07-05",
+    "fecha_ultimo_repaso": "2026-07-05",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Extender la estrategia de 'etiquetar cada dato' (de dif-03-03) para etiquetar también las incógnitas intermedias: al plantear una ecuación como N=9()+8, escribir explícitamente qué representa el paréntesis (el múltiplo de 9) y qué representa N (la respuesta final), y verificar al terminar cuál de las dos pide el enunciado. Como el patrón ya reapareció 3 veces en 3 temas distintos, vigilar de forma proactiva en 05-primos-mcd-mcm y siguientes aunque no haya señales de error."
   }
 ]

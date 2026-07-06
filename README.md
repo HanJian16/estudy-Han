@@ -10,6 +10,8 @@ Repositorio de estudio para retomar cursos de forma estructurada, usado junto co
 
 ## Algoritmo de arranque (ejecutar SIEMPRE al inicio de la sesión)
 
+**Comando explícito `/init`:** este algoritmo debe ejecutarse siempre al inicio de la sesión, sin que el usuario tenga que pedirlo. Pero como en la práctica el agente necesita un primer mensaje del usuario para actuar (incluso con este archivo cargado como contexto), `/init` es la forma explícita y sin ambigüedad de decir "ejecuta el algoritmo de arranque ahora" — útil como primer mensaje al abrir una sesión nueva cuando el usuario no sabe qué escribir, o en cualquier momento para forzar una relectura completa del estado del proyecto (ej. tras cambiar de agente, o si el contexto de la conversación se perdió). Si el usuario escribe `/init`, ejecuta este algoritmo completo desde el PASO 1 de inmediato.
+
 ```
 PASO 1 — ¿Existe el archivo "objetivo.json" en la raíz del proyecto?
 
@@ -37,12 +39,12 @@ PASO 3 — ¿El usuario está invocando un COMANDO RÁPIDO
          Se activa SOLO si escribe forma completa O alias corto de un
          comando listado en:
            - _protocolos/configuracion.md:
-                 "mostrar configuracion"                (alias: cfg)
-                 "activar modo un tema por sesion"      (alias: cfg +uts)
-                 "desactivar modo un tema por sesion"   (alias: cfg -uts)
+                 "/mostrar configuracion"                (alias: /cfg)
+                 "/activar modo un tema por sesion"      (alias: /cfg +uts)
+                 "/desactivar modo un tema por sesion"   (alias: /cfg -uts)
            - _protocolos/utilidades.md:
-                 "mostrar estado"                       (alias: estado)
-                 "generar backup"                       (alias: backup)
+                 "/mostrar estado"                       (alias: /estado)
+                 "/generar backup"                       (alias: /backup)
 
     ├── SÍ
     │     → Lee el protocolo correspondiente y aplica la acción.
@@ -56,7 +58,7 @@ PASO 4 — ¿El usuario está invocando el protocolo de handoff?
          Se activa SOLO si:
            (a) El usuario escribe un comando de _protocolos/handoff.md
                en su forma completa O como alias corto
-               (hoy: "genera un handoff para voz" / alias "handoff voz")
+               (hoy: "/genera un handoff" / alias "/handoff")
            O
            (b) El usuario pega un bloque cuya PRIMERA línea es
                  === HANDOFF-RESUMEN ===
@@ -342,11 +344,15 @@ Este proyecto usa un conjunto específico de técnicas pedagógicas con respaldo
 
 ### Reglas generales de comportamiento
 
-- **Notación matemática (LaTeX): cómo mostrarla bien al usuario**. El usuario quiere ayuda visual con fórmulas (le importa cada vez más de cara a física, química y matemática avanzada). El punto clave, confirmado en la práctica: **escribir LaTeX como texto plano en el chat NO se renderiza en este entorno** (app de escritorio de Claude / Claude Code); el `$...$` o `$$...$$` aparece crudo sin importar que la sintaxis sea correcta — no es un problema del modelo ni de la sintaxis, sino de que el renderer del chat es Markdown sin motor matemático (KaTeX/MathJax). NO insistas escribiendo LaTeX suelto en el chat esperando que se dibuje. En su lugar, usa una de estas **dos vías que SÍ funcionan**, según el caso:
-    1. **Fórmulas para conservar/repasar → archivo `.md` de la clase.** Escribe la teoría, apuntes y fórmulas en `clases/NN-tema/README.md` usando LaTeX normal (`$...$`). El usuario las abre en la vista previa de VS Code / Obsidian (Markdown+Math) y ahí renderizan perfecto. Es el destino por defecto para fórmulas serias.
-    2. **Fórmulas puntuales durante la conversación → widget de visualización.** Si una fórmula importante ayuda verla dibujada en el momento del chat, renderízala con un widget HTML que cargue MathJax (probado y funciona: CDN `mathjax@3/es5/tex-svg.js`, con `tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }`). Reserva esto para fórmulas que de verdad aportan (no cada línea), porque cuesta más armarlo que texto normal.
-  - Para expresiones triviales (un exponente, una raíz, una fracción simple) basta texto plano/Unicode en el chat (`x^2`, `√`, `a/b`, `2^2 = 4`) — no montes un widget para eso.
-  - Ante la duda de si algo se verá bien: prefiere el archivo `.md` (vía 1), que es la más confiable y además deja registro para el repaso espaciado.
+- **Notación matemática (LaTeX): cómo mostrarla bien al usuario**. El usuario quiere ayuda visual con fórmulas (le importa cada vez más de cara a física, química y matemática avanzada). El punto clave, confirmado en la práctica: **escribir LaTeX como texto plano en el chat NO se renderiza en este entorno** (app de escritorio de Claude / Claude Code); el `$...$` o `$$...$$` aparece crudo sin importar que la sintaxis sea correcta — no es un problema del modelo ni de la sintaxis, sino de que el renderer del chat es Markdown sin motor matemático (KaTeX/MathJax). **NUNCA escribas LaTeX suelto directamente en el texto del chat** (ni siquiera "de paso" o como aparte) — es un error, no una opción, sin importar que la fórmula sea trivial o central. Fuera de eso, hay **dos vías que SÍ funcionan, y NO son mutuamente excluyentes** — evalúa cada una por separado, no elijas "una u otra":
+    1. **¿Vale la pena conservarla para repaso futuro?** → escríbela en `clases/NN-tema/README.md` con LaTeX normal (`$...$`). El usuario la abre en la vista previa de VS Code/Obsidian y ahí renderiza perfecto. Aplica a toda fórmula/teoría seria del tema (casi siempre sí).
+    2. **¿Es el centro de la explicación que está pasando ahora mismo en el chat (una derivación en vivo, una fórmula que se acaba de construir juntos, algo que el usuario necesita ver ya para seguir la conversación)?** → múéstrala TAMBIÉN con el widget de visualización (HTML con MathJax vía CDN `mathjax@3/es5/tex-svg.js`, `tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }`), en el mismo turno, sin que el usuario tenga que pedirlo.
+  - **Si ambas preguntas dan sí (lo normal cuando se introduce una fórmula nueva importante), haz las dos cosas en el mismo turno:** la guardas en el archivo de la clase Y la muestras con el widget. Guardar en el archivo NUNCA reemplaza mostrarla en vivo si el momento lo pide — son complementarias, no alternativas.
+  - Solo omite el widget si la fórmula es un aparte menor que no es el foco de la explicación de ese momento (aunque sí valga guardarla en el archivo para después).
+  - Solo omite el archivo si es una fórmula desechable de un solo uso, sin valor de repaso futuro (raro).
+  - Para expresiones triviales (un exponente, una raíz, una fracción simple) basta texto plano/Unicode en el chat (`x^2`, `√`, `a/b`, `2^2 = 4`) — ahí no hace falta ni archivo ni widget.
+  - Ante la duda de si conviene mostrar el widget: hazlo. El costo de un widget de más es bajo; el costo de una fórmula que el usuario no puede leer en medio de la explicación rompe el flujo de la clase.
+  - **Excepción — handoff hacia otro agente (`_protocolos/handoff.md`):** todo lo anterior aplica a esta sesión de Claude Code, que no renderiza LaTeX en el chat. Pero el prompt de SALIDA de un handoff no se queda en este chat: el usuario lo copia y lo pega en otra sesión externa (Claude web/app, ChatGPT, un agente local, etc. — de texto o de voz), que sí renderiza LaTeX nativamente sin necesidad de widget. Por eso, **dentro del bloque copiable del handoff de SALIDA, sí puedes usar LaTeX normal (`$...$`, `$$...$$`)** si el tema lo requiere — ahí no es un error, es el formato correcto para el agente destino. Esta excepción es solo para ese bloque específico; el resto del chat (todo lo que no sea el contenido a copiar) sigue la regla normal.
 - Nunca asumas el nivel del usuario — léelo de `progreso.json`, `dificultades.json` y `glosario.json`.
 - Prioriza las dificultades sin resolver si son prerrequisito del tema actual.
 - Si el usuario pregunta "¿por dónde empiezo?", lee todos los `progreso.json` y recomienda según las dependencias declaradas en cada `README.md` de curso.
@@ -368,12 +374,12 @@ estudios/
 ├── _protocolos/
 │   ├── entrevista.md             ← Protocolo del PRIMER arranque (no hay objetivo.json)
 │   ├── expansion.md              ← Protocolo para AGREGAR nuevos objetivos (ya hay uno completo)
-│   ├── handoff.md                ← Protocolo de puente entre agentes (modo voz, cambio de agente)
+│   ├── handoff.md                ← Protocolo de puente entre agentes/sesiones (texto o voz)
 │   ├── configuracion.md          ← Comandos para activar/desactivar reglas (ej: un tema por sesión)
-│   └── utilidades.md             ← Comandos rápidos: mostrar estado, generar backup
+│   └── utilidades.md             ← Comandos rápidos: /mostrar estado, /generar backup
 ├── _recursos/
 │   └── herramientas.md           ← Guía detallada de herramientas externas (WolframAlpha, Desmos, etc.) — con protocolo de actualización
-├── _backups/                     ← Backups locales generados con el comando `backup` (opcional; ignorado por git)
+├── _backups/                     ← Backups locales generados con el comando `/backup` (opcional; ignorado por git)
 ├── _plantillas/                  ← Plantillas para generar cursos, clases y archivos
 │   ├── plantilla-objetivo.json
 │   ├── plantilla-configuracion.json

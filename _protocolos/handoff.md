@@ -1,12 +1,12 @@
 # Protocolo de handoff (puente entre agentes / sesiones)
 
-> Permite que el usuario pase el contexto de estudio de una sesión con este agente (típicamente Claude Code) a otra sesión con otro agente (típicamente en modo voz de la app de Claude, ChatGPT, un agente local, etc.) y vuelva con un resumen que actualice los archivos del proyecto.
+> Permite que el usuario pase el contexto de estudio de una sesión con este agente (típicamente Claude Code) a otra sesión externa con otro agente (Claude web/app, ChatGPT, un agente local, etc. — de texto o de voz, cualquiera de las dos) y vuelva con un resumen que actualice los archivos del proyecto.
 
 ## Referencia rápida de comandos
 
 | Comando completo | Alias corto | Fase | Qué hace |
 |---|---|---|---|
-| `genera un handoff para voz` | `handoff voz` | SALIDA | Genera un prompt copiable para llevar el estudio de UN tema a una sesión externa de voz |
+| `/genera un handoff` | `/handoff` | SALIDA | Genera un prompt copiable para llevar el estudio de UN tema a una sesión externa (otro agente, de texto o de voz) |
 | *(pegar bloque cuya primera línea es `=== HANDOFF-RESUMEN ===`)* | — | VUELTA | Procesa el resumen de la sesión externa y actualiza los archivos del proyecto |
 
 **Regla:** el agente acepta indistintamente la forma completa y el alias corto. Si el usuario dice algo parecido pero no idéntico a ninguno de los dos, pídele que use la forma exacta — no invoques el protocolo por conjetura. Nuevos tipos de handoff se agregarán a esta tabla en el futuro con su propio comando y alias.
@@ -25,7 +25,7 @@ Este protocolo se activa **únicamente** cuando el usuario escribe uno de los co
 
 | Comando exacto | Tipo de handoff |
 |---|---|
-| `genera un handoff para voz` | Handoff hacia una sesión externa de voz (app de Claude, ChatGPT, etc.) |
+| `/genera un handoff` | Handoff hacia una sesión externa con otro agente, de texto o de voz (app de Claude, ChatGPT, agente local, etc.) |
 
 *(Nuevos tipos de handoff se agregarán aquí en el futuro con su propio comando específico. No inventes tipos que no estén en esta tabla.)*
 
@@ -45,7 +45,7 @@ Un handoff cubre **exactamente un tema del temario**, identificado por su `tema_
 
 Motivación: mantiene el seguimiento limpio, evita pérdida de detalle, y hace el flujo predecible. Si el usuario quiere trabajar varios temas en su sesión externa, debe generar un handoff distinto por cada tema y procesar cada resumen por separado al volver.
 
-Si el usuario pide un handoff que cubra más de un tema (ej: "quiero llevar todo el curso a modo voz"), rechaza amablemente y sugiérele elegir un tema concreto.
+Si el usuario pide un handoff que cubra más de un tema (ej: "quiero llevar todo el curso a otra sesión"), rechaza amablemente y sugiérele elegir un tema concreto.
 
 **Resumen parcial permitido dentro del mismo tema.** El tema puede no completarse en la sesión externa (el usuario se cansa, tiene que salir, no llega al Feynman). En ese caso, el resumen es válido igual — reflejará avance parcial (`estado_sugerido: en_progreso`, porcentaje bajo, dificultades sin resolver). El siguiente handoff sobre este mismo tema se genera igual, y su prompt de SALIDA incluye automáticamente el estado actual (que ya refleja el avance parcial previo). Nunca fuerces al usuario a "terminar el tema" para poder cerrar un handoff.
 
@@ -58,7 +58,7 @@ Si el usuario pide un handoff que cubra más de un tema (ej: "quiero llevar todo
 Pregunta al usuario:
 1. **¿Sobre qué tema va la sesión externa?** Debe ser **un único `tema_id`** del temario de algún curso. Por defecto, el tema actual en el que está trabajando según `progreso.json`. Si el usuario propone más de un tema o algo demasiado amplio ("todo cálculo", "el curso completo"), rechaza y pide que elija uno solo. Ofrece hacer handoffs sucesivos si necesita cubrir varios.
 2. **¿Qué tipo de sesión será?** (Ej: explicación conceptual, repaso, ejercicios verbales, Feynman del tema ya estudiado). Esto afecta las instrucciones que damos al agente destino.
-3. **¿Con qué agente/modo va a estar?** (Voz de Claude app, ChatGPT, agente local, etc.). Puede afectar limitaciones — un agente de voz no verá LaTeX ni gráficos, se debe advertir.
+3. **¿Con qué agente y en qué modalidad va a estar?** (Claude app/web en modo texto o voz, ChatGPT, un agente local, etc.). Afecta limitaciones a advertir — si la modalidad es de voz, un agente de voz no verá LaTeX ni gráficos.
 
 **Validación antes de generar el prompt:** el `tema_id` elegido debe existir en un `temario.json` del proyecto. Si no existe, avisa y pide corrección.
 
@@ -75,6 +75,8 @@ Lee de los archivos:
 ### Paso 1.3: Generar el prompt de salida
 
 Escribe el prompt completo al usuario **en un solo bloque copiable** (dentro de un code fence), listo para pegar en la otra sesión. Este es el formato exacto:
+
+> **Nota sobre LaTeX:** la regla general del proyecto (ver `README.md`, "Notación matemática") prohíbe LaTeX crudo en el chat de Claude Code porque no renderiza ahí. Esa regla NO aplica dentro de este bloque copiable: el destino es otro agente externo (Claude web/app, ChatGPT, etc., en modo texto o voz) que sí renderiza LaTeX nativamente. Si el tema trabajado necesita fórmulas, escríbelas con LaTeX normal (`$...$`, `$$...$$`) dentro del bloque sin problema.
 
 ````markdown
 # Contexto de mi sesión de estudio
@@ -227,7 +229,7 @@ Extrae cada sección del bloque y actualiza los archivos:
 
 **`clases/NN-tema-id/README.md`**
 - Si no existe la carpeta de la clase, créala con la plantilla.
-- Poblá las secciones usando los "Apuntes clave" y el "Feynman del usuario" del resumen. En "Herramientas usadas" indica "sesión externa (voz / [agente que usó])".
+- Poblá las secciones usando los "Apuntes clave" y el "Feynman del usuario" del resumen. En "Herramientas usadas" indica "sesión externa ([agente que usó], modalidad: texto/voz)".
 
 ### Paso 2.3: Limpiar el handoff pendiente
 
@@ -254,5 +256,5 @@ Y pregunta si quiere continuar con la próxima sesión ahora o dejarlo aquí.
 
 - **El formato del bloque de vuelta es estricto por diseño**: si el agente destino no lo respeta al 100%, no importa — parsea con flexibilidad. Si algo falta, pregúntale al usuario en vez de asumir.
 - **No sobreescribas dificultades como resueltas sin confirmación** si el resumen es ambiguo. Es mejor conservador aquí.
-- **Este protocolo funciona en ambas direcciones**: el usuario puede empezar en modo voz y traer contexto a Claude Code también, siguiendo el mismo formato.
+- **Este protocolo funciona en ambas direcciones**: el usuario puede empezar en una sesión externa (texto o voz) y traer contexto a Claude Code también, siguiendo el mismo formato.
 - **Si el usuario cambia mucho de agente**, considera sugerirle usar directamente Claude Code como fuente de verdad para no perder detalles en cada round-trip.

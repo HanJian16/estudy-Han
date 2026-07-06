@@ -85,7 +85,7 @@ Aplica el **mismo checklist de calidad del temario** definido en el `README.md` 
 - **NO regeneres** los `temario.json` de cursos existentes salvo que haya que agregar temas nuevos (en cuyo caso, agrega solo los nuevos temas al array, no reescribas los existentes).
 - **Los temas ya completados** de cursos existentes NO aparecen como prerrequisitos internos del temario nuevo (ya están cumplidos), pero SÍ pueden aparecer como `prerrequisitos_externos` en el README del curso nuevo.
 - **Bibliografía**: puede compartir libros con cursos anteriores o traer nuevos.
-- **Sugerencia proactiva:** antes de generar carpetas o modificar `objetivo.json`, ofrece al usuario ejecutar `backup` (ver `_protocolos/utilidades.md`) para tener un snapshot previo por si algo sale mal.
+- **Sugerencia proactiva:** antes de generar carpetas o modificar `objetivo.json`, ofrece al usuario ejecutar `/backup` (ver `_protocolos/utilidades.md`) para tener un snapshot previo por si algo sale mal.
 
 ---
 

@@ -8,13 +8,13 @@
 
 | Comando completo | Alias corto | Qué hace |
 |---|---|---|
-| `mostrar configuracion` | `cfg` | Lee `configuracion.json` y muestra al usuario el estado actual de cada opción con una breve descripción |
-| `activar modo un tema por sesion` | `cfg +uts` | Activa la regla "un tema por sesión" (pone `un_tema_por_sesion: true` en `configuracion.json`) |
-| `desactivar modo un tema por sesion` | `cfg -uts` | Desactiva la regla "un tema por sesión" (pone `un_tema_por_sesion: false` en `configuracion.json`) |
+| `/mostrar configuracion` | `/cfg` | Lee `configuracion.json` y muestra al usuario el estado actual de cada opción con una breve descripción |
+| `/activar modo un tema por sesion` | `/cfg +uts` | Activa la regla "un tema por sesión" (pone `un_tema_por_sesion: true` en `configuracion.json`) |
+| `/desactivar modo un tema por sesion` | `/cfg -uts` | Desactiva la regla "un tema por sesión" (pone `un_tema_por_sesion: false` en `configuracion.json`) |
 
 **Regla:** el agente acepta indistintamente la forma completa y el alias corto. Si el usuario dice algo parecido pero no idéntico a ninguno de los dos, pídele que use la forma exacta — no cambies configuración por conjetura.
 
-**Convención de aliases:** `cfg` es el prefijo raíz. `+xyz` activa una regla, `-xyz` la desactiva. `uts` significa "un tema por sesión". Cuando se agreguen nuevas reglas en el futuro, se les asigna un mnemónico corto (2-4 letras) documentado en la tabla.
+**Convención de aliases:** todos los comandos empiezan con `/` para distinguirse sin ambigüedad de una instrucción normal en lenguaje natural. `/cfg` es el prefijo raíz de este protocolo. `+xyz` activa una regla, `-xyz` la desactiva. `uts` significa "un tema por sesión". Cuando se agreguen nuevas reglas en el futuro, se les asigna un mnemónico corto (2-4 letras) documentado en la tabla, siempre con el prefijo `/cfg`.
 
 ---
 
@@ -45,7 +45,7 @@ Comportamiento del agente cuando está activo:
 
 3. **Si el usuario pide cambiar de tema mid-sesión**, no lo hagas directamente. Ofrécele dos opciones:
    - (a) Cerrar el tema actual (aplicar el protocolo de cierre normal, actualizar los JSON) y abrir una nueva sesión de Claude Code (u otro agente) para el próximo tema.
-   - (b) Desactivar la regla ahora con `desactivar modo un tema por sesion` y seguir en esta misma sesión.
+   - (b) Desactivar la regla ahora con `/desactivar modo un tema por sesion` y seguir en esta misma sesión.
 
 4. **Al cerrar el tema** (ya sea completado o pausado), recuérdale explícitamente: "Cierro esta sesión aquí. Para el próximo tema, abre una nueva sesión de tu agente para ahorrar contexto."
 
