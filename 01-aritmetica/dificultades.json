@@ -111,9 +111,22 @@
     "descripcion": "En un problema de notación de múltiplos (N=9°+8, N múltiplo de 5, 90<N<130), planteó y ejecutó correctamente todo el razonamiento hasta hallar el múltiplo de 9 buscado (117), pero dio esa cifra intermedia como respuesta final en vez de sumarle el residuo 8 para obtener N=125, pese a tener la ecuación N=9()+8 escrita explícitamente arriba.",
     "error_tipico": "Confundir una variable/cantidad intermedia hallada durante el desarrollo con la respuesta final que pide el problema. Es el mismo patrón que dif-02-01 (numeración: valor de x vs. numeral completo) y dif-03-03 (cuatro operaciones: último término vs. suma total), reapareciendo ahora en un tercer tema distinto pese a haberse marcado resuelto en los dos anteriores.",
     "fecha_deteccion": "2026-07-05",
-    "fecha_ultimo_repaso": "2026-07-05",
+    "fecha_ultimo_repaso": "2026-07-08",
+    "veces_repasado": 2,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Extender la estrategia de 'etiquetar cada dato' (de dif-03-03) para etiquetar también las incógnitas intermedias: al plantear una ecuación como N=9()+8, escribir explícitamente qué representa el paréntesis (el múltiplo de 9) y qué representa N (la respuesta final), y verificar al terminar cuál de las dos pide el enunciado. Confirmado en sesión 2026-07-08: en dos problemas de planteo con residuos (N=12()+7 múltiplo de 5; N=7() con residuo 3 al dividir entre 8) convirtió correctamente la incógnita intermedia en la respuesta final sin volver a confundirlas. El patrón no reapareció; se mantiene vigilancia pasiva en temas siguientes."
+  },
+  {
+    "id": "dif-04-02",
+    "curso": "Aritmética",
+    "tema_id": "04-divisibilidad",
+    "tipo": "aplicacion",
+    "descripcion": "En un problema de planteo (N al dividirlo entre 12 deja residuo 7, N múltiplo de 5, 150<N<220), planteó la ecuación como N+7=12() en vez de N=12()+7 (equivalente a N-7=12()), invirtiendo el signo del residuo. Notación de múltiplos ya dominada (N=k̇+r, ver glosario) pero mal aplicada al traducir el enunciado a ecuación por primera vez con dos condiciones simultáneas.",
+    "error_tipico": "Sumar el residuo al lado del múltiplo desconocido en vez de al lado de N: escribir N+r=k() en vez de N=k()+r, lo que equivale a usar un residuo por exceso donde correspondía uno por defecto.",
+    "fecha_deteccion": "2026-07-08",
+    "fecha_ultimo_repaso": "2026-07-08",
     "veces_repasado": 1,
     "resuelto": true,
-    "estrategia_que_ayuda": "Extender la estrategia de 'etiquetar cada dato' (de dif-03-03) para etiquetar también las incógnitas intermedias: al plantear una ecuación como N=9()+8, escribir explícitamente qué representa el paréntesis (el múltiplo de 9) y qué representa N (la respuesta final), y verificar al terminar cuál de las dos pide el enunciado. Como el patrón ya reapareció 3 veces en 3 temas distintos, vigilar de forma proactiva en 05-primos-mcd-mcm y siguientes aunque no haya señales de error."
+    "estrategia_que_ayuda": "Antes de plantear, releer la definición literal de N=k̇+r ('N al dividirlo entre k deja residuo r' => el residuo se suma al múltiplo, no se resta) y contrastar contra residuo por exceso (d-r) si el planteo lo pide explícitamente. El usuario se autocorrigió al comparársele con la definición ya sólida de notación de múltiplos y con la distinción residuo por defecto/por exceso de 03-cuatro-operaciones, y en un problema posterior similar (7 y 8, 100<N<200) planteó la ecuación correcta desde el inicio sin ese error."
   }
 ]

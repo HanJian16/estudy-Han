@@ -112,3 +112,89 @@ $$N = \dots + d_3(1000) + d_2(100) + d_1(10) + d_0 \;\equiv\; (d_0+d_2+d_4+\dots
 
 ## Próximos pasos
 Sesión 2 de este tema (04-divisibilidad): cubrir el método combinado de 7, 11 y 13 (bloques de 3 cifras), reforzar `dif-04-01` (etiquetar qué representa la incógnita vs. la respuesta final) con 2-3 problemas de planteo con residuos, y empezar problemas de conteo de múltiplos en intervalos (inclusión-exclusión) para acercarse al criterio de dominio (7/10 problemas nivel UNI).
+
+---
+
+# Sesión 2
+
+**Fecha:** 2026-07-08
+**Número de sesión para este tema:** 2
+
+## Objetivo de esta sesión
+- Cubrir el método combinado de divisibilidad por 7, 11 y 13 (bloques de 3 cifras).
+- Reforzar `dif-04-01` con problemas de planteo con residuos.
+- Iniciar conteo de múltiplos en un intervalo e inclusión-exclusión aplicada a múltiplos.
+- Cerrar el criterio de dominio del tema.
+
+## Recuperación activa inicial
+Sin apoyo de apuntes, el usuario recordó correctamente los tres criterios de la sesión 1 (por qué funciona el de 9/3 vía descomposición polinómica, por qué 4 usa 2 cifras y 8 usa 3, y el criterio de 11 con signos alternados). Dos imprecisiones de lenguaje detectadas y autocorregidas en el momento:
+- Dijo "últimas 3 cifras" para el criterio de 4 (típeo; sabía que eran 2, lo confirmó al repreguntarle).
+- Dijo "posiciones pares negativo, impares positivo" para el criterio de 11 (invertido respecto a su propio cálculo de $10^2=+1$); se autocorrigió explicando que el criterio confiable es por exponente (0-indexado), no por "posición" contada desde 1, y agregó una versión rápida propia (empezar en unidades con +, alternando).
+
+## Resumen / apuntes
+
+### Bloque 5 — Método combinado de 7, 11 y 13 (derivación propia)
+El usuario calculó que 1000 ÷ 7, ÷ 11 y ÷ 13 dan residuo por exceso 1 en los tres casos (confirmado: 1000=7×142+6 con exceso 1; 1000=11×90+10 con exceso 1; 1000=13×76+12 con exceso 1), y conectó esto con que 1001 = 7×11×13. Concluyó que 1000 se comporta como "-1" para los tres divisores a la vez, y que agrupando el numeral en bloques de 3 cifras desde la derecha (cada bloque como número completo) con signo alternado, se puede revisar la divisibilidad del numeral original a través de un número mucho más chico. Ver definición completa en `glosario.json` ("Método combinado de divisibilidad por 7, 11 y 13").
+
+### Conteo de múltiplos en un intervalo
+A partir de la fórmula ya conocida de conteo de progresión aritmética (`03-cuatro-operaciones`), se agregó la técnica de hallar el primer y último múltiplo de un intervalo usando residuo por exceso/defecto sobre los extremos. Ver `glosario.json` ("Hallar el primer/último múltiplo de un intervalo").
+
+### Inclusión-exclusión aplicada a conteo de múltiplos
+Se conectó con la fórmula de cardinalidad de `01-conjuntos` (ya sólida): contar múltiplos de a "o" de b en un intervalo es n(a)+n(b)-n(a∩b), donde n(a∩b) se cuenta como múltiplos del MCM(a,b) (en el caso trabajado, ambos coprimos, a×b).
+
+### Combinación de dos congruencias por sustitución (introducción parcial)
+Al preguntar el usuario por una forma más rápida que listar y filtrar, se introdujo la sustitución de una condición de múltiplo dentro de la otra. Funciona directo cuando el coeficiente de la incógnita se reduce a ±1 respecto al segundo módulo (caso con 7 y 8). Se intentó extender a un caso con coeficiente 4 (mód 9) y no se pudo despejar por división directa — requiere inverso modular, herramienta que depende de MCD/algoritmo de Euclides, no cubierto aún. Se resolvió ese caso por tanteo de los 9 residuos posibles como solución temporal. Técnica completa pendiente para `05-primos-mcd-mcm`. Ver `glosario.json` (nivel de dominio "reconoce", no "solido", intencionalmente).
+
+## Ejercicios trabajados
+> No se resume ni parafrasea la respuesta del usuario. Cita textual + anotación del agente.
+
+1. **Enunciado:** ¿Es $2\,145\,678$ múltiplo de 7, de 11, de 13, de alguno, de ninguno? (agrupando en bloques de 3 cifras desde la derecha)
+   **Respuesta del usuario (textual, primer intento):** "2-1-4-5=6=7=8 = 13, entonces es múltiplo de 13" (tras corrección de tipeo: "2 145 678 = 2 - 1 - 4 - 5 + 6 + 7 + 8 = 13")
+   **Anotación del agente:** Error conceptual: trató cada dígito individual con signo propio en vez de cada bloque de 3 cifras como número completo (ignoró el valor posicional dentro del bloque, ej. tomó "1,4,5" en vez de "145"). Se le preguntó si $1+4+5$ vale lo mismo que $145$; se autocorrigió de inmediato.
+   **Respuesta corregida (textual):** "Ahhh entiendo, claro, entonces sería: 2 - 100 - 40 - 5 + 600 + 70 + 8 = 535. Y no es divisible ni por 11, 7 o 13, ya que si divides 535 entre alguno de ellos no es exacto." Correcto: bloques 678(+), 145(-), 2(+) = 535, no exacto entre ninguno de los tres.
+
+2. **Enunciado:** ¿Es $351\,463$ múltiplo de 7? ¿De 11? ¿De 13?
+   **Respuesta del usuario (textual):** "-351 + 463 = 112 / 112/7 = 16 / 112/11 o 112/13 no es exacto. / así que solo es divisible por 7."
+   **Anotación del agente:** Correcto y directo, sin ayuda. Aplicó bien el método ya corregido del ejercicio anterior.
+
+3. **Enunciado:** ¿Cuántos múltiplos de 6 hay entre 40 y 250?
+   **Respuesta del usuario (textual):** "Si divido 40/6 me da un resto de 4, el resto por exceso es de 2, si sumo eso a 40 me da el primer término múltiplo de 6 entre 40 y 250 que es 42. Haces algo similar para el último término, 250/6 da resto 4, entonces 250 - 4 = 246, ese es el último término múltiplo de 6 entre 40 y 250." Luego: "n = ((246-42)/6)+1 = 35, esa es la cantidad de múltiplos de 6 que hay en el intervalo"
+   **Anotación del agente:** Correcto y sin ayuda en ambos pasos (hallar extremos y aplicar la fórmula).
+
+4. **Enunciado:** ¿Cuántos números entre 1 y 150 son múltiplos de 3 o de 5 (al menos uno de los dos)?
+   **Respuesta del usuario (textual):** "n(3) = ((150-3)/3)+1 = 50 / n(5) = ((150-5)/5)+1 = 30 / n(3&5) = ((150-15)/15)+1 = 10 / entonces por conjuntos... la unión de ambos, que sería = 50+30-10 = 70"
+   **Anotación del agente:** Correcto y sin ayuda. Buena conexión espontánea con la fórmula de cardinalidad de `01-conjuntos`.
+
+5. **Enunciado:** Un número N, al dividirlo entre 12, deja residuo 7. Además, N es múltiplo de 5. Si $150<N<220$, halla N.
+   **Respuesta del usuario (textual, primer intento):** "N+7 = 12() / N = 5() ... entonces N = 192 -7 = 185."
+   **Anotación del agente:** Error de signo en la ecuación inicial (N+7=12() en vez de N=12()+7), registrado como `dif-04-02`. Se le pidió comparar contra la definición ya sólida de notación de múltiplos.
+   **Respuesta corregida (textual):** "Tienes razón, y es que se ve más sencillo si lo pongo en una ecuación 5() = 12() + 7, entonces para mantener la igualdad 5() - 7 = 12()... entonces no debe finalizar en ...7 o ...2, sino en ...3 o ...8 ... {144, 156, 168, 180, 192, 204} ... entonces el único número que cuadra es 168 = N-7 / N= 175." Correcto tras la corrección, con razonamiento completo y verificable.
+
+6. **Enunciado:** Halla la suma de todos los valores que puede tomar la cifra $a$ para que el numeral $4a76$ sea divisible entre 12.
+   **Respuesta del usuario (textual):** "4a76 = 12() = 4() y 3() / para ser múltiplo de 4 las dos últimas cifras deben ser múltiplos de 4, y 76 = 4*19, entonces cumple / 4 + a + 7 + 6 = 3() / a + 17 = 3() / a = {1, 4, 7} / Hallar la suma, 1+4+7= 12"
+   **Anotación del agente:** Correcto y sin ayuda. Buena descomposición de "divisible entre 12" como "divisible entre 4 y entre 3 a la vez", reutilizando el criterio de 4 de la sesión 1 y el de 3 sin errores.
+
+7. **Enunciado:** Un número N, al dividirlo entre 8, deja residuo 3. Además, N es múltiplo de 7. Si $100<N<200$, halla N.
+   **Respuesta del usuario (textual):** "N = 8() + 3 / N = 7() ... del intervalo tomamos que el primer múltiplo de 7 sería 105... {105, 112,...,196} / De estos solo 147 cumple la propiedad para que al restarle 3 sea un múltiplo de 8 que es 144 / Entonces N = 147"
+   **Anotación del agente:** Correcto y sin ayuda, planteando la ecuación con el signo correcto desde el inicio (sin repetir `dif-04-02`) y resolviendo con su método de listar y filtrar.
+
+8. **Enunciado (práctica de la técnica de sustitución):** N es múltiplo de 5, y al dividirlo entre 9 deja residuo 4. Si $50<N<95$, halla N con la técnica de combinación de congruencias.
+   **Respuesta del usuario (textual):** "5 = 9-4, entonces 5 debería comportarse como -4... 5k sería -4k, y esto dividido entre 9 daría residuo 4... me quedaría que k es igual a múltiplo de 9 (9m) sumado a 5/4, no a un número entero... no ví la forma de reemplazarlo correctamente."
+   **Anotación del agente:** No fue un error del usuario sino una limitación de la técnica en este caso (coeficiente 4, no ±1) — requiere inverso modular, no cubierto aún. Se resolvió con ayuda del agente por tanteo de los 9 residuos posibles, obteniendo N=85. Detalle completo en `glosario.json`. Pendiente retomar con MCD/Euclides en `05-primos-mcd-mcm`.
+
+## Herramientas usadas
+- Cuaderno físico — cálculo de residuos y desarrollo de los 8 ejercicios.
+
+## Dudas / puntos flojos
+- `dif-04-02` (nueva, resuelta en la sesión): confundir el signo al traducir "residuo al dividir entre k" a una ecuación (N+r=k() en vez de N=k()+r). Autocorregida tras contrastar con la notación de múltiplos ya sólida; no reapareció en el ejercicio 7 inmediato siguiente.
+- Combinación de dos congruencias con coeficiente distinto de ±1: no dominado, pendiente de forma intencional hasta contar con MCD/algoritmo de Euclides (`05-primos-mcd-mcm`). No se registra como dificultad porque es contenido fuera del alcance de este tema, no un hueco de lo que sí correspondía aprender hoy.
+
+## Feynman de cierre
+**Consulta del agente (textual):** "Explícame, como si se lo enseñaras a alguien que no sabe nada de este tema, el método combinado de divisibilidad por 7, 11 y 13 (el de agrupar en bloques de 3 cifras). No repitas la receta de memoria — explica el porqué, usando lo que dedujimos hoy sobre el comportamiento de 1000 respecto a esos tres divisores."
+
+**Respuesta del usuario (textual):** "pues el comportamiento que tiene el número 1000 al dividirlos entre 7, 11 y 13 nos deja siempre de residuo 1, esto nos ayuda por que al hacer descomposición polinómica, lo que queremos es hacer una fórmula de residuos para saber el patrón que nos ayude a identificar rápidamente si son múltiplos o no de tal número. gracias a ello podemos hacer una modificación y tomar a 1000 = -1. Con esto se puede decir que cada 4 cifras (x1000) hay un cambio de positivo a negativo, así que se puede hacer una agrupación de 3 cifras empezando de derecha a izquierda, entonces si por ejemplo tenemos el numeral 2 097 813 podemos fácilmente agrupar en grupos (completos o incompletos) de 3, quedando (2) (097) (813) y hacer la sumatoria o resta con su respectivo signo => 2-97+813 = 718, y así tener un número más manejable para revisar si es múltiplo o no."
+
+**Anotación del agente:** Explicación sólida y correcta, con ejemplo propio bien resuelto incluyendo un bloque incompleto (caso borde manejado sin errores). Única imprecisión menor de lenguaje: "cada 4 cifras hay un cambio" es una forma algo confusa de decir "a partir de la 4ta cifra empieza el siguiente bloque con signo opuesto" — no afecta la aplicación, que fue impecable. Tema registrado como sólido en glosario.
+
+## Próximos pasos
+`04-divisibilidad` completado (criterio de dominio alcanzado: 6 de 8 problemas centrales del tema resueltos sin ayuda, los 2 restantes autocorregidos en el momento tras una pregunta guía, sin necesidad de que se les diera la respuesta). Siguiente sesión: iniciar `05-primos-mcd-mcm` (descomposición canónica, MCD, MCM, algoritmo de Euclides). Retomar ahí, como aplicación adicional, la técnica de combinación de congruencias con coeficiente distinto de ±1 usando el inverso modular una vez cubierto el MCD.

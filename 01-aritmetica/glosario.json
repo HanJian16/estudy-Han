@@ -251,5 +251,49 @@
     "nivel_dominio": "solido",
     "fecha_aprendido": "2026-07-05",
     "fecha_ultimo_uso": "2026-07-05"
+  },
+  {
+    "termino": "Método combinado de divisibilidad por 7, 11 y 13 (bloques de 3 cifras)",
+    "definicion": "Como 1001 = 7×11×13, el número 1000 deja residuo por exceso 1 respecto a 7, 11 y 13 a la vez (1000 ≡ -1 para los tres). Por eso, agrupando el numeral en bloques de 3 cifras desde la derecha (cada bloque como número completo, no dígito por dígito) y alternando signo (+ para el bloque de la derecha, - para el siguiente, y así), la suma/resta alternada de los bloques es divisible entre 7, 11 o 13 si y solo si el numeral original también lo es.",
+    "curso": "Aritmética",
+    "tema_id": "04-divisibilidad",
+    "ejemplo": "2 097 813 -> bloques (2)(097)(813) -> 813 - 97 + 2 = 718. Se revisa si 718 es múltiplo de 7, 11 o 13 en vez del número original.",
+    "terminos_relacionados": ["notación de múltiplos", "criterio de divisibilidad por 11"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-08",
+    "fecha_ultimo_uso": "2026-07-08"
+  },
+  {
+    "termino": "Hallar el primer/último múltiplo de un intervalo (para conteo)",
+    "definicion": "Para contar múltiplos de k dentro de un intervalo [a,b], primero hay que hallar el primer múltiplo de k que es >= a y el último que es <= b (no siempre son los extremos del intervalo). Se halla dividiendo el extremo entre k: para el primero, si sobra residuo, se suma el residuo por exceso (k - residuo) al extremo inferior; para el último, se resta el residuo (por defecto) al extremo superior. Luego se aplica la fórmula de conteo de progresión aritmética ya conocida: cantidad = (último-primero)/razón + 1.",
+    "curso": "Aritmética",
+    "tema_id": "04-divisibilidad",
+    "ejemplo": "Múltiplos de 6 entre 40 y 250: 40÷6 da residuo 4, residuo por exceso 2, primer múltiplo = 40+2=42. 250÷6 da residuo 4, último múltiplo = 250-4=246. Cantidad = (246-42)/6+1 = 35.",
+    "terminos_relacionados": ["conteo de términos de una progresión aritmética (generalizado)", "residuo por defecto y por exceso"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-08",
+    "fecha_ultimo_uso": "2026-07-08"
+  },
+  {
+    "termino": "Combinación de dos congruencias por sustitución (caso simple)",
+    "definicion": "Para hallar N que cumple dos condiciones de múltiplo/residuo a la vez (ej. N múltiplo de a, y N deja residuo r al dividir entre b, con a y b coprimos), se sustituye N=a() en la segunda condición y se despeja la incógnita del paréntesis. Funciona de forma directa y sencilla solo cuando el coeficiente de la incógnita se reduce a +1 o -1 respecto al segundo módulo (casos afortunados, ej. 7 ≡ -1 mod 8). Cuando el coeficiente no es ±1, el despeje ya no es división normal (no se puede 'dividir entre 4' dentro de un residuo) y se necesita el inverso modular, herramienta que se construye con MCD/algoritmo de Euclides — pendiente hasta 05-primos-mcd-mcm. Mientras tanto, esos casos se resuelven por tanteo de los pocos valores posibles del residuo, o con el método de listar y filtrar múltiplos.",
+    "curso": "Aritmética",
+    "tema_id": "04-divisibilidad",
+    "ejemplo": "N=7(), N deja residuo 3 al dividir entre 8: 7≡-1 mod8, entonces -k≡3 mod8, k≡5 mod8, N=7(8m+5)=56m+35. Caso NO afortunado: N=5(), N deja residuo 4 al dividir entre 9 -> 5≡-4 mod9 -> 4k≡5 mod9 no se despeja por división directa, se prueba k=0..8 y se halla k=8 por tanteo.",
+    "terminos_relacionados": ["notación de múltiplos", "números coprimos"],
+    "nivel_dominio": "reconoce",
+    "fecha_aprendido": "2026-07-08",
+    "fecha_ultimo_uso": "2026-07-08"
+  },
+  {
+    "termino": "Números coprimos (primos entre sí)",
+    "definicion": "Dos números son coprimos si su único divisor común es 1 (su MCD es 1). No hace falta que cada uno sea primo por separado.",
+    "curso": "Aritmética",
+    "tema_id": "04-divisibilidad",
+    "ejemplo": "8 y 9 son coprimos (no comparten factores) aunque ninguno de los dos es un número primo.",
+    "terminos_relacionados": ["combinación de dos congruencias por sustitución (caso simple)"],
+    "nivel_dominio": "reconoce",
+    "fecha_aprendido": "2026-07-08",
+    "fecha_ultimo_uso": "2026-07-08"
   }
 ]
