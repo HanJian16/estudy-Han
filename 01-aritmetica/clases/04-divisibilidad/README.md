@@ -196,5 +196,200 @@ Al preguntar el usuario por una forma más rápida que listar y filtrar, se intr
 
 **Anotación del agente:** Explicación sólida y correcta, con ejemplo propio bien resuelto incluyendo un bloque incompleto (caso borde manejado sin errores). Única imprecisión menor de lenguaje: "cada 4 cifras hay un cambio" es una forma algo confusa de decir "a partir de la 4ta cifra empieza el siguiente bloque con signo opuesto" — no afecta la aplicación, que fue impecable. Tema registrado como sólido en glosario.
 
-## Próximos pasos
+## Próximos pasos (registrado en su momento)
 `04-divisibilidad` completado (criterio de dominio alcanzado: 6 de 8 problemas centrales del tema resueltos sin ayuda, los 2 restantes autocorregidos en el momento tras una pregunta guía, sin necesidad de que se les diera la respuesta). Siguiente sesión: iniciar `05-primos-mcd-mcm` (descomposición canónica, MCD, MCM, algoritmo de Euclides). Retomar ahí, como aplicación adicional, la técnica de combinación de congruencias con coeficiente distinto de ±1 usando el inverso modular una vez cubierto el MCD.
+
+---
+
+# Sesión 3 — Repaso: cierre del inverso modular
+
+**Fecha:** 2026-07-09
+**Tipo:** Repaso corto (no cuenta como sesión formal nueva de temario — `05-primos-mcd-mcm` ya estaba completo). Cierra el hilo pendiente registrado arriba.
+
+## Objetivo de esta sesión
+Cerrar, con el algoritmo de Euclides ya sólido (de `05-primos-mcd-mcm`), el caso de combinación de congruencias con coeficiente≠±1 que había quedado sin resolver formalmente (resuelto por tanteo en la sesión 2 de este tema).
+
+## Recuperación activa inicial
+El usuario recordó correctamente el algoritmo de Euclides básico (de la sesión anterior de `05-primos-mcd-mcm`) al calcularlo de nuevo para 9 y 5 sin apoyo. El hueco no estaba ahí, sino en la parte nueva: la sustitución hacia atrás (algoritmo de Euclides extendido) para construir el inverso modular, que nunca se había cubierto.
+
+## Resumen / apuntes
+
+**Por qué hace falta un inverso modular:** en la ecuación 5k ≡ 4 (mod 9), no se puede "dividir entre 5" directamente (no hay fracciones en el mundo de los residuos). Se necesita un entero n que multiplicado por 5 se comporte como "1" en este sistema (5×n ≡ 1 mod 9) — el equivalente entero de 1/5.
+
+**Método del inverso modular (algoritmo de Euclides extendido), en 4 pasos:**
+1. Dividir el módulo entre el coeficiente, forma D=d×q+r.
+2. Despejar el residuo. Si en un solo paso el residuo ya es 1, seguir al paso 3. Si no, repetir el proceso con la división anterior y sustituir hacia atrás (reemplazar el residuo de un paso dentro de la ecuación del paso anterior) hasta dejar el 1 escrito solo en términos de los dos números originales.
+3. Leer el coeficiente que queda multiplicando al número original — ese es el inverso (puede salir negativo).
+4. Si salió negativo, sumarle el módulo para pasarlo a un valor positivo equivalente.
+
+**Aplicación a un problema de combinación de congruencias:** una vez que se tiene el inverso n de a (mod b), se nombra la incógnita del primer múltiplo (N=ak), se multiplican ambos lados de "ak = b()+r" por n, y se usa que (a×n) se comporta como 1 (mod b) para dejar k despejado en la forma k=b()+r'. Ver detalle completo con fórmulas en `glosario.json` ("Inverso modular (algoritmo de Euclides extendido)" y "Combinación de dos congruencias por sustitución").
+
+**Nota pedagógica:** el primer intento de explicación (simbólico, con la letra "x" usada a la vez como "por" y como incógnita) no funcionó — ver `dif-04-03` para la estrategia que sí funcionó: ejemplos numéricos chicos progresivos, notación de múltiplos ya conocida en vez de ≡/mod sin anclar, y el usuario ejecutando la mecánica él mismo en vez de seguir una explicación pasiva.
+
+## Ejercicios trabajados
+> No se resume ni parafrasea la respuesta del usuario. Cita textual + anotación del agente. Estos ejercicios se resolvieron de forma muy guiada, paso a paso — se cita cada aporte textual del usuario en el orden en que ocurrió.
+
+1. **Enunciado:** Halla el inverso de 3 módulo 7 (n tal que 3×n = 7()+1). Un solo paso de sustitución.
+   **Respuesta del usuario (textual, guiada paso a paso):** "7 = 3(2) + 1" → "1 = 7 - 3(2)" → "-2 + 7 = 5"
+   **Anotación del agente:** Correcto (verificado: 3×5=15, 15÷7 residuo 1). Primer ejercicio de la serie, con guía en cada paso individual — sirvió para separar la mecánica del método en piezas manejables después de que la explicación simbólica inicial no funcionara.
+
+2. **Enunciado:** Halla el inverso de 4 módulo 9. Un solo paso de sustitución, mismo patrón que el ejercicio 1.
+   **Respuesta del usuario (textual):** "4n = 9() + 1 (estoy mejorando en entender la terminología también)
+
+ahora hagamos el euclides en forma D = dq + r
+
+9 = 4(2) + 1
+
+1 = 9- 4(2)
+
+-4(2) = 4n
+
+n = -2 -> n = -2 + 9 = 7
+
+n = 7"
+   **Anotación del agente:** Correcto (verificado: 4×7=28, 28÷9 residuo 1). Ya resuelto con bastante más autonomía que el ejercicio 1, aunque la línea "-4(2) = 4n" quedó notacionalmente un poco enredada (mezcla el paso de lectura del coeficiente con la asignación de n) — el resultado y la lógica de fondo fueron correctos.
+
+3. **Enunciado:** Halla el inverso de 3 módulo 8. Dos pasos de sustitución (misma estructura que el problema original de residuo con 5 y 9).
+   **Respuesta del usuario (textual, resuelto de forma independiente):** "3n = 8() + 1
+
+8 = 3(2) + 2 -> 2 = 8 - 3(2)
+3 = 2(1) + 1
+
+reemplazo:
+3 = (8 - 3(2))1 + 1
+
+1 = 3 - (8 - 3(2)) = 3 - 8 + 3(2)
+
+1 = 3(3) - 8
+
+n = 3"
+   **Anotación del agente:** Correcto y completo (verificado: 3×3=9, 9÷8 residuo 1), resuelto de principio a fin sin guía turno-por-turno. Es la primera vez que ejecutó bien los dos pasos de sustitución hacia atrás — el punto exacto que le había fallado en el primer intento del problema original (sustituir en la ecuación correcta, la que ya tenía el 1 despejado, no en la que tiene el 5 despejado).
+
+4. **Enunciado:** El problema original, pendiente desde la sesión 2 de este tema: N es múltiplo de 5, y al dividirlo entre 9 deja residuo 4. Si 50<N<95, halla N. Esta vez de principio a fin, sin guía paso a paso.
+   **Respuesta del usuario (textual, primer tramo — hallar el inverso):** "haber entonces dices que halle le inverso de 5 en módulo 9, osea 5n = 9() + 1
+
+euclides:
+9 = 5(1) + 4  -> 4 = 9 - 5(1)
+5 = 4(1) + 1
+
+reem.
+
+5 = 9 - 5(1) + 1
+1 = 5 - (9 - 5(1) = 5(2) - 9
+
+entonces:
+
+n =2
+
+ahora no estoy muy seguro de que hacer, si recolecto la información inicial:
+
+N = 5()
+N = 9() + 4
+
+entonces:
+
+5() = 9() + 4
+
+y no estoy seguro de que más hacer"
+   **Anotación del agente:** El inverso (n=2) salió correcto, incluyendo una autocorrección en el camino (la primera sustitución, "5 = 9-5(1)+1", llevaba a una identidad vacía tipo 5=5 — el mismo tropiezo del primer intento de este problema hace unos días — pero el usuario retomó solo con la sustitución correcta y llegó bien a n=2). Se trabó después al no haberle puesto nombre a la incógnita del primer múltiplo (dejó "N=5()" sin variable), lo que le impedía multiplicar la ecuación por el inverso.
+   **Respuesta del usuario (textual, tras corrección guiada — nombrar k y multiplicar por el inverso):** "10k = 9(2()) + 8" → "10k + 18() + 8" → "10k = 18() + 8"
+   **Anotación del agente:** Correcto (2×(9()+4) = 18()+8), con dos autocorrecciones de tipeo en el camino.
+   **Respuesta del usuario (textual, intento de simplificar 10k a k):** "k = 18() + 8"
+   **Anotación del agente:** Incorrecto — el término "9k" (de separar 10k=9k+k) desapareció sin pasar al otro lado. Se corrigió con la regla directa de congruencias (10≡1 mod9 implica 10k≡k mod9) en vez de seguir manipulando el paréntesis con una incógnita adentro.
+   **Respuesta del usuario (textual, tras la corrección):** "k = 9() + 8"
+   **Anotación del agente:** Correcto.
+   **Respuesta del usuario (textual, cierre):** "N = 5k = 5(9() + 8) = 45() + 40
+
+y el valor es el que encontramos antes N = 85"
+   **Anotación del agente:** Correcto y completo — N=85, coincide exactamente con el valor hallado por tanteo en la sesión 2 de este tema. Cierra el hilo pendiente con el método formal, no solo con el resultado ya conocido.
+
+**Ronda de confirmación adicional** — el usuario pidió más ejercicios porque un solo problema resuelto no le bastaba para sentirlo sólido. Resueltos de forma independiente, sin guía turno-por-turno:
+
+5. **Enunciado:** Halla el inverso de 4 módulo 11.
+   **Respuesta del usuario (textual):** "4n = 11() + 1
+
+11 = 4(2) + 3 -> 3 = 11- 4(2)
+
+4 = 3(1) + 1 -> 4 = 11- 4(2) + 1
+
+1 = 4 - (11 - 4(2)) = 4(3) - 11
+
+n = 3"
+   **Anotación del agente:** Correcto (verificado: 4×3=12, 12÷11 residuo 1). Igual que antes, la línea "4 = 11-4(2)+1" es una sustitución en la ecuación "vacía" (confirma 4=4, no aporta), pero el usuario la ignoró y siguió con la sustitución útil sin que se le señalara — ya detecta solo cuándo un camino no lleva a nada.
+
+6. **Enunciado:** N es múltiplo de 4, y al dividirlo entre 11 deja residuo 7. Halla el menor N positivo. (reutilizando el inverso del ejercicio 5)
+   **Respuesta del usuario (textual):** "N = 4k
+N = 11() + 7
+
+4n = 11() + 1
+
+euclides:
+
+11 = 4(2) + 3 -> 3 = 11 - 4(2)
+4 = 3(1) + 1 -> 4 = 11 - 4(2) + 1
+
+1 = 4 - (11 - 4(2)) = 4(3) - 11
+
+n = 3
+
+4k = 11() + 7    (x3)
+k = 11() + 21 = 11() + 10
+
+N = 4k = 4(11() + 10) = 44() + 40
+
+el N menor positivo es 44(0) + 40
+
+N = 40"
+   **Anotación del agente:** Correcto y completo (verificado: 40÷4=10 exacto, 40÷11 residuo 7). Aplicó "multiplicar por el inverso y reducir el coeficiente" de corrido, sin necesitar que se le desglosara el paso intermedio de 12k≡k (mod 11) — señal de mayor fluidez que en los ejercicios anteriores.
+
+7. **Enunciado:** N es múltiplo de 6, y al dividirlo entre 7 deja residuo 5. Si 100<N<150, halla N.
+   **Respuesta del usuario (textual):** "N = 6k
+N = 7() + 5
+100<N<150
+Hallar N
+
+6n = 7() + 5
+
+euclides:
+7(5) = 6(5) + 5 -> 5 = 35 - 6(5)
+6 = 5(1) + 1 -> 6 = 35 - 6(5) + 1
+
+1 = 6 - (35 - 6(5)) = 6(6) - 35
+
+n = 6
+
+entonces:
+
+6k = 7() + 5   (x6)
+k = 7() + 30
+k = 7() + 2
+
+N = 6k = 6(7() + 2) = 42() + 12
+
+N = {12, 54, 96, 138, 180, ......}
+
+100 < N < 150
+
+N = 138"
+   **Anotación del agente:** Resultado final correcto y completo (verificado: 138÷6=23 exacto, 138÷7 residuo 5; secuencia {12,54,96,138,180} bien construida con diferencia constante 42, sin el error de suma que tuvo en un ejercicio anterior de la sesión de `05-primos-mcd-mcm`). Pero el arranque tiene un desvío conceptual real: el primer paso ("7(5)=6(5)+5") mete un factor ×5 que en realidad es el **residuo del problema** (5), no algo que deba entrar al cálculo del inverso — el inverso de 6 módulo 7 solo depende de esos dos números, nunca del residuo que se busque después. Por coincidencia algebraica el resultado siguió siendo consistente y llegó al n correcto (6, mismo que la versión limpia de un solo paso: 7=6(1)+1 → n=6), pero fue un camino más largo y arriesgado de lo necesario. Señalado al usuario explícitamente como regla a recordar: el residuo del problema real no entra en juego hasta el paso final (multiplicar la ecuación original por el inverso ya encontrado), nunca durante el cálculo del inverso en sí.
+
+## Herramientas usadas
+- Cuaderno físico — desarrollo de los 7 ejercicios de esta sesión de repaso (4 del cierre original + 3 de la ronda de confirmación).
+- Widget de visualización (`mcp__visualize__show_widget`) — usado una vez para mostrar el mapa completo del algoritmo de Euclides extendido en el ejemplo de 5 y 9, sin depender de LaTeX (evitando el problema ya documentado en memoria de que MathJax no renderiza confiablemente en este entorno).
+
+## Dudas / puntos flojos
+- `dif-04-03` (resuelta en esta sesión, confirmada con 3 ejercicios adicionales resueltos de forma independiente): la mecánica del algoritmo de Euclides extendido (sustitución hacia atrás) no cuajó con una sola explicación, incluso entendiendo la lógica conceptual por separado. Se resolvió con práctica progresiva (ver estrategia completa en `dificultades.json`).
+- Error de notación detectado y corregido por el propio usuario: usar la misma letra para "multiplicar" y para nombrar una incógnita genera confusión real, no solo estética — a evitar en explicaciones futuras del proyecto.
+- Ejercicio 7: metió el residuo del problema (un dato que no pertenece al cálculo del inverso) dentro del algoritmo de Euclides — no causó un resultado incorrecto por coincidencia algebraica, pero es un desvío conceptual real (ver anotación del ejercicio 7). No se registra como dificultad nueva en `dificultades.json` (fue un desliz de un solo caso, corregido en el momento, sin afectar el resultado) — pero **el usuario pidió explícitamente marcarlo para repaso espaciado futuro**, por sentirlo lógicamente confuso pese a haberlo resuelto bien. Ver nota en `dificultades.json` (`dif-04-03`).
+
+## Feynman de cierre
+**Consulta del agente (textual):** "Explícame el tema completo de esta sesión como si me lo estuvieras enseñando a mí por primera vez... [se pidió tras completar el problema guiado paso a paso, antes de la serie de ejercicios de práctica]"
+
+**Respuesta del usuario (textual):** "No, la explicación fue tan confusa que aún no termino de entender todo el desarrollo y demás, manda unos ejercicios para ver si logro entender mejor, por que solo con la explicación todo quedó bastante mal"
+
+**Anotación del agente:** No se llegó al Feynman en ese momento — decisión correcta del usuario, priorizar práctica sobre forzar una explicación que no estaba asentada. Tras los 4 ejercicios de práctica (ver arriba), el usuario resolvió el problema original completo sin guía turno-por-turno, lo que es una señal más fuerte de dominio real que un Feynman verbal habría dado en ese momento. No se volvió a pedir un Feynman formal después de los ejercicios — queda como oportunidad para una futura sesión de repaso espaciado (`dificultades.json` / `glosario.json` ya reflejan nivel "sólido").
+
+## Próximos pasos
+Hilo del inverso modular cerrado — el usuario se sintió sólido tras la ronda de confirmación (3 ejercicios independientes correctos: n=3 para inverso de 4 mod 11, N=40 y N=138 en dos problemas de aplicación completos). No queda pendiente nada de `04-divisibilidad` para avanzar en el temario.
+
+**Marcado explícitamente por el usuario para repaso espaciado futuro** (lo sintió "lógicamente confuso" pese a resolverlo bien, y no quiere que se olvide): revisar en una sesión futura — sin apoyo paso a paso — un problema nuevo de combinación de congruencias con coeficiente≠±1, y opcionalmente el Feynman completo que no se llegó a hacer en esta sesión. Buen candidato para repasar cuando `dificultades.json` indique que pasaron algunos días desde `fecha_ultimo_repaso` de `dif-04-03` (2026-07-09), según el método de Repetición Espaciada del proyecto.

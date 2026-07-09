@@ -275,15 +275,26 @@
     "fecha_ultimo_uso": "2026-07-08"
   },
   {
-    "termino": "Combinación de dos congruencias por sustitución (caso simple)",
-    "definicion": "Para hallar N que cumple dos condiciones de múltiplo/residuo a la vez (ej. N múltiplo de a, y N deja residuo r al dividir entre b, con a y b coprimos), se sustituye N=a() en la segunda condición y se despeja la incógnita del paréntesis. Funciona de forma directa y sencilla solo cuando el coeficiente de la incógnita se reduce a +1 o -1 respecto al segundo módulo (casos afortunados, ej. 7 ≡ -1 mod 8). Cuando el coeficiente no es ±1, el despeje ya no es división normal (no se puede 'dividir entre 4' dentro de un residuo) y se necesita el inverso modular, herramienta que se construye con MCD/algoritmo de Euclides — pendiente hasta 05-primos-mcd-mcm. Mientras tanto, esos casos se resuelven por tanteo de los pocos valores posibles del residuo, o con el método de listar y filtrar múltiplos.",
+    "termino": "Combinación de dos congruencias por sustitución",
+    "definicion": "Para hallar N que cumple dos condiciones de múltiplo/residuo a la vez (ej. N múltiplo de a, y N deja residuo r al dividir entre b, con a y b coprimos), se nombra la incógnita del primer múltiplo (N=ak) y se sustituye en la segunda condición: ak = b()+r. Caso afortunado: si el coeficiente a se reduce a +1 o -1 respecto al módulo b, se despeja directo (ej. 7≡-1 mod8). Caso general: si el coeficiente no es ±1, se necesita el inverso modular de a respecto a b (ver 'Inverso modular') — se multiplican ambos lados de ak=b()+r por ese inverso, lo que convierte el coeficiente de k en 1 (o en un múltiplo de b más 1, que se simplifica igual) y deja k despejado en la forma k=b()+r'.",
     "curso": "Aritmética",
     "tema_id": "04-divisibilidad",
-    "ejemplo": "N=7(), N deja residuo 3 al dividir entre 8: 7≡-1 mod8, entonces -k≡3 mod8, k≡5 mod8, N=7(8m+5)=56m+35. Caso NO afortunado: N=5(), N deja residuo 4 al dividir entre 9 -> 5≡-4 mod9 -> 4k≡5 mod9 no se despeja por división directa, se prueba k=0..8 y se halla k=8 por tanteo.",
-    "terminos_relacionados": ["notación de múltiplos", "números coprimos"],
-    "nivel_dominio": "reconoce",
+    "ejemplo": "N=7(), N deja residuo 3 al dividir entre 8: 7≡-1 mod8, entonces -k≡3 mod8, k≡5 mod8, N=7(8m+5)=56m+35. Caso general resuelto con inverso modular: N=5k, N deja residuo 4 al dividir entre 9 -> 5k=9()+4 -> el inverso de 5 mod9 es 2 -> multiplicando por 2: 10k=9()+8 -> como 10≡1 mod9, k=9()+8 -> N=5k=45()+40 -> con 50<N<95, N=85.",
+    "terminos_relacionados": ["notación de múltiplos", "números coprimos", "inverso modular (algoritmo de Euclides extendido)"],
+    "nivel_dominio": "solido",
     "fecha_aprendido": "2026-07-08",
-    "fecha_ultimo_uso": "2026-07-08"
+    "fecha_ultimo_uso": "2026-07-09"
+  },
+  {
+    "termino": "Inverso modular (algoritmo de Euclides extendido)",
+    "definicion": "El inverso de a módulo m es un entero n tal que a×n deja residuo 1 al dividir entre m (existe solo si a y m son coprimos). Se construye en 4 pasos: (1) dividir m entre a en la forma D=d×q+r; (2) despejar el residuo (queda 1 si a y m son coprimos y el proceso solo necesitó un paso — si necesita más pasos, se repite el proceso con la división anterior y se sustituye hacia atrás hasta dejar el 1 escrito solo en términos de a y m); (3) leer el coeficiente que quedó multiplicando a 'a' — ese coeficiente (puede salir negativo) es el inverso; (4) si salió negativo, sumarle el módulo m para pasarlo a positivo.",
+    "curso": "Aritmética",
+    "tema_id": "04-divisibilidad",
+    "ejemplo": "Inverso de 3 mod 7 (un paso): 7=3(2)+1 -> 1=7-3(2) -> coeficiente de 3 es -2 -> -2+7=5 -> el inverso es 5 (verificación: 3×5=15, 15÷7 da residuo 1). Inverso de 5 mod 9 (dos pasos): 9=5(1)+4, 5=4(1)+1 -> sustituyendo, 1=5(2)-9 -> el inverso es 2 (verificación: 5×2=10, 10÷9 da residuo 1).",
+    "terminos_relacionados": ["algoritmo de Euclides", "combinación de dos congruencias por sustitución", "números coprimos"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-09",
+    "fecha_ultimo_uso": "2026-07-09"
   },
   {
     "termino": "Números coprimos (primos entre sí)",
@@ -291,8 +302,85 @@
     "curso": "Aritmética",
     "tema_id": "04-divisibilidad",
     "ejemplo": "8 y 9 son coprimos (no comparten factores) aunque ninguno de los dos es un número primo.",
-    "terminos_relacionados": ["combinación de dos congruencias por sustitución (caso simple)"],
+    "terminos_relacionados": ["combinación de dos congruencias por sustitución"],
     "nivel_dominio": "reconoce",
+    "fecha_aprendido": "2026-07-08",
+    "fecha_ultimo_uso": "2026-07-08"
+  },
+  {
+    "termino": "Descomposición canónica",
+    "definicion": "Escribir un número como producto de sus factores primos elevados a exponentes.",
+    "curso": "Aritmética",
+    "tema_id": "05-primos-mcd-mcm",
+    "ejemplo": "360 = 2³ × 3² × 5",
+    "terminos_relacionados": ["cantidad de divisores (regla)", "suma de divisores (regla)", "MCD por descomposición canónica", "MCM por descomposición canónica"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-08",
+    "fecha_ultimo_uso": "2026-07-08"
+  },
+  {
+    "termino": "Cantidad de divisores (regla)",
+    "definicion": "Se multiplica (exponente + 1) de cada primo de la descomposición canónica.",
+    "curso": "Aritmética",
+    "tema_id": "05-primos-mcd-mcm",
+    "ejemplo": "12 = 2²×3¹ → (2+1)(1+1) = 6 divisores; 360 = 2³×3²×5¹ → (3+1)(2+1)(1+1) = 24 divisores.",
+    "terminos_relacionados": ["descomposición canónica", "suma de divisores (regla)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-08",
+    "fecha_ultimo_uso": "2026-07-08"
+  },
+  {
+    "termino": "Suma de divisores (regla)",
+    "definicion": "Se multiplican las sumas de series geométricas (1 + p + p² + ... + p^n) de cada primo de la descomposición canónica.",
+    "curso": "Aritmética",
+    "tema_id": "05-primos-mcd-mcm",
+    "ejemplo": "12 = 2²×3¹ → (1+2+4)(1+3) = 7×4 = 28; 360 = 2³×3²×5¹ → (1+2+4+8)(1+3+9)(1+5) = 15×13×6 = 1170.",
+    "terminos_relacionados": ["descomposición canónica", "cantidad de divisores (regla)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-08",
+    "fecha_ultimo_uso": "2026-07-08"
+  },
+  {
+    "termino": "MCD por descomposición canónica",
+    "definicion": "Se toman las bases (primos) comunes a todos los números, cada una con el exponente mínimo entre los números.",
+    "curso": "Aritmética",
+    "tema_id": "05-primos-mcd-mcm",
+    "ejemplo": "84 = 2²×3×7, 36 = 2²×3² → MCD = 2²×3 = 12 (base 7 no se comparte, se descarta; para 2 y 3 se toma el exponente menor).",
+    "terminos_relacionados": ["descomposición canónica", "MCM por descomposición canónica", "algoritmo de Euclides"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-08",
+    "fecha_ultimo_uso": "2026-07-08"
+  },
+  {
+    "termino": "MCM por descomposición canónica",
+    "definicion": "Se toman todas las bases (primos) presentes en cualquiera de los números, cada una con el exponente máximo entre los números.",
+    "curso": "Aritmética",
+    "tema_id": "05-primos-mcd-mcm",
+    "ejemplo": "18 = 2×3², 24 = 2³×3 → MCM = 2³×3² = 72.",
+    "terminos_relacionados": ["descomposición canónica", "MCD por descomposición canónica"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-08",
+    "fecha_ultimo_uso": "2026-07-08"
+  },
+  {
+    "termino": "Algoritmo de Euclides",
+    "definicion": "MCD(a,b) = MCD(b, resto de a÷b), repitiendo el proceso hasta obtener resto 0; el último divisor no nulo usado es el MCD.",
+    "curso": "Aritmética",
+    "tema_id": "05-primos-mcd-mcm",
+    "ejemplo": "MCD(84,36): 84÷36 → resto 12; 36÷12 → resto 0. MCD = 12.",
+    "terminos_relacionados": ["MCD por descomposición canónica"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-08",
+    "fecha_ultimo_uso": "2026-07-08"
+  },
+  {
+    "termino": "Reconocimiento MCD vs. MCM en problemas de palabras",
+    "definicion": "MCD: repartir, cortar o embaldosar en partes iguales, sin sobrante, del tamaño máximo posible. MCM: eventos periódicos que se repiten a intervalos distintos y se busca cuándo vuelven a coincidir.",
+    "curso": "Aritmética",
+    "tema_id": "05-primos-mcd-mcm",
+    "ejemplo": "Cortar listones de 84cm y 36cm en pedazos iguales lo más grandes posible → MCD = 12cm. Focos que parpadean cada 18s y 24s, ¿cuándo vuelven a coincidir? → MCM = 72s.",
+    "terminos_relacionados": ["MCD por descomposición canónica", "MCM por descomposición canónica"],
+    "nivel_dominio": "solido",
     "fecha_aprendido": "2026-07-08",
     "fecha_ultimo_uso": "2026-07-08"
   }

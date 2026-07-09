@@ -147,6 +147,9 @@ Cuando termine nuestra conversación, dame un mensaje que empiece exactamente co
 - Porcentaje estimado: X (0-100)
 - Puntos que quedaron sin cubrir: [lista o "ninguno"]
 
+## Recuperación activa inicial
+[Qué recordé al empezar la sesión, sin apoyo de apuntes, sobre el tema anterior o los prerrequisitos de este tema — qué estaba sólido y qué hueco se detectó. Si no se hizo recuperación activa al inicio (ej. sesión que retoma directo un tema ya empezado), escribe "no se hizo esta vez"]
+
 ## Términos nuevos aprendidos o afianzados
 [Uno por línea, formato: "- término | definición corta en palabras del usuario | nivel_dominio: reconoce/solido/vacilante"]
 
@@ -160,10 +163,13 @@ Cuando termine nuestra conversación, dame un mensaje que empiece exactamente co
 [Uno por línea: "- descripción | qué se intentó"]
 
 ## Apuntes clave de la sesión
-[3-6 bullets con lo más importante que se vio]
+[NO te limites a bullets cortos. El objetivo es que yo pueda repasar el tema completo desde este resumen sin haber estado en la conversación ni volver a leerla — el mismo nivel de detalle que un apunte de clase normal. Incluye: cada definición o regla vista (con su fórmula si aplica), al menos un ejemplo numérico resuelto por regla/fórmula, y las derivaciones o "por qué funciona así" que se construyeron en la sesión (no solo el resultado final). Usa sub-bloques con encabezado si se vieron varios sub-temas distintos. Usa LaTeX normal (`$...$`, `$$...$$`) donde haga falta — este bloque sí lo renderiza tu agente actual.]
+
+## Ejercicios trabajados
+[Por cada ejercicio: el enunciado completo, luego mi respuesta citada de forma TEXTUAL/VERBATIM (tal cual la escribí o dije, con errores de tipeo incluidos, sin resumir ni parafrasear), y tu propia anotación de qué reveló esa respuesta. Si no se trabajaron ejercicios, escribe "no se trabajaron ejercicios"]
 
 ## Feynman del usuario
-[Cómo explicó el tema al final, en 2-4 líneas. Si no llegamos al Feynman, escribe "no se llegó"]
+[La consigna EXACTA que me pediste para el Feynman, y mi respuesta citada de forma TEXTUAL/VERBATIM — tal cual la dije o escribí, sin resumir ni parafrasear, incluso con errores de tipeo o de lenguaje. No la comprimas a unas pocas líneas: cópiala completa. Si no llegamos al Feynman, escribe "no se llegó"]
 
 ## Próximo paso sugerido
 [Una línea con qué recomiendo trabajar en la siguiente sesión]
@@ -210,9 +216,23 @@ Validaciones antes de procesar:
 
 3. **Verificar que el `tema_id` existe** en algún `temario.json` del proyecto. Si no existe, avisa y no procese.
 
-### Paso 2.2: Procesar el resumen
+### Paso 2.2: Revisión de coherencia antes de guardar (ruido de transcripción u otras inconsistencias)
 
-Extrae cada sección del bloque y actualiza los archivos:
+**Antes** de escribir nada en los JSON o en el README de la clase, revisa el bloque completo buscando incoherencias internas — esto importa especialmente si la sesión fue por voz o transcripción, donde el ruido de dictado es frecuente.
+
+Señales a buscar:
+- Un resultado numérico en una cita del usuario que no cuadra con la operación que él mismo describe en esa misma respuesta, pero sí cuadra si se asume un error de dictado (ej. "doce" transcrito en vez de "dos", "MCB" en vez de "MCD").
+- Un término técnico que no existe pero suena parecido a uno real que encaja en el contexto (ej. "algoritmo de utilidades" en vez de "algoritmo de Euclides").
+- Contradicción entre la "Anotación" del agente que llevó la sesión externa y lo que literalmente dice la cita del usuario.
+
+Qué hacer en cada caso:
+1. **Ruido de transcripción evidente que no afecta el razonamiento** (el error está solo en cómo quedó escrito el número/palabra, no en el proceso que siguió el usuario): corrígelo únicamente en tu propia síntesis (la sección "Resumen / apuntes" que redactas tú). **Nunca alteres la cita textual/verbatim** de "Ejercicios trabajados" ni "Feynman de cierre" — van tal cual llegaron, ruido incluido, porque la regla de cita verbatim es para preservar la voz real, no para que el texto sea impecable. Sí debes dejar explícito en tu "Anotación del agente" de ese ejercicio que se detectó ruido de transcripción, para que quede claro que no fue un error conceptual real.
+2. **Caso ambiguo, no intuitivamente resoluble** (no puedes decidir con confianza si es ruido de dictado o un error real de razonamiento del usuario): **no lo resuelvas por tu cuenta ni lo guardes todavía.** Muéstrale al usuario la cita exacta y tu duda concreta, y espera su respuesta antes de continuar con ese punto.
+3. **Nunca dejes que un ruido de transcripción no detectado se filtre a `glosario.json` o `dificultades.json`** como si fuera contenido real — ni una definición corrupta por ruido de dictado, ni una dificultad nueva que en realidad es solo un tropiezo del dictado y no del razonamiento.
+
+### Paso 2.3: Procesar el resumen
+
+Extrae cada sección del bloque (ya revisada en el paso anterior) y actualiza los archivos:
 
 **`progreso.json`**
 - Actualiza `estado` y `porcentaje` del tema con lo sugerido.
@@ -229,13 +249,16 @@ Extrae cada sección del bloque y actualiza los archivos:
 
 **`clases/NN-tema-id/README.md`**
 - Si no existe la carpeta de la clase, créala con la plantilla.
-- Poblá las secciones usando los "Apuntes clave" y el "Feynman del usuario" del resumen. En "Herramientas usadas" indica "sesión externa ([agente que usó], modalidad: texto/voz)".
+- Poblá "Recuperación activa inicial" con la sección homónima del resumen.
+- Poblá "Resumen / apuntes" con los "Apuntes clave" del resumen. Esta sección debe quedar con la misma profundidad que un apunte de clase nativo (definiciones, fórmulas, ejemplos resueltos, derivaciones) — si el resumen recibido vino pobre en detalle (bullets cortos sin fórmulas ni ejemplos), reconstruye tú mismo esa profundidad a partir de lo que sí es verificable en "Ejercicios trabajados" y "Feynman del usuario" del resumen (son la fuente más rica y ya verbatim) antes de darlo por completo. No inventes contenido que no esté respaldado por esas dos secciones.
+- Poblá "Ejercicios trabajados" y "Feynman de cierre" copiando esas secciones del resumen **tal cual** (cita textual del enunciado/consigna + respuesta verbatim del usuario), igual que exige el `README.md` del proyecto para estas dos secciones — no las resumas ni las parafrasees de nuevo aquí.
+- En "Herramientas usadas" indica "sesión externa ([agente que usó], modalidad: texto/voz)".
 
-### Paso 2.3: Limpiar el handoff pendiente
+### Paso 2.4: Limpiar el handoff pendiente
 
 Elimina el campo `handoff_pendiente` de `objetivo.json`.
 
-### Paso 2.4: Reporte al usuario
+### Paso 2.5: Reporte al usuario
 
 Muestra un resumen breve de lo actualizado:
 ```

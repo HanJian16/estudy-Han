@@ -128,5 +128,32 @@
     "veces_repasado": 1,
     "resuelto": true,
     "estrategia_que_ayuda": "Antes de plantear, releer la definición literal de N=k̇+r ('N al dividirlo entre k deja residuo r' => el residuo se suma al múltiplo, no se resta) y contrastar contra residuo por exceso (d-r) si el planteo lo pide explícitamente. El usuario se autocorrigió al comparársele con la definición ya sólida de notación de múltiplos y con la distinción residuo por defecto/por exceso de 03-cuatro-operaciones, y en un problema posterior similar (7 y 8, 100<N<200) planteó la ecuación correcta desde el inicio sin ese error."
+  },
+  {
+    "id": "dif-05-01",
+    "curso": "Aritmética",
+    "tema_id": "05-primos-mcd-mcm",
+    "tipo": "conceptual",
+    "descripcion": "Al calcular la cantidad de divisores de un número desde su descomposición canónica, inicialmente sumó los exponentes de los primos en vez de sumar 1 a cada exponente y multiplicarlos (ej. para 12=2²×3¹ predijo 'exponente 3' en vez de (2+1)(1+1)=6).",
+    "error_tipico": "Tratar como suma una situación que en realidad es de conteo combinatorio (opciones independientes por posición que se multiplican, no se suman).",
+    "fecha_deteccion": "2026-07-08",
+    "fecha_ultimo_repaso": "2026-07-08",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Contrastar la regla propuesta con el conteo manual de los divisores de un número chico (12 tiene 6 divisores reales: 1,2,3,4,6,12) para detectar que la suma de exponentes no coincide, y re-derivar la regla como producto de (exponente+1) por cada primo. El usuario conectó la regla correcta con una analogía propia (cantidad de combinaciones de dos dados, 6×6), lo que sugiere que pensarlo como conteo de opciones independientes (no como suma) es la estrategia que más le ayuda."
+  },
+  {
+    "id": "dif-04-03",
+    "curso": "Aritmética",
+    "tema_id": "04-divisibilidad",
+    "tipo": "conceptual",
+    "descripcion": "Al retomar el hilo pendiente de combinar congruencias con coeficiente≠±1 (N múltiplo de 5, residuo 4 al dividir entre 9) usando el algoritmo de Euclides extendido para hallar el inverso modular, el usuario llegó al resultado correcto (N=85, coincide con el hallado por tanteo en la sesión original) pero solo con guía muy intensiva paso a paso. Al pedirle un Feynman de cierre del método completo, reconoció explícitamente que la explicación no había cuajado y prefirió pasar a practicar con ejercicios en vez de forzar la explicación.",
+    "error_tipico": "Perderse en la mecánica algebraica de la sustitución hacia atrás (extended Euclidean: despejar un residuo, sustituirlo en la ecuación anterior, repartir el signo negativo, agrupar términos semejantes) incluso entendiendo por separado la lógica conceptual del método (por qué se busca residuo 1 y no el residuo del problema original; por qué se usa la penúltima ecuación de Euclides y no la última). También contribuyó un choque de notación inicial (el agente usó la letra 'x' tanto para multiplicación como para el nombre de la incógnita en el mismo mensaje).",
+    "fecha_deteccion": "2026-07-09",
+    "fecha_ultimo_repaso": "2026-07-09",
+    "veces_repasado": 4,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Lo que funcionó: (1) abandonar la explicación simbólica de golpe y volver a ejemplos numéricos chicos y concretos, (2) usar SIEMPRE la notación de múltiplos que el usuario ya tenía sólida ('5() = 9()+4') en vez de introducir ≡/mod sin anclarla primero a esa notación conocida, (3) practicar casos de UN solo paso de sustitución (inverso de 3 mod 7, de 4 mod 9) antes de pasar a uno de dos pasos (3 mod 8), dejando que el usuario ejecute la mecánica él mismo en cada uno en vez de seguir una explicación pasiva, (4) para el paso de '10k ≡ k (mod 9)' abandonar el intento de manipular el paréntesis de múltiplos con una incógnita adentro (confuso, llevó a perder el término 9k) y usar en su lugar la regla directa de congruencias (10≡1 implica 10k≡k). Con esa progresión resolvió correctamente los 3 ejercicios de práctica y luego rehizo el problema original completo (N=85) de principio a fin con una sola corrección menor autodetectada. Evitar en el futuro reusar la misma letra para multiplicación y para la incógnita — fue la causa raíz del primer intento fallido de explicación. Confirmado con una ronda adicional de 3 ejercicios independientes (inverso de 4 mod 11, y dos problemas de aplicación completos con N=40 y N=138) — todos correctos, con creciente fluidez (ya no necesita que se le desglose el paso de reducir el coeficiente vía a≡1). Único desliz de esa ronda: en un ejercicio metió el residuo del problema dentro del cálculo del inverso (no le pertenece ahí), sin que afectara el resultado por coincidencia algebraica — ver ejercicio 7 en el README de la clase.",
+    "nota_repaso_espaciado": "El usuario pidió explícitamente marcar esto para repaso espaciado futuro (2026-07-09): lo sintió 'lógicamente confuso' pese a resolverlo bien en 7 ejercicios distintos, y no quiere que se olvide con el tiempo. Buen candidato para revisar cuando hayan pasado unos días desde fecha_ultimo_repaso — con un problema nuevo de combinación de congruencias sin apoyo paso a paso, y opcionalmente el Feynman completo que nunca se llegó a hacer."
   }
 ]
