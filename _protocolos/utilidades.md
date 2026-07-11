@@ -8,14 +8,14 @@
 
 | Comando completo | Alias corto | Qué hace |
 |---|---|---|
-| `/mostrar estado` | `/estado` | Muestra un resumen del progreso actual: objetivo, cursos, tema en curso, dificultades pendientes prioritarias |
-| `/generar backup` | `/backup` | Genera un ZIP con el proyecto completo en `_backups/YYYY-MM-DD-HHMM.zip` |
+| `mostrar estado` | `estado` | Muestra un resumen del progreso actual: objetivo, cursos, tema en curso, dificultades pendientes prioritarias |
+| `generar backup` | `backup` | Genera un ZIP con el proyecto completo en `_backups/YYYY-MM-DD-HHMM.zip` |
 
-**Regla:** el agente acepta indistintamente forma completa y alias. Si el usuario dice algo parecido pero no idéntico, pide la forma exacta.
+**Regla:** el agente acepta indistintamente forma completa y alias. Si el usuario dice algo parecido pero no idéntico, pide la forma exacta. Ningún comando usa `/` (ver convención en el `README.md` raíz).
 
 ---
 
-## Comando `/estado`
+## Comando `estado`
 
 Lee y agrega información de varios archivos para dar una foto rápida del progreso. Se usa cuando el usuario abre el proyecto y quiere saber por dónde va sin arrancar una sesión de estudio.
 
@@ -56,7 +56,7 @@ Handoff pendiente: [sí (tema X desde fecha) / no]
 
 ---
 
-## Comando `/backup`
+## Comando `backup`
 
 Genera un ZIP del proyecto completo (excepto `_backups/`) con nombre `YYYY-MM-DD-HHMM.zip` dentro de la carpeta `_backups/`.
 
@@ -111,7 +111,7 @@ En estos casos, ofrece hacer un backup — no lo ejecutes sin permiso.
 
 Si el usuario no está familiarizado con git, este proyecto se puede inicializar como repositorio con `git init` y luego pushear a un repo privado en GitHub. Cada cierre de clase importante puede terminarse con un `git commit` para dejar snapshot de progreso.
 
-**Cuándo usar `/backup` (ZIP local):**
+**Cuándo usar `backup` (ZIP local):**
 - Usuario no quiere usar git.
 - Necesita snapshot instantáneo antes de una operación grande.
 - No tiene internet en ese momento.

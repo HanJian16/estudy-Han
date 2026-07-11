@@ -10,9 +10,9 @@ Repositorio de estudio para retomar cursos de forma estructurada, usado junto co
 
 ## Algoritmo de arranque (ejecutar SIEMPRE al inicio de la sesión)
 
-**Palabra explícita `empezar`:** este algoritmo debe ejecutarse siempre al inicio de la sesión, sin que el usuario tenga que pedirlo. Pero como en la práctica el agente necesita un primer mensaje del usuario para actuar (incluso con este archivo cargado como contexto), `empezar` es la forma explícita y sin ambigüedad de decir "ejecuta el algoritmo de arranque ahora" — útil como primer mensaje al abrir una sesión nueva cuando el usuario no sabe qué escribir, o en cualquier momento para forzar una relectura completa del estado del proyecto (ej. tras cambiar de agente, o si el contexto de la conversación se perdió). Si el usuario escribe `empezar`, ejecuta este algoritmo completo desde el PASO 1 de inmediato.
+**Palabra explícita `empezar`** (alias corto: `emp`)**:** este algoritmo debe ejecutarse siempre al inicio de la sesión, sin que el usuario tenga que pedirlo. Pero como en la práctica el agente necesita un primer mensaje del usuario para actuar (incluso con este archivo cargado como contexto), `empezar` es la forma explícita y sin ambigüedad de decir "ejecuta el algoritmo de arranque ahora" — útil como primer mensaje al abrir una sesión nueva cuando el usuario no sabe qué escribir, o en cualquier momento para forzar una relectura completa del estado del proyecto (ej. tras cambiar de agente, o si el contexto de la conversación se perdió). Si el usuario escribe `empezar` o `emp`, ejecuta este algoritmo completo desde el PASO 1 de inmediato.
 >
-> **Nota:** se usa una palabra sin `/` a propósito (no `/init` ni ningún otro comando con barra). Herramientas como Claude Code interceptan los comandos que empiezan con `/` a nivel de la propia interfaz, antes de que el mensaje le llegue al agente como texto — así que un `/init` definido aquí nunca llegaría a activar este algoritmo (Claude Code, por ejemplo, ya tiene su propio `/init` interno, que hace algo completamente distinto: generar un archivo `CLAUDE.md`). Una palabra sin barra evita ese choque, ahora y ante cualquier comando nuevo que la herramienta agregue en el futuro.
+> **Nota — convención de comandos sin barra, en todo el proyecto:** ningún comando de este proyecto (arranque, configuración, utilidades, handoff) empieza con `/`. Herramientas como Claude Code interceptan los comandos que empiezan con `/` a nivel de la propia interfaz, antes de que el mensaje le llegue al agente como texto — así que un comando con `/` definido aquí podría nunca llegar a activarse, o chocar con un comando propio de la herramienta (ej. el `/init` interno de Claude Code, que hace algo completamente distinto: generar un archivo `CLAUDE.md`). Por eso, en vez de barras, cada comando tiene una **forma completa** en palabras (frase natural, ej. "mostrar estado") y un **alias corto** en forma de acrónimo intuitivo sin barra (ej. `estado`, `hndff`, `uts on`). Esto evita el choque ahora y ante cualquier comando nuevo que la herramienta agregue en el futuro. Ver la tabla completa de comandos y alias en `_protocolos/configuracion.md`, `_protocolos/utilidades.md` y `_protocolos/handoff.md`.
 
 ```
 PASO 1 — ¿Existe el archivo "objetivo.json" en la raíz del proyecto?
@@ -41,12 +41,12 @@ PASO 3 — ¿El usuario está invocando un COMANDO RÁPIDO
          Se activa SOLO si escribe forma completa O alias corto de un
          comando listado en:
            - _protocolos/configuracion.md:
-                 "/mostrar configuracion"                (alias: /cfg)
-                 "/activar modo un tema por sesion"      (alias: /cfg +uts)
-                 "/desactivar modo un tema por sesion"   (alias: /cfg -uts)
+                 "mostrar configuracion"                 (alias: cfg)
+                 "activar modo un tema por sesion"       (alias: uts on)
+                 "desactivar modo un tema por sesion"    (alias: uts off)
            - _protocolos/utilidades.md:
-                 "/mostrar estado"                       (alias: /estado)
-                 "/generar backup"                       (alias: /backup)
+                 "mostrar estado"                        (alias: estado)
+                 "generar backup"                        (alias: backup)
 
     ├── SÍ
     │     → Lee el protocolo correspondiente y aplica la acción.
@@ -60,7 +60,7 @@ PASO 4 — ¿El usuario está invocando el protocolo de handoff?
          Se activa SOLO si:
            (a) El usuario escribe un comando de _protocolos/handoff.md
                en su forma completa O como alias corto
-               (hoy: "/genera un handoff" / alias "/handoff")
+               (hoy: "generar un handoff" / alias "hndff")
            O
            (b) El usuario pega un bloque cuya PRIMERA línea es
                  === HANDOFF-RESUMEN ===
@@ -378,10 +378,10 @@ estudios/
 │   ├── expansion.md              ← Protocolo para AGREGAR nuevos objetivos (ya hay uno completo)
 │   ├── handoff.md                ← Protocolo de puente entre agentes/sesiones (texto o voz)
 │   ├── configuracion.md          ← Comandos para activar/desactivar reglas (ej: un tema por sesión)
-│   └── utilidades.md             ← Comandos rápidos: /mostrar estado, /generar backup
+│   └── utilidades.md             ← Comandos rápidos: mostrar estado, generar backup
 ├── _recursos/
 │   └── herramientas.md           ← Guía detallada de herramientas externas (WolframAlpha, Desmos, etc.) — con protocolo de actualización
-├── _backups/                     ← Backups locales generados con el comando `/backup` (opcional; ignorado por git)
+├── _backups/                     ← Backups locales generados con el comando `backup` (opcional; ignorado por git)
 ├── _plantillas/                  ← Plantillas para generar cursos, clases y archivos
 │   ├── plantilla-objetivo.json
 │   ├── plantilla-configuracion.json

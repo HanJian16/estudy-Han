@@ -155,5 +155,18 @@
     "resuelto": true,
     "estrategia_que_ayuda": "Lo que funcionó: (1) abandonar la explicación simbólica de golpe y volver a ejemplos numéricos chicos y concretos, (2) usar SIEMPRE la notación de múltiplos que el usuario ya tenía sólida ('5() = 9()+4') en vez de introducir ≡/mod sin anclarla primero a esa notación conocida, (3) practicar casos de UN solo paso de sustitución (inverso de 3 mod 7, de 4 mod 9) antes de pasar a uno de dos pasos (3 mod 8), dejando que el usuario ejecute la mecánica él mismo en cada uno en vez de seguir una explicación pasiva, (4) para el paso de '10k ≡ k (mod 9)' abandonar el intento de manipular el paréntesis de múltiplos con una incógnita adentro (confuso, llevó a perder el término 9k) y usar en su lugar la regla directa de congruencias (10≡1 implica 10k≡k). Con esa progresión resolvió correctamente los 3 ejercicios de práctica y luego rehizo el problema original completo (N=85) de principio a fin con una sola corrección menor autodetectada. Evitar en el futuro reusar la misma letra para multiplicación y para la incógnita — fue la causa raíz del primer intento fallido de explicación. Confirmado con una ronda adicional de 3 ejercicios independientes (inverso de 4 mod 11, y dos problemas de aplicación completos con N=40 y N=138) — todos correctos, con creciente fluidez (ya no necesita que se le desglose el paso de reducir el coeficiente vía a≡1). Único desliz de esa ronda: en un ejercicio metió el residuo del problema dentro del cálculo del inverso (no le pertenece ahí), sin que afectara el resultado por coincidencia algebraica — ver ejercicio 7 en el README de la clase.",
     "nota_repaso_espaciado": "El usuario pidió explícitamente marcar esto para repaso espaciado futuro (2026-07-09): lo sintió 'lógicamente confuso' pese a resolverlo bien en 7 ejercicios distintos, y no quiere que se olvide con el tiempo. Buen candidato para revisar cuando hayan pasado unos días desde fecha_ultimo_repaso — con un problema nuevo de combinación de congruencias sin apoyo paso a paso, y opcionalmente el Feynman completo que nunca se llegó a hacer."
+  },
+  {
+    "id": "dif-06-01",
+    "curso": "Aritmética",
+    "tema_id": "05-primos-mcd-mcm",
+    "tipo": "conceptual",
+    "descripcion": "Durante el repaso activo previo a entrar a 06-fracciones (sesión externa por voz), al cancelar potencias de igual base en una división, el usuario creía que la regla era 'quedarse con el exponente menor' en vez de 'restar exponentes' — coincidencialmente el primer ejemplo usado daba el mismo resultado con ambos criterios, ocultando el error.",
+    "error_tipico": "Generalizar una regla de exponentes a partir de un solo ejemplo donde el criterio incorrecto ('quedarse con el menor') coincide por casualidad con el correcto ('restar exponentes').",
+    "fecha_deteccion": "2026-07-10",
+    "fecha_ultimo_repaso": "2026-07-10",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Contraejemplo numérico expandido a mano (3^5/3^2): expandir las potencias como multiplicaciones repetidas, cancelar los factores comunes uno a uno, y comparar el resultado real (3^3=27) contra lo que predice cada regla candidata. El usuario corrigió la regla de inmediato al ver el contraejemplo y la aplicó bien después."
   }
 ]

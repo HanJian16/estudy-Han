@@ -6,10 +6,10 @@
 
 | Comando completo | Alias corto | Fase | Qué hace |
 |---|---|---|---|
-| `/genera un handoff` | `/handoff` | SALIDA | Genera un prompt copiable para llevar el estudio de UN tema a una sesión externa (otro agente, de texto o de voz) |
+| `generar un handoff` | `hndff` | SALIDA | Genera un prompt copiable para llevar el estudio de UN tema a una sesión externa (otro agente, de texto o de voz) |
 | *(pegar bloque cuya primera línea es `=== HANDOFF-RESUMEN ===`)* | — | VUELTA | Procesa el resumen de la sesión externa y actualiza los archivos del proyecto |
 
-**Regla:** el agente acepta indistintamente la forma completa y el alias corto. Si el usuario dice algo parecido pero no idéntico a ninguno de los dos, pídele que use la forma exacta — no invoques el protocolo por conjetura. Nuevos tipos de handoff se agregarán a esta tabla en el futuro con su propio comando y alias.
+**Regla:** el agente acepta indistintamente la forma completa y el alias corto. Si el usuario dice algo parecido pero no idéntico a ninguno de los dos, pídele que use la forma exacta — no invoques el protocolo por conjetura. Nuevos tipos de handoff se agregarán a esta tabla en el futuro con su propio comando y alias. Ningún comando usa `/` (ver convención en el `README.md` raíz).
 
 Este protocolo tiene dos fases:
 1. **Handoff de SALIDA** → generar un prompt con contexto para llevar a la otra sesión.
@@ -25,7 +25,7 @@ Este protocolo se activa **únicamente** cuando el usuario escribe uno de los co
 
 | Comando exacto | Tipo de handoff |
 |---|---|
-| `/genera un handoff` | Handoff hacia una sesión externa con otro agente, de texto o de voz (app de Claude, ChatGPT, agente local, etc.) |
+| `generar un handoff` (alias `hndff`) | Handoff hacia una sesión externa con otro agente, de texto o de voz (app de Claude, ChatGPT, agente local, etc.) |
 
 *(Nuevos tipos de handoff se agregarán aquí en el futuro con su propio comando específico. No inventes tipos que no estén en esta tabla.)*
 
