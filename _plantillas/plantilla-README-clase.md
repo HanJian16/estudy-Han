@@ -1,7 +1,8 @@
 # Clase: {{NOMBRE_TEMA}}
 
-**Tema en temario:** `{{tema_id}}`
-**Fecha:** YYYY-MM-DD
+**Tema principal:** `{{tema_id}}`
+**Tipo de clase:** [continuacion | repaso | cadencia | hito | tema-nuevo] — el que decidió el PASO 5.5 del `README.md` raíz
+**Fecha:** YYYY-MM-DDTHH:MM
 **Número de sesión para este tema:** N (coincide con `sesiones_dedicadas` en `progreso.json`)
 
 ## Objetivo de esta sesión
@@ -9,6 +10,13 @@ Qué se buscó lograr específicamente hoy (subconjunto de los `objetivos_aprend
 
 ## Recuperación activa inicial
 Qué recordó el usuario al arrancar (del tema anterior o de sesiones previas de este mismo tema). Anotar fortalezas y huecos detectados.
+
+> Si el tema anterior se estudió HOY mismo, esta sección va vacía con la nota "no aplica — se estudió hoy". Ver Método 1 en el `README.md` raíz.
+
+## Repaso intercalado
+> Los temas ya cerrados que entraron como ejercicios mezclados en esta clase (el ~30%, ver Método 3). Es lo que mueve `nivel_repaso` y `fecha_proximo_repaso` en `progreso.json`. Si no hubo, escribe "no hubo".
+
+- `[tema_id]` — **resultado:** bien / mal — [qué pasó en una frase] — nivel_repaso: [N anterior] → [N nuevo], próximo: [fecha]
 
 ## Resumen / apuntes
 Puntos clave trabajados en la sesión. Definiciones, ejemplos resueltos, patrones y trucos observados.

@@ -1,6 +1,14 @@
 {
   "curso": "Simulacros y Estrategia de Examen",
   "objetivo_del_curso": "Convertir el conocimiento acumulado en puntaje real: dominar la estrategia del examen UNI (gestión del tiempo, decisión de responder/omitir bajo puntaje en contra) y resolver exámenes de admisión reales de años anteriores para detectar y cerrar vacíos antes del examen 2027-1.",
+  "modo_estudio": {
+    "tipo": "hito",
+    "cadencia_dias": 7,
+    "prioridad": 1,
+    "condicion": "CUENTA: sea T = número de temas con opcional:false sumando los progreso.json de TODOS los cursos con modo_estudio.tipo == 'ruta' (hoy: 01-aritmetica, 02-algebra, 03-geometria, 04-trigonometria, 05-fisica, 06-quimica). Sea C = cuántos de esos T están en estado 'completado'. SE CUMPLE SI C/T >= 0.70. Una vez cumplida, este curso entra en rotación con cadencia semanal: propón un simulacro si pasaron >= 7 días (cadencia_dias) desde su ultima_sesion más reciente.",
+    "condicion_urgente": "CUENTA: sean S = número de semanas completas entre hoy y objetivo_actual.fecha_limite (2027-02-15). SE CUMPLE SI S <= 12. A partir de ahí los simulacros mandan sobre repaso y cadencia (rama B del PASO 5.5), con la misma cadencia semanal.",
+    "nota": "No es cadencia ni ruta: un simulacro temprano, sin temario cubierto, no mide nada y solo desmoraliza. Por eso se dispara por condición. Las dos condiciones son aritmética verificable a propósito (ver 'Cómo se estudia cada curso' en el README raíz): un agente distinto en una sesión distinta debe llegar al mismo resultado. El comando `estado` de _protocolos/utilidades.md alerta si alguna condición se cumple y el curso sigue sin tocarse — no confíes solo en que el disparador dispare."
+  },
   "bibliografia": [
     {
       "titulo": "Exámenes de admisión UNI (banco histórico con solucionario)",

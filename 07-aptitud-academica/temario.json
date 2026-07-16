@@ -1,6 +1,14 @@
 {
   "curso": "Aptitud Académica y Humanidades",
   "objetivo_del_curso": "Rendir bien la Prueba 1 del examen UNI: razonamiento matemático y verbal (el grueso del peso) más un repaso dirigido de humanidades (lenguaje, historia, geografía, economía, cívica/filosofía), priorizando lo que la UNI realmente pregunta y con práctica constante en dosis pequeñas.",
+  "modo_estudio": {
+    "tipo": "cadencia",
+    "cadencia_dias": 3,
+    "prioridad": 2,
+    "condicion": null,
+    "condicion_urgente": null,
+    "nota": "Módulo de dosis pequeñas y constantes: el razonamiento se entrena con práctica variada y frecuente, no con bloques largos de teoría. Cadencia de 3 días ≈ 2.3 sesiones por semana, que es lo que pide el README de este curso. Ver también la nota general del curso sobre no profundizar humanidades más de lo que el examen exige."
+  },
   "bibliografia": [
     {
       "titulo": "Razonamiento Matemático — Colección Compendios Académicos",

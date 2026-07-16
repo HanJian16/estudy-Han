@@ -39,13 +39,20 @@ El usuario pega un bloque de texto que empieza con la línea exacta:
 
 Esa línea es el marcador; reconócelo automáticamente sin necesidad de comando adicional.
 
-### Regla clave: UN handoff = UN tema (pero puede ser parcial)
+### Regla clave: UN handoff = UNA clase (pero puede ser parcial)
 
-Un handoff cubre **exactamente un tema del temario**, identificado por su `tema_id`. Nunca generes un handoff que abarque múltiples temas ni permitas que el resumen de vuelta actualice más de un tema.
+Un handoff cubre **exactamente una clase**, en el sentido definido en "Anatomía de una clase" del `README.md` raíz. Una clase tiene:
 
-Motivación: mantiene el seguimiento limpio, evita pérdida de detalle, y hace el flujo predecible. Si el usuario quiere trabajar varios temas en su sesión externa, debe generar un handoff distinto por cada tema y procesar cada resumen por separado al volver.
+- **Un `tema_principal`** — el `tema_id` que se va a trabajar. Es el único que puede cambiar de `estado` y `porcentaje`.
+- **Cero o más `temas_intercalados`** — `tema_id` ya `completado` que entran solo como ejercicios de repaso (el ~30% del bloque, ver Método 3 del README). De estos **solo se actualiza la escalera de repaso** (`nivel_repaso`, `fecha_proximo_repaso`, `ultima_sesion`), nunca su `estado` ni su `porcentaje`.
 
-Si el usuario pide un handoff que cubra más de un tema (ej: "quiero llevar todo el curso a otra sesión"), rechaza amablemente y sugiérele elegir un tema concreto.
+Nunca generes un handoff con más de un `tema_principal`, ni permitas que el resumen de vuelta toque temas que no fueron declarados en el prompt de salida.
+
+Motivación: mantiene el seguimiento limpio y el flujo predecible, sin romper el intercalado. Si el usuario quiere trabajar dos temas nuevos en su sesión externa, debe generar un handoff por cada uno y procesar cada resumen por separado.
+
+Si el usuario pide un handoff que cubra más de un tema nuevo (ej: "quiero llevar todo el curso a otra sesión"), rechaza amablemente y sugiérele elegir un tema principal concreto.
+
+> **Nota de cambio (julio 2026):** esta regla decía "UN handoff = UN tema" y ordenaba rechazar cualquier resumen multi-tema. Eso era incompatible con el intercalado: una clase normal toca el tema nuevo *más* ejercicios de 2-3 temas viejos, así que todo handoff devolvía un resumen que la fase de VUELTA descartaba a medias — perdiendo justo lo que alimenta la escalera de repaso. El límite ahora está en la clase, no en el tema.
 
 **Resumen parcial permitido dentro del mismo tema.** El tema puede no completarse en la sesión externa (el usuario se cansa, tiene que salir, no llega al Feynman). En ese caso, el resumen es válido igual — reflejará avance parcial (`estado_sugerido: en_progreso`, porcentaje bajo, dificultades sin resolver). El siguiente handoff sobre este mismo tema se genera igual, y su prompt de SALIDA incluye automáticamente el estado actual (que ya refleja el avance parcial previo). Nunca fuerces al usuario a "terminar el tema" para poder cerrar un handoff.
 
@@ -53,24 +60,30 @@ Si el usuario pide un handoff que cubra más de un tema (ej: "quiero llevar todo
 
 ## FASE 1 — Handoff de SALIDA
 
-### Paso 1.1: Determinar el alcance (UN solo tema)
+### Paso 1.1: Determinar el alcance (UNA clase)
 
 Pregunta al usuario:
-1. **¿Sobre qué tema va la sesión externa?** Debe ser **un único `tema_id`** del temario de algún curso. Por defecto, el tema actual en el que está trabajando según `progreso.json`. Si el usuario propone más de un tema o algo demasiado amplio ("todo cálculo", "el curso completo"), rechaza y pide que elija uno solo. Ofrece hacer handoffs sucesivos si necesita cubrir varios.
+1. **¿Sobre qué tema va la sesión externa?** Debe ser **un único `tema_id`** — el `tema_principal`. Por defecto, el tema que decidiría el PASO 5.5 del `README.md` raíz (córrelo si no lo hiciste ya en esta sesión). Si el usuario propone más de un tema nuevo o algo demasiado amplio ("todo cálculo", "el curso completo"), rechaza y pide que elija uno solo. Ofrece hacer handoffs sucesivos si necesita cubrir varios.
 2. **¿Qué tipo de sesión será?** (Ej: explicación conceptual, repaso, ejercicios verbales, Feynman del tema ya estudiado). Esto afecta las instrucciones que damos al agente destino.
 3. **¿Con qué agente y en qué modalidad va a estar?** (Claude app/web en modo texto o voz, ChatGPT, un agente local, etc.). Afecta limitaciones a advertir — si la modalidad es de voz, un agente de voz no verá LaTeX ni gráficos.
 
-**Validación antes de generar el prompt:** el `tema_id` elegido debe existir en un `temario.json` del proyecto. Si no existe, avisa y pide corrección.
+**Los `temas_intercalados` no se preguntan: se calculan.** Son los temas `completado` con `fecha_proximo_repaso <= hoy`, ordenados del más vencido al menos vencido; toma los 2-3 primeros. Si no hay ninguno vencido, elige 1-2 temas ya vistos relacionados con el principal (prerrequisitos internos, sobre todo) — el intercalado no es solo para el repaso. Menciónale al usuario cuáles metiste y por qué, en una línea.
+
+**Excepción:** si la clase es de tipo `repaso` (rama B del PASO 5.5), no hay tema nuevo. En ese caso el `tema_principal` es el tema vencido más crítico y el resto van como intercalados, y el prompt debe decirle al agente destino que es una sesión de repaso, no de contenido nuevo.
+
+**Validaciones antes de generar el prompt:** todos los `tema_id` (principal e intercalados) deben existir en un `temario.json` del proyecto. Si alguno no existe, avisa y pide corrección. Los intercalados además deben estar en `estado: "completado"` — no se intercala un tema que nunca se estudió.
 
 ### Paso 1.2: Recolectar el contexto
 
 Lee de los archivos:
 - `objetivo.json` → objetivo actual y motivación.
 - README del curso + `temario.json` → objetivo del curso, tema y sus `objetivos_aprendizaje` y `criterio_dominio`.
-- `progreso.json` → estado y sesiones dedicadas al tema.
-- `glosario.json` → filtra por `tema_id` del tema actual y de sus prerrequisitos internos.
-- `dificultades.json` → filtra dificultades con `resuelto: false` relacionadas al tema o sus prerrequisitos.
-- Últimos `clases/NN-tema/README.md` del tema si existen → últimos apuntes.
+- `progreso.json` → estado y sesiones dedicadas al tema principal; `nivel_repaso` y `fecha_proximo_repaso` de los intercalados.
+- `temario.json` → `objetivos_aprendizaje` de cada tema intercalado (el agente destino necesita saber qué evaluar en ellos).
+- `glosario.json` → filtra por `tema_id` del tema principal, de sus prerrequisitos internos y de los intercalados.
+- `dificultades.json` → filtra dificultades con `resuelto: false` relacionadas al tema principal, sus prerrequisitos o los intercalados.
+- Últimos `clases/NN-tema/README.md` del tema principal si existen → últimos apuntes.
+- `clases/NN-tema/README.md` de los intercalados si existen → de ahí salen ejercicios de repaso mucho mejores que inventándolos desde el temario.
 
 ### Paso 1.3: Generar el prompt de salida
 
@@ -85,7 +98,12 @@ Estoy usando un plan de estudio estructurado como tutor apoyado por IA. Vengo de
 
 ## Alcance de esta sesión (importante)
 
-Vamos a trabajar **exclusivamente el tema `[tema_id]`** de mi curso de [Nombre del curso]. No cambies de tema aunque yo te lleve por la conversación a otros — si veo que nos desviamos hacia un tema distinto (aunque sea relacionado), recuérdame que este handoff es solo para este tema y sugiéreme cerrarlo con el resumen para hacer otro handoff después si quiero cubrir lo otro.
+Vamos a trabajar **una clase** de mi curso de [Nombre del curso]. Una clase tiene esta forma:
+
+- **Tema principal: `[tema_id]`** — es el contenido nuevo de hoy y el único tema que puede avanzar.
+- **Temas de repaso intercalado: `[tema_id_1]`, `[tema_id_2]`** — temas que ya estudié y toca refrescar. NO los expliques desde cero: solo métemelos como ejercicios mezclados dentro del bloque de práctica (apunta a ~30% de los ejercicios), sin agruparlos ni anunciarlos por adelantado. Quiero tener que darme cuenta yo solo de qué tipo de problema es cada uno.
+
+No abras ningún tema nuevo que no sea el principal, aunque yo te lleve por la conversación hacia otros. Si nos desviamos hacia contenido nuevo distinto (aunque sea relacionado), recuérdame que este handoff es solo para esta clase y sugiéreme cerrarla con el resumen para hacer otro handoff después.
 
 ## Sobre mí y mi objetivo
 - **Objetivo global:** [de objetivo_actual.objetivo_final]
@@ -95,7 +113,7 @@ Vamos a trabajar **exclusivamente el tema `[tema_id]`** de mi curso de [Nombre d
 ## Curso actual: [Nombre del curso]
 [objetivo_del_curso del temario]
 
-## Tema en el que estoy trabajando: [Nombre del tema]
+## Tema principal de esta clase: [Nombre del tema]
 - **ID del tema:** [tema_id]
 - **Descripción:** [descripcion del tema]
 - **Objetivos de aprendizaje:**
@@ -103,6 +121,15 @@ Vamos a trabajar **exclusivamente el tema `[tema_id]`** de mi curso de [Nombre d
   - [objetivo 2]
 - **Criterio de dominio esperado:** [criterio_dominio]
 - **Estado actual:** [estado, porcentaje]%, [sesiones_dedicadas] sesiones dedicadas hasta ahora.
+
+## Temas de repaso intercalado
+
+[Por cada tema intercalado. Si no hay ninguno, escribe "Ninguno esta vez — no intercales repaso."]
+
+### [Nombre del tema] (`[tema_id]`)
+- **Lo estudié:** hace [N] días. **Objetivos que debería seguir cumpliendo:** [objetivos_aprendizaje del temario]
+- **Qué vimos:** [2-3 líneas de los apuntes de esa clase, si existen]
+- **Mételo como:** 1-2 ejercicios sueltos dentro del bloque de práctica, sin explicación previa. Es una prueba de recuperación, no una re-enseñanza. Si fallo, ahí sí explícame — y anótalo en el resumen.
 
 ## Contexto temporal
 - **Última sesión de este tema:** [ultima_sesion del progreso.json, o "es la primera sesión"]
@@ -138,14 +165,22 @@ Cuando termine nuestra conversación, dame un mensaje que empiece exactamente co
 === HANDOFF-RESUMEN ===
 
 ## Metadata
-- Fecha: YYYY-MM-DD
-- Tema trabajado: [tema_id que te pasé arriba]
+- Fecha y hora de inicio: YYYY-MM-DDTHH:MM
+- Tema principal: [tema_id principal que te pasé arriba]
+- Temas intercalados: [los tema_id de repaso que te pasé arriba, separados por coma, o "ninguno"]
 - Duración estimada: X minutos
 
-## Progreso del tema
+## Progreso del tema principal
 - Estado sugerido: [en_progreso | completado]
 - Porcentaje estimado: X (0-100)
 - Puntos que quedaron sin cubrir: [lista o "ninguno"]
+
+## Repaso intercalado
+[Una línea por cada tema intercalado, formato: "- tema_id | resultado: bien / mal | qué pasó en una frase".
+"bien" = resolvió sus ejercicios sin ayuda. "mal" = falló, dudó mucho, o necesitó que le recordaras el método.
+Sé estricto con esto: es lo que decide si el tema se da por consolidado o vuelve a la cola de repaso mañana.
+Si un tema intercalado no llegó a tocarse en la sesión, escribe "- tema_id | resultado: no se tocó".
+Si no había intercalados, escribe "no hubo".]
 
 ## Recuperación activa inicial
 [Qué recordé al empezar la sesión, sin apoyo de apuntes, sobre el tema anterior o los prerrequisitos de este tema — qué estaba sólido y qué hueco se detectó. Si no se hizo recuperación activa al inicio (ej. sesión que retoma directo un tema ya empezado), escribe "no se hizo esta vez"]
@@ -177,7 +212,7 @@ Cuando termine nuestra conversación, dame un mensaje que empiece exactamente co
 === FIN-HANDOFF-RESUMEN ===
 ```
 
-Un solo `=== HANDOFF-RESUMEN ===` por conversación, y siempre referido al tema `[tema_id]` que te pasé arriba. Si por algún motivo terminamos hablando de otro tema, no lo incluyas en el resumen — avísame que lo dejaremos para otro handoff.
+Un solo `=== HANDOFF-RESUMEN ===` por conversación, y siempre referido a la clase que te pasé arriba: el tema principal `[tema_id]` más sus temas de repaso intercalado. Si por algún motivo terminamos hablando de un tema nuevo distinto, no lo incluyas en el resumen — avísame que lo dejaremos para otro handoff.
 
 **Resumen parcial es perfectamente válido.** Si tengo que cortar la sesión sin haber completado el tema (cansancio, tiempo, se puso complicado, lo que sea), pídeme el resumen de todos modos con lo que sí llegamos a cubrir — `Estado sugerido: en_progreso`, porcentaje realista, dificultades sin resolver listadas. No me exijas terminar el tema para cerrar; prefiero un resumen parcial fiel a que no haya ningún resumen. Puedo hacer otro handoff después para retomar.
 ````
@@ -192,29 +227,34 @@ Añade en `objetivo.json` un campo temporal `handoff_pendiente`:
 
 ```json
 "handoff_pendiente": {
-  "fecha_salida": "YYYY-MM-DD",
-  "tema_id": "id-del-tema",
+  "fecha_salida": "YYYY-MM-DDTHH:MM",
+  "tema_principal": "id-del-tema",
+  "temas_intercalados": ["id-tema-viejo-1", "id-tema-viejo-2"],
   "curso": "nombre-del-curso"
 }
 ```
 
-Esto sirve para: (a) recordarle al usuario al inicio de la siguiente sesión que hay un handoff sin procesar, (b) validar que el resumen que traiga corresponde al tema esperado.
+Esto sirve para: (a) recordarle al usuario al inicio de la siguiente sesión que hay un handoff sin procesar, (b) validar que el resumen que traiga corresponde a la clase esperada, (c) saber qué temas tenía permiso de tocar ese handoff.
 
 ---
 
 ## FASE 2 — Handoff de VUELTA
 
-### Paso 2.1: Detección y validación de tema único
+### Paso 2.1: Detección y validación del alcance de la clase
 
 El usuario pega un bloque que empieza con `=== HANDOFF-RESUMEN ===`. Reconócelo automáticamente y aplica este paso sin preguntar.
 
 Validaciones antes de procesar:
 
-1. **Verificar que el resumen se refiere a UN solo tema.** Lee la sección "Metadata" del bloque: el campo `Tema trabajado` debe ser un único `tema_id`. Si aparecen varios, o si en el cuerpo del resumen hay actualizaciones que claramente pertenecen a otro tema (términos, dificultades vinculadas a un `tema_id` distinto), **detén el procesamiento** y avisa al usuario: "Este resumen mezcla contenido de más de un tema. Voy a procesar solo el tema declarado en Metadata y descartar el resto. ¿Confirmas o prefieres corregir el resumen antes?"
+1. **Verificar que el resumen se refiere a UNA clase.** Lee la sección "Metadata": debe haber un único `Tema principal`. La lista `Temas intercalados` puede tener varios — eso es normal y esperado, no un error.
 
-2. **Verificar coincidencia con `handoff_pendiente`.** Si `objetivo.json` tiene `handoff_pendiente`, el `tema_id` del resumen debe coincidir. Si no coincide, avisa: "El resumen es de un tema distinto al handoff pendiente ([tema_pendiente]). ¿Fue intencional?" y espera respuesta antes de continuar.
+2. **Verificar que nada se salió del alcance declarado.** Los únicos temas que este resumen puede tocar son el principal y los intercalados listados en Metadata. Si en el cuerpo hay actualizaciones vinculadas a un `tema_id` fuera de esa lista, **detén el procesamiento** y avisa: "Este resumen toca temas que no estaban en el alcance del handoff ([lista]). Voy a procesar solo el tema principal y sus intercalados declarados, y descartar el resto. ¿Confirmas o prefieres corregir el resumen antes?"
 
-3. **Verificar que el `tema_id` existe** en algún `temario.json` del proyecto. Si no existe, avisa y no procese.
+3. **Verificar el reparto correcto de actualizaciones.** El tema principal es el único que puede cambiar `estado` y `porcentaje`. Si el resumen sugiere cambiar el estado de un tema *intercalado*, ignora ese cambio (de un intercalado solo se actualiza la escalera de repaso) y menciónalo al usuario en el reporte final.
+
+4. **Verificar coincidencia con `handoff_pendiente`.** Si `objetivo.json` tiene `handoff_pendiente`, el `tema_principal` del resumen debe coincidir. Si no coincide, avisa: "El resumen es de un tema distinto al handoff pendiente ([tema_pendiente]). ¿Fue intencional?" y espera respuesta antes de continuar. Si los intercalados no coinciden exactamente, no es motivo de alarma — la sesión externa pudo no llegar a todos; procesa los que sí reporta.
+
+5. **Verificar que todos los `tema_id` existen** en algún `temario.json` del proyecto. Si alguno no existe, avisa y no proceses ese.
 
 ### Paso 2.2: Revisión de coherencia antes de guardar (ruido de transcripción u otras inconsistencias)
 
@@ -234,10 +274,17 @@ Qué hacer en cada caso:
 
 Extrae cada sección del bloque (ya revisada en el paso anterior) y actualiza los archivos:
 
-**`progreso.json`**
-- Actualiza `estado` y `porcentaje` del tema con lo sugerido.
+**`progreso.json` — tema principal**
+- Actualiza `estado` y `porcentaje` con lo sugerido.
 - Incrementa `sesiones_dedicadas` en 1.
-- Actualiza `ultima_sesion` con la fecha del resumen.
+- Actualiza `ultima_sesion` con la fecha y hora del resumen (ISO 8601, `YYYY-MM-DDTHH:MM`). Si el resumen trajo solo la fecha sin hora, guárdala sin hora en vez de inventarla.
+- Si pasó a `completado`, arma su repaso: `nivel_repaso: 1`, `fecha_proximo_repaso` = el día siguiente a la fecha del resumen.
+
+**`progreso.json` — temas intercalados** (de la sección "Repaso intercalado" del resumen)
+- `resultado: bien` → sube `nivel_repaso` en 1 (tope 5) y recalcula `fecha_proximo_repaso` = fecha del resumen + el intervalo del nivel nuevo (ver la escalera en el `README.md` raíz).
+- `resultado: mal` → pon `nivel_repaso: 1` y `fecha_proximo_repaso` = el día siguiente a la fecha del resumen. Registra además la dificultad correspondiente en `dificultades.json`.
+- `resultado: no se tocó` → no cambies nada de ese tema.
+- En todos los casos: **no toques su `estado`, `porcentaje` ni `sesiones_dedicadas`.** Sí actualiza su `ultima_sesion` si se tocó.
 
 **`glosario.json`**
 - Por cada término en "Términos nuevos aprendidos": si no existe, crea entrada nueva con la estructura completa (usando `tema_id` del resumen, `curso` correspondiente, `fecha_aprendido` = fecha resumen). Si ya existe, actualiza `nivel_dominio` y `fecha_ultimo_uso`.
@@ -263,7 +310,8 @@ Elimina el campo `handoff_pendiente` de `objetivo.json`.
 Muestra un resumen breve de lo actualizado:
 ```
 Handoff procesado:
-- Tema [X] avanzó de Y% a Z%.
+- Tema principal [X] avanzó de Y% a Z%.
+- Repaso intercalado: [tema A] subió a nivel N (próximo: fecha); [tema B] volvió a nivel 1 (próximo: mañana).
 - N términos nuevos en glosario.
 - M dificultades nuevas registradas, K resueltas.
 - Clase [fecha] agregada en clases/[NN-tema]/.

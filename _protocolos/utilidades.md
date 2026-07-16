@@ -24,11 +24,15 @@ Lee y agrega información de varios archivos para dar una foto rápida del progr
 1. Lee `objetivo.json` → objetivo actual, fecha límite, horas semanales.
 2. Lee `configuracion.json` → estado de las reglas.
 3. Para cada curso listado en `objetivo_actual.cursos_generados`:
+   - Lee `temario.json` del curso → campo `modo_estudio`.
    - Lee `progreso.json` del curso.
    - Cuenta temas por estado (`no_iniciado`, `en_progreso`, `completado`).
    - Suma `sesiones_dedicadas`.
+   - Calcula la **última sesión del curso** = el `ultima_sesion` más reciente entre sus temas (o "nunca" si todos son `null`).
    - Lee `dificultades.json` del curso y cuenta las que tienen `resuelto: false`.
-4. Presenta el resumen al usuario con este formato (adaptando cifras reales):
+4. Corre el **PASO 5.5 del `README.md` raíz** (selector de clase) para saber qué clase tocaría, pero **no la arranques**.
+5. Calcula el **bloque de alertas** (ver abajo).
+6. Presenta el resumen al usuario con este formato (adaptando cifras reales):
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -36,23 +40,51 @@ ESTADO DEL PROYECTO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Objetivo actual: [objetivo_final]
-Deadline: [fecha_limite]  ·  [X] horas/semana
-Configuración: modo un-tema-por-sesión [ACTIVO / INACTIVO]
+Deadline: [fecha_limite]  ·  [X] horas/semana  ·  faltan [N] semanas
+Configuración: modo una-clase-por-sesión [ACTIVO / INACTIVO]
 
 Cursos:
-  [Nombre curso 1] — [N/M] temas completados — [S] sesiones dedicadas
+  [Nombre curso 1] — [ruta/cadencia/hito] — [N/M] temas — [S] sesiones
+    └── Última sesión: [fecha o NUNCA]
     └── Tema en curso: [nombre del tema] ([porcentaje]%)
     └── Dificultades pendientes: [K]
   [Nombre curso 2] — ...
 
-Próxima sesión sugerida: [tema_id] — [nombre del tema]
-  Razón: [en_progreso desde YYYY-MM-DD / siguiente elegible por prerrequisitos]
+Repasos vencidos ([N]): [tema_id (vencido hace X días)], ...
+Próximos repasos: [tema_id (fecha)], ...
+
+⚠ ALERTAS
+  [ver reglas del bloque de alertas; si no hay ninguna, escribe "ninguna"]
+
+Próxima clase sugerida: [tipo] — [tema_id o curso]
+  Razón: [qué rama del PASO 5.5 ganó y por qué]
 
 Handoff pendiente: [sí (tema X desde fecha) / no]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-5. **No arrancas ninguna clase después de esto.** Solo muestras el estado. Si el usuario quiere estudiar, invoca la sesión normal por separado.
+7. **No arrancas ninguna clase después de esto.** Solo muestras el estado. Si el usuario quiere estudiar, invoca la sesión normal por separado.
+
+### Bloque de alertas (obligatorio)
+
+> Esta es la red de seguridad del proyecto y la razón principal por la que `estado` existe. Un curso que nunca se estudia **no se queja**: por eso `07-aptitud-academica` estuvo dos semanas en cero sin que nada lo notara, hasta que el usuario lo preguntó. La arquitectura ya no debería permitirlo, pero ninguna arquitectura se cree a sí misma — este bloque es lo que lo verifica desde fuera.
+
+Emite una alerta por cada caso que se cumpla. **No las omitas por parecer alarmista, y no las inventes por parecer útil.**
+
+1. **Curso de cadencia abandonado** — un curso `cadencia` vencido por más de **3×** su `cadencia_dias`.
+   `⚠ [Curso] lleva [N] días sin tocarse (cadencia: cada [C] días).`
+2. **Curso nunca tocado** — un curso con todos sus `ultima_sesion` en `null` y el proyecto con más de 2 semanas de vida.
+   `⚠ [Curso] no se ha tocado NUNCA desde que se creó el plan.`
+3. **Hito vencido** — un curso `hito` cuya `condicion` ya se cumple pero sigue sin tocarse.
+   `⚠ [Curso] cumple su condición de arranque y sigue sin empezar.`
+4. **Hito urgente activo** — un curso `hito` cuya `condicion_urgente` se cumple.
+   `⚠ [Curso] está en condición URGENTE: debería mandar sobre el resto de clases.`
+5. **Repasos desbordados** — más de 5 temas con `fecha_proximo_repaso` vencida.
+   `⚠ [N] temas con repaso vencido. Se están acumulando más rápido de lo que se cierran.`
+6. **Atraso de plan** — `sum(sesiones_dedicadas)` de un curso supera en >50% sus `sesiones_estimadas` acumuladas.
+   `⚠ [Curso] va [N]% por encima de las sesiones estimadas.`
+
+**Sugiere correr `estado` cada 2-3 semanas.** Es barato, no arranca nada, y es el único momento en que el proyecto se audita a sí mismo.
 
 ---
 

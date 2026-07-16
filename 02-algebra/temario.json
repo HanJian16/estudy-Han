@@ -1,6 +1,14 @@
 {
   "curso": "Álgebra",
   "objetivo_del_curso": "Resolver con fluidez problemas de álgebra del nivel del examen de admisión UNI: desde operatoria (exponentes, polinomios, factorización) hasta ecuaciones, inecuaciones, funciones y logaritmos. Es el curso de mayor peso en la prueba de Matemática y base operativa de Trigonometría y Física.",
+  "modo_estudio": {
+    "tipo": "ruta",
+    "cadencia_dias": null,
+    "prioridad": 4,
+    "condicion": null,
+    "condicion_urgente": null,
+    "nota": "Progresión lineal. Curso de mayor peso en la prueba de Matemática y base operativa de Trigonometría y Física."
+  },
   "bibliografia": [
     {
       "titulo": "Álgebra — Colección Compendios Académicos",

@@ -145,7 +145,21 @@ Sigue el **checklist obligatorio** definido en la sección "Reglas de calidad de
 
 Muestra el temario al usuario y pide ajustes antes de guardarlo.
 
-### 5c. Validación temporal
+### 5c. Decidir el `modo_estudio` del curso
+
+**No te saltes esto y no lo dejes en el default.** La plantilla trae `tipo: "ruta"`, y si nadie decide, el curso se queda en ruta por omisión — no porque sea lo correcto. Un módulo que debía estudiarse en dosis frecuentes acaba tratado como una secuencia lineal, y nunca se intercala. Ver "Cómo se estudia cada curso" en el `README.md` raíz para la estructura completa del campo.
+
+Clasifica el curso y **propónselo al usuario para que confirme**:
+
+- **`ruta`** — el curso es una secuencia acumulativa: cada tema se apoya en el anterior y el objetivo es recorrerlo entero. Casi todo lo académico (matemáticas, física, química, un lenguaje de programación).
+- **`cadencia`** — el curso es una **habilidad que se entrena**, no un cuerpo de contenido que se cubre: poca teoría, mucha práctica repetida, y rinde mucho más en dosis pequeñas y frecuentes que en bloques largos. Idiomas, razonamiento verbal y matemático, mecanografía, un instrumento. Pregunta al usuario cada cuántos días quiere tocarlo y ponlo en `cadencia_dias`.
+- **`hito`** — el curso solo tiene sentido cuando otra cosa ya está lista: simulacros, exámenes de práctica, proyecto final, integración. Requiere `condicion` y `condicion_urgente`, y las dos deben ser **aritmética verificable** (ver la regla 11 del checklist de calidad).
+
+Pregunta directamente cuando dudes: *"¿Esto lo quieres llevar como un curso que se recorre de principio a fin, o como algo que tocas un rato cada pocos días?"* La respuesta del usuario manda sobre tu clasificación.
+
+Asigna también `prioridad` (entero): desempata cuando dos cursos compiten por la misma sesión. Para cursos `ruta`, refleja el orden de dependencias (los que son base de otros, más alto).
+
+### 5d. Validación temporal
 
 Después de generar el temario, calcula:
 

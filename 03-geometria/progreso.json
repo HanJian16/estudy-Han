@@ -1,18 +1,18 @@
 {
   "curso": "Geometría",
   "progreso": [
-    { "tema_id": "01-segmentos-angulos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "02-triangulos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "03-congruencia", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "04-poligonos-cuadrilateros", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "05-circunferencia", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "06-puntos-notables", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "07-proporcionalidad-semejanza", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "08-relaciones-metricas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "09-areas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "10-geometria-del-espacio", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "11-solidos-revolucion", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "12-geometria-analitica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "13-conicas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 }
+    { "tema_id": "01-segmentos-angulos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "02-triangulos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "03-congruencia", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "04-poligonos-cuadrilateros", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "05-circunferencia", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "06-puntos-notables", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "07-proporcionalidad-semejanza", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "08-relaciones-metricas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "09-areas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "10-geometria-del-espacio", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "11-solidos-revolucion", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "12-geometria-analitica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "13-conicas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null }
   ]
 }

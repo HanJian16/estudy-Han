@@ -6,7 +6,9 @@
       "estado": "no_iniciado",
       "porcentaje": 0,
       "ultima_sesion": null,
-      "sesiones_dedicadas": 0
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
     }
   ]
 }

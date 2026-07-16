@@ -1,6 +1,14 @@
 {
   "curso": "Nombre del curso",
   "objetivo_del_curso": "Qué debe saber hacer el usuario al terminar este curso — orientado al objetivo global",
+  "modo_estudio": {
+    "tipo": "ruta",
+    "cadencia_dias": null,
+    "prioridad": 1,
+    "condicion": null,
+    "condicion_urgente": null,
+    "nota": "OBLIGATORIO. Cómo se estudia este curso; lo lee el PASO 5.5 del README raíz para decidir qué clase toca. Valores de 'tipo': 'ruta' (progresión lineal tema a tema; cadencia_dias y condiciones en null), 'cadencia' (módulo recurrente en dosis pequeñas — requiere cadencia_dias entero), 'hito' (se dispara por condición — requiere 'condicion' para entrar en rotación y 'condicion_urgente' para pasar a mandar cerca del deadline). Las condiciones se escriben en prosa pero deben ser ARITMÉTICA VERIFICABLE, no juicio: di qué se cuenta, sobre qué universo y el umbral exacto, de forma que otro agente en otra sesión llegue al mismo resultado. 'prioridad' (entero) desempata cuando dos cursos compiten el mismo día: gana el mayor. Sin este campo el curso queda huérfano y nunca se estudia — que es exactamente el bug que este proyecto tuvo hasta 2026-07-16."
+  },
   "bibliografia": [
     {
       "titulo": "Nombre del libro o recurso",

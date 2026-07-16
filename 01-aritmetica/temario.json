@@ -1,6 +1,14 @@
 {
   "curso": "Aritmética",
   "objetivo_del_curso": "Resolver problemas de aritmética del nivel del examen de admisión UNI (numeración, divisibilidad, fracciones, proporcionalidad, porcentajes) con rapidez y enfoque de razonamiento, sirviendo además de base numérica para Álgebra, Química y Aptitud Académica.",
+  "modo_estudio": {
+    "tipo": "ruta",
+    "cadencia_dias": null,
+    "prioridad": 5,
+    "condicion": null,
+    "condicion_urgente": null,
+    "nota": "Progresión lineal. Prioridad alta: es la base numérica de Álgebra, Química y Aptitud, y es el curso en marcha."
+  },
   "bibliografia": [
     {
       "titulo": "Aritmética — Colección Compendios Académicos",

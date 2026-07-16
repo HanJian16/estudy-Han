@@ -82,6 +82,7 @@ Estimación: 1 curso nuevo, ~28 sesiones adicionales.
 Aplica el **mismo checklist de calidad del temario** definido en el `README.md` raíz para los cursos/temas nuevos. Reglas específicas de ampliación:
 
 - **Para cursos nuevos completos**: crea la estructura copiando desde `_plantillas/` (igual que Paso 4 de `entrevista.md`).
+- **Decide el `modo_estudio` de cada curso nuevo y confírmalo con el usuario**, siguiendo el Paso 5c de `entrevista.md`. La plantilla trae `tipo: "ruta"` por defecto: **el default no es una decisión.** Un módulo de habilidad (un idioma, por ejemplo) que se quede en `ruta` por omisión nunca se intercalará entre las clases y acabará estudiándose como una secuencia lineal, que es justo lo que no quieres de él. Si el curso nuevo es de `cadencia`, pregunta cada cuántos días debe tocarse.
 - **NO regeneres** los `temario.json` de cursos existentes salvo que haya que agregar temas nuevos (en cuyo caso, agrega solo los nuevos temas al array, no reescribas los existentes).
 - **Los temas ya completados** de cursos existentes NO aparecen como prerrequisitos internos del temario nuevo (ya están cumplidos), pero SÍ pueden aparecer como `prerrequisitos_externos` en el README del curso nuevo.
 - **Bibliografía**: puede compartir libros con cursos anteriores o traer nuevos.

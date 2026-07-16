@@ -1,20 +1,20 @@
 {
   "curso": "Trigonometría",
   "progreso": [
-    { "tema_id": "01-sistemas-medicion-angular", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "02-sector-circular", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "03-razones-angulos-agudos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "04-triangulos-rectangulos-angulos-verticales", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "05-angulos-posicion-normal", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "06-reduccion-primer-cuadrante", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "07-circunferencia-trigonometrica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "08-identidades-fundamentales", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "09-angulos-compuestos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "10-angulos-multiples", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "11-transformaciones", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "12-funciones-trigonometricas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "13-funciones-inversas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "14-ecuaciones-trigonometricas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 },
-    { "tema_id": "15-triangulos-oblicuangulos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0 }
+    { "tema_id": "01-sistemas-medicion-angular", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "02-sector-circular", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "03-razones-angulos-agudos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "04-triangulos-rectangulos-angulos-verticales", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "05-angulos-posicion-normal", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "06-reduccion-primer-cuadrante", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "07-circunferencia-trigonometrica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "08-identidades-fundamentales", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "09-angulos-compuestos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "10-angulos-multiples", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "11-transformaciones", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "12-funciones-trigonometricas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "13-funciones-inversas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "14-ecuaciones-trigonometricas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
+    { "tema_id": "15-triangulos-oblicuangulos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null }
   ]
 }

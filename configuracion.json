@@ -1,4 +1,4 @@
 {
-  "un_tema_por_sesion": true,
+  "una_clase_por_sesion": true,
   "notas": "Configuración del proyecto. Ver _protocolos/configuracion.md para los comandos que la modifican."
 }

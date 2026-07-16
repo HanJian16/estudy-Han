@@ -625,5 +625,115 @@
     "nivel_dominio": "solido",
     "fecha_aprendido": "2026-07-10",
     "fecha_ultimo_uso": "2026-07-10"
+  },
+  {
+    "termino": "Magnitud DP (directamente proporcional)",
+    "definicion": "Cuando ambas magnitudes suben o bajan juntas; su cociente A/B = k se mantiene constante.",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "ejemplo": "Cantidad de naranjas y dinero pagado: el precio por naranja (k) es constante.",
+    "terminos_relacionados": ["magnitud ip (inversamente proporcional)", "razón geométrica"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-11",
+    "fecha_ultimo_uso": "2026-07-11"
+  },
+  {
+    "termino": "Magnitud IP (inversamente proporcional)",
+    "definicion": "Cuando una magnitud sube y la otra baja; su producto A×B = k se mantiene constante.",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "ejemplo": "Obreros y días para una obra fija: a más obreros, menos días; el producto obreros×días (trabajo total) es constante.",
+    "terminos_relacionados": ["magnitud dp (directamente proporcional)", "obra total / trabajo total"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-11",
+    "fecha_ultimo_uso": "2026-07-11"
+  },
+  {
+    "termino": "Reparto proporcional compuesto",
+    "definicion": "Extensión del reparto proporcional simple a varias magnitudes a la vez: para cada entidad se calcula un 'peso' multiplicando las magnitudes DP y dividiendo entre las IP; se suman los pesos, se calcula k = total/suma de pesos, y cada entidad recibe k por su peso.",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "ejemplo": "3900 soles entre 3 estudiantes, DP a horas de estudio (12,15,9) e IP a errores (2,3,5): pesos 6, 5, 1.8 (suma 12.8), k=304.6875, partes 1828.125/1523.4375/548.4375 (suma 3900).",
+    "terminos_relacionados": ["reparto proporcional", "magnitud dp (directamente proporcional)", "magnitud ip (inversamente proporcional)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-11",
+    "fecha_ultimo_uso": "2026-07-11"
+  },
+  {
+    "termino": "Regla de tres simple",
+    "definicion": "Compara una magnitud entre un escenario 'antes' y 'después'. Si la relación es DP, la razón mantiene el mismo sentido en ambos lados; si es IP, la razón de la incógnita se invierte respecto a la conocida.",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "ejemplo": "3 obreros tardan 12 días (IP real): 4 obreros → x = (3×12)/4 = 9 días. Verificación: 3×12 = 4×9 = 36.",
+    "terminos_relacionados": ["magnitud dp (directamente proporcional)", "magnitud ip (inversamente proporcional)", "la constante k en regla de tres simple"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-11",
+    "fecha_ultimo_uso": "2026-07-11"
+  },
+  {
+    "termino": "Regla de tres compuesta (método por razón invertida)",
+    "definicion": "Cuando intervienen 3 o más magnitudes en un mismo escenario antes/después: se arma una razón por cada magnitud (viejo/nuevo); si es DP respecto a la incógnita va en el mismo sentido, si es IP va invertida; se multiplican todas las razones.",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "ejemplo": "5 obreros hacen 40m en 8 días → 60m en 6 días, ¿cuántos obreros? 5/x = (40/60)×(6/8) → 5/x=1/2 → x=10.",
+    "terminos_relacionados": ["regla de tres compuesta (método alternativo del usuario, \"trabajo por unidad\")", "regla de tres simple"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-11",
+    "fecha_ultimo_uso": "2026-07-11"
+  },
+  {
+    "termino": "Regla de tres compuesta (método alternativo del usuario, \"trabajo por unidad\")",
+    "definicion": "Método equivalente al de razón invertida: se agrupan en el numerador las magnitudes DP entre sí respecto a una magnitud de referencia (que va en el denominador), y se replica la misma estructura en el otro escenario.",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "ejemplo": "Mismo problema de obreros/metros/días: (5×8)/40 = (x×6)/60 → 1 = 6x/60 → x = 10. Mismo resultado que el método de razón invertida.",
+    "terminos_relacionados": ["regla de tres compuesta (método por razón invertida)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-11",
+    "fecha_ultimo_uso": "2026-07-11"
+  },
+  {
+    "termino": "Obra total / trabajo total",
+    "definicion": "Producto de obreros × días (u obreros × horas × días) que representa una cantidad de trabajo; se mantiene constante cuando la obra a realizar es la misma.",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "ejemplo": "6 obreros × 8 horas × 10 días = 4 obreros × 6 horas × x días → 480 = 24x → x = 20 días.",
+    "terminos_relacionados": ["magnitud ip (inversamente proporcional)", "trabajo parcial"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-11",
+    "fecha_ultimo_uso": "2026-07-11"
+  },
+  {
+    "termino": "Trabajo parcial",
+    "definicion": "Cuando una obra se hace en dos tramos con condiciones distintas (ej. cambia el número de obreros a mitad de camino): se calcula la obra ya hecha, se resta de la obra total, y el tramo restante se resuelve como una regla de tres nueva.",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "ejemplo": "8 obreros×6h×15 días=720 (obra total). En 5 días hacen 240. Pendiente=480. Con 5 obreros×8h: x=12 días. Total=5+12=17 días.",
+    "terminos_relacionados": ["obra total / trabajo total"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-11",
+    "fecha_ultimo_uso": "2026-07-11"
+  },
+  {
+    "termino": "La constante k en regla de tres simple",
+    "definicion": "En DP, k = magnitud1/magnitud2 (ej. precio por unidad); en IP, k = magnitud1×magnitud2 (ej. trabajo total). Se mantiene fija entre el escenario 'antes' y 'después', aunque no siempre se nombre explícitamente al resolver.",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "ejemplo": "Naranjas/dinero: k = precio por naranja (DP). Obreros/días: k = obra total (IP).",
+    "terminos_relacionados": ["regla de tres simple", "magnitud dp (directamente proporcional)", "magnitud ip (inversamente proporcional)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-11",
+    "fecha_ultimo_uso": "2026-07-11"
+  },
+  {
+    "termino": "Diferencia estructural entre reparto proporcional y regla de tres",
+    "definicion": "El reparto proporcional parte de un total explícito que se divide entre la suma de partes (k = total/suma de partes), y cada entidad recibe k por su parte. La regla de tres no reparte un total entre entidades distintas, sino que compara las mismas magnitudes en dos escenarios usando una razón o producto constante — aunque en problemas de 'obra total' ambas estructuras se asemejan porque el trabajo total actúa como ancla constante igual que el total del reparto.",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "ejemplo": "Repartir 4700 soles entre socios (reparto) vs. comparar obreros/días entre un antes y un después (regla de tres) — ambos usan una constante k pero con estructuras distintas.",
+    "terminos_relacionados": ["reparto proporcional compuesto", "regla de tres simple"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-11",
+    "fecha_ultimo_uso": "2026-07-11"
   }
 ]

@@ -12,7 +12,7 @@ Repositorio de estudio para retomar cursos de forma estructurada, usado junto co
 
 **Palabra explícita `empezar`** (alias corto: `emp`)**:** este algoritmo debe ejecutarse siempre al inicio de la sesión, sin que el usuario tenga que pedirlo. Pero como en la práctica el agente necesita un primer mensaje del usuario para actuar (incluso con este archivo cargado como contexto), `empezar` es la forma explícita y sin ambigüedad de decir "ejecuta el algoritmo de arranque ahora" — útil como primer mensaje al abrir una sesión nueva cuando el usuario no sabe qué escribir, o en cualquier momento para forzar una relectura completa del estado del proyecto (ej. tras cambiar de agente, o si el contexto de la conversación se perdió). Si el usuario escribe `empezar` o `emp`, ejecuta este algoritmo completo desde el PASO 1 de inmediato.
 >
-> **Nota — convención de comandos sin barra, en todo el proyecto:** ningún comando de este proyecto (arranque, configuración, utilidades, handoff) empieza con `/`. Herramientas como Claude Code interceptan los comandos que empiezan con `/` a nivel de la propia interfaz, antes de que el mensaje le llegue al agente como texto — así que un comando con `/` definido aquí podría nunca llegar a activarse, o chocar con un comando propio de la herramienta (ej. el `/init` interno de Claude Code, que hace algo completamente distinto: generar un archivo `CLAUDE.md`). Por eso, en vez de barras, cada comando tiene una **forma completa** en palabras (frase natural, ej. "mostrar estado") y un **alias corto** en forma de acrónimo intuitivo sin barra (ej. `estado`, `hndff`, `uts on`). Esto evita el choque ahora y ante cualquier comando nuevo que la herramienta agregue en el futuro. Ver la tabla completa de comandos y alias en `_protocolos/configuracion.md`, `_protocolos/utilidades.md` y `_protocolos/handoff.md`.
+> **Nota — convención de comandos sin barra, en todo el proyecto:** ningún comando de este proyecto (arranque, configuración, utilidades, handoff) empieza con `/`. Herramientas como Claude Code interceptan los comandos que empiezan con `/` a nivel de la propia interfaz, antes de que el mensaje le llegue al agente como texto — así que un comando con `/` definido aquí podría nunca llegar a activarse, o chocar con un comando propio de la herramienta (ej. el `/init` interno de Claude Code, que hace algo completamente distinto: generar un archivo `CLAUDE.md`). Por eso, en vez de barras, cada comando tiene una **forma completa** en palabras (frase natural, ej. "mostrar estado") y un **alias corto** en forma de acrónimo intuitivo sin barra (ej. `estado`, `hndff`, `ucs on`). Esto evita el choque ahora y ante cualquier comando nuevo que la herramienta agregue en el futuro. Ver la tabla completa de comandos y alias en `_protocolos/configuracion.md`, `_protocolos/utilidades.md` y `_protocolos/handoff.md`.
 
 ```
 PASO 1 — ¿Existe el archivo "objetivo.json" en la raíz del proyecto?
@@ -42,8 +42,8 @@ PASO 3 — ¿El usuario está invocando un COMANDO RÁPIDO
          comando listado en:
            - _protocolos/configuracion.md:
                  "mostrar configuracion"                 (alias: cfg)
-                 "activar modo un tema por sesion"       (alias: uts on)
-                 "desactivar modo un tema por sesion"    (alias: uts off)
+                 "activar modo una clase por sesion"     (alias: ucs on)
+                 "desactivar modo una clase por sesion"  (alias: ucs off)
            - _protocolos/utilidades.md:
                  "mostrar estado"                        (alias: estado)
                  "generar backup"                        (alias: backup)
@@ -85,22 +85,112 @@ PASO 5 — ¿El usuario está pidiendo agregar un NUEVO objetivo distinto
     │
     └── NO
           → Es una sesión normal de estudio.
-          → Continúa al PASO 6.
+          → Continúa al PASO 5.5.
 
-PASO 6 — Sesión normal. Antes de arrancar contenido:
+PASO 5.5 — SELECTOR DE CLASE. Decide QUÉ CLASE toca hoy.
+
+         Este paso corre SIEMPRE en toda sesión normal, antes de
+         cualquier contenido. No lo saltes aunque el usuario diga
+         "sigamos con X" — primero calcula, luego propón.
+
+         Es un paso SIN MEMORIA: se recalcula desde los archivos en
+         cada sesión. Por eso funciona igual si el usuario estudia
+         una vez al día o tres (ver "Varias sesiones el mismo día"
+         más abajo).
+
+         Lee de TODOS los cursos de objetivo_actual.cursos_generados:
+           - temario.json  → campo "modo_estudio" (tipo, cadencia_dias,
+                             prioridad, condicion)
+           - progreso.json → estado, ultima_sesion,
+                             fecha_proximo_repaso, nivel_repaso
+
+         Evalúa estas ramas EN ORDEN. La PRIMERA que aplique gana:
+
+         (A) CONTINUACIÓN — ¿hay algún tema con estado "en_progreso"?
+               → La clase es ese tema. Cerrar lo abierto siempre le
+                 gana a abrir algo nuevo.
+
+         (B) HITO URGENTE — ¿algún curso "hito" cumple su
+             "condicion_urgente"? (típicamente: se acerca el deadline)
+               → Propón esa clase. Va ARRIBA de repaso y cadencia a
+                 propósito: en el endgame, el simulacro ES el repaso —
+                 revela los vacíos reales mejor que cualquier otra cosa.
+
+         (C) REPASO — ¿hay 3 o más temas con fecha_proximo_repaso <= hoy,
+             O algún tema vencido por más del DOBLE de su intervalo?
+               → Clase de repaso dedicada: sin tema nuevo, ejercicios
+                 mezclados de los temas vencidos.
+               → Es el escape hatch. En condiciones normales el repaso
+                 NO se hace así, sino intercalado dentro de la clase
+                 de tema nuevo (ver Método 2 y Método 3).
+
+         (D) CADENCIA — ¿algún curso con modo_estudio.tipo == "cadencia"
+             lleva >= cadencia_dias desde su última sesión?
+               (última sesión del curso = el ultima_sesion más reciente
+                entre sus temas en progreso.json; si todos son null,
+                el curso nunca se tocó y cuenta como vencido)
+               → Clase de ese curso.
+               → Si hay varios vencidos, gana el de mayor "prioridad".
+                 Si empatan en prioridad, MUESTRA las opciones al
+                 usuario y que elija él.
+
+         (E) HITO NORMAL — ¿algún curso "hito" cumple su "condicion"
+             (la no urgente)?
+               → Propón esa clase.
+
+         (F) TEMA NUEVO — ninguna de las anteriores aplicó. Caso normal.
+               → Próximo tema "no_iniciado" de un curso "ruta" cuyos
+                 prerrequisitos internos estén completados.
+               → Si hay varios candidatos, gana el de mayor "prioridad"
+                 de curso. Si sigue sin estar claro, pregunta.
+
+         REGLAS DE ESTE PASO (no las rompas):
+
+           1. PROPONES, NO IMPONES. Anuncia en UNA línea qué clase toca
+              y por qué ("Toca aptitud: 5 días sin tocarla"). Si el
+              usuario quiere otra cosa, se hace lo que él diga, sin
+              insistir. Su vida real manda sobre el JSON.
+
+           2. NO HARDCODEES CURSOS. Este paso no sabe que "aptitud" o
+              "inglés" existen: solo recorre los cursos y lee su
+              "modo_estudio". Un curso nuevo entra sin tocar este paso.
+
+           3. Si ya se cerró un tema nuevo HOY y el usuario abre otra
+              sesión, MENCIONA que una segunda sesión rinde más como
+              cadencia o repaso que como un segundo tema nuevo. Solo
+              mencionar — él decide.
+
+           4. No inventes tipos de clase fuera de (A)-(F).
+
+           5. CANARIO — ANTES de anunciar la clase elegida, revisa si
+              algún curso está siendo IGNORADO por el sistema:
+                - un curso "cadencia" vencido por más de 3× su
+                  cadencia_dias, o
+                - un curso "hito" cuya condición ya se cumple pero que
+                  sigue sin tocarse (todos sus ultima_sesion en null).
+              Si encuentras alguno, DILO en una línea aunque otra rama
+              haya ganado: "Aviso: simulacros cumple condición hace 3
+              semanas y sigue sin tocarse."
+              Esto existe porque un disparador que falla no avisa de
+              que falló. Es la red de seguridad de este paso entero.
+              Ver también el comando `estado` en _protocolos/utilidades.md.
+
+    → Continúa al PASO 6 con el tipo de clase ya decidido.
+
+PASO 6 — Ejecutar la clase decidida en el PASO 5.5. Antes de arrancar:
           - Lee configuracion.json (si no existe, créalo con
             defaults según _protocolos/configuracion.md).
-          - Si "un_tema_por_sesion" es true, determina el tema
-            único a trabajar y anuncia al usuario que solo se
-            trabajará ese tema en esta sesión (ver el detalle
-            en _protocolos/configuracion.md).
+          - Si "una_clase_por_sesion" es true, anuncia al usuario qué
+            clase se trabajará y que la sesión se cierra cuando la
+            clase cierre (ver el detalle en
+            _protocolos/configuracion.md).
          Luego aplica:
           (a) "Protocolo al INICIAR una sesión o clase" (más abajo)
           (b) Los "Métodos de estudio" (más abajo)
           (c) Al terminar, aplica "Protocolo al CERRAR una clase"
-          (d) Si "un_tema_por_sesion" está activo, recuérdale al
-              usuario al cerrar que abra una nueva sesión para el
-              próximo tema.
+          (d) Si "una_clase_por_sesion" está activo, recuérdale al
+              usuario al cerrar que abra una nueva sesión para la
+              próxima clase.
 ```
 
 ### Reglas irrompibles
@@ -109,6 +199,98 @@ PASO 6 — Sesión normal. Antes de arrancar contenido:
 2. **NUNCA generes contenido de estudio si `objetivo_actual.estado_setup ≠ "completo"`**. Termina primero el setup.
 3. **SIEMPRE lee los archivos JSON del curso antes de dar una clase** (`temario.json`, `progreso.json`, `dificultades.json`, `glosario.json`). No confíes en la memoria de la conversación previa — puede ser una sesión nueva con otro agente.
 4. **SIEMPRE actualiza los archivos JSON al cerrar la clase**. Es la única forma de que la siguiente sesión (con este agente u otro) sepa dónde quedaste.
+5. **NUNCA te saltes el PASO 5.5**. Aunque el usuario diga "sigamos con aritmética", primero calcula qué clase toca y dilo en una línea. Él puede ignorarte y seguir con lo que quiera — pero tiene que poder decidir con la información delante, no a ciegas.
+
+---
+
+## Anatomía de una clase
+
+> Esta sección define las unidades del proyecto. El PASO 5.5, la configuración y el protocolo de handoff dependen de ella.
+
+**Sesión** = un chat con el agente, de principio a fin.
+**Clase** = la unidad de trabajo del día. Una sesión contiene **una clase**.
+
+Una clase tiene **como máximo un tema nuevo**, y alrededor de él puede contener repaso, ejercicios intercalados de temas ya cerrados, y lo que haga falta. Nada de eso cuenta como "cambiar de tema": es la misma clase.
+
+Lo que la regla `una_clase_por_sesion` protege es **no abrir un segundo frente nuevo antes de cerrar el de hoy** — y que el chat no se estire una semana entera acumulando historial. No restringe qué archivos puede leer el agente dentro de la clase: si para intercalar bien hace falta abrir el README de una clase vieja, se abre.
+
+### Contención del alcance de la clase
+
+La regla de arriba evita abrir un segundo tema **a propósito**. Pero el modo real en que una clase se descontrola es otro, y hay que nombrarlo aparte: **la clase crece sola**. Sale una duda, la duda abre un subtema, el subtema abre otro, y tres horas después se estudió de todo y no se cerró nada. Nadie decidió eso; simplemente pasó. Es la deriva por curiosidad, y es la falla más común de estudiar con un agente, porque el agente siempre tiene una respuesta más que dar.
+
+Cuando en medio de una clase aparezca algo que no es necesario para el tema de hoy, clasifícalo **antes** de perseguirlo:
+
+1. **¿Es un prerrequisito realmente roto que bloquea el tema de hoy?** → Atiéndelo. Es parte legítima de la clase y no es deriva. Regístralo en `dificultades.json`.
+2. **¿Es un tema que ya está en el temario, más adelante?** → **No lo estudies ahora.** Dilo en una línea ("eso es `05-factorizacion`, lo vemos cuando toque") y sigue. El temario ya decidió cuándo va; el orden existe por algo.
+3. **¿Es una curiosidad legítima pero fuera de la ruta al objetivo?** → Contéstala en 2-3 frases, sin abrir clase, y sigue. No la conviertas en un desvío de media hora.
+4. **¿Es un hueco de base que no bloquea hoy pero va a estorbar después?** → Anótalo en `dificultades.json` con `resuelto: false` y sigue. Va a salir solo en una sesión futura por la vía del repaso.
+
+Además, **avisa cuando la clase se esté pasando de largo**. Si la sesión ya cubrió los `objetivos_aprendizaje` del tema, o ya lleva claramente más de lo que sugieren sus `sesiones_estimadas`, dilo y ofrece cerrar: "Ya cubrimos los objetivos del tema. ¿Cerramos aquí y dejamos lo demás para la próxima?" No decidas tú cerrar — pero tampoco dejes que la clase se estire tres horas sin que nadie lo mencione. **Terminar el tema de hoy vale más que cubrir cinco temas a medias**, y una clase cerrada limpia es la única que deja el `progreso.json` en un estado del que la siguiente sesión puede partir.
+
+### Tipos de clase
+
+| Tipo | Qué es | Quién lo dispara |
+|---|---|---|
+| `continuacion` | Retomar un tema que quedó `en_progreso` | Rama (A) del PASO 5.5 |
+| `hito` | Clase que se dispara por condición (simulacros) | Ramas (B) urgente y (E) normal |
+| `repaso` | Sin tema nuevo; ejercicios mezclados de temas vencidos | Rama (C) — escape hatch |
+| `cadencia` | Clase de un módulo recurrente (aptitud, idiomas) | Rama (D) |
+| `tema-nuevo` | Caso normal: un tema nuevo + repaso intercalado | Rama (F) |
+
+### Cómo se estudia cada curso: `modo_estudio`
+
+Cada `temario.json` declara, a nivel de curso, **cómo se estudia**. El PASO 5.5 lee esto y nada más — no conoce los cursos por nombre.
+
+```json
+"modo_estudio": {
+  "tipo": "ruta",
+  "cadencia_dias": null,
+  "prioridad": 1,
+  "condicion": null,
+  "condicion_urgente": null,
+  "nota": "Por qué este curso se estudia así"
+}
+```
+
+- **`tipo: "ruta"`** — progresión lineal, tema tras tema. Es el modo por defecto y alimenta las clases de `tema-nuevo`. `cadencia_dias` y las condiciones van en `null`.
+- **`tipo: "cadencia"`** — módulo recurrente en dosis pequeñas y constantes. Requiere `cadencia_dias` (entero): se propone cuando pasaron ese número de días o más desde su última sesión.
+- **`tipo: "hito"`** — se dispara por condición, no por reloj. Tiene **dos** condiciones y las dos son obligatorias:
+  - **`condicion`** — cuándo el curso *entra en rotación* (rama E, prioridad baja).
+  - **`condicion_urgente`** — cuándo el curso *pasa a mandar* (rama B, por encima de repaso y cadencia). Suele ser una condición de deadline.
+- **`prioridad`** — entero. Desempata cuando dos cursos compiten el mismo día; gana el mayor. Si empatan, el agente pregunta.
+
+**Las condiciones se escriben en prosa pero deben ser ARITMÉTICA VERIFICABLE, no juicio.** Un agente distinto en una sesión distinta tiene que llegar al mismo resultado. Escribe la cuenta exacta: qué se cuenta, sobre qué universo, y el umbral. Mal: `"cuando ya se cubrió lo suficiente"`. Bien: `"cuenta los temas con opcional:false de todos los cursos con modo_estudio.tipo == 'ruta'; si los que están en estado 'completado' son ≥70% de ese total, se cumple"`.
+
+**Ninguna condición es infalible, y por eso existe la regla 5 (CANARIO) del PASO 5.5 y el bloque de alertas del comando `estado`.** El seguro no es un disparador perfecto: es que un disparador que no dispara se vea. Un curso que existe y nunca se estudia es el bug que este proyecto tuvo desde su creación hasta julio de 2026 — y lo que lo hizo grave no fue el disparador ausente, sino que nada lo hacía visible.
+
+**Para agregar un módulo nuevo** (inglés, lo que sea): se genera su curso normal y se le pone `modo_estudio.tipo: "cadencia"` con su `cadencia_dias`. El PASO 5.5 lo recoge automáticamente. No se toca el algoritmo. Un curso nuevo distinto al objetivo actual pasa por `_protocolos/expansion.md`.
+
+### La escalera de repaso
+
+Cuando un tema pasa a `completado`, se le arma un repaso futuro en `progreso.json` con dos campos:
+
+- **`nivel_repaso`** — entero 1-5, índice en la escalera de intervalos.
+- **`fecha_proximo_repaso`** — `YYYY-MM-DD`, cuándo vuelve a entrar.
+
+| `nivel_repaso` | Intervalo hasta el próximo repaso |
+|---|---|
+| 1 | 1 día |
+| 2 | 3 días |
+| 3 | 7 días |
+| 4 | 14 días |
+| 5 | 30 días |
+
+Cómo se mueve: al cerrar un tema por primera vez entra en `nivel_repaso: 1`. Cada vez que el usuario **resuelve bien** sus ejercicios de repaso, sube un nivel y se re-arma con el intervalo nuevo. Cada vez que **falla**, baja a `nivel_repaso: 1` y se re-arma para el día siguiente. Al llegar a 5 **no se apaga**: se re-arma cada 30 días indefinidamente — los temas cerrados en julio de 2026 tienen que seguir vivos en febrero de 2027.
+
+Los intervalos se miden en **días de calendario, no en sesiones**. La curva del olvido es tiempo real: si el usuario estudia tres veces un martes, eso no adelanta ningún repaso.
+
+### Varias sesiones el mismo día
+
+El PASO 5.5 se recalcula desde los archivos en cada sesión, así que este caso se resuelve solo y **no necesita ninguna regla especial**:
+
+- Mañana: clase de aptitud → su `ultima_sesion` queda en hoy → tarde: la rama (C) ya no dispara → la tarde cae en `tema-nuevo`. Protocolo normal.
+- Mañana: tema nuevo que quedó a medias → tarde: la rama (A) ve `en_progreso` y lo continúa.
+- Mañana: tema nuevo cerrado → tarde: no hay nada en progreso, la cadencia está fresca → siguiente tema nuevo, mencionando la nota de la regla 3 del PASO 5.5.
 
 ---
 
@@ -140,6 +322,7 @@ Con esa información adapta la sesión:
 - Parte del nivel real que muestra `progreso.json`, no de cero.
 - No redefinas términos que ya están en el glosario del usuario con `nivel_dominio: "solido"`.
 - Verifica retrasos: si `sesiones_dedicadas` supera `sesiones_estimadas` en >50% para el tema actual, menciónalo y ofrece re-planificar.
+- **Arma la lista de temas a intercalar**: los temas `completado` con `fecha_proximo_repaso <= hoy`, ordenados del más vencido al menos vencido. Toma los 2-3 primeros — son los que alimentan el 30% de repaso del bloque de ejercicios (ver Método 3). Si para intercalar bien necesitas ver qué se hizo en esa clase, abre su `clases/NN-tema/README.md`: el coste de contexto es aceptable y los ejercicios salen mucho mejores.
 
 ---
 
@@ -148,10 +331,19 @@ Con esa información adapta la sesión:
 Cuando el usuario indique que terminó, actualiza estos archivos:
 
 ### `progreso.json`
-- Cambia el `estado` del tema trabajado: `"no_iniciado"` → `"en_progreso"` → `"completado"`.
+
+**Del tema trabajado hoy:**
+- Cambia el `estado`: `"no_iniciado"` → `"en_progreso"` → `"completado"`.
 - Actualiza `porcentaje` según lo avanzado (0-100).
-- Actualiza `ultima_sesion` con la fecha actual (`YYYY-MM-DD`).
+- Actualiza `ultima_sesion` con fecha y hora actuales en formato ISO 8601 (`YYYY-MM-DDTHH:MM`). La hora es informativa: los repasos se calculan por día de calendario, no por hora.
 - Incrementa `sesiones_dedicadas` en 1.
+- **Si el tema pasó a `completado`**: arma su repaso con `nivel_repaso: 1` y `fecha_proximo_repaso` = mañana. Ver "La escalera de repaso".
+
+**De los temas que se intercalaron en el bloque de ejercicios** (no del tema nuevo):
+- Si el usuario los resolvió bien: sube `nivel_repaso` en 1 (tope 5) y recalcula `fecha_proximo_repaso` = hoy + el intervalo del nivel nuevo.
+- Si falló: baja `nivel_repaso` a 1 y pon `fecha_proximo_repaso` = mañana. Además, registra la dificultad en `dificultades.json` como cualquier otra.
+- No toques su `estado`, `porcentaje` ni `sesiones_dedicadas`: un intercalado no es una sesión del tema viejo. Sí actualiza su `ultima_sesion`.
+- Si un tema intercalado resultó estar realmente roto (falló varios ejercicios, no solo uno), dilo al cerrar y sugiere que la próxima sesión sea una clase de `repaso`. La rama (B) del PASO 5.5 probablemente ya lo dispare sola, pero avisar es mejor que sorprender.
 
 ### `dificultades.json`
 - Agrega una entrada por cada concepto que el usuario no entendió bien o preguntó repetidamente. Usa la estructura completa: `id`, `curso`, `tema_id`, `tipo` (conceptual/operativa/notacion/aplicacion), `descripcion`, `error_tipico`, `fecha_deteccion`, `fecha_ultimo_repaso`, `veces_repasado`, `resuelto`, `estrategia_que_ayuda`.
@@ -184,6 +376,7 @@ Cuando el usuario indique que terminó, actualiza estos archivos:
 8. **Dificultad progresiva pero no lineal**: `dificultad: 1-5`. Alterna para permitir intercalado en ejercicios.
 9. **Marca temas opcionales**: `opcional: true` para temas que enriquecen pero no son ruta crítica. Sirven para recortar si aprieta el tiempo.
 10. **Ajuste al deadline**: `sum(sesiones_estimadas) × 1.5h × 1.2 (buffer) ≤ semanas_disponibles × horas_semanales`. Si no cabe, reporta y propón opciones.
+11. **`modo_estudio` obligatorio**: todo `temario.json` declara cómo se estudia el curso (`ruta`, `cadencia` o `hito`). Sin este campo el PASO 5.5 no puede colocar el curso en ninguna clase y el curso queda huérfano — que es exactamente el bug que tuvo este proyecto hasta julio de 2026. Ver "Cómo se estudia cada curso" para la estructura y los valores.
 
 ---
 
@@ -275,6 +468,7 @@ Este proyecto usa un conjunto específico de técnicas pedagógicas con respaldo
 - Haz preguntas directas: "¿Puedes explicarme con tus palabras qué es X?", "¿Cuál es el resultado de Y?", "¿Cómo se resuelve este tipo de problema?"
 - Espera la respuesta del usuario antes de confirmar o corregir. No adelantes la respuesta.
 - Anota mentalmente qué recordó bien y qué no, para enfocarte en los huecos durante la clase.
+- **No hagas recuperación activa de algo que se estudió HOY.** Si el `ultima_sesion` del tema anterior es la fecha de hoy (el usuario estudió en la mañana y volvió en la tarde), sáltala o redúcela a una frase. Preguntarle qué recuerda de algo que cerró hace dos horas no mide retención, molesta: la respuesta está en memoria de trabajo, no en memoria a largo plazo, así que el ejercicio no informa nada y se siente redundante. Arranca directo. Lo mismo vale para el intercalado: un tema cerrado hoy no está vencido y no entra (su `fecha_proximo_repaso` es mañana, como mínimo).
 
 ---
 
@@ -283,12 +477,13 @@ Este proyecto usa un conjunto específico de técnicas pedagógicas con respaldo
 
 **Intervalos recomendados:** 1 día → 3 días → 1 semana → 2 semanas → 1 mes.
 
-**Cómo lo aplica el agente:**
-- Al leer `dificultades.json` al inicio de la sesión, calcula cuántos días pasaron desde `fecha_ultimo_repaso` de cada dificultad no resuelta.
-- Si una dificultad tiene entre 1 y 3 días desde la última vez que se trabajó, es candidata a repaso en esta sesión.
-- Incluye un repaso breve de esas dificultades antes de continuar con el tema nuevo.
-- Al actualizar `dificultades.json` al cerrar la clase, registra `fecha_ultimo_repaso` para poder calcular el próximo intervalo en sesiones futuras.
-- Aplica lo mismo con `glosario.json`: términos con `fecha_ultimo_uso` antigua y `nivel_dominio: "reconoce"` son candidatos a repaso rápido.
+**Cómo lo aplica el agente:** en tres niveles distintos, no solo uno. Un tema puede estar "completado" y sin dificultades abiertas y aun así estarse olvidando — por eso el nivel de temas es el más importante y el que no puede faltar.
+
+**Nivel 1 — temas completados (el principal).** Es lo que sostienen los campos `nivel_repaso` y `fecha_proximo_repaso` de `progreso.json`, con la escalera definida en "La escalera de repaso". El PASO 5.5 los lee para decidir la clase, y el "Protocolo al INICIAR" arma con ellos la lista de temas a intercalar. **El repaso de temas se entrega intercalado dentro de la clase del día (Método 3), no como un bloque aparte** — la clase de `repaso` dedicada es solo el escape hatch cuando se acumulan o cuando algo se rompió.
+
+**Nivel 2 — dificultades.** Al leer `dificultades.json` al inicio de la sesión, calcula cuántos días pasaron desde `fecha_ultimo_repaso` de cada dificultad no resuelta. Si tiene entre 1 y 3 días desde la última vez que se trabajó, es candidata a repaso en esta sesión. Incluye un repaso breve de esas dificultades antes de continuar con el tema nuevo. Al cerrar la clase, registra `fecha_ultimo_repaso` para poder calcular el próximo intervalo.
+
+**Nivel 3 — vocabulario.** En `glosario.json`, los términos con `fecha_ultimo_uso` antigua y `nivel_dominio: "reconoce"` son candidatos a repaso rápido.
 
 ---
 
@@ -296,9 +491,12 @@ Este proyecto usa un conjunto específico de técnicas pedagógicas con respaldo
 **Qué es:** Técnica donde, dentro de una misma sesión de estudio, se mezclan ejercicios o preguntas de distintos temas en lugar de agotar uno completamente antes de pasar al siguiente. Esto obliga al cerebro a identificar qué tipo de problema tiene enfrente y qué estrategia aplicar, lo que desarrolla una comprensión más flexible y transferible. No confundir con "estudiar varios temas en la misma semana" ni con cambiar de tema cuando uno se hace difícil.
 
 **Cómo lo aplica el agente:**
-- En sesiones donde el usuario ya tiene al menos dos temas con algo de avance, mezcla ejercicios de ambos en vez de hacer todos los del tema A y luego todos los del tema B.
-- Por ejemplo: un ejercicio de tema actual, uno de un tema anterior relacionado, otro del tema actual con mayor dificultad.
-- Al generar series de ejercicios, varía el tipo de problema sin seguir un orden predecible.
+
+- **La mezcla estándar del bloque de ejercicios es ~70% tema nuevo / ~30% temas vencidos.** Los temas vencidos son los que armó el "Protocolo al INICIAR" a partir de `fecha_proximo_repaso` — normalmente 2-3.
+- **El intercalado NO es solo para el repaso.** Aunque ningún tema esté vencido, sigue mezclando: temas relacionados, prerrequisitos del tema de hoy, cualquier cosa ya vista que se conecte. El 30% es un piso, no un techo.
+- No agotes un tema antes de pasar al siguiente ni sigas un orden predecible: un ejercicio del tema actual, uno de un tema anterior, otro del actual más difícil.
+- Al generar series, varía también el *tipo* de problema (numérico, simbólico, verbal, gráfico), no solo el tema. Ver Método 6.
+- **Esta regla convive con `una_clase_por_sesion`, no choca con ella.** Intercalar ejercicios de temas ya cerrados no es "cambiar de tema": es parte de la clase de hoy. Lo que la configuración limita es abrir un *segundo tema nuevo*. Ver "Anatomía de una clase".
 
 ---
 
@@ -337,10 +535,11 @@ Este proyecto usa un conjunto específico de técnicas pedagógicas con respaldo
 
 | Momento de la sesión | Métodos a aplicar |
 |---|---|
-| Inicio de clase | Práctica de Recuperación Activa + Repetición Espaciada (de dificultades pendientes) |
+| Antes de la clase (PASO 5.5) | Repetición Espaciada — nivel de temas: decide qué clase toca y qué temas van vencidos |
+| Inicio de clase | Práctica de Recuperación Activa + Repetición Espaciada — niveles de dificultades y vocabulario |
 | Durante la explicación | Interrogación Elaborativa |
-| Durante los ejercicios | Práctica con Problemas Variados + Aprendizaje Intercalado |
-| Cierre de clase | Técnica Feynman + actualización de archivos JSON |
+| Durante los ejercicios | Práctica con Problemas Variados + Aprendizaje Intercalado (~70/30 con los temas vencidos) |
+| Cierre de clase | Técnica Feynman + actualización de archivos JSON (incluida la escalera de repaso) |
 
 ---
 
@@ -407,6 +606,15 @@ estudios/
 - `"en_progreso"` — clase iniciada pero no completada
 - `"completado"` — tema dominado según su `criterio_dominio`
 
+### Campos de cada tema en `progreso.json`
+- `tema_id` — referencia al `id` del `temario.json`
+- `estado` — uno de los tres de arriba
+- `porcentaje` — 0-100
+- `ultima_sesion` — ISO 8601 con hora (`YYYY-MM-DDTHH:MM`), o `null` si nunca se tocó
+- `sesiones_dedicadas` — contador de sesiones del tema
+- `nivel_repaso` — 1-5, índice en la escalera de repaso. `null` mientras el tema no esté `completado`
+- `fecha_proximo_repaso` — `YYYY-MM-DD` de cuándo vuelve a entrar. `null` mientras el tema no esté `completado`
+
 ### Tipos válidos de dificultad en `dificultades.json`
 - `"conceptual"` — no entiende el concepto en sí
 - `"operativa"` — entiende pero se equivoca ejecutando (signos, distribución, aritmética)
@@ -417,6 +625,24 @@ estudios/
 - `"reconoce"` — lo entiende cuando lo ve pero no lo produce solo
 - `"solido"` — lo aplica y explica sin dudar
 - `"vacilante"` — a veces lo confunde con otro concepto
+
+---
+
+## Futuras mejoras (ideas aparcadas, no implementadas)
+
+> Cosas que se evaluaron, se decidió que valen la pena, y se dejaron fuera del alcance del momento. **Nada de aquí está implementado** — no asumas que existe. Si vas a implementar una, bórrala de esta lista y documéntala donde corresponda.
+
+### Historial de sesiones
+
+**Qué falta:** el proyecto no tiene memoria de *cuándo* se estudió. `ultima_sesion` se sobreescribe en cada sesión, así que solo conserva la última; `sesiones_dedicadas` es un contador sin fechas. No hay forma de responder "¿cuánto estudié esta semana?", "¿a qué hora rindo mejor?", "¿cuántos días seguidos llevo?".
+
+**Idea:** un `historial.json` (en la raíz o por curso) que haga *append* —nunca overwrite— con una entrada por sesión: fecha y hora de inicio, duración, tipo de clase (ver "Anatomía de una clase"), curso, temas tocados (principal e intercalados), y resultado. Lo escribiría el "Protocolo al CERRAR una clase".
+
+**Por qué se aparcó (2026-07-16):** se discutió a raíz de que `ultima_sesion` no guardaba la hora. Pero la falta de hora no era el problema real — el problema es que no hay historial, y ponerle hora a un campo que se sobreescribe no arregla eso. Se decidió poner la hora igual (es casi gratis y deja la puerta abierta) y aparcar el historial como feature propia, para no agrandar el cambio de ese día.
+
+**Ojo — el problema que motivó la idea ya está resuelto por otra vía.** El síntoma original era que un repaso caía redundante cuando el usuario estudiaba dos veces el mismo día (clase en la mañana, "repaso" a la hora de comer). Eso ya no puede pasar: la escalera de repaso pone `fecha_proximo_repaso` en mañana como mínimo, y el Método 1 prohíbe hacer recuperación activa de algo cuyo `ultima_sesion` es hoy. Así que el historial es para **conocer tus hábitos de estudio**, no para arreglar el scheduler. No lo justifiques con lo del repaso redundante.
+
+**Precio a pagar:** un archivo que crece indefinidamente y que hay que leer (o al menos su cola) en cada arranque. Conviene pensar antes cuánto de él necesita entrar en contexto.
 
 ---
 

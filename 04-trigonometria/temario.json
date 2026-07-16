@@ -1,6 +1,14 @@
 {
   "curso": "Trigonometría",
   "objetivo_del_curso": "Resolver problemas de trigonometría del nivel del examen de admisión UNI: razones trigonométricas, circunferencia trigonométrica, identidades, funciones y ecuaciones trigonométricas; y dominar las herramientas trigonométricas que exige Física (vectores, descomposición).",
+  "modo_estudio": {
+    "tipo": "ruta",
+    "cadencia_dias": null,
+    "prioridad": 3,
+    "condicion": null,
+    "condicion_urgente": null,
+    "nota": "Progresión lineal. Provee las herramientas que exige Física (vectores, descomposición)."
+  },
   "bibliografia": [
     {
       "titulo": "Trigonometría — Colección Compendios Académicos",

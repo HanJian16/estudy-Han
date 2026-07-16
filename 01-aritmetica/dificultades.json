@@ -168,5 +168,70 @@
     "veces_repasado": 1,
     "resuelto": true,
     "estrategia_que_ayuda": "Contraejemplo numérico expandido a mano (3^5/3^2): expandir las potencias como multiplicaciones repetidas, cancelar los factores comunes uno a uno, y comparar el resultado real (3^3=27) contra lo que predice cada regla candidata. El usuario corrigió la regla de inmediato al ver el contraejemplo y la aplicó bien después."
+  },
+  {
+    "id": "dif-08-01",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "tipo": "aplicacion",
+    "descripcion": "Al iniciar un reparto proporcional compuesto (empresa de 4700 soles entre 3 socios por capital y tiempo), calculó un divisor distinto para cada persona (dividiendo el total entre el peso de cada una por separado) en vez de sumar los pesos primero y usar una sola k.",
+    "error_tipico": "Aplicar la lógica de regla de tres (división término a término) al reparto proporcional, en vez de sumar las partes primero como exige el reparto.",
+    "fecha_deteccion": "2026-07-11",
+    "fecha_ultimo_repaso": "2026-07-11",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Guía correctiva recordando la estructura del reparto simple ya dominado (k=total/suma de pesos, no un divisor por entidad). Tras la corrección, resolvió correctamente el resto de repartos compuestos de la sesión (incluyendo casos de 3 magnitudes) sin repetir el error."
+  },
+  {
+    "id": "dif-08-02",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "tipo": "operativa",
+    "descripcion": "Al simplificar una fracción para quitar ceros durante un cálculo de regla de tres, dividió el denominador entre 1000 pero dejó el numerador sin dividir.",
+    "error_tipico": "Simplificar solo un lado de una división, olvidando que ambos términos deben dividirse por el mismo factor.",
+    "fecha_deteccion": "2026-07-11",
+    "fecha_ultimo_repaso": "2026-07-11",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Se corrigió en el momento al verificar el resultado contra el total esperado; no volvió a repetirse en ejercicios posteriores similares."
+  },
+  {
+    "id": "dif-08-03",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "tipo": "conceptual",
+    "descripcion": "En una regla de tres compuesta con una magnitud DP y otra IP (obreros-metros-días), planteó inicialmente ambas razones 'en el mismo sentido', sin invertir la que correspondía a la relación IP.",
+    "error_tipico": "Tratar una relación IP igual que una DP al armar la razón dentro de una regla de tres compuesta.",
+    "fecha_deteccion": "2026-07-11",
+    "fecha_ultimo_repaso": "2026-07-11",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Este fue el ejercicio con mayor necesidad de guía de la sesión. Funcionó explicar el método de razón invertida y luego dejar que el usuario propusiera su propio método alternativo ('trabajo por unidad', agrupando en el numerador las magnitudes DP entre sí respecto a una de referencia). Terminó explicando el método con sus propias palabras de forma coherente y lo aplicó bien en los ejercicios siguientes."
+  },
+  {
+    "id": "dif-08-04",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "tipo": "conceptual",
+    "descripcion": "En el ejercicio de las llaves de un tanque (se dañan 2 llaves), interpretó 'se dañan 2 llaves' como si se agregaran 2 llaves, en vez de que 2 dejaran de funcionar.",
+    "error_tipico": "Invertir el sentido de una operación por lectura apresurada de un enunciado (dañar = perder, no ganar).",
+    "fecha_deteccion": "2026-07-11",
+    "fecha_ultimo_repaso": "2026-07-11",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Se le señaló releer literalmente qué significa 'dañarse' en el contexto de llaves que funcionan. Corrigió de inmediato y replanteó con 3 llaves (5-2) en vez de sumar."
+  },
+  {
+    "id": "dif-08-05",
+    "curso": "Aritmética",
+    "tema_id": "08-magnitudes-regla-de-tres",
+    "tipo": "operativa",
+    "descripcion": "En el mismo ejercicio de las llaves del tanque, planteó división en vez de multiplicación al combinar dos magnitudes que eran ambas IP respecto a la incógnita (llaves y rendimiento).",
+    "error_tipico": "Usar división cuando corresponde multiplicación al combinar dos relaciones IP en una sola ecuación.",
+    "fecha_deteccion": "2026-07-11",
+    "fecha_ultimo_repaso": "2026-07-11",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Autocorrección propia e inmediata ('me mala mía... son inversamente proporcionales, no se dividen, se multiplican'), sin necesidad de guía externa. Llegó al resultado correcto (x=40 horas) en el mismo intento."
   }
 ]
