@@ -1,0 +1,390 @@
+{
+  "curso": "Matemática Superior (UNFV, IV ciclo)",
+  "objetivo_del_curso": "Aprobar Matemática Superior (código 26, plan 2019, 4 créditos) del 4to ciclo de Ing. Mecatrónica en la UNFV. El listón NO es dominio: es tener las bases suficientes para dar cara en el parcial (28.09.2026) y el final (23.11.2026). Dominar Laplace y Fourier a nivel operativo importa además porque son la herramienta central de Procesamiento Digital de Señales y Control I/II, que vienen detrás en la malla.",
+  "_aviso_temario_inferido": "ATENCIÓN: este temario es una INFERENCIA, no una transcripción. El sílabo oficial de Matemática Superior figura 'En proceso' en la web de la EPIM y no está publicado. Se construyó por INFERENCIA POR SÁNDWICH con pan de abajo firme y pan de arriba débil: (1) ABAJO, sólido — el sílabo REAL de su prerrequisito, Matemática Aplicada (código 100957, ciclo 3), dice exactamente dónde termina el alumno: funciones de varias variables, integrales múltiples, EDOs de primer orden y EDOs de orden superior con variación de parámetros. NO cubre Laplace, Fourier, EDPs ni variable compleja. (2) ARRIBA, inferido — Matemática Superior es prerrequisito de '33 Ingeniería de Procesos', y detrás vienen Procesamiento Digital de Señales, Control I y Control II; esos cursos necesitan Laplace y Fourier sí o sí. El sílabo de esos cursos NO está publicado, así que ese lado se apoya en el grafo de la malla y en el estándar de la disciplina, no en un documento. (3) El usuario confirmó el 2026-07-16 que el contenido inferido 'encaja' con lo que le han dicho. OBLIGATORIO: revisar este temario en la SEMANA 1 DE CLASES (10-14 de agosto de 2026), cuando el profesor presente el sílabo real, y corregir lo que no cuadre. Lo más probable que cambie: el orden de las unidades y el corte exacto parcial/final. Lo menos probable: que Laplace y Fourier no estén.",
+  "modo_estudio": {
+    "tipo": "ruta",
+    "cadencia_dias": null,
+    "prioridad": 1,
+    "condicion": null,
+    "condicion_urgente": null,
+    "nota": "Progresión lineal atada al calendario del semestre. Prioridad 1 entre los cursos del semestre: es la base matemática de la que tira Física III, y sus temas de Laplace y Fourier son la herramienta de toda la especialidad posterior."
+  },
+  "bibliografia": [
+    {
+      "titulo": "Matemáticas avanzadas para ingeniería",
+      "autor": "Zill, Dennis G.",
+      "capitulos_relevantes": "INFERIDA con base sólida: el sílabo real del prerrequisito (Matemática Aplicada) usa 'Zill, D. (2010). Ecuaciones diferenciales con aplicaciones' como fuente principal, y el volumen avanzado del mismo autor cubre exactamente Laplace, series y transformada de Fourier, EDPs y variable compleja. Es la continuación natural y lo más probable que use el curso. Confirmar en la semana 1."
+    },
+    {
+      "titulo": "Advanced Engineering Mathematics",
+      "autor": "Kreyszig, Erwin",
+      "capitulos_relevantes": "Alternativa estándar internacional para el mismo bloque. Útil si el profesor no sigue a Zill."
+    },
+    {
+      "titulo": "Variable compleja y aplicaciones",
+      "autor": "Churchill, Ruel V. / Brown, James W.",
+      "capitulos_relevantes": "Referencia clásica solo para el bloque de variable compleja (temas 11-12), si hace falta más profundidad que Zill."
+    },
+    {
+      "titulo": "Sílabo real de Matemática Superior (UNFV)",
+      "autor": "Universidad Nacional Federico Villarreal — EPIM",
+      "capitulos_relevantes": "AÚN NO DISPONIBLE ('En proceso' en https://web.unfv.edu.pe/facultades/fiei/escuelas/escuela-profesional-de-ingenieria-mecatronica/silabos). Cuando el usuario lo consiga (profesor, aula virtual o compañero), pasa a ser la fuente de verdad y este temario se corrige contra él."
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cuaderno físico",
+      "url": null,
+      "uso": "Instrumento principal: las tablas de transformadas se interiorizan resolviendo a mano, no leyendo.",
+      "para_temas": null
+    },
+    {
+      "nombre": "WolframAlpha",
+      "url": "https://www.wolframalpha.com",
+      "uso": "Verificar transformadas directas e inversas ('laplace transform of ...', 'inverse laplace transform of ...') y descomposiciones en fracciones parciales cuando el usuario dude de su resultado.",
+      "para_temas": [
+        "01-laplace-definicion",
+        "03-laplace-inversa-fracciones-parciales",
+        "04-laplace-edos-valor-inicial"
+      ]
+    },
+    {
+      "nombre": "Desmos",
+      "url": "https://www.desmos.com/calculator",
+      "uso": "Ver cómo una serie de Fourier converge a la función al sumar términos: es la forma más rápida de que Fourier deje de ser abstracto.",
+      "para_temas": [
+        "06-fourier-series-periodicas",
+        "07-fourier-simetria-convergencia"
+      ]
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-laplace-definicion",
+      "nombre": "Transformada de Laplace: definición y transformadas directas",
+      "descripcion": "Definición por integral impropia, condiciones de existencia (orden exponencial, continuidad por tramos), transformadas de las funciones elementales y construcción de la tabla de referencia.",
+      "prerrequisitos_internos": [],
+      "prerrequisitos_externos": [
+        "02-algebra/14-funciones",
+        "02-algebra/15-logaritmos"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 3,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Calcular la transformada de Laplace de una función aplicando la definición integral",
+        "Determinar si una función admite transformada (orden exponencial y continuidad por tramos)",
+        "Aplicar la tabla de transformadas elementales sin consultarla para los casos frecuentes"
+      ],
+      "criterio_dominio": "Calcula 8/10 transformadas directas tipo examen sin consultar la tabla",
+      "referencias": [
+        "Zill — Matemáticas avanzadas, cap. Transformada de Laplace"
+      ]
+    },
+    {
+      "id": "02-laplace-propiedades",
+      "nombre": "Propiedades de la transformada de Laplace",
+      "descripcion": "Linealidad, primer y segundo teorema de traslación, transformada de derivadas e integrales, derivada de la transformada, escalamiento.",
+      "prerrequisitos_internos": [
+        "01-laplace-definicion"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 3,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Aplicar los teoremas de traslación en el eje s y en el eje t",
+        "Transformar derivadas e integrales de una función, que es lo que convierte una EDO en álgebra",
+        "Elegir la propiedad adecuada en lugar de recurrir a la definición integral"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de propiedades sin volver a la definición",
+      "referencias": [
+        "Zill — Matemáticas avanzadas, cap. Transformada de Laplace"
+      ]
+    },
+    {
+      "id": "03-laplace-inversa-fracciones-parciales",
+      "nombre": "Transformada inversa y fracciones parciales",
+      "descripcion": "Transformada inversa, linealidad, y descomposición en fracciones parciales como método operativo central (factores lineales, repetidos y cuadráticos irreducibles).",
+      "prerrequisitos_internos": [
+        "02-laplace-propiedades"
+      ],
+      "prerrequisitos_externos": [
+        "02-algebra/05-factorizacion",
+        "02-algebra/06-fracciones-algebraicas"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Descomponer una función racional en fracciones parciales en los tres casos (lineal, repetido, cuadrático irreducible)",
+        "Calcular transformadas inversas combinando fracciones parciales con la tabla",
+        "Reconocer cuándo completar cuadrados habilita un teorema de traslación"
+      ],
+      "criterio_dominio": "Calcula 8/10 transformadas inversas tipo examen sin ayuda",
+      "referencias": [
+        "Zill — Matemáticas avanzadas, cap. Transformada inversa"
+      ]
+    },
+    {
+      "id": "04-laplace-edos-valor-inicial",
+      "nombre": "Solución de EDOs con Laplace (problemas de valor inicial)",
+      "descripcion": "Resolución de problemas de valor inicial transformando la EDO en una ecuación algebraica; sistemas de EDOs por Laplace.",
+      "prerrequisitos_internos": [
+        "03-laplace-inversa-fracciones-parciales"
+      ],
+      "prerrequisitos_externos": [
+        "02-algebra/12-sistemas-ecuaciones"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Resolver un problema de valor inicial completo transformando, despejando y antitransformando",
+        "Explicar por qué Laplace incorpora las condiciones iniciales de forma automática, a diferencia del método de coeficientes indeterminados",
+        "Resolver sistemas de dos EDOs acopladas por Laplace"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de valor inicial tipo examen sin ayuda",
+      "referencias": [
+        "Zill — Matemáticas avanzadas, cap. Aplicaciones de la transformada"
+      ]
+    },
+    {
+      "id": "05-laplace-funciones-especiales-convolucion",
+      "nombre": "Función escalón, impulso y convolución",
+      "descripcion": "Función escalón unitario de Heaviside, delta de Dirac, funciones definidas por tramos, teorema de convolución y transformada de funciones periódicas.",
+      "prerrequisitos_internos": [
+        "04-laplace-edos-valor-inicial"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Escribir una función definida por tramos usando escalones unitarios y transformarla",
+        "Aplicar el teorema de convolución para invertir un producto de transformadas",
+        "Resolver EDOs con excitación discontinua o impulsiva (que es el caso realista en ingeniería)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios con escalón, impulso o convolución sin ayuda",
+      "referencias": [
+        "Zill — Matemáticas avanzadas, cap. Función escalón / Convolución"
+      ]
+    },
+    {
+      "id": "06-fourier-series-periodicas",
+      "nombre": "Series de Fourier: funciones periódicas y coeficientes",
+      "descripcion": "Funciones periódicas, ortogonalidad de senos y cosenos, cálculo de los coeficientes de Fourier y desarrollo en serie trigonométrica.",
+      "prerrequisitos_internos": [],
+      "prerrequisitos_externos": [
+        "04-trigonometria/08-identidades-fundamentales",
+        "04-trigonometria/12-funciones-trigonometricas"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Calcular los coeficientes de Fourier de una función periódica dada",
+        "Explicar qué significa descomponer una señal en senos y cosenos, con palabras propias",
+        "Escribir el desarrollo en serie de Fourier de funciones definidas por tramos"
+      ],
+      "criterio_dominio": "Desarrolla en serie de Fourier 8/10 funciones tipo examen sin ayuda",
+      "referencias": [
+        "Zill — Matemáticas avanzadas, cap. Series de Fourier"
+      ]
+    },
+    {
+      "id": "07-fourier-simetria-convergencia",
+      "nombre": "Series de Fourier: simetría, medio rango y convergencia",
+      "descripcion": "Funciones pares e impares, series de solo senos y solo cosenos, desarrollos de medio rango, convergencia y fenómeno de Gibbs.",
+      "prerrequisitos_internos": [
+        "06-fourier-series-periodicas"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 3,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Usar la simetría par/impar para anular coeficientes antes de calcularlos",
+        "Construir desarrollos de medio rango en senos o en cosenos según convenga",
+        "Predecir a qué valor converge la serie en un punto de discontinuidad"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de simetría y medio rango sin ayuda",
+      "referencias": [
+        "Zill — Matemáticas avanzadas, cap. Series de Fourier"
+      ]
+    },
+    {
+      "id": "08-fourier-transformada",
+      "nombre": "Transformada de Fourier",
+      "descripcion": "Paso de la serie a la integral de Fourier, transformada de Fourier y su inversa, propiedades y espectro de frecuencias.",
+      "prerrequisitos_internos": [
+        "07-fourier-simetria-convergencia"
+      ],
+      "prerrequisitos_externos": [
+        "02-algebra/09-numeros-complejos"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Calcular la transformada de Fourier de funciones básicas y su inversa",
+        "Aplicar las propiedades (linealidad, traslación, escalamiento, derivación)",
+        "Interpretar el espectro de frecuencias de una señal — la idea que sostiene todo Procesamiento Digital de Señales"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de transformada de Fourier sin ayuda",
+      "referencias": [
+        "Zill — Matemáticas avanzadas, cap. Integral y transformada de Fourier"
+      ]
+    },
+    {
+      "id": "09-edp-clasificacion-separacion",
+      "nombre": "EDPs: clasificación y separación de variables",
+      "descripcion": "Ecuaciones diferenciales parciales, clasificación (elípticas, parabólicas, hiperbólicas), condiciones de frontera e iniciales, y método de separación de variables.",
+      "prerrequisitos_internos": [
+        "07-fourier-simetria-convergencia"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Clasificar una EDP de segundo orden y decir qué tipo de fenómeno modela",
+        "Aplicar separación de variables para reducir una EDP a dos EDOs",
+        "Imponer condiciones de frontera para determinar los valores propios"
+      ],
+      "criterio_dominio": "Resuelve 7/10 ejercicios de separación de variables sin ayuda",
+      "referencias": [
+        "Zill — Matemáticas avanzadas, cap. Ecuaciones diferenciales parciales"
+      ]
+    },
+    {
+      "id": "10-edp-calor-onda",
+      "nombre": "EDPs clásicas: ecuación de calor y de onda",
+      "descripcion": "Resolución completa de la ecuación de calor y de la ecuación de onda en una dimensión con series de Fourier; ecuación de Laplace en un rectángulo.",
+      "prerrequisitos_internos": [
+        "09-edp-clasificacion-separacion"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 5,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Resolver la ecuación de calor en una barra con condiciones de frontera homogéneas",
+        "Resolver la ecuación de onda en una cuerda y explicar el significado físico de cada modo",
+        "Reconocer dónde entra la serie de Fourier en la solución y por qué es imprescindible"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de calor u onda tipo examen sin ayuda",
+      "referencias": [
+        "Zill — Matemáticas avanzadas, cap. Problemas con valores en la frontera"
+      ]
+    },
+    {
+      "id": "11-compleja-funciones-analiticas",
+      "nombre": "Variable compleja: funciones analíticas",
+      "descripcion": "Repaso operativo del plano complejo, funciones de variable compleja, límites y derivada, ecuaciones de Cauchy-Riemann, funciones analíticas y armónicas.",
+      "prerrequisitos_internos": [],
+      "prerrequisitos_externos": [
+        "02-algebra/09-numeros-complejos"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Operar con funciones de variable compleja en forma binómica, polar y exponencial",
+        "Verificar si una función es analítica mediante las ecuaciones de Cauchy-Riemann",
+        "Hallar la armónica conjugada de una función dada"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de analiticidad y Cauchy-Riemann sin ayuda",
+      "referencias": [
+        "Zill — Matemáticas avanzadas, cap. Funciones de variable compleja",
+        "Churchill — Variable compleja, caps. 1-3"
+      ]
+    },
+    {
+      "id": "12-compleja-integracion-residuos",
+      "nombre": "Variable compleja: integración, teorema de Cauchy y residuos",
+      "descripcion": "Integración en el plano complejo, teorema integral de Cauchy, fórmula integral, series de Laurent, polos y teorema del residuo.",
+      "prerrequisitos_internos": [
+        "11-compleja-funciones-analiticas"
+      ],
+      "prerrequisitos_externos": [
+        "02-algebra/05-factorizacion"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 5,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Aplicar el teorema integral de Cauchy y la fórmula integral en contornos cerrados",
+        "Clasificar singularidades y calcular residuos en polos simples y múltiples",
+        "Evaluar integrales mediante el teorema del residuo"
+      ],
+      "criterio_dominio": "Resuelve 7/10 ejercicios de residuos tipo examen sin ayuda",
+      "referencias": [
+        "Zill — Matemáticas avanzadas, cap. Integración compleja / Residuos",
+        "Churchill — Variable compleja, caps. 4-7"
+      ]
+    }
+  ],
+  "_nota_migracion_niveles": "MIGRACION MECANICA 2026-07-16 al modelo de dos dimensiones (ver 'El conocimiento se mide en DOS dimensiones' en el README raiz). 'sesiones_estimadas' y 'sesiones_estimadas_pasar' se convirtieron en 'sesiones_por_nivel' (coste INCREMENTAL por salto). El reparto es una APROXIMACION ARITMETICA, no pedagogia medida: para los cursos base, base=el antiguo coste 'pasar' y el resto hasta el antiguo coste 'dominar' se repartio entre intermedio y avanzado; para los cursos universitarios, base+intermedio suman el coste original (que se dimensiono para aprobar) y 'avanzado' es una estimacion que hoy ningun objetivo requiere. REVISAR con datos reales de historial.json. OJO — 'criterio_dominio' sigue siendo UN SOLO STRING en la mayoria de temas: es el criterio del nivel para el que se escribio (avanzado en los cursos base, intermedio en los universitarios). Los criterios de los otros niveles NO se fabricaron a proposito: se redactan cuando cada tema se estudia, que es cuando se sabe que distingue de verdad un nivel de otro. Si un tema tiene criterio_dominio como string, trata ese string como el criterio del nivel objetivo del curso y ESCRIBE los que falten al tocarlo."
+}

@@ -21,9 +21,14 @@ Lee y agrega información de varios archivos para dar una foto rápida del progr
 
 ### Pasos del agente
 
-1. Lee `objetivo.json` → objetivo actual, fecha límite, horas semanales.
+1. Lee `objetivo.json` → `presupuesto_horas` (línea de tiempo de periodos) y **todos** los `objetivos` con su `estado`, `prioridad`, `liston`, `hitos` y `cursos_requeridos`. Agrupa la salida por objetivo, ordenada por prioridad, y marca los `latente` y `completado` como tales.
+1b. Detecta los **cursos compartidos**: los que aparecen en el `cursos_requeridos` de más de un objetivo activo. Merecen mención propia: son los que rinden doble.
 2. Lee `configuracion.json` → estado de las reglas.
-3. Para cada curso listado en `objetivo_actual.cursos_generados`:
+2b. Lee `historial.json` y calcula el **ritmo real**:
+   - `horas_por_sesion` = promedio de `duracion_min`/60. Con <5 sesiones, no lo uses: di "aún sin medir" y usa 1.5 h declarándolo como suposición.
+   - `horas_por_semana_real` = suma de duraciones de las últimas 4 semanas / 4. Con <3 semanas de datos, di "aún sin medir".
+   - `horas_por_semana_real` **por objetivo** (filtrando por `objetivo_id`): revela a qué se está yendo el tiempo de verdad, que puede no ser lo que dice la prioridad.
+3. Para cada curso requerido por algún objetivo activo (si lo requieren varios, muéstralo una vez y marca cuáles):
    - Lee `temario.json` del curso → campo `modo_estudio`.
    - Lee `progreso.json` del curso.
    - Cuenta temas por estado (`no_iniciado`, `en_progreso`, `completado`).
@@ -39,16 +44,36 @@ Lee y agrega información de varios archivos para dar una foto rápida del progr
 ESTADO DEL PROYECTO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Objetivo actual: [objetivo_final]
-Deadline: [fecha_limite]  ·  [X] horas/semana  ·  faltan [N] semanas
+Presupuesto (línea de tiempo, en cola por prioridad):
+  [desde] → [hasta]: [N] h/semana — [nota]     ← marca con «AHORA» el periodo vigente
+  ...
+Ritmo real: [H] h/sesión (medido sobre [N] sesiones | AÚN SIN MEDIR, se asume 1.5)
+            [W] h/semana reales vs [D] declaradas → [coherente / desviación del X%]
 Configuración: modo una-clase-por-sesión [ACTIVO / INACTIVO]
 
-Cursos:
-  [Nombre curso 1] — [ruta/cadencia/hito] — [N/M] temas — [S] sesiones
-    └── Última sesión: [fecha o NUNCA]
-    └── Tema en curso: [nombre del tema] ([porcentaje]%)
-    └── Dificultades pendientes: [K]
-  [Nombre curso 2] — ...
+PRÓXIMO HITO: [nombre] de [objetivo] — [fecha] — faltan [N] semanas
+
+━━ [prioridad P] OBJETIVO [id]: [objetivo_final]   [ACTIVO / LATENTE / COMPLETADO]
+    (si LATENTE) Despierta cuando: [condicion_activacion] → [aún no se cumple / ¡YA SE CUMPLE!]
+    Hitos:
+      · [nombre] — [fecha] — faltan [N] sem — necesita [X] h, quedan [Y] h → [CABE / NO CABE por Z h]
+      · [nombre] — [fecha] — ... 
+      · [nombre] — condicional, no se planifica
+    (viabilidad calculada con [H] h/sesión [medido/SUPUESTO], descontando [W] h ya reservadas
+     por objetivos más prioritarios, y sin recobrar los cursos ya pagados por ellos)
+
+    Cursos:
+      [Nombre curso 1] — [ruta/cadencia/hito] — [N/M] temas — [S] sesiones
+        └── Última sesión: [fecha o NUNCA]
+        └── Tema en curso: [nombre del tema] ([porcentaje]%)
+        └── Dificultades pendientes: [K]
+        └── (si aplica) COMPARTIDO con: [otros objetivos que lo requieren]
+
+━━ [prioridad P] OBJETIVO [id]: ...
+    ... (repite por cada objetivo, ordenados por prioridad)
+
+Cursos compartidos ([N]): [curso → objetivos que lo piden], ...
+  Estos rinden doble: se estudian una vez y avanzan varios objetivos.
 
 Repasos vencidos ([N]): [tema_id (vencido hace X días)], ...
 Próximos repasos: [tema_id (fecha)], ...
@@ -83,6 +108,19 @@ Emite una alerta por cada caso que se cumpla. **No las omitas por parecer alarmi
    `⚠ [N] temas con repaso vencido. Se están acumulando más rápido de lo que se cierran.`
 6. **Atraso de plan** — `sum(sesiones_dedicadas)` de un curso supera en >50% sus `sesiones_estimadas` acumuladas.
    `⚠ [Curso] va [N]% por encima de las sesiones estimadas.`
+7. **Latente que debería estar despierto** — un objetivo `latente` cuya `condicion_activacion` ya se cumple.
+   `⚠ [Objetivo] cumple su condición de activación y sigue latente. Debería estar compitiendo por horas.`
+   Es el hermano del canario de cursos huérfanos: un objetivo dormido de más no se queja solo.
+8. **Hito inviable** — algún hito no condicional cuya validación (regla 10, cola con prioridad) ya no cabe.
+   `⚠ [Hito] de [Objetivo] no entra para [fecha]: faltan ~[N] horas.`
+   Si el hito es de examen universitario, **no es negociable**: la opción no es mover la fecha, es recortar alcance o aflojar otro objetivo.
+9. **Objetivo prioritario cediendo** — el objetivo más prioritario (el de `prioridad` MENOR: 1 = lo primero) va atrasado mientras uno menos prioritario va al día.
+   `⚠ [Objetivo prioritario] va atrasado y [Objetivo secundario] al día. Considera aflojar la cadencia del secundario.`
+10. **Horas prometidas que no ocurren** — con ≥3 semanas de historial, `horas_por_semana_real` difiere >30% de la suma declarada.
+   `⚠ El plan asume [S] h/semana pero llevas [W] h/semana reales. Todas las proyecciones de deadline están calculadas sobre horas que no están ocurriendo.`
+   Es la alerta que solo el historial puede dar. Un plan puede tener la aritmética perfecta y aun así estar validado contra un usuario imaginario.
+11. **Ritmo sin medir** — `historial.json` tiene menos de 5 sesiones.
+   `⚠ Ritmo real aún sin medir ([N] sesiones). Las viabilidades de arriba asumen 1.5 h/sesión — trátalas como estimaciones, no como hechos.`
 
 **Sugiere correr `estado` cada 2-3 semanas.** Es barato, no arranca nada, y es el único momento en que el proyecto se audita a sí mismo.
 

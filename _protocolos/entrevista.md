@@ -9,8 +9,8 @@
 Al inicio de cualquier interacción, revisa si existe `objetivo.json` en la raíz:
 
 - **Si NO existe** → estás en modo SETUP. Sigue este archivo paso a paso antes de cualquier otra cosa.
-- **Si existe y `objetivo_actual.estado_setup: "completo"`** → ignora este archivo, sigue el protocolo normal del `README.md` raíz.
-- **Si existe pero `objetivo_actual.estado_setup: "incompleto"`** → retoma el setup desde donde quedó (revisa qué pasos ya se cumplieron).
+- **Si existe y TODOS los objetivos con `estado: "activo"` tienen `estado_setup: "completo"`** → ignora este archivo, sigue el protocolo normal del `README.md` raíz.
+- **Si existe y ALGUNO tiene `estado_setup: "incompleto"`** → retoma el setup de ESE objetivo desde donde quedó (revisa qué pasos ya se cumplieron). No toques los objetivos que ya están completos.
 
 ---
 
@@ -57,10 +57,16 @@ Al terminar, muestra al usuario un resumen y pide confirmación antes de crear `
 
 Para `objetivo.json`:
 1. Copia el archivo `_plantillas/plantilla-objetivo.json` a la raíz como `objetivo.json`.
-2. Reemplaza los valores placeholder con los reales de la entrevista.
-3. Marca `objetivo_actual.estado_setup: "incompleto"` — solo pasa a `"completo"` cuando termine TODO el setup (Paso 6).
-4. Pon `objetivo_actual.fecha_inicio` con la fecha de hoy.
-5. Deja `objetivos_completados` como array vacío y `objetivo_actual.cursos_generados` como array vacío (se poblará en Paso 4).
+2. Reemplaza los valores placeholder con los reales de la entrevista, en el primer (y único) objetivo del array `objetivos`.
+3. Marca su `estado_setup: "incompleto"` — solo pasa a `"completo"` cuando termine TODO el setup (Paso 6).
+4. `estado: "activo"` y `condicion_activacion: null`. (Un objetivo `latente` solo aparece en ampliaciones, no en el setup inicial.)
+5. Pon su `fecha_inicio` con la fecha de hoy y su `cursos_requeridos` como array vacío (se poblará en Paso 4).
+6. Llena `presupuesto_horas` (raíz). **Es una línea de tiempo de periodos, no un número.** Pregunta al usuario si su disponibilidad va a cambiar en el horizonte del plan (vacaciones, un semestre que arranca, un trabajo que empieza o acaba) y crea un periodo por cada tramo distinto. Si es estable, un solo periodo con `"hasta": null` basta — pero **pregúntaselo, no lo asumas**: un escalar plano promedia mundos distintos y miente en ambas direcciones. **No hay presupuesto por objetivo**: los objetivos compiten por este (ver "El presupuesto" en el `README.md` raíz).
+6b. Pon el `liston` del objetivo: `"dominar"` si hay que saberlo de verdad (examen competitivo, certificación) o `"pasar"` si basta con aprobar. Determina qué precio se cobra de cada tema. Ver "El listón" en el `README.md` raíz.
+7. `prioridad: 1`. Es ordinal (1 = lo primero) y solo importa cuando haya más de un objetivo activo.
+8. Llena `hitos` con las fechas de corte reales del objetivo. Si solo hay una (un examen, una entrega), **un solo hito basta** — no inventes cortes que no existen. Si el objetivo no tiene ninguna fecha, deja el array vacío y `fecha_limite: null`.
+
+> **Nota:** `objetivos` es un **array** aunque en el setup inicial solo tenga un elemento. El usuario puede añadir objetivos paralelos después, con ciclos de vida independientes. No lo colapses a un objeto único ni asumas que siempre habrá uno. Ver "Objetivos paralelos" en el `README.md` raíz.
 
 Para `configuracion.json` (si aún no existe en la raíz):
 1. Copia `_plantillas/plantilla-configuracion.json` a la raíz como `configuracion.json`.
@@ -114,9 +120,9 @@ NN-nombre-curso/
 
 Numera secuencialmente (`01-`, `02-`, etc.) respetando el orden de dependencias.
 
-En el `README.md` de cada curso, declara los **prerrequisitos externos** (qué otros cursos de la lista deben completarse antes).
+En el `README.md` de cada curso puedes declarar los **prerrequisitos externos** en prosa, como resumen para el usuario. Pero la verdad operativa va **a nivel de tema**, en `prerrequisitos_externos` de cada tema del `temario.json` (formato `"curso/tema_id"`) — ver la regla 4 del checklist de calidad. Un prerrequisito declarado solo a nivel de curso arrastra el curso entero a la planificación e infla el plan.
 
-Registra los nombres de las carpetas creadas en `objetivo_actual.cursos_generados` en `objetivo.json`.
+Registra los nombres de las carpetas creadas en el `cursos_requeridos` **del objetivo que los necesita**, dentro de `objetivos` en `objetivo.json`. Esa lista es la única fuente de verdad de qué objetivo requiere qué curso — no dupliques el dato dentro de los `temario.json`. Recuerda que es **muchos-a-muchos**: si más adelante otro objetivo necesita el mismo curso, se añade a su lista también, sin copiar la carpeta.
 
 ---
 
@@ -141,7 +147,12 @@ Guarda la bibliografía elegida — irá dentro de `temario.json`.
 
 ### 5b. Generar `temario.json` aplicando el checklist de calidad
 
-Sigue el **checklist obligatorio** definido en la sección "Reglas de calidad del temario" del `README.md` raíz. No inventes temas al azar ni copies índices literales de libros. Aplica ingeniería inversa desde el objetivo del curso.
+Sigue el **checklist obligatorio** definido en la sección "Reglas de calidad del temario" del `README.md` raíz. **Léelo entero antes de escribir el primer tema; no lo cites de memoria.** No inventes temas al azar ni copies índices literales de libros. Aplica ingeniería inversa desde el objetivo del curso.
+
+Presta atención especial a tres reglas que son fáciles de saltarse y caras de arreglar después:
+- **Regla 4** — prerrequisitos SIEMPRE a nivel de tema (`prerrequisitos_internos` y `prerrequisitos_externos`), nunca a nivel de curso.
+- **Regla 11** — `modo_estudio` es obligatorio. Sin él el curso queda huérfano y nunca se estudia.
+- **Regla 12** — el grafo crece desde la necesidad hacia atrás. **Solo los temas que hacen falta**, no los que "debería tener" un curso de esa materia. Un curso creado para dar soporte a otro puede tener tres temas y estar perfecto. El criterio de parada es llegar a algo que el usuario ya domina, no que el curso "se vea completo".
 
 Muestra el temario al usuario y pide ajustes antes de guardarlo.
 
@@ -164,9 +175,14 @@ Asigna también `prioridad` (entero): desempata cuando dos cursos compiten por l
 Después de generar el temario, calcula:
 
 ```
-tiempo_estimado = suma(sesiones_estimadas) × 1.5 horas × 1.2 (buffer)
-tiempo_disponible = semanas_hasta_deadline × horas_semanales
+tiempo_estimado = suma(sesiones_estimadas) × HORAS_POR_SESION × 1.2 (buffer)
+tiempo_disponible = integral de presupuesto_horas sobre [hoy, fecha_del_hito]
+                    (NO es una multiplicación: los periodos tienen ritmos distintos)
 ```
+
+`HORAS_POR_SESION` sale de `historial.json` (promedio de `duracion_min`/60). Ver la regla 10 del checklist de calidad en el `README.md` raíz.
+
+**En el setup inicial el historial está vacío por definición**, así que aquí siempre usarás el provisional de 1.5 h. **Dilo explícitamente al usuario:** *"esta estimación asume sesiones de 1.5 h; en unas semanas el historial dirá tu ritmo real y la reviso"*. Presentar una viabilidad calculada sobre una constante inventada como si fuera un hecho es la forma más fácil de que un plan nazca mintiendo.
 
 Si `tiempo_estimado > tiempo_disponible`:
 - Reporta el desfase al usuario.
@@ -180,13 +196,13 @@ Repite el paso 5 para cada curso de la lista.
 
 Cuando todos los cursos tengan su `temario.json` y el usuario haya aprobado el plan completo:
 
-1. Actualiza `objetivo.json`: `objetivo_actual.estado_setup: "completo"`.
+1. Actualiza `objetivo.json`: `estado_setup: "completo"` en el objetivo dentro de `objetivos`.
 2. Muéstrale al usuario el resumen final: cuántos cursos, sesiones totales, fecha estimada de finalización.
 3. Sugiere por dónde arrancar (el primer curso sin prerrequisitos).
 
 **A partir de este punto**, cualquier futura sesión sigue el protocolo normal del `README.md` raíz.
 
-Si en el futuro el usuario completa este objetivo y quiere agregar uno nuevo, consulta `_protocolos/expansion.md` en lugar de este archivo.
+Si en el futuro el usuario quiere agregar un objetivo nuevo —ya sea porque completó este o porque quiere perseguir otro **en paralelo**— consulta `_protocolos/expansion.md` en lugar de este archivo.
 
 ---
 

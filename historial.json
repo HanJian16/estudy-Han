@@ -1,0 +1,5 @@
+{
+  "nota": "Registro append-only de sesiones de estudio. NUNCA se sobreescribe una entrada existente: solo se agregan al final. Es la única fuente de verdad sobre CUÁNTO TIEMPO se estudia de verdad. Ver _plantillas/plantilla-historial.json para la descripción de cada campo.",
+  "nota_arranque": "Creado el 2026-07-16, cuando el plan ya llevaba 12 sesiones (temas 01-08 de aritmética). Esas 12 sesiones NO están aquí: se registraron antes de que este archivo existiera y su duración real no se conoce — inventarla sería exactamente el problema que este archivo viene a resolver. Sus fechas siguen en los progreso.json y en los README de clase. El historial arranca vacío a propósito y empieza a medir desde la próxima sesión.",
+  "sesiones": []
+}

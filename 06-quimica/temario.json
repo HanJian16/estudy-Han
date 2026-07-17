@@ -4,7 +4,7 @@
   "modo_estudio": {
     "tipo": "ruta",
     "cadencia_dias": null,
-    "prioridad": 2,
+    "prioridad": 4,
     "condicion": null,
     "condicion_urgente": null,
     "nota": "Progresión lineal. Depende de la base numérica de Aritmética."
@@ -43,7 +43,10 @@
       "nombre": "WolframAlpha",
       "url": "https://www.wolframalpha.com",
       "uso": "Verificar cálculos estequiométricos y de soluciones cuando el usuario dude de su resultado.",
-      "para_temas": ["09-estequiometria", "10-soluciones"]
+      "para_temas": [
+        "09-estequiometria",
+        "10-soluciones"
+      ]
     }
   ],
   "temas": [
@@ -52,7 +55,11 @@
       "nombre": "Materia y su clasificación",
       "descripcion": "Estados y propiedades de la materia, sustancias puras y mezclas, cambios físicos y químicos, métodos de separación.",
       "prerrequisitos_internos": [],
-      "sesiones_estimadas": 1,
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 1,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -61,14 +68,22 @@
         "Seleccionar el método de separación adecuado para una mezcla dada"
       ],
       "criterio_dominio": "Responde 9/10 preguntas conceptuales tipo examen sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Materia"]
+      "referencias": [
+        "Lumbreras Química — cap. Materia"
+      ]
     },
     {
       "id": "02-estructura-atomica",
       "nombre": "Estructura atómica y números cuánticos",
       "descripcion": "Partículas subatómicas, núclidos e iones, isótopos; números cuánticos y configuración electrónica.",
-      "prerrequisitos_internos": ["01-materia"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "01-materia"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -77,14 +92,22 @@
         "Determinar los números cuánticos válidos de un electrón dado"
       ],
       "criterio_dominio": "Resuelve 8/10 ejercicios de estructura atómica y configuración sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Estructura atómica"]
+      "referencias": [
+        "Lumbreras Química — cap. Estructura atómica"
+      ]
     },
     {
       "id": "03-tabla-periodica",
       "nombre": "Tabla periódica y propiedades periódicas",
       "descripcion": "Organización por grupos y periodos, ubicación de elementos por configuración, propiedades periódicas (radio, electronegatividad, energía de ionización).",
-      "prerrequisitos_internos": ["02-estructura-atomica"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "02-estructura-atomica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 2,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -93,14 +116,22 @@
         "Identificar familias representativas y sus características (alcalinos, halógenos, etc.)"
       ],
       "criterio_dominio": "Resuelve 8/10 ejercicios de ubicación y propiedades periódicas sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Tabla periódica"]
+      "referencias": [
+        "Lumbreras Química — cap. Tabla periódica"
+      ]
     },
     {
       "id": "04-enlace-quimico",
       "nombre": "Enlace químico",
       "descripcion": "Enlace iónico, covalente (normal, dativo, polar/apolar) y metálico; estructuras de Lewis, geometría molecular básica y fuerzas intermoleculares.",
-      "prerrequisitos_internos": ["03-tabla-periodica"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "03-tabla-periodica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -109,14 +140,22 @@
         "Relacionar fuerzas intermoleculares con propiedades físicas (punto de ebullición, solubilidad)"
       ],
       "criterio_dominio": "Resuelve 8/10 ejercicios de enlace y Lewis tipo examen sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Enlace químico"]
+      "referencias": [
+        "Lumbreras Química — cap. Enlace químico"
+      ]
     },
     {
       "id": "05-nomenclatura",
       "nombre": "Nomenclatura inorgánica",
       "descripcion": "Estados de oxidación, óxidos, hidróxidos, ácidos, sales e hidruros en nomenclatura clásica, Stock e IUPAC.",
-      "prerrequisitos_internos": ["04-enlace-quimico"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "04-enlace-quimico"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -125,14 +164,22 @@
         "Identificar la función química de un compuesto a partir de su fórmula"
       ],
       "criterio_dominio": "Nombra/formula correctamente 8/10 compuestos variados sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Nomenclatura"]
+      "referencias": [
+        "Lumbreras Química — cap. Nomenclatura"
+      ]
     },
     {
       "id": "06-unidades-quimicas",
       "nombre": "Unidades químicas de masa",
       "descripcion": "Mol, masa molar, número de Avogadro, composición centesimal, fórmula empírica y molecular.",
-      "prerrequisitos_internos": ["02-estructura-atomica"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "02-estructura-atomica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -141,14 +188,22 @@
         "Determinar fórmulas empíricas y moleculares a partir de datos experimentales"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de unidades químicas tipo examen sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Unidades químicas de masa"]
+      "referencias": [
+        "Lumbreras Química — cap. Unidades químicas de masa"
+      ]
     },
     {
       "id": "07-estado-gaseoso",
       "nombre": "Estado gaseoso",
       "descripcion": "Ecuación universal de los gases, procesos restringidos (Boyle, Charles, Gay-Lussac), mezcla de gases y presiones parciales.",
-      "prerrequisitos_internos": ["06-unidades-quimicas"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "06-unidades-quimicas"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -157,14 +212,22 @@
         "Calcular densidades y masas molares de gases en condiciones dadas"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de gases tipo examen sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Estado gaseoso"]
+      "referencias": [
+        "Lumbreras Química — cap. Estado gaseoso"
+      ]
     },
     {
       "id": "08-reacciones-quimicas",
       "nombre": "Reacciones químicas y balanceo",
       "descripcion": "Tipos de reacciones, balanceo por tanteo y por método redox (agente oxidante y reductor).",
-      "prerrequisitos_internos": ["05-nomenclatura"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "05-nomenclatura"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -173,14 +236,23 @@
         "Calcular la suma de coeficientes de ecuaciones balanceadas"
       ],
       "criterio_dominio": "Balancea correctamente 8/10 ecuaciones redox tipo examen sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Reacciones químicas"]
+      "referencias": [
+        "Lumbreras Química — cap. Reacciones químicas"
+      ]
     },
     {
       "id": "09-estequiometria",
       "nombre": "Estequiometría",
       "descripcion": "Relaciones molares y de masa en reacciones, reactivo limitante, pureza de reactivos y rendimiento de reacción.",
-      "prerrequisitos_internos": ["06-unidades-quimicas", "08-reacciones-quimicas"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "06-unidades-quimicas",
+        "08-reacciones-quimicas"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -189,14 +261,23 @@
         "Incorporar pureza y rendimiento porcentual en los cálculos"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de estequiometría nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Estequiometría", "Exámenes UNI: preguntas de estequiometría"]
+      "referencias": [
+        "Lumbreras Química — cap. Estequiometría",
+        "Exámenes UNI: preguntas de estequiometría"
+      ]
     },
     {
       "id": "10-soluciones",
       "nombre": "Soluciones",
       "descripcion": "Unidades de concentración física y química (% masa, molaridad, normalidad), dilución, mezcla de soluciones y neutralización.",
-      "prerrequisitos_internos": ["09-estequiometria"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "09-estequiometria"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -205,14 +286,22 @@
         "Aplicar la relación de neutralización ácido-base en titulaciones simples"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de soluciones tipo examen sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Soluciones"]
+      "referencias": [
+        "Lumbreras Química — cap. Soluciones"
+      ]
     },
     {
       "id": "11-cinetica-equilibrio",
       "nombre": "Cinética y equilibrio químico",
       "descripcion": "Velocidad de reacción, factores que la afectan, constante de equilibrio Kc/Kp y principio de Le Chatelier.",
-      "prerrequisitos_internos": ["09-estequiometria"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "09-estequiometria"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -220,14 +309,22 @@
         "Predecir el desplazamiento del equilibrio con el principio de Le Chatelier"
       ],
       "criterio_dominio": "Resuelve 7/10 ejercicios de equilibrio tipo examen sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Equilibrio químico"]
+      "referencias": [
+        "Lumbreras Química — cap. Equilibrio químico"
+      ]
     },
     {
       "id": "12-acidos-bases",
       "nombre": "Ácidos, bases y pH",
       "descripcion": "Teorías ácido-base (Arrhenius, Brønsted-Lowry), escala de pH y pOH, cálculo en ácidos y bases fuertes.",
-      "prerrequisitos_internos": ["10-soluciones"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "10-soluciones"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -236,14 +333,23 @@
         "Clasificar soluciones como ácidas, básicas o neutras a partir de concentraciones"
       ],
       "criterio_dominio": "Resuelve 8/10 ejercicios de pH tipo examen sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Ácidos y bases"]
+      "referencias": [
+        "Lumbreras Química — cap. Ácidos y bases"
+      ]
     },
     {
       "id": "13-electroquimica",
       "nombre": "Electroquímica",
       "descripcion": "Celdas galvánicas y electrolíticas, leyes de Faraday de la electrólisis. Frecuencia media-baja en el examen.",
-      "prerrequisitos_internos": ["08-reacciones-quimicas", "10-soluciones"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "08-reacciones-quimicas",
+        "10-soluciones"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": true,
       "objetivos_aprendizaje": [
@@ -251,14 +357,22 @@
         "Aplicar las leyes de Faraday en cálculos de electrólisis"
       ],
       "criterio_dominio": "Resuelve 7/10 ejercicios de electroquímica sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Electroquímica"]
+      "referencias": [
+        "Lumbreras Química — cap. Electroquímica"
+      ]
     },
     {
       "id": "14-quimica-organica-hidrocarburos",
       "nombre": "Química orgánica: carbono e hidrocarburos",
       "descripcion": "Propiedades del carbono, tipos de carbono, alcanos, alquenos, alquinos y aromáticos: nomenclatura IUPAC e isomería básica.",
-      "prerrequisitos_internos": ["04-enlace-quimico"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "04-enlace-quimico"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -267,14 +381,22 @@
         "Identificar isómeros de cadena y posición"
       ],
       "criterio_dominio": "Nombra/formula correctamente 8/10 hidrocarburos variados sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Química orgánica"]
+      "referencias": [
+        "Lumbreras Química — cap. Química orgánica"
+      ]
     },
     {
       "id": "15-funciones-organicas",
       "nombre": "Funciones orgánicas oxigenadas y nitrogenadas",
       "descripcion": "Alcoholes, aldehídos, cetonas, ácidos carboxílicos, ésteres, éteres, aminas y amidas: reconocimiento y nomenclatura básica.",
-      "prerrequisitos_internos": ["14-quimica-organica-hidrocarburos"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "14-quimica-organica-hidrocarburos"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -283,7 +405,10 @@
         "Ordenar funciones por prioridad en compuestos con más de un grupo"
       ],
       "criterio_dominio": "Identifica/nombra correctamente 8/10 compuestos funcionales sin ayuda",
-      "referencias": ["Lumbreras Química — cap. Funciones orgánicas"]
+      "referencias": [
+        "Lumbreras Química — cap. Funciones orgánicas"
+      ]
     }
-  ]
+  ],
+  "_nota_migracion_niveles": "MIGRACION MECANICA 2026-07-16 al modelo de dos dimensiones (ver 'El conocimiento se mide en DOS dimensiones' en el README raiz). 'sesiones_estimadas' y 'sesiones_estimadas_pasar' se convirtieron en 'sesiones_por_nivel' (coste INCREMENTAL por salto). El reparto es una APROXIMACION ARITMETICA, no pedagogia medida: para los cursos base, base=el antiguo coste 'pasar' y el resto hasta el antiguo coste 'dominar' se repartio entre intermedio y avanzado; para los cursos universitarios, base+intermedio suman el coste original (que se dimensiono para aprobar) y 'avanzado' es una estimacion que hoy ningun objetivo requiere. REVISAR con datos reales de historial.json. OJO — 'criterio_dominio' sigue siendo UN SOLO STRING en la mayoria de temas: es el criterio del nivel para el que se escribio (avanzado en los cursos base, intermedio en los universitarios). Los criterios de los otros niveles NO se fabricaron a proposito: se redactan cuando cada tema se estudia, que es cuando se sabe que distingue de verdad un nivel de otro. Si un tema tiene criterio_dominio como string, trata ese string como el criterio del nivel objetivo del curso y ESCRIBE los que falten al tocarlo."
 }

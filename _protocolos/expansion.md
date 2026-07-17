@@ -36,13 +36,40 @@ Haz las siguientes preguntas al usuario, una por una:
 2. **Relación con lo anterior**
    "¿Este objetivo continúa lo que ya aprendiste (ej: cálculo 2 después de cálculo 1) o es un área nueva?"
 
-3. **Fecha límite y horas semanales**
-   "¿Hay deadline? ¿Cuántas horas por semana puedes dedicarle ahora?"
+3. **Fecha límite**
+   "¿Hay deadline para este objetivo? ¿Para cuándo?"
+   *(Si no hay, `fecha_limite: null` y no se le aplican validaciones de tiempo — pero sus horas sí cuentan contra el presupuesto.)*
 
-4. **Estado del objetivo anterior**
-   "¿Damos por completado el objetivo anterior o quieres mantener ambos activos en paralelo?"
-   - Si dice completado → mueve el `objetivo_actual` a `objetivos_completados` en `objetivo.json` con `fecha_completado`.
-   - Si dice en paralelo → mantén el anterior como `objetivo_actual` y agrega el nuevo también (aunque esto es raro y generalmente no recomendado; sugiere completar uno antes de arrancar otro).
+4. **Estado de los objetivos anteriores**
+   "¿Damos por completado algún objetivo anterior, o quieres mantenerlos todos activos en paralelo?"
+   - Si dice completado → pon `estado: "completado"` y `fecha_completado` en ese objetivo. Se queda en el array `objetivos`: su historia es evidencia del conocimiento. Deja de competir por horas automáticamente.
+   - Si dice en paralelo → simplemente agrega el nuevo al array `objetivos` con `estado: "activo"`. Es una situación soportada y normal: objetivos distintos con ciclos de vida distintos (ver "Objetivos paralelos" en el `README.md` raíz).
+
+5. **¿Es un objetivo para AHORA o para después?**
+   "¿Esto lo empiezas ya, o solo tiene sentido cuando termines otra cosa?"
+   - Ahora → `estado: "activo"`, `condicion_activacion: null`.
+   - Después → `estado: "latente"` y escribe su `condicion_activacion` en **aritmética verificable** (ej: `"cuando obj-1 pase a estado completado"`). El objetivo se genera entero —temario incluido— pero no compite por horas hasta que despierte. El PASO 2a del `README.md` raíz lo despierta solo.
+   Un objetivo latente es la forma correcta de registrar "esto lo haré después del examen" sin que contamine la planificación de ahora ni se olvide.
+
+6. **Hitos**
+   "¿Qué fechas de corte tiene? ¿Hay más de una, y cubren cosas distintas?"
+   Llena el array `hitos`. Si solo hay una fecha, un hito basta. Si hay varias que cubren contenido distinto (parcial/final de un semestre), decláralas todas y marca con `condicional: true` las que solo ocurren si algo sale mal (sustitutorios). Ver "Hitos" en el `README.md` raíz.
+
+7. **Prioridad relativa**
+   "Si algún día tienes que elegir entre estos objetivos, ¿cuál manda?"
+   Asigna `prioridad`. Es **ordinal: 1 = lo primero, gana el MENOR** — tal como la gente lo dice ("primero el semestre, segundo el examen, tercero el inglés"). Determina quién reserva horas antes en la validación de viabilidad y quién gana los desempates del PASO 5.5.
+   **No hace falta prever reordenamientos futuros:** cuando un objetivo se complete, el siguiente sube solo. Si el usuario dice "cuando acabe el semestre quiero que la UNI pase a ser lo primero", eso ya pasa automáticamente — díselo en vez de inventar un mecanismo.
+
+8. **Cursos compartidos y crecimiento del grafo**
+
+   `cursos_requeridos` lista los cursos de los que el objetivo **trata**, no todo lo que toca. Lo que haga falta de otros cursos entra solo a través de los `prerrequisitos_externos` de sus temas — y solo los temas nombrados. Un objetivo de aprobar un semestre requiere sus cursos universitarios; de la base arrastra tres temas de geometría, no los trece.
+
+   Si el objetivo nuevo trata de cursos que ya existen (el Paso 2 de análisis de reutilización te lo dice), **añade esas carpetas a su `cursos_requeridos` sin duplicar nada**: es muchos-a-muchos. No copies el curso, no lo muevas, no crees una versión paralela.
+
+   Y cuando un curso nuevo necesite algo que no existe, aplica la **regla 12 del checklist de calidad** (crecimiento desde la necesidad hacia atrás):
+   - Falta un tema en un curso que existe → agrégalo a ESE curso.
+   - Falta el curso entero → créalo **solo con los temas necesarios**, no con los que "debería tener".
+   - Hazlo **transitivamente**, parando al llegar a algo que el usuario ya tiene `completado`.
 
 ---
 
@@ -94,44 +121,83 @@ Aplica el **mismo checklist de calidad del temario** definido en el `README.md` 
 
 Actualiza el archivo con la nueva estructura:
 
+Ejemplo con **dos objetivos en paralelo** (el caso que este protocolo debe soportar):
+
+Ejemplo con **tres objetivos en paralelo**, uno de ellos latente y con cursos compartidos (el caso que este protocolo debe soportar):
+
 ```json
 {
-  "objetivo_actual": {
-    "id": "obj-2",
-    "objetivo_final": "Aprobar cálculo 2",
-    "fecha_limite": "2027-06-01",
-    "horas_semanales": 6,
-    "nivel_actual_al_inicio": "Cálculo 1, álgebra, trigonometría dominados",
-    "motivacion": "Continuidad de la carrera",
-    "fecha_inicio": "2026-12-15",
-    "estado_setup": "completo",
-    "cursos_generados": ["04-calculo-2"]
-  },
-  "objetivos_completados": [
+  "presupuesto_horas": [
+    { "desde": "2026-07-16", "hasta": "2026-08-09", "horas_semanales": 35, "nota": "vacaciones" },
+    { "desde": "2026-08-10", "hasta": null,         "horas_semanales": 15, "nota": "con clases encima" }
+  ],
+  "objetivos": [
+    {
+      "id": "obj-2",
+      "estado": "activo",
+      "condicion_activacion": null,
+      "prioridad": 1,
+      "objetivo_final": "Aprobar el 4to semestre de Ing. Mecatrónica en la UNFV",
+      "fecha_limite": "2026-11-28",
+      "hitos": [
+        { "id": "parcial", "nombre": "Evaluación Parcial", "fecha": "2026-09-28",
+          "cubre": "Primera mitad de cada curso (semanas 1-8)", "condicional": false },
+        { "id": "final", "nombre": "Evaluación Final", "fecha": "2026-11-23",
+          "cubre": "Segunda mitad (semanas 8-16). NO acumulativo.", "condicional": false },
+        { "id": "sustitutorio", "nombre": "Sustitutorio", "fecha": null,
+          "cubre": "TODO el semestre. Solo si se jala una nota.", "condicional": true }
+      ],
+      "estado_setup": "completo",
+      "cursos_requeridos": ["04-trigonometria", "05-fisica", "09-mate-superior", "10-estatica"]
+    },
     {
       "id": "obj-1",
-      "objetivo_final": "Aprobar cálculo 1",
-      "fecha_limite": "2026-12-01",
-      "fecha_inicio": "2026-06-30",
-      "fecha_completado": "2026-12-05",
-      "cursos_generados": ["01-aritmetica", "02-algebra", "03-trigonometria", "04-calculo-1"]
+      "estado": "activo",
+      "condicion_activacion": null,
+      "prioridad": 2,
+      "objetivo_final": "Ingresar a la UNI vía examen de admisión 2027-1",
+      "fecha_limite": "2027-02-15",
+      "hitos": [
+        { "id": "examen-uni", "nombre": "Examen de admisión", "fecha": "2027-02-15",
+          "cubre": "Todo el temario de sus cursos requeridos", "condicional": false }
+      ],
+      "estado_setup": "completo",
+      "cursos_requeridos": ["01-aritmetica", "04-trigonometria", "05-fisica", "07-aptitud-academica"]
+    },
+    {
+      "id": "obj-3",
+      "estado": "latente",
+      "condicion_activacion": "Cuando obj-1 pase a estado 'completado' (tras el examen del 15.02.2027, sea cual sea el resultado).",
+      "prioridad": 4,
+      "objetivo_final": "Dominar de verdad las bases antes del 5to semestre",
+      "fecha_limite": null,
+      "hitos": [],
+      "estado_setup": "completo",
+      "cursos_requeridos": ["11-dibujo-ingenieria", "12-geometria-descriptiva"]
     }
   ]
 }
 ```
 
+Fíjate en que `04-trigonometria` y `05-fisica` están en **dos** objetivos a la vez. Eso es correcto y deliberado.
+
 **Reglas:**
-- El objetivo anterior pasa al array `objetivos_completados` con su `fecha_completado`.
-- El nuevo objetivo se convierte en `objetivo_actual` con un `id` incremental (`obj-2`, `obj-3`, ...).
-- `cursos_generados` lista SOLO los cursos generados o expandidos por este objetivo (los históricos quedan asociados a su objetivo original).
+- El objetivo nuevo se **agrega al array** `objetivos` con un `id` incremental (`obj-2`, `obj-3`, …). El orden del array da igual: manda `prioridad`.
+- Un objetivo pasa a `estado: "completado"` (con su `fecha_completado`) **solo cuando el usuario lo da por terminado** — nunca porque llegó uno nuevo. Se queda en el array: su historia es evidencia del conocimiento.
+- **No hay `horas_semanales` por objetivo.** Compiten por `presupuesto_horas` mediante la cola con prioridad (ver "El presupuesto" en el `README.md` raíz). Si ves `horas_semanales` dentro de un objetivo, o un `horas_semanales_disponibles` escalar en la raíz, es deuda de un esquema viejo: bórralo.
+- **Al añadir un objetivo, revisa si `presupuesto_horas` sigue siendo cierto.** Un objetivo nuevo suele venir con un cambio de vida (empieza un semestre, acaba un trabajo). Pregunta si la disponibilidad cambia y añade periodos si hace falta.
+- **Pon el `liston` del objetivo nuevo** (`dominar` o `pasar`). Si comparte cursos con otro objetivo de listón distinto, avisa al usuario del coste del cobro por diferencia ANTES de cerrar la ampliación.
+- `cursos_requeridos` es **muchos-a-muchos**. Un curso en varios objetivos NO es un error: es lo normal y lo que hace que estudiarlo una vez rinda dos veces. **No lo dupliques ni lo muevas para "resolver" el solapamiento.**
+- **Nunca sumes las `sesiones_estimadas` de dos objetivos que comparten cursos** para estimar el total: cuenta doble. Usa el algoritmo de la cola, que cobra cada tema una vez.
 
 ---
 
 ## Paso 5: Cerrar la ampliación
 
-1. Marca `estado_setup: "completo"` en el nuevo `objetivo_actual`.
-2. Actualiza el `README.md` raíz si es necesario (sección de "curso actual", diagrama de dependencias, etc.).
-3. Muestra al usuario el nuevo plan y sugiere por dónde arrancar (típicamente el primer tema del curso nuevo, o el primer tema pendiente que sea prerrequisito).
+1. Marca `estado_setup: "completo"` en el objetivo nuevo dentro de `objetivos`.
+2. **Re-valida la viabilidad de TODOS los objetivos activos**, no solo del nuevo, con el algoritmo de la cola con prioridad (regla 10 del checklist). Meter un objetivo nuevo por delante de otro le quita horas al de atrás: un plan que antes cabía puede haber dejado de caber. **Si eso pasa, dilo AHORA**, antes de dar por cerrada la ampliación: *"Con el semestre por delante, la UNI ya no entra para febrero: faltan ~40 h. ¿Recortamos opcionales, movemos algo, o aflojamos la cadencia de inglés?"* Este aviso es el punto entero de este paso.
+3. Actualiza el `README.md` raíz si es necesario (diagrama de dependencias, etc.).
+4. Muestra al usuario el plan completo: qué objetivos quedan activos y en qué orden, qué hitos tiene cada uno y cuál es el más cercano, y **qué cursos se comparten** (esos son los que rinden doble). Sugiere por dónde arrancar. Recuérdale que el PASO 5.5 repartirá las clases según prioridad, hitos y cadencias.
 
 A partir de aquí, las sesiones siguen el protocolo normal del `README.md` raíz.
 

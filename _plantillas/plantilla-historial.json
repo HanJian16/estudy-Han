@@ -1,0 +1,14 @@
+{
+  "nota": "Registro append-only de sesiones de estudio. NUNCA se sobreescribe una entrada existente: solo se agregan al final. Es la única fuente de verdad sobre CUÁNTO TIEMPO se estudia de verdad. Lo escribe el 'Protocolo al CERRAR una clase' del README.md raíz; lo leen las validaciones de deadline (regla 10 del checklist de calidad) y el comando `estado` (_protocolos/utilidades.md). Sin este archivo, toda fórmula de deadline usa una constante inventada de 1.5 h por sesión.",
+  "campos": {
+    "inicio": "ISO 8601 con hora, YYYY-MM-DDTHH:MM. Cuándo empezó la sesión.",
+    "duracion_min": "Entero, minutos. SE LE PREGUNTA AL USUARIO al cerrar — no lo estimes tú. Es el dato entero por el que existe este archivo.",
+    "tipo_clase": "continuacion | repaso | cadencia | hito | tema-nuevo (ver 'Anatomía de una clase' en el README raíz)",
+    "objetivo_id": "id del objetivo (array 'objetivos' de objetivo.json) al que sirve esta sesión. Si el curso lo requieren varios objetivos, pon el que le da su URGENCIA EFECTIVA — el más prioritario que lo pide. Así el reporte de horas por objetivo refleja quién está 'pagando' ese trabajo.",
+    "curso": "carpeta del curso, ej. 01-aritmetica",
+    "tema_principal": "tema_id trabajado, o null si la clase fue de repaso puro",
+    "temas_intercalados": "array de tema_id que entraron como repaso intercalado; [] si ninguno",
+    "nota": "opcional, una línea libre (ej. 'sesión externa vía handoff con ChatGPT')"
+  },
+  "sesiones": []
+}

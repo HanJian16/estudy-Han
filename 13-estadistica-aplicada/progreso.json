@@ -1,8 +1,8 @@
 {
-  "curso": "Trigonometría",
+  "curso": "Estadística Aplicada (UNFV, IV ciclo)",
   "progreso": [
     {
-      "tema_id": "01-sistemas-medicion-angular",
+      "tema_id": "01-distribuciones-discretas",
       "estado": "no_iniciado",
       "nivel_alcanzado": null,
       "ultima_sesion": null,
@@ -11,7 +11,7 @@
       "fecha_proximo_repaso": null
     },
     {
-      "tema_id": "02-sector-circular",
+      "tema_id": "02-distribuciones-continuas",
       "estado": "no_iniciado",
       "nivel_alcanzado": null,
       "ultima_sesion": null,
@@ -20,7 +20,7 @@
       "fecha_proximo_repaso": null
     },
     {
-      "tema_id": "03-razones-angulos-agudos",
+      "tema_id": "03-distribuciones-muestrales-tcl",
       "estado": "no_iniciado",
       "nivel_alcanzado": null,
       "ultima_sesion": null,
@@ -29,7 +29,7 @@
       "fecha_proximo_repaso": null
     },
     {
-      "tema_id": "04-triangulos-rectangulos-angulos-verticales",
+      "tema_id": "04-estimacion-intervalos",
       "estado": "no_iniciado",
       "nivel_alcanzado": null,
       "ultima_sesion": null,
@@ -38,7 +38,7 @@
       "fecha_proximo_repaso": null
     },
     {
-      "tema_id": "05-angulos-posicion-normal",
+      "tema_id": "05-pruebas-hipotesis-una-muestra",
       "estado": "no_iniciado",
       "nivel_alcanzado": null,
       "ultima_sesion": null,
@@ -47,7 +47,7 @@
       "fecha_proximo_repaso": null
     },
     {
-      "tema_id": "06-reduccion-primer-cuadrante",
+      "tema_id": "06-pruebas-hipotesis-dos-muestras",
       "estado": "no_iniciado",
       "nivel_alcanzado": null,
       "ultima_sesion": null,
@@ -56,7 +56,7 @@
       "fecha_proximo_repaso": null
     },
     {
-      "tema_id": "07-circunferencia-trigonometrica",
+      "tema_id": "07-chi-cuadrado",
       "estado": "no_iniciado",
       "nivel_alcanzado": null,
       "ultima_sesion": null,
@@ -65,7 +65,7 @@
       "fecha_proximo_repaso": null
     },
     {
-      "tema_id": "08-identidades-fundamentales",
+      "tema_id": "08-anova",
       "estado": "no_iniciado",
       "nivel_alcanzado": null,
       "ultima_sesion": null,
@@ -74,7 +74,7 @@
       "fecha_proximo_repaso": null
     },
     {
-      "tema_id": "09-angulos-compuestos",
+      "tema_id": "09-regresion-multiple",
       "estado": "no_iniciado",
       "nivel_alcanzado": null,
       "ultima_sesion": null,
@@ -83,7 +83,7 @@
       "fecha_proximo_repaso": null
     },
     {
-      "tema_id": "10-angulos-multiples",
+      "tema_id": "10-control-estadistico-calidad",
       "estado": "no_iniciado",
       "nivel_alcanzado": null,
       "ultima_sesion": null,
@@ -92,43 +92,7 @@
       "fecha_proximo_repaso": null
     },
     {
-      "tema_id": "11-transformaciones",
-      "estado": "no_iniciado",
-      "nivel_alcanzado": null,
-      "ultima_sesion": null,
-      "sesiones_dedicadas": 0,
-      "nivel_repaso": null,
-      "fecha_proximo_repaso": null
-    },
-    {
-      "tema_id": "12-funciones-trigonometricas",
-      "estado": "no_iniciado",
-      "nivel_alcanzado": null,
-      "ultima_sesion": null,
-      "sesiones_dedicadas": 0,
-      "nivel_repaso": null,
-      "fecha_proximo_repaso": null
-    },
-    {
-      "tema_id": "13-funciones-inversas",
-      "estado": "no_iniciado",
-      "nivel_alcanzado": null,
-      "ultima_sesion": null,
-      "sesiones_dedicadas": 0,
-      "nivel_repaso": null,
-      "fecha_proximo_repaso": null
-    },
-    {
-      "tema_id": "14-ecuaciones-trigonometricas",
-      "estado": "no_iniciado",
-      "nivel_alcanzado": null,
-      "ultima_sesion": null,
-      "sesiones_dedicadas": 0,
-      "nivel_repaso": null,
-      "fecha_proximo_repaso": null
-    },
-    {
-      "tema_id": "15-triangulos-oblicuangulos",
+      "tema_id": "11-diseno-experimentos",
       "estado": "no_iniciado",
       "nivel_alcanzado": null,
       "ultima_sesion": null,

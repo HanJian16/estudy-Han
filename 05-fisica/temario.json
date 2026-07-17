@@ -4,7 +4,7 @@
   "modo_estudio": {
     "tipo": "ruta",
     "cadencia_dias": null,
-    "prioridad": 2,
+    "prioridad": 4,
     "condicion": null,
     "condicion_urgente": null,
     "nota": "Progresión lineal. Depende de Álgebra y Trigonometría, por eso prioridad menor que ellas."
@@ -48,7 +48,11 @@
       "nombre": "Desmos",
       "url": "https://www.desmos.com/calculator",
       "uso": "Graficar posición/velocidad vs tiempo en cinemática y verificar relaciones funcionales.",
-      "para_temas": ["03-cinematica-rectilinea", "04-caida-libre-parabolico", "10-mas-ondas"]
+      "para_temas": [
+        "03-cinematica-rectilinea",
+        "04-caida-libre-parabolico",
+        "10-mas-ondas"
+      ]
     }
   ],
   "temas": [
@@ -57,7 +61,11 @@
       "nombre": "Análisis dimensional y unidades",
       "descripcion": "Magnitudes y dimensiones del SI, principio de homogeneidad y fórmulas empíricas.",
       "prerrequisitos_internos": [],
-      "sesiones_estimadas": 1,
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 2,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -66,14 +74,26 @@
         "Deducir fórmulas empíricas a partir de dependencias dimensionales"
       ],
       "criterio_dominio": "Resuelve 9/10 ejercicios de análisis dimensional tipo examen sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Análisis dimensional"]
+      "referencias": [
+        "Lumbreras Física — cap. Análisis dimensional"
+      ]
     },
     {
       "id": "02-vectores",
       "nombre": "Vectores",
       "descripcion": "Suma y resta de vectores (paralelogramo, polígono), descomposición rectangular, vectores unitarios y métodos geométricos.",
-      "prerrequisitos_internos": ["01-analisis-dimensional"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "01-analisis-dimensional"
+      ],
+      "prerrequisitos_externos": [
+        "04-trigonometria/03-razones-angulos-agudos",
+        "04-trigonometria/04-triangulos-rectangulos-angulos-verticales"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -82,14 +102,22 @@
         "Resolver problemas geométricos de vectores (punto medio, vectores en figuras)"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de vectores tipo examen sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Vectores", "Trigonometría: temas 03-04 (razones y triángulos)"]
+      "referencias": [
+        "Lumbreras Física — cap. Vectores"
+      ]
     },
     {
       "id": "03-cinematica-rectilinea",
       "nombre": "Cinemática: MRU y MRUV",
       "descripcion": "Movimiento rectilíneo uniforme y uniformemente variado: ecuaciones, gráficas x-t y v-t, tiempo de encuentro y alcance.",
-      "prerrequisitos_internos": ["02-vectores"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "02-vectores"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -98,14 +126,22 @@
         "Resolver problemas de encuentro, alcance y trenes/túneles"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de cinemática rectilínea (incluye gráficas) sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Cinemática"]
+      "referencias": [
+        "Lumbreras Física — cap. Cinemática"
+      ]
     },
     {
       "id": "04-caida-libre-parabolico",
       "nombre": "Caída libre y movimiento parabólico",
       "descripcion": "Movimiento vertical de caída libre (MVCL) y movimiento parabólico de caída libre (MPCL): números de la caída, alcance y altura máxima.",
-      "prerrequisitos_internos": ["03-cinematica-rectilinea"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "03-cinematica-rectilinea"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -114,14 +150,22 @@
         "Calcular alcance, altura máxima y tiempo de vuelo en MPCL"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de caída libre y parabólico tipo examen sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Caída libre / Movimiento parabólico"]
+      "referencias": [
+        "Lumbreras Física — cap. Caída libre / Movimiento parabólico"
+      ]
     },
     {
       "id": "05-movimiento-circular",
       "nombre": "Movimiento circular",
       "descripcion": "MCU y MCUV: velocidad angular, aceleración centrípeta, transmisión de movimiento (poleas y engranajes).",
-      "prerrequisitos_internos": ["03-cinematica-rectilinea"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "03-cinematica-rectilinea"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -130,14 +174,22 @@
         "Resolver problemas de transmisión (fajas, engranajes, ruedas concéntricas)"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de movimiento circular sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Movimiento circular"]
+      "referencias": [
+        "Lumbreras Física — cap. Movimiento circular"
+      ]
     },
     {
       "id": "06-estatica",
       "nombre": "Estática",
       "descripcion": "Diagrama de cuerpo libre, primera condición de equilibrio, teorema de Lamy, momento de fuerza y segunda condición de equilibrio; rozamiento estático.",
-      "prerrequisitos_internos": ["02-vectores"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "02-vectores"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -147,14 +199,24 @@
         "Resolver problemas de equilibrio con rozamiento estático"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de estática tipo examen con DCL correcto sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Estática"]
+      "referencias": [
+        "Lumbreras Física — cap. Estática"
+      ]
     },
     {
       "id": "07-dinamica",
       "nombre": "Dinámica lineal y circular",
       "descripcion": "Segunda ley de Newton, sistemas de bloques y poleas, rozamiento cinético y dinámica circular (fuerza centrípeta).",
-      "prerrequisitos_internos": ["04-caida-libre-parabolico", "05-movimiento-circular", "06-estatica"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "04-caida-libre-parabolico",
+        "05-movimiento-circular",
+        "06-estatica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -163,14 +225,23 @@
         "Aplicar la ecuación de la fuerza centrípeta en curvas, péndulos cónicos y ascensores"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de dinámica nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Dinámica", "Exámenes UNI: preguntas de dinámica"]
+      "referencias": [
+        "Lumbreras Física — cap. Dinámica",
+        "Exámenes UNI: preguntas de dinámica"
+      ]
     },
     {
       "id": "08-trabajo-energia",
       "nombre": "Trabajo, potencia y energía",
       "descripcion": "Trabajo mecánico, potencia, energía cinética y potencial, teorema trabajo-energía y conservación de la energía mecánica.",
-      "prerrequisitos_internos": ["07-dinamica"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "07-dinamica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -179,14 +250,22 @@
         "Resolver problemas de potencia y eficiencia de máquinas"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de energía nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Trabajo y energía"]
+      "referencias": [
+        "Lumbreras Física — cap. Trabajo y energía"
+      ]
     },
     {
       "id": "09-cantidad-movimiento",
       "nombre": "Cantidad de movimiento y choques",
       "descripcion": "Impulso, conservación de la cantidad de movimiento, choques elásticos e inelásticos y coeficiente de restitución.",
-      "prerrequisitos_internos": ["08-trabajo-energia"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "08-trabajo-energia"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -194,14 +273,22 @@
         "Clasificar choques por el coeficiente de restitución y resolver casos 1D"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de choques tipo examen sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Cantidad de movimiento"]
+      "referencias": [
+        "Lumbreras Física — cap. Cantidad de movimiento"
+      ]
     },
     {
       "id": "10-mas-ondas",
       "nombre": "Movimiento armónico simple y ondas",
       "descripcion": "MAS (resorte y péndulo simple): ecuaciones, periodo y energía; ondas mecánicas y sonido (frecuencia, longitud de onda).",
-      "prerrequisitos_internos": ["08-trabajo-energia"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "08-trabajo-energia"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -210,14 +297,22 @@
         "Resolver problemas de ondas con v = λf, incluidas cuerdas tensas y sonido"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de MAS y ondas nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Física — cap. MAS / Ondas"]
+      "referencias": [
+        "Lumbreras Física — cap. MAS / Ondas"
+      ]
     },
     {
       "id": "11-hidrostatica",
       "nombre": "Hidrostática",
       "descripcion": "Presión y densidad, principio de Pascal (prensa hidráulica), principio de Arquímedes (empuje) y vasos comunicantes.",
-      "prerrequisitos_internos": ["06-estatica"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "06-estatica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -226,14 +321,22 @@
         "Resolver problemas de flotación y cuerpo sumergido con el empuje de Arquímedes"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de hidrostática tipo examen sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Hidrostática"]
+      "referencias": [
+        "Lumbreras Física — cap. Hidrostática"
+      ]
     },
     {
       "id": "12-calor-termodinamica",
       "nombre": "Calor, temperatura y termodinámica",
       "descripcion": "Escalas termométricas, dilatación, calorimetría (calor sensible y latente), gases ideales y primera ley de la termodinámica.",
-      "prerrequisitos_internos": ["08-trabajo-energia"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "08-trabajo-energia"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -242,14 +345,23 @@
         "Aplicar la ecuación de los gases ideales y la primera ley de la termodinámica a procesos simples"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de calor y termodinámica tipo examen sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Calor / Termodinámica"]
+      "referencias": [
+        "Lumbreras Física — cap. Calor / Termodinámica"
+      ]
     },
     {
       "id": "13-electrostatica",
       "nombre": "Electrostática",
       "descripcion": "Carga eléctrica, ley de Coulomb, campo eléctrico, potencial eléctrico y condensadores básicos.",
-      "prerrequisitos_internos": ["02-vectores", "08-trabajo-energia"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "02-vectores",
+        "08-trabajo-energia"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -258,14 +370,23 @@
         "Resolver problemas de trabajo del campo eléctrico y energía potencial electrostática"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de electrostática nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Electrostática", "Exámenes UNI: preguntas de electrostática"]
+      "referencias": [
+        "Lumbreras Física — cap. Electrostática",
+        "Exámenes UNI: preguntas de electrostática"
+      ]
     },
     {
       "id": "14-electrodinamica",
       "nombre": "Electrodinámica: circuitos eléctricos",
       "descripcion": "Corriente, ley de Ohm, resistencias en serie y paralelo, leyes de Kirchhoff, potencia eléctrica y efecto Joule.",
-      "prerrequisitos_internos": ["13-electrostatica"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "13-electrostatica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -274,14 +395,22 @@
         "Calcular potencia disipada y consumo de energía eléctrica"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de circuitos nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Electrodinámica"]
+      "referencias": [
+        "Lumbreras Física — cap. Electrodinámica"
+      ]
     },
     {
       "id": "15-electromagnetismo",
       "nombre": "Electromagnetismo",
       "descripcion": "Campo magnético de conductores, fuerza magnética sobre cargas y conductores, e inducción electromagnética (ley de Faraday-Lenz).",
-      "prerrequisitos_internos": ["14-electrodinamica"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "14-electrodinamica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -290,14 +419,22 @@
         "Resolver problemas de fem inducida con la ley de Faraday y el sentido con Lenz"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de electromagnetismo tipo examen sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Electromagnetismo"]
+      "referencias": [
+        "Lumbreras Física — cap. Electromagnetismo"
+      ]
     },
     {
       "id": "16-optica",
       "nombre": "Óptica",
       "descripcion": "Reflexión y espejos, refracción (ley de Snell), lentes delgadas y ecuación de los focos.",
-      "prerrequisitos_internos": ["10-mas-ondas"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "10-mas-ondas"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -306,14 +443,22 @@
         "Calcular posición y naturaleza de imágenes en lentes delgadas"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de óptica tipo examen sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Óptica"]
+      "referencias": [
+        "Lumbreras Física — cap. Óptica"
+      ]
     },
     {
       "id": "17-fisica-moderna",
       "nombre": "Física moderna: nociones",
       "descripcion": "Efecto fotoeléctrico, cuantización de la energía y nociones de relatividad. Frecuencia baja en el examen.",
-      "prerrequisitos_internos": ["16-optica"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "16-optica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": true,
       "objetivos_aprendizaje": [
@@ -321,7 +466,10 @@
         "Identificar los postulados básicos de la relatividad especial en preguntas conceptuales"
       ],
       "criterio_dominio": "Resuelve 7/10 preguntas de física moderna de exámenes pasados sin ayuda",
-      "referencias": ["Lumbreras Física — cap. Física moderna"]
+      "referencias": [
+        "Lumbreras Física — cap. Física moderna"
+      ]
     }
-  ]
+  ],
+  "_nota_migracion_niveles": "MIGRACION MECANICA 2026-07-16 al modelo de dos dimensiones (ver 'El conocimiento se mide en DOS dimensiones' en el README raiz). 'sesiones_estimadas' y 'sesiones_estimadas_pasar' se convirtieron en 'sesiones_por_nivel' (coste INCREMENTAL por salto). El reparto es una APROXIMACION ARITMETICA, no pedagogia medida: para los cursos base, base=el antiguo coste 'pasar' y el resto hasta el antiguo coste 'dominar' se repartio entre intermedio y avanzado; para los cursos universitarios, base+intermedio suman el coste original (que se dimensiono para aprobar) y 'avanzado' es una estimacion que hoy ningun objetivo requiere. REVISAR con datos reales de historial.json. OJO — 'criterio_dominio' sigue siendo UN SOLO STRING en la mayoria de temas: es el criterio del nivel para el que se escribio (avanzado en los cursos base, intermedio en los universitarios). Los criterios de los otros niveles NO se fabricaron a proposito: se redactan cuando cada tema se estudia, que es cuando se sabe que distingue de verdad un nivel de otro. Si un tema tiene criterio_dominio como string, trata ese string como el criterio del nivel objetivo del curso y ESCRIBE los que falten al tocarlo."
 }

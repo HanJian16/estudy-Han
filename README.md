@@ -4,6 +4,18 @@ Repositorio de estudio para retomar cursos de forma estructurada, usado junto co
 
 ---
 
+> # 🚧 MIGRACIÓN ABIERTA — LEE ESTO PRIMERO
+>
+> **Existe [`PENDIENTE.md`](PENDIENTE.md) en la raíz. Léelo ANTES de tocar nada.**
+>
+> El 2026-07-16 se rediseñó el núcleo del proyecto (el conocimiento pasó a medirse en dos dimensiones: profundidad y durabilidad). **Los datos ya usan el modelo nuevo, pero parte de ESTE README todavía describe el viejo y se contradice a sí mismo.** `PENDIENTE.md` dice qué parte manda y qué falta cerrar.
+>
+> Lo más importante que debes saber: **`nivel_alcanzado` es el campo central del modelo y hoy no lo escribe nadie**, porque el "Protocolo al CERRAR una clase" aún no sabe que existe. Hasta que eso se arregle, el rediseño es decorativo.
+>
+> *Borra este aviso y el archivo cuando la migración esté cerrada.*
+
+---
+
 # ⚠️ INSTRUCCIONES OBLIGATORIAS PARA EL AGENTE DE IA
 
 > **Si eres un agente de IA leyendo este README para asistir al usuario, ejecuta el siguiente algoritmo ANTES de responder cualquier cosa. Los pasos son estrictamente secuenciales.**
@@ -26,14 +38,31 @@ PASO 1 — ¿Existe el archivo "objetivo.json" en la raíz del proyecto?
     └── SÍ existe
           → Continúa al PASO 2.
 
-PASO 2 — Lee "objetivo.json". Revisa el campo "objetivo_actual.estado_setup".
+PASO 2 — Lee "objetivo.json". Recorre "objetivos" (es un ARRAY:
+         puede haber varios en paralelo, cada uno con su "estado" —
+         ver "Objetivos paralelos" más abajo).
 
-    ├── "incompleto"
-    │     → El setup quedó a medias en una sesión anterior.
-    │     → Lee _protocolos/entrevista.md y retoma desde donde quedó.
+         2a. DESPIERTA LOS LATENTES. Por cada objetivo con
+             estado "latente", evalúa su "condicion_activacion"
+             contra el estado real del proyecto. Si se cumple:
+             cámbialo a "activo", DÍSELO al usuario en una línea
+             ("Se activó el objetivo X: ya rendiste el examen UNI")
+             y sigue.
+             Un objetivo latente que cumple su condición y nadie
+             despierta es el mismo bug que un curso huérfano: existe,
+             debería estar corriendo, y no se queja. Este chequeo es
+             lo único que lo impide.
+
+         2b. ¿Algún objetivo "activo" tiene "estado_setup" distinto
+             de "completo"?
+
+    ├── SÍ, alguno está incompleto
+    │     → El setup de ese objetivo quedó a medias.
+    │     → Lee _protocolos/entrevista.md y retoma desde donde quedó,
+    │       trabajando SOBRE ESE objetivo (no toques los demás).
     │     → FIN del algoritmo.
     │
-    └── "completo"
+    └── NO, todos los activos están completos
           → Continúa al PASO 3.
 
 PASO 3 — ¿El usuario está invocando un COMANDO RÁPIDO
@@ -77,7 +106,8 @@ PASO 4 — ¿El usuario está invocando el protocolo de handoff?
           → Continúa al PASO 5.
 
 PASO 5 — ¿El usuario está pidiendo agregar un NUEVO objetivo distinto
-         al actual, o los cursos actuales están todos al 100%?
+         a los activos, o los cursos de algún objetivo activo están
+         todos al 100%?
 
     ├── SÍ
     │     → Lee _protocolos/expansion.md y sigue ese protocolo.
@@ -98,9 +128,26 @@ PASO 5.5 — SELECTOR DE CLASE. Decide QUÉ CLASE toca hoy.
          una vez al día o tres (ver "Varias sesiones el mismo día"
          más abajo).
 
-         Lee de TODOS los cursos de objetivo_actual.cursos_generados:
+         Lee objetivo.json y recorre los cursos de TODOS los objetivos
+         con estado "activo" (cada uno tiene su cursos_requeridos).
+         Los objetivos "latente" y "completado" NO compiten.
+
+         UN CURSO PUEDE ESTAR EN VARIOS OBJETIVOS. No busques "su"
+         dueño — no existe. Calcula su URGENCIA EFECTIVA:
+
+             urgencia_efectiva(curso) = la del objetivo ACTIVO más
+             urgente que lo requiere.
+             "Más urgente" = menor "prioridad" ordinal; si empatan,
+             el de hito sin cumplir más cercano en fecha.
+
+         De ese objetivo salen la fecha y la prioridad que usarás
+         para ese curso. Esto es lo que impide que un curso base
+         compartido (trigonometría) herede la fecha lejana del
+         objetivo que lo creó cuando otro lo necesita YA.
+
+         De cada curso lee:
            - temario.json  → campo "modo_estudio" (tipo, cadencia_dias,
-                             prioridad, condicion)
+                             prioridad, condicion, condicion_urgente)
            - progreso.json → estado, ultima_sesion,
                              fecha_proximo_repaso, nivel_repaso
 
@@ -130,7 +177,9 @@ PASO 5.5 — SELECTOR DE CLASE. Decide QUÉ CLASE toca hoy.
                 entre sus temas en progreso.json; si todos son null,
                 el curso nunca se tocó y cuenta como vencido)
                → Clase de ese curso.
-               → Si hay varios vencidos, gana el de mayor "prioridad".
+               → Si hay varios vencidos, gana el de MENOR "prioridad"
+                 (es ordinal: 1 = lo primero. Ver "Cómo se estudia
+                 cada curso").
                  Si empatan en prioridad, MUESTRA las opciones al
                  usuario y que elija él.
 
@@ -141,8 +190,9 @@ PASO 5.5 — SELECTOR DE CLASE. Decide QUÉ CLASE toca hoy.
          (F) TEMA NUEVO — ninguna de las anteriores aplicó. Caso normal.
                → Próximo tema "no_iniciado" de un curso "ruta" cuyos
                  prerrequisitos internos estén completados.
-               → Si hay varios candidatos, gana el de mayor "prioridad"
-                 de curso. Si sigue sin estar claro, pregunta.
+               → Si hay varios candidatos, gana el de MENOR "prioridad"
+                 de curso (1 = lo primero). Si sigue sin estar claro,
+                 pregunta.
 
          REGLAS DE ESTE PASO (no las rompas):
 
@@ -162,7 +212,16 @@ PASO 5.5 — SELECTOR DE CLASE. Decide QUÉ CLASE toca hoy.
 
            4. No inventes tipos de clase fuera de (A)-(F).
 
-           5. CANARIO — ANTES de anunciar la clase elegida, revisa si
+           5. DOS DESEMPATES, EN ORDEN. Cuando dos candidatos compiten
+              dentro de la misma rama, primero gana el de URGENCIA
+              EFECTIVA mayor (definida arriba); solo si empatan, gana
+              la "prioridad" del curso dentro de su temario (1 = lo
+              primero). Si siguen empatados, pregunta al usuario.
+              Las condiciones de deadline de un curso "hito" se
+              evalúan contra los hitos del objetivo que le da su
+              urgencia efectiva.
+
+           6. CANARIO — ANTES de anunciar la clase elegida, revisa si
               algún curso está siendo IGNORADO por el sistema:
                 - un curso "cadencia" vencido por más de 3× su
                   cadencia_dias, o
@@ -196,7 +255,7 @@ PASO 6 — Ejecutar la clase decidida en el PASO 5.5. Antes de arrancar:
 ### Reglas irrompibles
 
 1. **NUNCA te saltes el PASO 1**. Aunque el usuario diga "vamos a estudiar X directamente", primero verifica si existe `objetivo.json`.
-2. **NUNCA generes contenido de estudio si `objetivo_actual.estado_setup ≠ "completo"`**. Termina primero el setup.
+2. **NUNCA generes contenido de estudio si algún objetivo `activo` tiene `estado_setup ≠ "completo"`**. Termina primero ese setup.
 3. **SIEMPRE lee los archivos JSON del curso antes de dar una clase** (`temario.json`, `progreso.json`, `dificultades.json`, `glosario.json`). No confíes en la memoria de la conversación previa — puede ser una sesión nueva con otro agente.
 4. **SIEMPRE actualiza los archivos JSON al cerrar la clase**. Es la única forma de que la siguiente sesión (con este agente u otro) sepa dónde quedaste.
 5. **NUNCA te saltes el PASO 5.5**. Aunque el usuario diga "sigamos con aritmética", primero calcula qué clase toca y dilo en una línea. Él puede ignorarte y seguir con lo que quiera — pero tiene que poder decidir con la información delante, no a ciegas.
@@ -257,13 +316,279 @@ Cada `temario.json` declara, a nivel de curso, **cómo se estudia**. El PASO 5.5
 - **`tipo: "hito"`** — se dispara por condición, no por reloj. Tiene **dos** condiciones y las dos son obligatorias:
   - **`condicion`** — cuándo el curso *entra en rotación* (rama E, prioridad baja).
   - **`condicion_urgente`** — cuándo el curso *pasa a mandar* (rama B, por encima de repaso y cadencia). Suele ser una condición de deadline.
-- **`prioridad`** — entero. Desempata cuando dos cursos compiten el mismo día; gana el mayor. Si empatan, el agente pregunta.
+- **`prioridad`** — entero **ordinal: 1 = lo primero, 2 = lo segundo, etc. GANA EL MENOR.** Desempata cuando dos cursos compiten el mismo día. Si empatan, el agente pregunta. Se lee como el orden en que se atienden, igual que "primero esto, luego lo otro" — no como un peso donde más es más.
 
 **Las condiciones se escriben en prosa pero deben ser ARITMÉTICA VERIFICABLE, no juicio.** Un agente distinto en una sesión distinta tiene que llegar al mismo resultado. Escribe la cuenta exacta: qué se cuenta, sobre qué universo, y el umbral. Mal: `"cuando ya se cubrió lo suficiente"`. Bien: `"cuenta los temas con opcional:false de todos los cursos con modo_estudio.tipo == 'ruta'; si los que están en estado 'completado' son ≥70% de ese total, se cumple"`.
 
 **Ninguna condición es infalible, y por eso existe la regla 5 (CANARIO) del PASO 5.5 y el bloque de alertas del comando `estado`.** El seguro no es un disparador perfecto: es que un disparador que no dispara se vea. Un curso que existe y nunca se estudia es el bug que este proyecto tuvo desde su creación hasta julio de 2026 — y lo que lo hizo grave no fue el disparador ausente, sino que nada lo hacía visible.
 
 **Para agregar un módulo nuevo** (inglés, lo que sea): se genera su curso normal y se le pone `modo_estudio.tipo: "cadencia"` con su `cadencia_dias`. El PASO 5.5 lo recoge automáticamente. No se toca el algoritmo. Un curso nuevo distinto al objetivo actual pasa por `_protocolos/expansion.md`.
+
+### Objetivos paralelos
+
+> El usuario puede perseguir **varios objetivos a la vez** que no tienen nada que ver entre sí (ej: aprobar un semestre universitario, preparar un examen de admisión *y* aprender un idioma para otro trabajo). `objetivo.json` tiene por eso un array `objetivos`, cada uno con su `estado` — no un objetivo único.
+
+**Hay DOS ejes independientes, y confundirlos es un error que este proyecto ya cometió.** No los mezcles:
+
+| | Pregunta que responde | Dónde vive |
+|---|---|---|
+| **`modo_estudio`** | ¿*Cómo* se estudia este curso? (lineal / en dosis / por hito) | `temario.json` del curso |
+| **Objetivo** | ¿*Para qué* sirve, con qué urgencia y para cuándo? | `objetivo.json`, en el `cursos_requeridos` de cada objetivo (muchos-a-muchos) |
+
+Y hay un **tercer eje** que tampoco hay que mezclar con estos: los **hitos** de un objetivo (¿para cuándo, y qué entra en cada fecha?). Un objetivo puede tener varias fechas de corte que cubren contenido distinto — el parcial de un semestre cubre las semanas 1-8 y el final las 8-16, y no son acumulativos. Ver "Hitos".
+
+Son ortogonales de verdad. Las cuatro combinaciones existen y todas son coherentes:
+
+|  | Objetivo "entrar a la UNI" | Objetivo "conseguir mejor trabajo" |
+|---|---|---|
+| **`ruta`** | Aritmética, Álgebra, Física… | *(p. ej. un curso con sílabo lineal)* |
+| **`cadencia`** | Aptitud Académica | Inglés |
+
+Fíjate en la trampa: **Inglés es `cadencia` porque un idioma se entrena en dosis frecuentes, NO porque sea un objetivo paralelo.** Son dos hechos distintos sobre el mismo curso. Si mañana entra un curso de sílabo lineal para el objetivo de trabajo, será `ruta` *y* paralelo a la vez. Nunca inventes un `modo_estudio` que signifique "es de otro objetivo" — eso ya lo dice `objetivo.json`.
+
+### Cursos compartidos: un curso puede servir a varios objetivos
+
+`cursos_requeridos` es **muchos-a-muchos**. Un curso puede aparecer en varios objetivos, y eso no es una anomalía: es lo normal. Trigonometría sirve al examen UNI *y* a aprobar Física III del semestre.
+
+**No busques el "dueño" de un curso: no existe.** Lo que existe es su **urgencia efectiva** = la del objetivo activo más urgente que lo requiere (menor `prioridad`; si empatan, el de hito pendiente más cercano). De ahí salen su fecha y su prioridad.
+
+> **Por qué importa (bug real, 2026-07-16):** el modelo anterior daba a cada curso un dueño único, y de él heredaba fecha y prioridad. Con trigonometría "perteneciendo" al objetivo UNI (febrero, prioridad 2) pero necesitándose para un parcial de septiembre (prioridad 1), el PASO 5.5 la habría pospuesto justo cuando era urgente. Un campo estaba respondiendo dos preguntas: "¿quién lo creó?" y "¿quién lo necesita y para cuándo?". Solo la segunda importa.
+
+**Estudiar un curso compartido una vez avanza todos los objetivos que lo piden.** Es una inversión, no un gasto duplicado. Y de ahí sale la regla del presupuesto:
+
+### El presupuesto: una línea de tiempo, no un número
+
+**`presupuesto_horas` es un ARRAY de periodos**, no un escalar:
+
+```json
+"presupuesto_horas": [
+  { "desde": "2026-07-16", "hasta": "2026-08-09", "horas_semanales": 35, "nota": "vacaciones" },
+  { "desde": "2026-08-10", "hasta": "2026-11-28", "horas_semanales": 15, "nota": "semestre: ~30 h/sem de clases encima" },
+  { "desde": "2026-11-29", "hasta": null,         "horas_semanales": 20, "nota": "post-semestre" }
+]
+```
+
+> **Nota de cambio (2026-07-16):** existió `horas_semanales_disponibles: 20`, un número único. Se detectó que las 10.6 semanas hasta el parcial eran 3.6 de vacaciones (alta disponibilidad) + 7.0 de semestre (con 30 h/semana de clases encima). **Un escalar promedia dos mundos distintos y miente en ambas direcciones**: infla las semanas de clase e infravalora la ventana que salva el plan. En este caso el error era de 14 h. Si ves `horas_semanales_disponibles` en un archivo viejo, es deuda.
+
+**Las horas disponibles entre hoy y una fecha se INTEGRAN sobre los periodos**, no se multiplican:
+
+```
+horas_disponibles(hasta_fecha) =
+    Σ  (solape del periodo con [hoy, hasta_fecha]) en semanas × periodo.horas_semanales
+```
+
+Un periodo con `"hasta": null` se extiende indefinidamente. Y **todos estos valores son promesas del usuario, no mediciones**: contrástalos con las horas reales de `historial.json` en cuanto haya 3 semanas de datos (ver regla 10).
+
+### El conocimiento se mide en DOS dimensiones, y ninguna es "completado"
+
+> Esta sección es el corazón del modelo. Léela entera antes de tocar `progreso.json`.
+
+Un tema no está "hecho" o "no hecho". Tiene **dos coordenadas independientes**, y confundirlas es lo que hace que un plan mienta:
+
+| Dimensión | Qué mide | Dónde vive | Escala |
+|---|---|---|---|
+| **Profundidad** | Hasta dónde llegaste | `nivel_alcanzado` en `progreso.json` | `null` → `base` → `intermedio` → `avanzado` |
+| **Durabilidad** | Cuánto va a aguantar | `nivel_repaso` en `progreso.json` | `0` → `1` → `2` → `3` → `4` → `5` |
+
+Son **ortogonales**. Un tema puede estar aprendido hondo y sin repasar (se desvanece) o aprendido superficial y repasado hasta arriba (aguanta, pero sigue siendo superficial). Necesitas las dos para saber si un tema estará vivo y suficiente el día del examen.
+
+**`nivel_alcanzado` es un ESTADO VERIFICABLE, no un contador de esfuerzo.** Solo sube cuando el usuario cumple el `criterio_dominio` de ese nivel. Si estudia tres sesiones y sigue fallando, **el nivel no sube** — porque no ha aprendido, y el plan tiene que saberlo. Un contador de sesiones diría "pagado, siguiente" y estaría mintiendo.
+
+> **Nota de cambio (2026-07-16):** existió un `pagado[tema] = sesiones` que llevaba la cuenta del esfuerzo gastado. Se eliminó: **el esfuerzo no es verificable y el estado sí.** El usuario lo señaló y tenía razón. Si ves un modelo que contabiliza sesiones para decidir si un tema está listo, es deuda.
+
+**`estado: "completado"` está DEPRECADO como medida de conocimiento.** Respondía a "¿está hecho?", que es una pregunta mal planteada: **¿hecho para quién?** Factorización puede estar terminada para aprobar un semestre y muy lejos de lo que exige un examen de admisión. `estado` se conserva solo como estado de flujo (`no_iniciado` / `en_progreso`), y "completado" pasa a ser **derivado**: un tema está completado *para un objetivo dado* si `nivel_alcanzado >= nivel_requerido` por ese objetivo. Nunca en absoluto.
+
+**Cada objetivo declara qué nivel necesita**, por curso y con override por tema:
+
+```json
+"cursos_requeridos": [
+  { "curso": "09-mate-superior", "nivel_requerido": "intermedio" },
+  { "curso": "02-algebra",       "nivel_requerido": "base",
+    "overrides": { "05-factorizacion": "intermedio", "06-fracciones-algebraicas": "intermedio" } }
+]
+```
+
+El nivel por curso es el default; el override es para los temas de los que cuelga media carrera. **No declares los 88 temas uno a uno**: sería ilegible y se pudriría en dos semanas. Pero tampoco te conformes con el default cuando un tema concreto es un cuello de botella real.
+
+**Para saber si un objetivo está listo, se RECORRE su temario y se comparan niveles**, tema a tema, contra lo requerido. Cuesta un poco más que mirar un booleano. Es lo correcto: un booleano no puede responder "¿listo para qué?".
+
+### La durabilidad: subir la escalera es una inversión, no un gasto
+
+`nivel_repaso` no es burocracia del repaso: **es la predicción de cuánto tiempo el tema sigue vivo.**
+
+| `nivel_repaso` | Retención aproximada |
+|---|---|
+| 1 | ~1 día |
+| 2 | ~3 días |
+| 3 | ~7 días |
+| 4 | ~14 días |
+| 5 | ~30 días |
+
+De ahí sale la regla que lo cambia todo: **un tema está vivo en la fecha de un hito si su último repaso cae dentro de `retención(nivel_repaso)` días antes de esa fecha.**
+
+Y la consecuencia: **cuanto más alto el `nivel_repaso`, menos toques necesita para seguir vivo.** Subir la escalera cuesta repasos ahora y ahorra repasos después. Por eso:
+
+- **Hito lejano** (examen de admisión a 7 meses) → hay que **subir la escalera hasta 5**. Si te quedas en 3, necesitarías un toque cada 7 días durante 30 semanas: insostenible.
+- **Hito cercano** (un parcial a 10 semanas) → **la escalera se trunca sola**. Un tema cerrado en la semana 6 solo tiene sitio para 2-3 repasos antes del examen, y con eso llega vivo. No hace falta forzar el 5.
+
+**AVISO OBLIGATORIO — predicción de olvido.** Al planificar un hito, calcula con qué `nivel_repaso` va a llegar cada tema y **avisa de los que llegarán fríos**: *"factorización llega al parcial en nivel 3 (retiene ~7 días) y el examen está a 30 días de su último repaso: va a estar olvidada."* Este aviso es lo único que distingue un plan que cuenta horas de un plan que predice resultados. **No lo omitas por no dar malas noticias.**
+
+Nunca trates igual un tema que completó la escalera y uno que se cortó en el nivel 3 por falta de tiempo. **No están igual de aprendidos, y el plan no puede fingir que sí.**
+
+### El mantenimiento CUESTA HORAS y hay que contarlas
+
+> **Nota de cambio (2026-07-16):** hasta esta fecha las validaciones de deadline contaban **solo el coste de aprender** los temas e ignoraban por completo el de mantenerlos. Con 115 temas en 74 días, la escalera dispara **428 repasos** — unas 70-85 h que el plan no veía, contra un margen reportado de 18 h. **El plan decía "cabe" y no cabía.** Los métodos estaban documentados y aplicados, pero no presupuestados.
+
+Al calcular la viabilidad de un hito, suma **las dos partidas**:
+
+```
+horas_aprender    = Σ (saltos de nivel necesarios) × horas_por_sesion × 1.2
+horas_mantener    = (nº de repasos que la escalera dispara entre el cierre
+                     de cada tema y la fecha del hito) × minutos_por_repaso
+horas_necesarias  = horas_aprender + horas_mantener
+```
+
+**El 70/30 del Método 3 y la escalera son el MISMO fenómeno, no dos.** El 30% de cada clase es exactamente donde caen esos repasos intercalados. **No los sumes dos veces**: cuenta los repasos que la escalera dispara y ya está.
+
+`minutos_por_repaso` se mide desde `historial.json` igual que `horas_por_sesion`. Mientras no haya datos, usa **12 minutos** y **declara que es una suposición**.
+
+### El listón: el mismo tema cuesta distinto según para qué
+
+Cada objetivo declara un **`liston`**:
+
+- **`"dominar"`** — hay que saberlo de verdad: velocidad, precisión, transferencia. Un examen de admisión competitivo, una certificación.
+- **`"pasar"`** — hay que refrescarlo lo justo para no perderse y aprobar. Sobrevivir un semestre.
+
+Y un tema puede declarar **dos precios**: `sesiones_estimadas` (el coste para dominar) y `sesiones_estimadas_pasar` (el coste para refrescar). Al cobrar un tema se usa el precio del listón del objetivo que lo pide; si el tema no declara el precio barato, se usa el caro.
+
+**Esto importa porque los cursos compartidos tienen listones distintos según quién pregunte.** Factorización cuesta 3 sesiones para competir en la UNI y 1 para no atascarse en fracciones parciales. Son el mismo tema y dos costes reales, no una aproximación.
+
+**COBRO POR DIFERENCIA (la regla que hace honesto todo esto).** `ya_cobrados` **no es un conjunto binario**: guarda a qué nivel se pagó cada tema. Si un objetivo con listón `pasar` paga factorización (1 sesión), un objetivo posterior con listón `dominar` **no se la encuentra gratis ni la paga entera: paga las 2 que faltan**.
+
+```
+al cobrar el tema T para el objetivo O:
+    necesita ← coste(T, O.liston)
+    ya       ← pagado[T]  (0 si nadie lo tocó)
+    cobrar   ← max(0, necesita − ya)
+    pagado[T] ← max(ya, necesita)
+```
+
+Sin esta regla, bajar el listón de un objetivo urgente parece gratis y no lo es: **el trabajo se aplaza, no desaparece.** En el plan real de este proyecto, el listón `pasar` del semestre le costó al objetivo UNI 70 horas adicionales en diciembre. Eso es un dato que el usuario merece ver antes de decidir, no después.
+
+### Los objetivos compiten en una cola con prioridad
+
+**Los objetivos NO tienen `horas_semanales` propias.** Hay un único presupuesto y compiten por él.
+
+> **Nota de cambio (2026-07-16):** existió un `horas_semanales` por objetivo. Se eliminó. Con cursos compartidos la pregunta "¿esta hora de trigonometría sale del presupuesto del semestre o del de la UNI?" **no tiene respuesta**, porque la hora sirve a los dos. Cualquier reparto ahí es ficción con apariencia de control. Si ves ese campo en un archivo viejo, es deuda.
+
+La viabilidad se calcula como una **cola con prioridad, cobrando cada curso una sola vez**:
+
+```
+NIVELES = [null, "base", "intermedio", "avanzado"]      # ordenados
+horas_por_sesion    ← medido desde historial.json (ver regla 10)
+minutos_por_repaso  ← medido desde historial.json (12 si no hay datos)
+horas_disponibles(fecha) ← integral de presupuesto_horas sobre [hoy, fecha]
+horas_comprometidas_hasta(fecha) ← 0 para toda fecha
+
+# El ESTADO es la verdad. Arranca de progreso.json, no de un contador.
+nivel[tema]  ← progreso.nivel_alcanzado   # profundidad REAL, verificada
+proyectado[tema] ← nivel[tema]            # a dónde lo habrán subido los objetivos ya procesados
+
+# Cierre transitivo: un tema arrastra lo que necesita para existir
+cerradura(temas):
+    pendientes ← temas
+    resultado  ← conjunto vacío
+    mientras pendientes:
+        t ← saca uno
+        si t.estado == "completado":  continúa   # criterio de parada
+        si t ya está en resultado:    continúa   # corta ciclos accidentales
+        resultado += t
+        pendientes += t.prerrequisitos_internos  (del mismo curso)
+        pendientes += t.prerrequisitos_externos  ("curso/tema_id")
+    devuelve resultado
+
+para cada objetivo ACTIVO, en orden de prioridad (1 primero):
+    para cada hito NO condicional del objetivo, por fecha ascendente:
+        semilla ← temas no completados de sus cursos_requeridos
+                  que pertenecen a ese hito (por hito_id; si el temario
+                  no declara hito_id, todos los del curso)
+        temas ← cerradura(semilla)
+
+        # ---- 1. APRENDER: cobro por SALTO DE NIVEL, no por sesiones gastadas
+        sesiones ← 0
+        para cada T en temas:
+            requerido ← nivel_requerido(T, objetivo)   # curso + override
+            actual    ← proyectado[T]
+            si actual >= requerido: continúa           # ya lo tiene: gratis
+            para cada paso de actual+1 hasta requerido:
+                sesiones += T.sesiones_por_nivel[paso]
+            proyectado[T] ← requerido
+        horas_aprender ← sesiones × horas_por_sesion × 1.2
+
+        # ---- 2. MANTENER: lo que la escalera dispara hasta el hito
+        repasos ← 0
+        para cada T en temas:
+            simula la escalera desde el cierre estimado de T hasta hito.fecha
+            repasos += nº de repasos que caben
+        horas_mantener ← repasos × minutos_por_repaso / 60
+
+        horas_necesarias ← horas_aprender + horas_mantener
+        horas_disp       ← horas_disponibles(hito.fecha)
+                           − horas_comprometidas_hasta(hito.fecha)
+        ¿CABE? → horas_necesarias <= horas_disp
+        horas_comprometidas_hasta(≥ hito.fecha) += horas_necesarias
+
+        # ---- 3. PREDICCIÓN DE OLVIDO (obligatoria, ver "La durabilidad")
+        para cada T en temas:
+            si retención(nivel_repaso proyectado de T) < días desde su último
+               repaso hasta hito.fecha:
+                AVISA: T llegará frío a este hito
+```
+
+**`proyectado` no es un libro de cuentas: es "a qué nivel lo habrán dejado los objetivos más urgentes".** Si el semestre sube factorización a `base`, la UNI parte de `base` y paga solo los saltos hasta `avanzado`. Es la misma idea del cobro por diferencia, pero sobre un estado verificable en vez de sobre horas gastadas.
+
+**La cerradura es lo que hace honesto el cálculo.** `cursos_requeridos` lista los cursos de los que el objetivo *trata*; todo lo demás entra solo si algún tema lo pide. Un objetivo de aprobar un semestre requiere sus cinco cursos universitarios — y de la base arrastra únicamente los temas que sus prerrequisitos nombran, no los cursos base completos. Requerir cursos enteros donde bastan tres temas es lo que hace que un plan viable se vea imposible.
+
+Léelo así: **el objetivo más urgente reserva primero, y el siguiente hereda lo que sobra.** Un curso compartido lo paga quien lo necesita antes; los demás se lo encuentran hecho y gratis. Eso modela la competencia real en vez de fingir que los objetivos están separados, y elimina el doble conteo de horas sin trucos.
+
+Los hitos con `condicional: true` (sustitutorios, aplazados) **no entran en la planificación normal**: solo ocurren si algo sale mal. No reserves horas para ellos.
+
+### Ciclo de vida: `estado`
+
+Cada objetivo tiene `estado`:
+
+- **`activo`** — compite por horas ahora. Es el único estado que el PASO 5.5 mira.
+- **`latente`** — existe, con su plan hecho, pero aún no compite. Despierta cuando se cumple su `condicion_activacion` (aritmética verificable, igual que las condiciones de los cursos `hito`). El PASO 2a la evalúa en cada arranque; el comando `estado` alerta si se cumplió y sigue dormido.
+- **`completado`** — terminado. Deja de competir. Sus cursos, glosario e historia **se conservan**: son evidencia del conocimiento.
+
+**Las prioridades no se reordenan con el tiempo: la máquina de estados lo hace sola.** Cuando el objetivo de prioridad 1 se completa, el de prioridad 2 queda automáticamente arriba sin tocar ningún número. No "asciendas" objetivos a mano.
+
+Y por eso un objetivo paralelo **nunca** se mete como curso dentro de otro "para simplificar": tienen ciclos de vida distintos, así que al cerrar el anfitrión el invitado se archivaría sin haber terminado, o impediría cerrar al anfitrión para siempre.
+
+### Hitos: un objetivo puede tener varias fechas de corte
+
+`fecha_limite` sirve cuando un objetivo tiene **una** fecha (un examen de admisión). Pero un semestre universitario no funciona así, y forzarlo a una sola fecha destruye la información que importa.
+
+Cada objetivo declara un array `hitos`:
+
+```json
+"hitos": [
+  { "id": "parcial", "nombre": "Evaluación Parcial", "fecha": "2026-09-28",
+    "cubre": "Primera mitad de cada curso (semanas 1-8)", "condicional": false },
+  { "id": "final", "nombre": "Evaluación Final", "fecha": "2026-11-23",
+    "cubre": "Segunda mitad (semanas 8-16). NO acumulativo.", "condicional": false },
+  { "id": "sustitutorio", "nombre": "Sustitutorio", "fecha": null,
+    "cubre": "TODO el semestre. Reemplaza una nota jalada.", "condicional": true }
+]
+```
+
+**Lo importante no es que haya varias fechas: es que cada una cubre contenido DISTINTO.** Un final que no es acumulativo significa que la segunda mitad del temario tiene una fecha límite propia y la primera ya no. Por eso los temas del `temario.json` pueden declarar **`hito_id`**: dice a qué corte pertenece cada tema. Con eso la pregunta deja de ser "¿alcanzo para el semestre?" —que no significa nada— y pasa a ser "¿tengo lista la primera mitad de Estática para el 28 de septiembre?", que es la que te aprueba o te jala.
+
+Reglas:
+- **`condicional: true`** = solo ocurre si algo sale mal (sustitutorios, aplazados). **No reserves horas para ellos** en la planificación normal; su existencia es información de contingencia, no de plan.
+- Si el temario de un curso no declara `hito_id` en sus temas, todos sus temas cuentan para el primer hito no condicional del objetivo.
+- Un objetivo con una sola fecha necesita un solo hito. No inventes cortes que no existen.
+- Si un hito tiene `fecha: null` (aún no se sabe), no lo uses para validar; pídesela al usuario cuando haga falta.
 
 ### La escalera de repaso
 
@@ -314,8 +639,8 @@ Antes de explicar cualquier contenido, lee los siguientes archivos del curso a t
 3. `progreso.json` — qué temas están completados, en progreso o no iniciados (referencia por `tema_id` al temario).
 4. `dificultades.json` — dificultades con `"resuelto": false` relevantes al tema de hoy o a sus bases.
 5. `glosario.json` — vocabulario que el usuario ya maneja (no re-explicar esos términos desde cero).
-6. Si el tema tiene prerrequisitos externos en otro curso, lee también sus archivos.
-7. `objetivo.json` de la raíz — recuerda hacia dónde va el usuario y si hay deadline.
+6. Si el tema declara `prerrequisitos_externos`, lee también los archivos de esos cursos — pero **solo lo relativo a los temas nombrados**, no el curso entero. Y comprueba en su `progreso.json` que estén `completado`: si un prerrequisito externo no lo está, el tema de hoy probablemente no es el que toca. Dilo antes de arrancar.
+7. `objetivo.json` de la raíz — recuerda hacia dónde va el usuario y qué hitos tiene cerca. **Fíjate a qué objetivo(s) sirve el curso de hoy** (en qué `cursos_requeridos` aparece). Si sirve a varios, la `motivacion` y el hito que aplican son los del objetivo que le da su **urgencia efectiva** — y merece la pena decírselo al usuario, porque saber que trigonometría le cae en el parcial de septiembre *y además* en el examen UNI motiva más que cualquiera de las dos por separado. Lo que no vale es motivar una clase de inglés con "esto te sirve para entrar a la UNI": eso es sencillamente falso.
 
 Con esa información adapta la sesión:
 - Refuerza las dificultades pendientes relevantes antes o durante la explicación.
@@ -345,6 +670,29 @@ Cuando el usuario indique que terminó, actualiza estos archivos:
 - No toques su `estado`, `porcentaje` ni `sesiones_dedicadas`: un intercalado no es una sesión del tema viejo. Sí actualiza su `ultima_sesion`.
 - Si un tema intercalado resultó estar realmente roto (falló varios ejercicios, no solo uno), dilo al cerrar y sugiere que la próxima sesión sea una clase de `repaso`. La rama (B) del PASO 5.5 probablemente ya lo dispare sola, pero avisar es mejor que sorprender.
 
+### `historial.json` (raíz) — APPEND, nunca overwrite
+
+**Pregúntale al usuario cuánto duró la sesión.** No lo estimes: es el único dato que este archivo existe para capturar, y estimarlo lo convierte en basura con apariencia de medición. Una pregunta corta al cerrar ("¿cuánto duró, más o menos?") basta.
+
+Agrega **una entrada al final** del array `sesiones`:
+
+```json
+{
+  "inicio": "2026-07-16T09:30",
+  "duracion_min": 95,
+  "tipo_clase": "tema-nuevo",
+  "objetivo_id": "obj-1",
+  "curso": "01-aritmetica",
+  "tema_principal": "09-porcentajes",
+  "temas_intercalados": ["04-divisibilidad", "06-fracciones"],
+  "nota": null
+}
+```
+
+- **Nunca modifiques ni borres entradas anteriores.** Es un registro histórico: su valor está en que no se toca.
+- Una entrada por sesión, aunque la sesión haya tocado varios temas (los intercalados van en su campo).
+- Si la sesión vino de un handoff externo, ponlo en `nota` y usa la duración que reportó el resumen.
+
 ### `dificultades.json`
 - Agrega una entrada por cada concepto que el usuario no entendió bien o preguntó repetidamente. Usa la estructura completa: `id`, `curso`, `tema_id`, `tipo` (conceptual/operativa/notacion/aplicacion), `descripcion`, `error_tipico`, `fecha_deteccion`, `fecha_ultimo_repaso`, `veces_repasado`, `resuelto`, `estrategia_que_ayuda`.
 - Si una dificultad existente fue trabajada en la clase, actualiza `fecha_ultimo_repaso` e incrementa `veces_repasado`.
@@ -369,20 +717,39 @@ Cuando el usuario indique que terminó, actualiza estos archivos:
 1. **Ingeniería inversa desde el objetivo del curso**: parte del último tema (lo que el usuario debe saber hacer al final) y pregunta recursivamente "¿qué se necesita saber para esto?". No listar temas al azar ni copiar índices literales de libros.
 2. **Atomicidad**: cada tema debe caber en 1-4 sesiones. Si estima más, pártelo.
 3. **Un solo salto conceptual por tema**: no mezclar "derivadas + regla de la cadena + aplicaciones" en un mismo tema.
-4. **Prerrequisitos internos explícitos**: cada tema declara de qué otros temas del mismo curso depende (por `id`). No puede haber ciclos.
+4. **Prerrequisitos explícitos, internos y externos, SIEMPRE a nivel de tema**: cada tema declara de qué otros temas depende — del mismo curso en `prerrequisitos_internos` (por `id`), y de otros cursos en `prerrequisitos_externos` (formato `"curso/tema_id"`). No puede haber ciclos.
+
+    **Nunca declares una dependencia a nivel de curso.** "Estática necesita geometría" es cierto e inútil: lo que necesita es `03-geometria/09-areas` para momentos de inercia, no las cónicas ni los sólidos de revolución. Una dependencia a nivel de curso arrastra el curso entero a la planificación y **infla el plan con material que nadie va a preguntar** — el plan se ve imposible cuando no lo es, que es otra forma de mentir. El README del curso puede llevar un resumen en prosa para humanos, pero la verdad operativa vive en el temario.
+
+    Y si necesitas expresar una dependencia y no tienes dónde, **no la metas en `referencias` ni en la descripción**. Ese campo existe; úsalo.
 5. **Objetivos observables**: cada tema tiene 2-4 objetivos que empiezan con **verbo de acción** (calcular, demostrar, aplicar, identificar, resolver, traducir). Prohibido "entender X" — no es verificable.
 6. **Criterio de dominio explícito**: cómo se verifica que el tema se dominó (ej: "resuelve 8/10 ejercicios variados sin ayuda").
 7. **Validación con bibliografía**: los temas cubren los capítulos relevantes de la bibliografía acordada. La bibliografía es **obligatoria** y se guarda dentro de `temario.json`.
 8. **Dificultad progresiva pero no lineal**: `dificultad: 1-5`. Alterna para permitir intercalado en ejercicios.
 9. **Marca temas opcionales**: `opcional: true` para temas que enriquecen pero no son ruta crítica. Sirven para recortar si aprieta el tiempo.
-10. **Ajuste al deadline**: `sum(sesiones_estimadas) × 1.5h × 1.2 (buffer) ≤ semanas_disponibles × horas_semanales`. Si no cabe, reporta y propón opciones.
+10. **Ajuste al deadline — cola con prioridad, por hito**: aplica el algoritmo de "El presupuesto: una cola con prioridad, no un reparto" (sección "Objetivos paralelos"). Recorre los objetivos activos por prioridad, y dentro de cada uno sus hitos no condicionales por fecha; cobra cada tema **una sola vez** y descuenta las horas ya comprometidas por los objetivos más urgentes. Si algún hito no cabe, reporta y propón opciones.
+
+    **`HORAS_POR_SESION` se MIDE, no se supone.** Calcúlalo desde `historial.json`: `promedio(duracion_min) / 60` sobre las sesiones registradas.
+    - **Con ≥5 sesiones en el historial** → usa el promedio medido y dilo: *"asumiendo tus 1.8 h/sesión reales (medido sobre 23 sesiones)"*.
+    - **Con <5 sesiones** → usa 1.5 h como provisional y **declara que es una suposición**: *"asumiendo sesiones de 1.5 h, que aún no está medido"*. Nunca presentes el resultado como un hecho.
+
+    **`presupuesto_horas` también son promesas, no mediciones.** Es lo que el usuario *dijo* que puede dedicar en cada periodo. Si el historial tiene ≥3 semanas de datos, compara contra las horas reales por semana **del periodo que corresponda** y, si difieren en más del 30%, dilo antes de dar por buena cualquier proyección. Un plan validado contra horas que no ocurren es un plan que miente con aritmética correcta.
+
+    **Nunca sumes las `sesiones_estimadas` de dos objetivos que comparten cursos.** Estudiar trigonometría una vez sirve a los dos pero consume horas una vez; sumarlas cuenta doble y vuelve a inflar el plan. El `ya_cobrados` del algoritmo existe exactamente para eso.
+
+    Si un objetivo no tiene hitos con fecha (todo `null`), sáltate esta validación para él — pero sus cursos siguen compitiendo por las horas de los demás, así que sus temas sí entran en `ya_cobrados` cuando les toque.
 11. **`modo_estudio` obligatorio**: todo `temario.json` declara cómo se estudia el curso (`ruta`, `cadencia` o `hito`). Sin este campo el PASO 5.5 no puede colocar el curso en ninguna clase y el curso queda huérfano — que es exactamente el bug que tuvo este proyecto hasta julio de 2026. Ver "Cómo se estudia cada curso" para la estructura y los valores.
+12. **El grafo crece desde la necesidad hacia atrás, nunca por completitud.** Cuando un curso nuevo necesite algo que no existe todavía:
+    - **¿El tema falta en un curso que ya existe?** → agrégalo a ESE curso. No crees un curso paralelo ni una versión "para el otro objetivo".
+    - **¿El curso entero no existe?** → créalo, pero **solo con los temas que hacen falta**, no con los treinta que "debería tener" un curso de esa materia. Un curso de trigonometría creado para dar soporte a Estática puede tener tres temas y estar perfecto.
+    - **Y hazlo transitivamente**: si el tema que agregas depende de otro que tampoco tienes, ese también entra, y así hacia atrás hasta tocar algo que el usuario ya domina (`completado` en su `progreso.json`) o que sea base real.
+    - **Ese es el criterio de parada**: se para cuando llegas a algo ya sabido, no cuando el curso "se ve completo". Añadir temas que nadie requiere es exactamente lo que hace que un plan no quepa.
 
 ---
 
-## Re-planificación (dentro del objetivo actual)
+## Re-planificación (dentro de un objetivo ya activo)
 
-**Bajo demanda**: si el usuario pregunta "¿voy bien?", "¿alcanzo con el deadline?", etc., compara `sesiones_dedicadas` acumuladas vs `sesiones_estimadas` planificadas.
+**Bajo demanda**: si el usuario pregunta "¿voy bien?", "¿alcanzo con el deadline?", etc., compara `sesiones_dedicadas` acumuladas vs `sesiones_estimadas` planificadas. **Hazlo por objetivo, no en bloque** — si tiene dos objetivos activos, puede ir sobrado en uno y hundido en el otro, y un promedio te ocultaría las dos cosas.
 
 **Automática (solo si hay atraso grande)**: al inicio de una sesión, si detectas atraso >50% respecto al plan (temas completados vs. esperados según fecha), avisa proactivamente antes de arrancar contenido.
 
@@ -390,10 +757,16 @@ Cuando el usuario indique que terminó, actualiza estos archivos:
 
 Opciones a proponer cuando hay desvío:
 - Marcar temas `opcional: true` como omitidos.
-- Aumentar horas semanales.
-- Extender `fecha_limite` en `objetivo.json`.
+- Subir las horas de algún periodo de `presupuesto_horas` — solo si el usuario confirma que existen de verdad. No las inventes tú. Y fíjate en **qué periodo**: subir las de un tramo que ya pasó no sirve de nada.
+- **Bajar el `liston` de un objetivo** de `dominar` a `pasar`. Es la palanca más potente y la más malentendida: **no elimina trabajo, lo aplaza** (ver "El listón"). Cuando la propongas, di siempre cuánto le costará después al objetivo que sí necesita el listón alto.
+- Mover la fecha de un hito, si el hito es negociable (uno de examen universitario no lo es; uno autoimpuesto sí).
+- **Ceder desde el objetivo menos prioritario**: relajar la `cadencia_dias` de sus cursos (de cada 2 días a cada 4, por ejemplo) para que libere horas. Con el presupuesto en cola, es **la** palanca de reparto: no hay un número de horas que mover, así que se afloja el ritmo del que puede esperar. Propónsela al usuario, nunca la apliques por tu cuenta.
 
-**Diferencia con ampliación:** re-planificación es ajustar el objetivo actual. Ampliación (nuevo objetivo distinto) se maneja en `_protocolos/expansion.md`.
+**Cuando el objetivo prioritario va atrasado, lo que se recorta es el menos prioritario, no al revés.** Si el de `prioridad: 1` está hundido y el de `prioridad: 3` va al día, la propuesta correcta es aflojar el 3 temporalmente. Que el usuario decida — pero preséntale esa opción primero, no la de mover el hito del que importa.
+
+**Ojo con los cursos compartidos al recortar.** Antes de marcar un tema como omitido, comprueba si su curso lo requiere **otro** objetivo además del que estás recortando. Recortar trigonometría "porque la UNI puede esperar" también le quita la base a Física III del semestre. Dilo si pasa.
+
+**Diferencia con ampliación:** re-planificación es ajustar un objetivo ya activo. Agregar un objetivo nuevo (aunque sea en paralelo) se maneja en `_protocolos/expansion.md`.
 
 ---
 
@@ -570,8 +943,9 @@ estudios/
 ├── README.md                     ← Este archivo (algoritmo de arranque + protocolos). Fuente única de verdad.
 ├── CLAUDE.md                     ← Puntero que Claude Code carga automáticamente al iniciar; solo redirige a README.md (no duplica contenido).
 ├── .gitignore                    ← Ignora _backups/ y archivos temporales típicos
-├── objetivo.json                 ← Se genera en el setup inicial (no existe al principio)
-├── configuracion.json            ← Ajustes del proyecto (ej: modo un tema por sesión). Se crea con defaults si falta.
+├── objetivo.json                 ← Se genera en el setup inicial (no existe al principio). Contiene el presupuesto global de horas y el array "objetivos": cada uno con su "estado" (activo/latente/completado), su "prioridad" ordinal, sus "hitos" y sus "cursos_requeridos" (muchos-a-muchos: un curso puede servir a varios objetivos).
+├── configuracion.json            ← Ajustes del proyecto (ej: modo una clase por sesión). Se crea con defaults si falta.
+├── historial.json                ← Registro APPEND-ONLY de sesiones (fecha/hora, duración real, tipo de clase, curso, temas). Única fuente de verdad sobre cuánto tiempo se estudia; alimenta las validaciones de deadline y el comando `estado`. Nunca se sobreescriben entradas.
 ├── _protocolos/
 │   ├── entrevista.md             ← Protocolo del PRIMER arranque (no hay objetivo.json)
 │   ├── expansion.md              ← Protocolo para AGREGAR nuevos objetivos (ya hay uno completo)
@@ -584,6 +958,7 @@ estudios/
 ├── _plantillas/                  ← Plantillas para generar cursos, clases y archivos
 │   ├── plantilla-objetivo.json
 │   ├── plantilla-configuracion.json
+│   ├── plantilla-historial.json
 │   ├── plantilla-temario.json
 │   ├── plantilla-progreso.json
 │   ├── plantilla-glosario.json
@@ -632,17 +1007,7 @@ estudios/
 
 > Cosas que se evaluaron, se decidió que valen la pena, y se dejaron fuera del alcance del momento. **Nada de aquí está implementado** — no asumas que existe. Si vas a implementar una, bórrala de esta lista y documéntala donde corresponda.
 
-### Historial de sesiones
-
-**Qué falta:** el proyecto no tiene memoria de *cuándo* se estudió. `ultima_sesion` se sobreescribe en cada sesión, así que solo conserva la última; `sesiones_dedicadas` es un contador sin fechas. No hay forma de responder "¿cuánto estudié esta semana?", "¿a qué hora rindo mejor?", "¿cuántos días seguidos llevo?".
-
-**Idea:** un `historial.json` (en la raíz o por curso) que haga *append* —nunca overwrite— con una entrada por sesión: fecha y hora de inicio, duración, tipo de clase (ver "Anatomía de una clase"), curso, temas tocados (principal e intercalados), y resultado. Lo escribiría el "Protocolo al CERRAR una clase".
-
-**Por qué se aparcó (2026-07-16):** se discutió a raíz de que `ultima_sesion` no guardaba la hora. Pero la falta de hora no era el problema real — el problema es que no hay historial, y ponerle hora a un campo que se sobreescribe no arregla eso. Se decidió poner la hora igual (es casi gratis y deja la puerta abierta) y aparcar el historial como feature propia, para no agrandar el cambio de ese día.
-
-**Ojo — el problema que motivó la idea ya está resuelto por otra vía.** El síntoma original era que un repaso caía redundante cuando el usuario estudiaba dos veces el mismo día (clase en la mañana, "repaso" a la hora de comer). Eso ya no puede pasar: la escalera de repaso pone `fecha_proximo_repaso` en mañana como mínimo, y el Método 1 prohíbe hacer recuperación activa de algo cuyo `ultima_sesion` es hoy. Así que el historial es para **conocer tus hábitos de estudio**, no para arreglar el scheduler. No lo justifiques con lo del repaso redundante.
-
-**Precio a pagar:** un archivo que crece indefinidamente y que hay que leer (o al menos su cola) en cada arranque. Conviene pensar antes cuánto de él necesita entrar en contexto.
+*(Ninguna pendiente. Aquí vivieron el historial de sesiones y el problema de cursos compartidos; ambos se resolvieron el 2026-07-16 — ver `historial.json`, y "Cursos compartidos" y "El presupuesto: una cola con prioridad" en "Objetivos paralelos".)*
 
 ---
 

@@ -7,7 +7,7 @@
     "prioridad": 1,
     "condicion": null,
     "condicion_urgente": null,
-    "nota": "OBLIGATORIO. Cómo se estudia este curso; lo lee el PASO 5.5 del README raíz para decidir qué clase toca. Valores de 'tipo': 'ruta' (progresión lineal tema a tema; cadencia_dias y condiciones en null), 'cadencia' (módulo recurrente en dosis pequeñas — requiere cadencia_dias entero), 'hito' (se dispara por condición — requiere 'condicion' para entrar en rotación y 'condicion_urgente' para pasar a mandar cerca del deadline). Las condiciones se escriben en prosa pero deben ser ARITMÉTICA VERIFICABLE, no juicio: di qué se cuenta, sobre qué universo y el umbral exacto, de forma que otro agente en otra sesión llegue al mismo resultado. 'prioridad' (entero) desempata cuando dos cursos compiten el mismo día: gana el mayor. Sin este campo el curso queda huérfano y nunca se estudia — que es exactamente el bug que este proyecto tuvo hasta 2026-07-16."
+    "nota": "OBLIGATORIO. Cómo se estudia este curso; lo lee el PASO 5.5 del README raíz para decidir qué clase toca. Valores de 'tipo': 'ruta' (progresión lineal tema a tema; cadencia_dias y condiciones en null), 'cadencia' (módulo recurrente en dosis pequeñas — requiere cadencia_dias entero), 'hito' (se dispara por condición — requiere 'condicion' para entrar en rotación y 'condicion_urgente' para pasar a mandar cerca del deadline). Las condiciones se escriben en prosa pero deben ser ARITMÉTICA VERIFICABLE, no juicio: di qué se cuenta, sobre qué universo y el umbral exacto, de forma que otro agente en otra sesión llegue al mismo resultado. 'prioridad' desempata cuando dos cursos compiten el mismo día. Es ORDINAL: 1 = lo primero, y GANA EL MENOR (se lee 'primero esto, segundo aquello', no como un peso donde más es más). Sin este campo el curso queda huérfano y nunca se estudia — que es exactamente el bug que este proyecto tuvo hasta 2026-07-16."
   },
   "bibliografia": [
     {
@@ -30,15 +30,32 @@
       "nombre": "Nombre legible del tema",
       "descripcion": "Qué cubre este tema en 1-2 frases",
       "prerrequisitos_internos": [],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
       "dificultad": 1,
       "opcional": false,
+      "hito_id": null,
       "objetivos_aprendizaje": [
         "Verbo de acción + qué debe poder hacer el usuario",
         "Otro objetivo observable y verificable"
       ],
-      "criterio_dominio": "Cómo se verifica que el tema se dominó (ej: resuelve 8/10 ejercicios, explica sin apoyo, aplica en caso real)",
-      "referencias": ["Libro cap X-Y", "Recurso extra si aplica"]
+      "criterio_dominio": {
+        "base": "Qué debe poder hacer para considerarse nivel BASE (lo justo para no atascarse en lo que depende de este tema)",
+        "intermedio": "Qué debe poder hacer para nivel INTERMEDIO (resuelve solo lo típico, sin ayuda)",
+        "avanzado": "Qué debe poder hacer para nivel AVANZADO (velocidad, casos raros, transferencia)"
+      },
+      "referencias": [
+        "Libro cap X-Y",
+        "Recurso extra si aplica"
+      ],
+      "_prerrequisitos_externos": "Temas de OTROS cursos que este tema necesita. Formato: ['curso/tema_id'], ej. ['05-fisica/02-vectores', '04-trigonometria/15-triangulos-oblicuangulos']. Array vacío o ausente = ninguno. ES A NIVEL DE TEMA, NO DE CURSO, y esa es toda la gracia: 'Estática necesita geometría' es cierto pero inútil — lo que necesita es '03-geometria/09-areas' para momentos de inercia, no las cónicas. Decirlo a nivel de curso arrastra el curso entero a la planificación e infla el plan con material que nadie te va a preguntar. El README del curso puede seguir teniendo un resumen en prosa para humanos, pero la verdad para el agente vive AQUÍ.",
+      "_hito_id": "OPCIONAL (null si no aplica). A qué hito del objetivo pertenece este tema — debe coincidir con un 'hitos[].id' de objetivo.json. Sirve cuando un objetivo tiene varias fechas de corte que cubren contenido DISTINTO: p.ej. en un semestre universitario, los temas de las semanas 1-8 llevan hito_id 'parcial' y los de las 8-16 llevan 'final', porque el final no es acumulativo. Si todos los temas del curso van a la misma fecha, déjalo en null: se asignan al primer hito no condicional del objetivo. NO inventes cortes que no existen.",
+      "_sesiones_por_nivel": "Coste INCREMENTAL de cada salto de nivel, no acumulado: 'intermedio': 1 significa 1 sesión MÁS para pasar de base a intermedio. El objetivo paga solo los saltos que le faltan (ver el algoritmo en el README raíz). Si un tema solo tiene sentido a un nivel, pon los otros en 0. REEMPLAZA a 'sesiones_estimadas' y 'sesiones_estimadas_pasar', que trataban el tema como un bloque único de coste fijo.",
+      "_criterio_dominio": "Uno POR NIVEL. Es lo que hace que 'nivel_alcanzado' sea un estado VERIFICABLE y no una opinión: el nivel solo sube cuando el usuario cumple el criterio de ese nivel, aunque haya gastado diez sesiones. Escribe criterios observables y medibles (ej. 'resuelve 8/10 ejercicios variados sin ayuda en menos de X min'), nunca 'entiende el tema'."
     }
   ]
 }

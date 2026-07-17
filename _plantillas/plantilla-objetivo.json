@@ -1,14 +1,53 @@
 {
-  "objetivo_actual": {
-    "id": "obj-1",
-    "objetivo_final": "Descripción concreta de qué se quiere aprender/lograr",
-    "fecha_limite": "YYYY-MM-DD o null si no hay",
-    "horas_semanales": 0,
-    "nivel_actual_al_inicio": "Descripción honesta del punto de partida al iniciar este objetivo",
-    "motivacion": "Por qué se quiere aprender esto (contexto)",
-    "fecha_inicio": "YYYY-MM-DD",
-    "estado_setup": "incompleto",
-    "cursos_generados": []
-  },
-  "objetivos_completados": []
+  "presupuesto_horas": [
+    {
+      "desde": "YYYY-MM-DD",
+      "hasta": "YYYY-MM-DD o null si es el periodo abierto final",
+      "horas_semanales": 0,
+      "nota": "Por qué la disponibilidad es esta en este periodo"
+    }
+  ],
+  "nota_presupuesto": "Tiempo real que el usuario tiene para estudiar, como LÍNEA DE TIEMPO de periodos (su disponibilidad cambia: vacaciones, clases, trabajo). NO se reparte por objetivo: los objetivos compiten por él y se ordenan por prioridad. Ver 'El presupuesto' y 'Objetivos paralelos' en el README.md raíz. Son PROMESAS del usuario hasta que historial.json tenga datos para contrastarlas. Si el usuario tiene una disponibilidad estable, un solo periodo con 'hasta': null basta — pero pregúntaselo, no lo asumas.",
+  "objetivos": [
+    {
+      "id": "obj-1",
+      "estado": "activo",
+      "condicion_activacion": null,
+      "prioridad": 1,
+      "objetivo_final": "Descripción concreta de qué se quiere aprender/lograr",
+      "fecha_limite": "YYYY-MM-DD o null si no hay",
+      "hitos": [
+        {
+          "id": "slug-corto",
+          "nombre": "Nombre legible del hito (ej. 'Evaluación Parcial')",
+          "fecha": "YYYY-MM-DD o null si aún no se sabe",
+          "cubre": "Qué entra en este hito. Si los temas del temario declaran hito_id, debe coincidir con este id.",
+          "condicional": false
+        }
+      ],
+      "nivel_actual_al_inicio": "Descripción honesta del punto de partida al iniciar este objetivo",
+      "motivacion": "Por qué se quiere aprender esto (contexto)",
+      "fecha_inicio": "YYYY-MM-DD",
+      "estado_setup": "incompleto",
+      "cursos_requeridos": [
+        {
+          "curso": "NN-nombre-curso",
+          "nivel_requerido": "base | intermedio | avanzado",
+          "overrides": {
+            "tema_id": "nivel distinto para este tema concreto"
+          }
+        }
+      ]
+    }
+  ],
+  "_documentacion_campos": {
+    "estado": "activo = compite por horas ahora. latente = existe pero aún no compite; despierta cuando se cumpla condicion_activacion. completado = terminado; deja de competir y libera el primer puesto al siguiente en prioridad. NO hace falta reordenar prioridades con el tiempo: la máquina de estados lo hace sola.",
+    "condicion_activacion": "Solo para estado 'latente'. Texto en ARITMÉTICA VERIFICABLE (igual que las condiciones de los cursos 'hito'): di qué se comprueba exactamente, de forma que otro agente en otra sesión llegue al mismo resultado. Ej: 'cuando obj-1 pase a estado completado'. El PASO 5.5 la evalúa en cada arranque y el comando `estado` alerta si se cumplió y el objetivo sigue dormido.",
+    "prioridad": "ORDINAL: 1 = lo primero, GANA EL MENOR. Ordena qué objetivo reserva horas antes que otro.",
+    "hitos": "Array de fechas de corte del objetivo. Un objetivo puede tener varias (ej. parcial y final de un semestre) y cada una cubrir contenido DISTINTO — no necesariamente acumulativo. Los temas del temario pueden declarar 'hito_id' para decir a cuál pertenecen. Si el objetivo tiene una sola fecha, un único hito basta. 'condicional: true' = solo ocurre si pasa algo (ej. un examen sustitutorio que solo se rinde si se jala otro); no lo cuentes en la planificación normal.",
+    "cursos_requeridos": "Cursos que este objetivo necesita Y A QUÉ NIVEL. MUCHOS-A-MUCHOS: un curso puede estar en varios objetivos con niveles DISTINTOS — el semestre pide álgebra en 'base' y el examen de admisión la misma álgebra en 'avanzado'. 'nivel_requerido' es el default del curso; 'overrides' sube o baja temas concretos (los cuellos de botella de los que cuelga medio plan). NO declares los temas uno a uno: es ilegible y se pudre. Pero tampoco te conformes con el default cuando un tema es crítico. REEMPLAZA al antiguo 'liston' por objetivo, que aplicaba un mismo listón a todo y no distinguía entre un tema base y uno crítico.",
+    "estado_setup": "'incompleto' mientras la entrevista de este objetivo no termine; 'completo' cuando tenga todos sus temarios aprobados.",
+    "_nota_sin_objetivos_completados": "Antes existía un array 'objetivos_completados' aparte. Se eliminó el 2026-07-16: el campo 'estado' ya dice si un objetivo terminó, y tener dos sitios donde vive un objetivo terminado era una fuente de deriva. Un objetivo completado se queda en 'objetivos' con estado 'completado' y una 'fecha_completado'; sus cursos y su historia siguen siendo evidencia del conocimiento adquirido.",
+    "presupuesto_horas": "LÍNEA DE TIEMPO, no un número. La disponibilidad del usuario cambia (vacaciones vs. clases vs. trabajo), y un escalar promedia mundos distintos y miente en ambas direcciones. Las horas hasta una fecha se INTEGRAN sobre los periodos que se solapen con [hoy, fecha]. Un periodo con 'hasta': null se extiende indefinidamente. Los objetivos NO reparten este presupuesto: compiten por él en una cola por prioridad. Ver 'El presupuesto' en el README raíz. Y son PROMESAS del usuario, no mediciones: contrástalas con historial.json en cuanto haya 3 semanas de datos."
+  }
 }

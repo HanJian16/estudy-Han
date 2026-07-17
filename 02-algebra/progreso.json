@@ -1,22 +1,159 @@
 {
   "curso": "Álgebra",
   "progreso": [
-    { "tema_id": "01-leyes-exponentes", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "02-polinomios", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "03-productos-notables", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "04-division-algebraica", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "05-factorizacion", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "06-fracciones-algebraicas", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "07-radicacion-racionalizacion", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "08-binomio-newton", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "09-numeros-complejos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "10-ecuaciones-1-2-grado", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "11-ecuaciones-grado-superior", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "12-sistemas-ecuaciones", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "13-inecuaciones-valor-absoluto", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "14-funciones", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "15-logaritmos", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "16-progresiones", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null },
-    { "tema_id": "17-matrices-determinantes", "estado": "no_iniciado", "porcentaje": 0, "ultima_sesion": null, "sesiones_dedicadas": 0, "nivel_repaso": null, "fecha_proximo_repaso": null }
-  ]
+    {
+      "tema_id": "01-leyes-exponentes",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "02-polinomios",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "03-productos-notables",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "04-division-algebraica",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "05-factorizacion",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "06-fracciones-algebraicas",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "07-radicacion-racionalizacion",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "08-binomio-newton",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "09-numeros-complejos",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "10-ecuaciones-1-2-grado",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "11-ecuaciones-grado-superior",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "12-sistemas-ecuaciones",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "13-inecuaciones-valor-absoluto",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "14-funciones",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "15-logaritmos",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "16-progresiones",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    },
+    {
+      "tema_id": "17-matrices-determinantes",
+      "estado": "no_iniciado",
+      "nivel_alcanzado": null,
+      "ultima_sesion": null,
+      "sesiones_dedicadas": 0,
+      "nivel_repaso": null,
+      "fecha_proximo_repaso": null
+    }
+  ],
+  "_nota_migracion": "2026-07-16: anadido 'nivel_alcanzado' (profundidad real, verificable). Los temas que estaban en estado 'completado' se migraron a nivel_alcanzado 'avanzado' porque se estudiaron con el liston del examen UNI. 'estado: completado' queda DEPRECADO como medida de conocimiento: la pregunta correcta es 'completado para que objetivo', y eso se deriva comparando nivel_alcanzado con el nivel que cada objetivo requiere. Ver el README raiz."
 }

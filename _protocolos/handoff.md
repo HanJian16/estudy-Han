@@ -76,7 +76,7 @@ Pregunta al usuario:
 ### Paso 1.2: Recolectar el contexto
 
 Lee de los archivos:
-- `objetivo.json` → objetivo actual y motivación.
+- `objetivo.json` → **el/los objetivo(s) que requieren este curso** (aquellos en cuyo `cursos_requeridos` aparece) y su motivación. Un curso puede servir a varios: si es el caso, menciónalos todos y usa el hito más cercano como la fecha que aprieta. Con objetivos en paralelo, no mezcles: una clase de inglés no se motiva con el objetivo de la UNI.
 - README del curso + `temario.json` → objetivo del curso, tema y sus `objetivos_aprendizaje` y `criterio_dominio`.
 - `progreso.json` → estado y sesiones dedicadas al tema principal; `nivel_repaso` y `fecha_proximo_repaso` de los intercalados.
 - `temario.json` → `objetivos_aprendizaje` de cada tema intercalado (el agente destino necesita saber qué evaluar en ellos).
@@ -106,9 +106,10 @@ Vamos a trabajar **una clase** de mi curso de [Nombre del curso]. Una clase tien
 No abras ningún tema nuevo que no sea el principal, aunque yo te lleve por la conversación hacia otros. Si nos desviamos hacia contenido nuevo distinto (aunque sea relacionado), recuérdame que este handoff es solo para esta clase y sugiéreme cerrarla con el resumen para hacer otro handoff después.
 
 ## Sobre mí y mi objetivo
-- **Objetivo global:** [de objetivo_actual.objetivo_final]
-- **Motivación:** [de objetivo_actual.motivacion]
-- **Nivel:** [de objetivo_actual.nivel_actual_al_inicio, complementado con progreso real]
+- **Objetivo(s) a los que sirve este curso:** [objetivo_final de cada objetivo que lo requiere; si son varios, dilo — saber que un tema cuenta para dos metas a la vez motiva]
+- **La fecha que aprieta:** [el hito no condicional más cercano entre esos objetivos: nombre y fecha]
+- **Motivación:** [motivacion del objetivo que da la urgencia efectiva]
+- **Nivel:** [nivel_actual_al_inicio de ese objetivo, complementado con progreso real]
 
 ## Curso actual: [Nombre del curso]
 [objetivo_del_curso del temario]
@@ -168,7 +169,7 @@ Cuando termine nuestra conversación, dame un mensaje que empiece exactamente co
 - Fecha y hora de inicio: YYYY-MM-DDTHH:MM
 - Tema principal: [tema_id principal que te pasé arriba]
 - Temas intercalados: [los tema_id de repaso que te pasé arriba, separados por coma, o "ninguno"]
-- Duración estimada: X minutos
+- Duración real: X minutos (pregúntamelo si no lo sabes con certeza — este dato alimenta mi seguimiento de horas, así que una estimación tuya a ojo no sirve)
 
 ## Progreso del tema principal
 - Estado sugerido: [en_progreso | completado]
@@ -279,6 +280,8 @@ Extrae cada sección del bloque (ya revisada en el paso anterior) y actualiza lo
 - Incrementa `sesiones_dedicadas` en 1.
 - Actualiza `ultima_sesion` con la fecha y hora del resumen (ISO 8601, `YYYY-MM-DDTHH:MM`). Si el resumen trajo solo la fecha sin hora, guárdala sin hora en vez de inventarla.
 - Si pasó a `completado`, arma su repaso: `nivel_repaso: 1`, `fecha_proximo_repaso` = el día siguiente a la fecha del resumen.
+
+**`historial.json`** — agrega **una entrada al final** (append, nunca sobreescribas) con `inicio` y `duracion_min` tomados de la Metadata del resumen, el `objetivo_id` del objetivo dueño del curso, `tema_principal`, `temas_intercalados`, y en `nota` el agente y modalidad de la sesión externa. Si el resumen no trajo duración, **pregúntasela al usuario** antes de escribir — no la inventes ni dejes el campo en null.
 
 **`progreso.json` — temas intercalados** (de la sección "Repaso intercalado" del resumen)
 - `resultado: bien` → sube `nivel_repaso` en 1 (tope 5) y recalcula `fecha_proximo_repaso` = fecha del resumen + el intervalo del nivel nuevo (ver la escalera en el `README.md` raíz).

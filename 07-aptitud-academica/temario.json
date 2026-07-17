@@ -4,7 +4,7 @@
   "modo_estudio": {
     "tipo": "cadencia",
     "cadencia_dias": 3,
-    "prioridad": 2,
+    "prioridad": 4,
     "condicion": null,
     "condicion_urgente": null,
     "nota": "Módulo de dosis pequeñas y constantes: el razonamiento se entrena con práctica variada y frecuente, no con bloques largos de teoría. Cadencia de 3 días ≈ 2.3 sesiones por semana, que es lo que pide el README de este curso. Ver también la nota general del curso sobre no profundizar humanidades más de lo que el examen exige."
@@ -42,7 +42,12 @@
       "nombre": "Cronómetro / temporizador",
       "url": null,
       "uso": "Entrenar la resolución rápida: el razonamiento se penaliza más por lentitud que por dificultad.",
-      "para_temas": ["01-rm-series-sucesiones", "02-rm-planteo-edades", "03-rm-conteo-logica", "05-rv-comprension-lectora"]
+      "para_temas": [
+        "01-rm-series-sucesiones",
+        "02-rm-planteo-edades",
+        "03-rm-conteo-logica",
+        "05-rv-comprension-lectora"
+      ]
     }
   ],
   "temas": [
@@ -51,7 +56,11 @@
       "nombre": "RM: Series, sucesiones y analogías numéricas",
       "descripcion": "Sucesiones numéricas, literales y gráficas; analogías y distribuciones numéricas.",
       "prerrequisitos_internos": [],
-      "sesiones_estimadas": 2,
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
       "dificultad": 2,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -60,14 +69,22 @@
         "Resolver contra reloj (menos de 1 minuto por ítem promedio)"
       ],
       "criterio_dominio": "Resuelve 8/10 ítems tipo examen en tiempo limitado sin ayuda",
-      "referencias": ["Lumbreras RM — cap. Series y sucesiones"]
+      "referencias": [
+        "Lumbreras RM — cap. Series y sucesiones"
+      ]
     },
     {
       "id": "02-rm-planteo-edades",
       "nombre": "RM: Planteo de ecuaciones, edades y móviles",
       "descripcion": "Traducción de enunciados verbales a ecuaciones, problemas de edades, móviles y cronometría.",
-      "prerrequisitos_internos": ["01-rm-series-sucesiones"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "01-rm-series-sucesiones"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -76,14 +93,22 @@
         "Resolver problemas de móviles y cronometría (relojes, campanadas)"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de planteo y edades tipo examen sin ayuda",
-      "referencias": ["Lumbreras RM — cap. Planteo de ecuaciones / Edades"]
+      "referencias": [
+        "Lumbreras RM — cap. Planteo de ecuaciones / Edades"
+      ]
     },
     {
       "id": "03-rm-conteo-logica",
       "nombre": "RM: Conteo de figuras, razonamiento lógico e inductivo-deductivo",
       "descripcion": "Conteo de figuras, razonamiento inductivo y deductivo, situaciones lógicas (verdades y mentiras), orden de información y certezas.",
-      "prerrequisitos_internos": ["01-rm-series-sucesiones"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "01-rm-series-sucesiones"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -92,14 +117,22 @@
         "Resolver situaciones lógicas de orden de información, parentesco y certezas"
       ],
       "criterio_dominio": "Resuelve 8/10 ítems variados de razonamiento lógico sin ayuda",
-      "referencias": ["Lumbreras RM — cap. Razonamiento inductivo-deductivo / Situaciones lógicas"]
+      "referencias": [
+        "Lumbreras RM — cap. Razonamiento inductivo-deductivo / Situaciones lógicas"
+      ]
     },
     {
       "id": "04-rm-operadores-suficiencia",
       "nombre": "RM: Operadores matemáticos y suficiencia de datos",
       "descripcion": "Operadores matemáticos arbitrarios, funciones definidas por tablas y análisis de suficiencia de datos.",
-      "prerrequisitos_internos": ["02-rm-planteo-edades"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "02-rm-planteo-edades"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 1
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -107,14 +140,20 @@
         "Resolver problemas de suficiencia de datos decidiendo qué información basta"
       ],
       "criterio_dominio": "Resuelve 8/10 ítems de operadores y suficiencia sin ayuda",
-      "referencias": ["Lumbreras RM — cap. Operadores matemáticos"]
+      "referencias": [
+        "Lumbreras RM — cap. Operadores matemáticos"
+      ]
     },
     {
       "id": "05-rv-comprension-lectora",
       "nombre": "RV: Comprensión lectora",
       "descripcion": "Tipos de pregunta (tema central, idea principal, inferencia, sentido contextual), estrategias de lectura y jerarquización de ideas.",
       "prerrequisitos_internos": [],
-      "sesiones_estimadas": 3,
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -123,14 +162,23 @@
         "Aplicar una estrategia de lectura eficiente bajo presión de tiempo"
       ],
       "criterio_dominio": "Acierta 8/10 preguntas de comprensión en textos tipo examen dentro del tiempo",
-      "referencias": ["Lumbreras RV — cap. Comprensión de lectura", "Exámenes UNI: textos de la Prueba 1"]
+      "referencias": [
+        "Lumbreras RV — cap. Comprensión de lectura",
+        "Exámenes UNI: textos de la Prueba 1"
+      ]
     },
     {
       "id": "06-rv-analogias-conectores",
       "nombre": "RV: Analogías, oraciones incompletas y eliminación de oraciones",
       "descripcion": "Analogías verbales, conectores lógico-textuales, oraciones incompletas y eliminación de oraciones por impertinencia o redundancia.",
-      "prerrequisitos_internos": ["05-rv-comprension-lectora"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "05-rv-comprension-lectora"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -139,14 +187,20 @@
         "Eliminar la oración impertinente o redundante de un conjunto"
       ],
       "criterio_dominio": "Acierta 8/10 ítems variados de aptitud verbal sin ayuda",
-      "referencias": ["Lumbreras RV — cap. Analogías / Oraciones incompletas / Eliminación"]
+      "referencias": [
+        "Lumbreras RV — cap. Analogías / Oraciones incompletas / Eliminación"
+      ]
     },
     {
       "id": "07-hum-lenguaje-literatura",
       "nombre": "Humanidades: Lenguaje y Literatura",
       "descripcion": "Categorías gramaticales, acentuación, ortografía, corrección idiomática y nociones básicas de literatura peruana y universal.",
       "prerrequisitos_internos": [],
-      "sesiones_estimadas": 2,
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
       "dificultad": 2,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -155,14 +209,21 @@
         "Reconocer autores y obras representativas frecuentes en el examen UNI"
       ],
       "criterio_dominio": "Acierta 8/10 preguntas de lenguaje y literatura tipo examen sin ayuda",
-      "referencias": ["Compendio Lenguaje — Lumbreras/ADUNI", "Exámenes UNI: preguntas de lenguaje"]
+      "referencias": [
+        "Compendio Lenguaje — Lumbreras/ADUNI",
+        "Exámenes UNI: preguntas de lenguaje"
+      ]
     },
     {
       "id": "08-hum-historia-geografia",
       "nombre": "Humanidades: Historia y Geografía",
       "descripcion": "Repaso dirigido de Historia del Perú y Universal (hitos frecuentes) y Geografía del Perú y general, enfocado en lo que la UNI pregunta.",
       "prerrequisitos_internos": [],
-      "sesiones_estimadas": 2,
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
       "dificultad": 2,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -171,14 +232,21 @@
         "Descartar distractores en preguntas de opción múltiple de letras"
       ],
       "criterio_dominio": "Acierta 8/10 preguntas de historia y geografía tipo examen sin ayuda",
-      "referencias": ["Compendios Historia/Geografía — Lumbreras/ADUNI", "Exámenes UNI: preguntas de letras"]
+      "referencias": [
+        "Compendios Historia/Geografía — Lumbreras/ADUNI",
+        "Exámenes UNI: preguntas de letras"
+      ]
     },
     {
       "id": "09-hum-economia-filosofia-civica",
       "nombre": "Humanidades: Economía, Filosofía y Cívica",
       "descripcion": "Nociones básicas de economía, conceptos fundamentales de filosofía y educación cívica. Bloque de menor frecuencia; repaso ligero.",
       "prerrequisitos_internos": [],
-      "sesiones_estimadas": 1,
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 1
+      },
       "dificultad": 2,
       "opcional": true,
       "objetivos_aprendizaje": [
@@ -186,7 +254,10 @@
         "Identificar corrientes y conceptos filosóficos elementales y nociones de cívica frecuentes"
       ],
       "criterio_dominio": "Acierta 7/10 preguntas de estos temas en exámenes pasados sin ayuda",
-      "referencias": ["Compendios Economía/Filosofía/Cívica — Lumbreras/ADUNI"]
+      "referencias": [
+        "Compendios Economía/Filosofía/Cívica — Lumbreras/ADUNI"
+      ]
     }
-  ]
+  ],
+  "_nota_migracion_niveles": "MIGRACION MECANICA 2026-07-16 al modelo de dos dimensiones (ver 'El conocimiento se mide en DOS dimensiones' en el README raiz). 'sesiones_estimadas' y 'sesiones_estimadas_pasar' se convirtieron en 'sesiones_por_nivel' (coste INCREMENTAL por salto). El reparto es una APROXIMACION ARITMETICA, no pedagogia medida: para los cursos base, base=el antiguo coste 'pasar' y el resto hasta el antiguo coste 'dominar' se repartio entre intermedio y avanzado; para los cursos universitarios, base+intermedio suman el coste original (que se dimensiono para aprobar) y 'avanzado' es una estimacion que hoy ningun objetivo requiere. REVISAR con datos reales de historial.json. OJO — 'criterio_dominio' sigue siendo UN SOLO STRING en la mayoria de temas: es el criterio del nivel para el que se escribio (avanzado en los cursos base, intermedio en los universitarios). Los criterios de los otros niveles NO se fabricaron a proposito: se redactan cuando cada tema se estudia, que es cuando se sabe que distingue de verdad un nivel de otro. Si un tema tiene criterio_dominio como string, trata ese string como el criterio del nivel objetivo del curso y ESCRIBE los que falten al tocarlo."
 }

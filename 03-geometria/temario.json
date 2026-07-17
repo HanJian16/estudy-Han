@@ -43,7 +43,10 @@
       "nombre": "Desmos",
       "url": "https://www.desmos.com/calculator",
       "uso": "Verificación rápida en geometría analítica (rectas, circunferencias, cónicas).",
-      "para_temas": ["12-geometria-analitica", "13-conicas"]
+      "para_temas": [
+        "12-geometria-analitica",
+        "13-conicas"
+      ]
     }
   ],
   "temas": [
@@ -52,7 +55,11 @@
       "nombre": "Segmentos y ángulos",
       "descripcion": "Operaciones con segmentos, punto medio, ángulos y su clasificación, ángulos entre paralelas y una secante.",
       "prerrequisitos_internos": [],
-      "sesiones_estimadas": 2,
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 1,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -61,14 +68,22 @@
         "Aplicar propiedades de ángulos entre rectas paralelas (alternos, conjugados, dientes de sierra)"
       ],
       "criterio_dominio": "Resuelve 9/10 ejercicios básicos de segmentos y ángulos sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Segmentos y ángulos"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Segmentos y ángulos"
+      ]
     },
     {
       "id": "02-triangulos",
       "nombre": "Triángulos: propiedades fundamentales",
       "descripcion": "Clasificación, suma de ángulos, existencia (desigualdad triangular), líneas notables (mediana, bisectriz, altura, mediatriz) y propiedades angulares con líneas notables.",
-      "prerrequisitos_internos": ["01-segmentos-angulos"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "01-segmentos-angulos"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 2,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -77,14 +92,22 @@
         "Calcular ángulos formados por líneas notables (bisectrices interiores/exteriores, alturas)"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de ángulos en triángulos tipo examen sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Triángulos"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Triángulos"
+      ]
     },
     {
       "id": "03-congruencia",
       "nombre": "Congruencia de triángulos",
       "descripcion": "Casos de congruencia y sus aplicaciones: teorema de la bisectriz, mediatriz, base media y menor mediana en el triángulo rectángulo.",
-      "prerrequisitos_internos": ["02-triangulos"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "02-triangulos"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -93,14 +116,22 @@
         "Resolver problemas que exigen trazos auxiliares para formar triángulos congruentes"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de congruencia con trazo auxiliar sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Congruencia"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Congruencia"
+      ]
     },
     {
       "id": "04-poligonos-cuadrilateros",
       "nombre": "Polígonos y cuadriláteros",
       "descripcion": "Suma de ángulos y diagonales de polígonos; clasificación y propiedades de trapecios y paralelogramos.",
-      "prerrequisitos_internos": ["02-triangulos"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "02-triangulos"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 2,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -109,14 +140,22 @@
         "Resolver problemas con propiedades de paralelogramos, rombos y rectángulos"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de polígonos y cuadriláteros tipo examen sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Polígonos / Cuadriláteros"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Polígonos / Cuadriláteros"
+      ]
     },
     {
       "id": "05-circunferencia",
       "nombre": "Circunferencia",
       "descripcion": "Ángulos en la circunferencia (central, inscrito, semiinscrito, interior, exterior), propiedades de tangentes, teorema de Poncelet y Pitot.",
-      "prerrequisitos_internos": ["03-congruencia"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "03-congruencia"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -125,14 +164,23 @@
         "Aplicar los teoremas de Poncelet y Pitot en triángulos y cuadriláteros circunscritos"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de circunferencia tipo examen sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Circunferencia"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Circunferencia"
+      ]
     },
     {
       "id": "06-puntos-notables",
       "nombre": "Puntos notables del triángulo",
       "descripcion": "Baricentro, incentro, circuncentro, ortocentro y excentro: propiedades y relaciones angulares.",
-      "prerrequisitos_internos": ["03-congruencia", "05-circunferencia"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "03-congruencia",
+        "05-circunferencia"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -140,14 +188,23 @@
         "Calcular ángulos que involucran incentro, circuncentro y excentro"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de puntos notables sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Puntos notables"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Puntos notables"
+      ]
     },
     {
       "id": "07-proporcionalidad-semejanza",
       "nombre": "Proporcionalidad y semejanza",
       "descripcion": "Teorema de Thales, teorema de la bisectriz (interior y exterior), semejanza de triángulos y sus casos.",
-      "prerrequisitos_internos": ["04-poligonos-cuadrilateros", "05-circunferencia"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "04-poligonos-cuadrilateros",
+        "05-circunferencia"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -156,14 +213,22 @@
         "Resolver problemas de semejanza con circunferencias (cuerdas y tangentes)"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de semejanza tipo examen sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Semejanza"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Semejanza"
+      ]
     },
     {
       "id": "08-relaciones-metricas",
       "nombre": "Relaciones métricas",
       "descripcion": "Relaciones métricas en el triángulo rectángulo, oblicuángulo (teoremas de Euclides, mediana, Herón) y en la circunferencia (cuerdas, secantes, tangente).",
-      "prerrequisitos_internos": ["07-proporcionalidad-semejanza"],
-      "sesiones_estimadas": 3,
+      "prerrequisitos_internos": [
+        "07-proporcionalidad-semejanza"
+      ],
+      "sesiones_por_nivel": {
+        "base": 2,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -172,14 +237,23 @@
         "Aplicar los teoremas de cuerdas, secantes y tangente en la circunferencia"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de relaciones métricas nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Relaciones métricas", "Exámenes UNI: preguntas de relaciones métricas"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Relaciones métricas",
+        "Exámenes UNI: preguntas de relaciones métricas"
+      ]
     },
     {
       "id": "09-areas",
       "nombre": "Áreas de regiones planas",
       "descripcion": "Área de regiones triangulares, cuadrangulares y circulares; relación de áreas (razón de semejanza, regiones con misma base o altura).",
-      "prerrequisitos_internos": ["08-relaciones-metricas"],
-      "sesiones_estimadas": 3,
+      "prerrequisitos_internos": [
+        "08-relaciones-metricas"
+      ],
+      "sesiones_por_nivel": {
+        "base": 2,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -188,14 +262,23 @@
         "Calcular áreas de regiones sombreadas combinando figuras circulares y poligonales"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de áreas (incluye sombreadas) nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Áreas", "Exámenes UNI: preguntas de áreas sombreadas"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Áreas",
+        "Exámenes UNI: preguntas de áreas sombreadas"
+      ]
     },
     {
       "id": "10-geometria-del-espacio",
       "nombre": "Geometría del espacio: poliedros, prisma y pirámide",
       "descripcion": "Rectas y planos en el espacio, ángulo diedro, poliedros regulares, prisma y pirámide: áreas y volúmenes.",
-      "prerrequisitos_internos": ["09-areas"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "09-areas"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -204,14 +287,22 @@
         "Resolver problemas con poliedros regulares (teorema de Euler)"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de geometría del espacio tipo examen sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Geometría del espacio"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Geometría del espacio"
+      ]
     },
     {
       "id": "11-solidos-revolucion",
       "nombre": "Sólidos de revolución",
       "descripcion": "Cilindro, cono, esfera y teoremas de Pappus-Guldin: áreas y volúmenes.",
-      "prerrequisitos_internos": ["10-geometria-del-espacio"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "10-geometria-del-espacio"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -220,14 +311,22 @@
         "Resolver problemas de sólidos inscritos y circunscritos"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de sólidos de revolución tipo examen sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Sólidos de revolución"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Sólidos de revolución"
+      ]
     },
     {
       "id": "12-geometria-analitica",
       "nombre": "Geometría analítica: recta y circunferencia",
       "descripcion": "Plano cartesiano, distancia, división de segmentos, ecuación de la recta (pendiente, paralelismo, perpendicularidad) y de la circunferencia.",
-      "prerrequisitos_internos": ["08-relaciones-metricas"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "08-relaciones-metricas"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -236,14 +335,22 @@
         "Determinar la ecuación de una circunferencia y su posición relativa con rectas"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de recta y circunferencia analítica sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Geometría analítica"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Geometría analítica"
+      ]
     },
     {
       "id": "13-conicas",
       "nombre": "Cónicas: parábola, elipse e hipérbola",
       "descripcion": "Ecuaciones canónicas de las cónicas, elementos (foco, directriz, ejes) y problemas de aplicación. Frecuencia media en el examen.",
-      "prerrequisitos_internos": ["12-geometria-analitica"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "12-geometria-analitica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": true,
       "objetivos_aprendizaje": [
@@ -251,7 +358,10 @@
         "Determinar la ecuación de una cónica a partir de sus elementos"
       ],
       "criterio_dominio": "Resuelve 7/10 ejercicios de cónicas canónicas sin ayuda",
-      "referencias": ["Lumbreras Geometría — cap. Cónicas"]
+      "referencias": [
+        "Lumbreras Geometría — cap. Cónicas"
+      ]
     }
-  ]
+  ],
+  "_nota_migracion_niveles": "MIGRACION MECANICA 2026-07-16 al modelo de dos dimensiones (ver 'El conocimiento se mide en DOS dimensiones' en el README raiz). 'sesiones_estimadas' y 'sesiones_estimadas_pasar' se convirtieron en 'sesiones_por_nivel' (coste INCREMENTAL por salto). El reparto es una APROXIMACION ARITMETICA, no pedagogia medida: para los cursos base, base=el antiguo coste 'pasar' y el resto hasta el antiguo coste 'dominar' se repartio entre intermedio y avanzado; para los cursos universitarios, base+intermedio suman el coste original (que se dimensiono para aprobar) y 'avanzado' es una estimacion que hoy ningun objetivo requiere. REVISAR con datos reales de historial.json. OJO — 'criterio_dominio' sigue siendo UN SOLO STRING en la mayoria de temas: es el criterio del nivel para el que se escribio (avanzado en los cursos base, intermedio en los universitarios). Los criterios de los otros niveles NO se fabricaron a proposito: se redactan cuando cada tema se estudia, que es cuando se sabe que distingue de verdad un nivel de otro. Si un tema tiene criterio_dominio como string, trata ese string como el criterio del nivel objetivo del curso y ESCRIBE los que falten al tocarlo."
 }

@@ -1,29 +1,310 @@
 {
-  "objetivo_actual": {
-    "id": "obj-1",
-    "objetivo_final": "Ingresar a la Universidad Nacional de Ingeniería (UNI, Perú) vía el examen de admisión 2027-1, postulando a Ingeniería Mecatrónica, Electrónica o carrera afín",
-    "fecha_limite": "2027-02-15",
-    "horas_semanales": 20,
-    "nivel_actual_al_inicio": "Egresado de secundaria hace ~10 años. Actualmente cursa Ing. Mecatrónica en la UNFV: llevó Cálculo y Física 1-2 universitarios, pero con una pausa de 3 años. Bases de matemática escolar (aritmética, álgebra, geometría, trigonometría), física y química comprometidas por el tiempo; hay memoria latente pero requiere reconstrucción sólida de fundamentos.",
-    "motivacion": "Deseo de probar la postulación a la UNI (influencia de su padre, poco apego a la UNFV) y evaluar reiniciar la carrera allí. Motivación laxa reconocida por el usuario; beneficio secundario fuerte: reforzar bases le ayuda directamente en sus semestres actuales de la UNFV. Cursará la UNFV en paralelo y dejará su trabajo de medio tiempo para liberar las 20 h semanales.",
-    "fecha_inicio": "2026-07-01",
-    "estado_setup": "completo",
-    "puntaje_objetivo": {
-      "escala": "0 a 20",
-      "rango_ingreso_referencia": "15.7 - 16.5",
-      "carrera_referencia": "Ingeniería Mecatrónica (UNI)",
-      "nota": "Puntaje aproximado del último ingresante a Mecatrónica en procesos recientes. La meta no es solo aprobar (>10) sino competir por un puntaje de ~16, que ubica en el tercio superior. Tenerlo presente al calibrar el nivel de exigencia de ejercicios y simulacros: la UNI exige precisión y velocidad, no solo saber el tema. Verificar el corte oficial del proceso 2027-1 cuando se publique."
+  "presupuesto_horas": [
+    {
+      "desde": "2026-07-16",
+      "hasta": "2026-08-09",
+      "horas_semanales": 35,
+      "nota": "VENTANA DE VACACIONES. Sin universidad ni trabajo. CONFIRMADO POR EL USUARIO (2026-07-16): 35 h/semana, ~6 h diarias. Es la unica ventana de alta disponibilidad y la que decide si el parcial cabe."
     },
-    "cursos_generados": [
-      "01-aritmetica",
-      "02-algebra",
-      "03-geometria",
-      "04-trigonometria",
-      "05-fisica",
-      "06-quimica",
-      "07-aptitud-academica",
-      "08-simulacros"
-    ]
+    {
+      "desde": "2026-08-10",
+      "hasta": "2026-11-28",
+      "horas_semanales": 15,
+      "nota": "SEMESTRE EN CURSO. 20 creditos son ~30 h/semana DENTRO de la universidad (clase, no estudio autonomo). CONFIRMADO POR EL USUARIO (2026-07-16): 15 h/semana de estudio propio encima de eso, ~2.5 h diarias. Total real ~45 h/semana."
+    },
+    {
+      "desde": "2026-11-29",
+      "hasta": null,
+      "horas_semanales": 20,
+      "nota": "POST-SEMESTRE. Acabadas las clases vuelve la disponibilidad alta, justo cuando la UNI pasa a ser prioritaria y toca subir el liston de la base. VALOR POR CONFIRMAR en noviembre."
+    }
+  ],
+  "nota_presupuesto": "El presupuesto NO es un número único: es una LÍNEA DE TIEMPO de periodos, porque la disponibilidad del usuario cambia radicalmente según esté de vacaciones o en clases. Un escalar plano promedia dos mundos distintos y miente en ambas direcciones — infla las semanas de clase e infravalora las de vacaciones. (Antes existía 'horas_semanales_disponibles: 20'; se sustituyó el 2026-07-16 al detectar que las 10.6 semanas hasta el parcial son 3.6 de vacaciones + 7.0 de semestre.) NO se reparte por objetivo: los objetivos compiten por este presupuesto y el PASO 5.5 los ordena por prioridad. Ver 'Objetivos paralelos' en el README raíz. Y OJO: TODOS estos números son PROMESAS/ESTIMACIONES, no mediciones. Contrástalos con las horas reales de historial.json en cuanto haya 3 semanas de datos.",
+  "nota_prioridades": "prioridad es ORDINAL: 1 = lo primero, GANA EL MENOR. No hace falta reordenarla con el tiempo: cuando un objetivo pasa a estado 'completado' deja de competir, y el siguiente queda automáticamente arriba. Secuencia prevista (acordada 2026-07-16): hasta el 28.11.2026 manda el 4to semestre; al cerrarse, la UNI queda primera de diciembre a febrero (y de paso afianza las bases); tras el examen del 15.02.2027 despierta el objetivo de dominio para llegar preparado al 5to semestre, que se creará como objetivo nuevo hacia marzo de 2027.",
+  "nota_objetivos_pendientes": {
+    "aviso": "Datos verificados el 2026-07-16 para objetivos AÚN NO CREADOS. No están en 'objetivos' porque falta generar sus temarios. Esto no es estructura: es una nota para no repetir la investigación.",
+    "semestre_unfv": {
+      "objetivo": "Aprobar el 4to semestre de Ing. Mecatrónica en la UNFV. NO es dominio del 100%: el usuario lo definió como 'dejar las bases suficientes para dar cara en los exámenes y pasar'. Calibrar los criterio_dominio a ese listón, no al de maestría.",
+      "prioridad_acordada": 1,
+      "estado_al_crear": "activo",
+      "calendario_oficial": {
+        "fuente": "Resolución R. N° 6119-2025-CU-UNFV, sección IV 'Desarrollo de actividades académicas', columna 2026-II. URL: https://www.unfv.edu.pe/images/estudiantes/calendario_academico/RESOLUCIN-R.-N--6119---2025-CU-UNFV.pdf (índice: https://www.unfv.edu.pe/estudiantes/calendario-academico)",
+        "inicio_clases": "2026-08-10",
+        "fin_clases": "2026-11-28",
+        "semanas_efectivas": 16,
+        "evaluacion_parcial": "2026-09-28 a 2026-10-03 (semana 8)",
+        "evaluacion_final": "2026-11-23 a 2026-11-28 (semana 16)",
+        "nota_fecha": "DECISIÓN DEL USUARIO (2026-07-16): trabajar con el 10.08 aunque circula el rumor de que se corre al 17.08. Es el peor caso; si se corre, el margen es regalo. NO adelantar el plan asumiendo la semana extra.",
+        "nota_revisable": "Las fechas llevan la coletilla 'Hasta la aplicación del nuevo Modelo Educativo y aprobación del Reglamento Académico de Pregrado'. Son firmes pero revisables: revalidar si el usuario menciona cambios.",
+        "feriados_dentro_del_semestre": [
+          "2026-08-30 Santa Rosa de Lima",
+          "2026-10-08 Combate de Angamos"
+        ],
+        "sustitutorio_y_aplazado": "NO figuran en la resolución central (son de facultad). Pedírselos al usuario cuando los tenga."
+      },
+      "hitos_a_crear": [
+        {
+          "id": "parcial",
+          "nombre": "Evaluación Parcial",
+          "fecha": "2026-09-28",
+          "cubre": "Primera mitad de cada curso (semanas 1-8)"
+        },
+        {
+          "id": "final",
+          "nombre": "Evaluación Final",
+          "fecha": "2026-11-23",
+          "cubre": "Segunda mitad de cada curso (semanas 8-16). NO es acumulativo: no entra la primera mitad."
+        },
+        {
+          "id": "sustitutorio",
+          "nombre": "Examen Sustitutorio",
+          "fecha": null,
+          "cubre": "TODO el semestre. Reemplaza una nota jalada (parcial, final o proyectos).",
+          "condicional": true
+        },
+        {
+          "id": "aplazado",
+          "nombre": "Examen Aplazado",
+          "fecha": null,
+          "cubre": "TODO el semestre y más exigente. Última bala si se jala el curso.",
+          "condicional": true
+        }
+      ],
+      "plan_curricular": "2019 (CONFIRMADO por el usuario; ingresó con esa cohorte). NO es el plan 2002.",
+      "malla_url": "https://web.unfv.edu.pe/facultades/fiei/images/escuelas/epim/malla_curricular_mecatronica_2019.pdf",
+      "cursos_que_llevara": [
+        {
+          "codigo_malla": 26,
+          "nombre": "Matemática Superior",
+          "creditos": 4,
+          "requisito": "18 Matemática Aplicada"
+        },
+        {
+          "codigo_malla": 27,
+          "nombre": "Física III",
+          "creditos": 4,
+          "requisito": "19 Física II"
+        },
+        {
+          "codigo_malla": 28,
+          "nombre": "Resistencia de Materiales",
+          "creditos": 3,
+          "requisito": "19 Física II"
+        },
+        {
+          "codigo_malla": 29,
+          "nombre": "Estática",
+          "creditos": 3,
+          "requisito": "19 Física II"
+        },
+        {
+          "codigo_malla": 32,
+          "nombre": "Estadística Aplicada",
+          "creditos": 3,
+          "requisito": "25 Estadística"
+        },
+        {
+          "codigo_malla": 16,
+          "nombre": "Liderazgo y Desarrollo Personal",
+          "creditos": 3,
+          "requisito": null,
+          "nota": "Es del II ciclo; lo lleva en reemplazo de '31 Proyectos de Investigación Tecnológica y Científica'. Según el usuario NO requiere reestudio técnico — a lo sumo apoyo con formatos APA. Probablemente NO merece curso propio en el plan."
+        }
+      ],
+      "creditos_totales": 20,
+      "cursos_base_que_requerira": "Además de sus cursos nuevos, este objetivo REQUERIRÁ los cursos base ya existentes (01-aritmetica, 02-algebra, 03-geometria, 04-trigonometria, 05-fisica) — son los mismos que requiere obj-1. Eso es correcto y esperado: cursos_requeridos es muchos-a-muchos. Al ser este objetivo el más urgente, es quien 'paga' esos cursos y obj-1 se los encuentra hechos.",
+      "silabos": "CORREGIDO 2026-07-16: SOLO existen publicados los sílabos de los ciclos 1 y 3. Del ciclo 4 en adelante están TODOS 'En proceso'. (Una versión anterior de esta nota decía '1, 3 y 5+' — era falso; salió de una paráfrasis del extractor web que no se verificó.) Consecuencia: el sándwich tiene pan de abajo firme (los prerrequisitos del ciclo 3) pero NO pan de arriba (los cursos que vienen después no tienen sílabo publicado); ese lado se apoya en el grafo de la malla y en el estándar de la disciplina. Los PDFs del ciclo 1 y 3 SÍ tienen capa de texto extraíble con `pdftotext -layout` (el extractor web falla y parecen escaneados, pero no lo son — usar pdftotext). Marcar todo lo inferido como tal y corregirlo cuando el usuario consiga el sílabo real.",
+      "silabos_de_prerrequisitos_disponibles": {
+        "nota": "Existe el sílabo REAL del prerrequisito de CADA uno de los 5 cursos del usuario. Ese es el pan de abajo del sándwich.",
+        "matematica_aplicada": "https://web.unfv.edu.pe/facultades/fiei/images/escuelas/epim/silabos/2020_1/plan_2019/03.tercer_ciclo/M3_mate_aplic.pdf (prereq de Matemática Superior) — EXTRAÍDO Y USADO",
+        "fisica_2": "https://web.unfv.edu.pe/facultades/fiei/images/escuelas/epim/silabos/2020_1/plan_2019/03.tercer_ciclo/M3_fisica_2.pdf (prereq de Física III, Estática Y Resistencia de Materiales) — EXTRAÍDO Y USADO para Física III; REUTILIZAR para Estática y Resistencia",
+        "estadistica": "https://web.unfv.edu.pe/facultades/fiei/images/escuelas/epim/silabos/2020_1/plan_2019/03.tercer_ciclo/M3_estad.pdf (prereq de Estadística Aplicada) — PENDIENTE de extraer",
+        "geometria_descriptiva": "https://web.unfv.edu.pe/facultades/fiei/images/escuelas/epim/silabos/2020_1/plan_2019/03.tercer_ciclo/M3_geom_descrip.pdf (prereq de Dibujo en 3D Básico) — PENDIENTE, para el objetivo de dominio"
+      },
+      "ancla_matematica_aplicada": "SÍLABO REAL, código 100957, ciclo 3, 4 créditos, 16 semanas, 6 h/semana (2 teoría + 4 práctica). Requisito: Cálculo Integral. Unidades: (1) funciones de varias variables, curvas y superficies de nivel, derivadas parciales, regla de la cadena, máximos/mínimos, multiplicadores de Lagrange; (2) integrales múltiples, iteradas, volúmenes, coordenadas cilíndricas y esféricas; (3) EDOs de primer orden: separables, homogéneas, exactas, factores integrantes, lineales, Bernoulli, Ricatti; (4) EDOs de orden superior: homogéneas, coeficientes indeterminados, variación de parámetros, aplicaciones a la electrónica. Bibliografía: Carrillo Carrascal (2015) y Zill (2010) 'Ecuaciones diferenciales con aplicaciones'. NO cubre Laplace, Fourier, EDPs ni variable compleja. Su parcial es 'DE LA UNIDAD 01 Y 02' (semana 8) y el final va después → CONFIRMA que el final no es acumulativo.",
+      "ancla_fisica_2": "SÍLABO REAL, código 101060, ciclo 3, 4 créditos, 17 semanas, docente MSc. Bernabé A. Mejía C. Requisito: Física I. Sumilla literal: 'cuerpos que se deforman por efecto de fuerzas externas, el movimiento oscilatorio, las ondas mecánicas asi como algunos temas de la mecánica de fluidos y termodinámica'. Unidades: I Elasticidad (esfuerzo y deformación, módulo de Young, Ley de Hooke, Poisson, cizalladura, compresibilidad), II Oscilaciones (MAS, amortiguado, forzado), III Ondas (ecuación de onda, superposición, estacionarias), IV Mecánica de fluidos (hidrostática, Pascal, empuje), V Termodinámica. Bibliografía: Sears-Zemansky-Young y Serway-Jewett. Su parcial (semana 8) es 'correspondiente a la Unidad N° I, II y III' → SEGUNDA confirmación de que el final no es acumulativo. CLAVE PARA RESISTENCIA DE MATERIALES: la Unidad I (elasticidad) es su fundamento directo — por eso Física II es su prerrequisito."
+    },
+    "ingles": {
+      "objetivo": "Aprender inglés para acceder a mejores oportunidades laborales. Nivel meta por definir (¿B2? ¿conversacional? ¿lectura técnica?) — requiere entrevista.",
+      "prioridad_acordada": 3,
+      "estado_al_crear": "activo",
+      "fecha_limite": null,
+      "nota": "Sin deadline: el usuario dijo que puede tomarle de fin de año a un año entero. Candidato claro a modo_estudio 'cadencia'. Su dosificación se controla con cadencia_dias, no con un reparto de horas."
+    },
+    "dominio_pre_quinto_semestre": {
+      "objetivo": "Afianzar y dominar de verdad los cursos que se pasaron con lo justo, para llegar al 5to semestre con bases sólidas en vez de sobrevivir otra vez. Incluye reestudiar la cadena de dibujo (12 Dibujo para Ingeniería → 20 Geometría Descriptiva → 30 Dibujo en 3D Básico), que el usuario ya aprobó pero no recuerda; NO está sujeto a deadlines de semestre y es prerrequisito de '37 Dibujo en 3D Avanzado' del V ciclo.",
+      "prioridad_acordada": 4,
+      "estado_al_crear": "latente",
+      "condicion_activacion": "Cuando obj-1 (examen UNI) pase a estado 'completado' — es decir, tras el examen del 15.02.2027, sea cual sea el resultado. También puede activarse antes si obj-1 alcanza sus criterios de dominio anticipadamente (improbable según el usuario, pero posible).",
+      "fecha_limite": "Ninguna dura, pero su ventana útil termina cuando arranque el 5to semestre (~marzo 2027).",
+      "nota_solapamiento": "El usuario resolvió el solapamiento con la UNI así: los temas de la UNI son MÁS BÁSICOS que el repaso que exige el 5to semestre. Por eso de diciembre a febrero manda la UNI (afianza bases Y sirve al examen), y solo después se sube el listón al dominio profundo. No son el mismo objetivo: la UNI es velocidad y estilo de examen sobre lo básico; esto es comprensión sobre lo que ya se aprobó."
+    },
+    "quinto_semestre": {
+      "objetivo": "Aprobar (¿o dominar?) el 5to semestre de la UNFV.",
+      "estado_al_crear": "no crear todavía",
+      "nota": "Arrancaría ~marzo/abril 2027. El usuario decidirá entonces si lo trata como 'pasar' (igual que el 4to) o como 'dominar', según cómo haya ido todo. La carrera tiene 10 semestres: este patrón se repetirá."
+    }
   },
-  "objetivos_completados": []
+  "objetivos": [
+    {
+      "id": "obj-2",
+      "estado": "activo",
+      "condicion_activacion": null,
+      "prioridad": 1,
+      "objetivo_final": "Aprobar el 4to semestre de Ingeniería Mecatrónica en la UNFV (plan 2019, 20 créditos). NO es dominio: el listón es tener las bases suficientes para dar cara en los exámenes y pasar.",
+      "fecha_limite": "2026-11-28",
+      "hitos": [
+        {
+          "id": "parcial",
+          "nombre": "Evaluación Parcial",
+          "fecha": "2026-09-28",
+          "cubre": "Primera mitad de cada curso (semanas 1-8). Confirmado por el sílabo real del prerrequisito, que separa 'EXAMEN PARCIAL DE LA UNIDAD 01 Y 02' del final.",
+          "condicional": false
+        },
+        {
+          "id": "final",
+          "nombre": "Evaluación Final",
+          "fecha": "2026-11-23",
+          "cubre": "Segunda mitad de cada curso (semanas 8-16). NO es acumulativo: no entra la primera mitad.",
+          "condicional": false
+        },
+        {
+          "id": "sustitutorio",
+          "nombre": "Examen Sustitutorio",
+          "fecha": null,
+          "cubre": "TODO el semestre. Reemplaza una nota jalada (parcial, final o proyectos).",
+          "condicional": true
+        },
+        {
+          "id": "aplazado",
+          "nombre": "Examen Aplazado",
+          "fecha": null,
+          "cubre": "TODO el semestre y más exigente. Última bala si se jala el curso.",
+          "condicional": true
+        }
+      ],
+      "nivel_actual_al_inicio": "Retoma la carrera tras una pausa de 3 años. Aprobó Cálculo Diferencial, Cálculo Integral, Matemática Aplicada, Física I y Física II, pero no recuerda gran parte. Las bases escolares (álgebra, trigonometría, geometría) están oxidadas y se están reconstruyendo en paralelo vía los cursos 01-06 de este proyecto.",
+      "motivacion": "Prioridad 1 por aritmética pura, no por preferencia: el parcial está a ~10 semanas y el examen UNI a ~31. Jalar el semestre tiene coste real e inmediato; el examen UNI es una meta autoimpuesta.",
+      "fecha_inicio": "2026-08-10",
+      "estado_setup": "completo",
+      "cursos_requeridos": [
+        {
+          "curso": "09-mate-superior",
+          "nivel_requerido": "intermedio"
+        },
+        {
+          "curso": "10-fisica-3",
+          "nivel_requerido": "intermedio"
+        },
+        {
+          "curso": "11-estatica",
+          "nivel_requerido": "intermedio",
+          "overrides": {
+            "07-fuerzas-internas-cortante-momento": "avanzado",
+            "10-momentos-inercia": "avanzado"
+          }
+        },
+        {
+          "curso": "12-resistencia-materiales",
+          "nivel_requerido": "intermedio"
+        },
+        {
+          "curso": "13-estadistica-aplicada",
+          "nivel_requerido": "intermedio"
+        },
+        {
+          "curso": "01-aritmetica",
+          "nivel_requerido": "base"
+        },
+        {
+          "curso": "02-algebra",
+          "nivel_requerido": "base",
+          "overrides": {
+            "05-factorizacion": "intermedio",
+            "06-fracciones-algebraicas": "intermedio"
+          }
+        },
+        {
+          "curso": "03-geometria",
+          "nivel_requerido": "base"
+        },
+        {
+          "curso": "04-trigonometria",
+          "nivel_requerido": "base"
+        },
+        {
+          "curso": "05-fisica",
+          "nivel_requerido": "base",
+          "overrides": {
+            "02-vectores": "intermedio"
+          }
+        }
+      ],
+      "_nota_setup": "SETUP COMPLETO (2026-07-16): los 5 cursos del IV ciclo tienen temario. DECISION TOMADA: Liderazgo y Desarrollo Personal (codigo 16) NO recibe curso propio — el usuario dijo que no requiere reestudio tecnico, a lo sumo apoyo con formatos APA; crearle un temario seria inventar trabajo. Si resulta exigir mas de lo previsto, se crea entonces. AVISO: los 5 temarios son INFERIDOS (ningun silabo del IV ciclo esta publicado) y TODOS llevan la accion obligatoria de revisarse en la semana 1 de clases (10-14 agosto 2026) contra el silabo real del profesor.",
+      "_nota_viabilidad": "CRITICO (2026-07-16): con los 5 cursos, el hito parcial NO CABE. Ver el calculo en la conversacion. Dos causas que se suman: (a) ~2/3 de la carga del parcial no son los cursos universitarios sino la BASE (algebra, trigonometria, geometria en cero); (b) horas_semanales_disponibles=20 se fijo cuando el usuario NO tenia clases — 20 creditos son ~30 h/semana dentro de la universidad. PENDIENTE INMEDIATO: revisar el presupuesto de horas y recortar alcance. NO empezar a estudiar sin resolver esto.",
+      "_nota_niveles": "El semestre pide sus 5 cursos universitarios en 'intermedio' (aprobar los examenes) y la base solo en 'base' (refrescar lo justo). OVERRIDES: 11-estatica/07 y /10 en 'avanzado' porque Resistencia de Materiales depende de ellos y se cursa en paralelo; 02-algebra/05 y /06 en 'intermedio' porque las fracciones parciales SON la transformada inversa de Laplace; 05-fisica/02-vectores en 'intermedio' porque Estatica entera es algebra vectorial. Son los cuellos de botella de los que cuelga medio semestre."
+    },
+    {
+      "id": "obj-1",
+      "estado": "activo",
+      "condicion_activacion": null,
+      "prioridad": 2,
+      "objetivo_final": "Ingresar a la Universidad Nacional de Ingeniería (UNI, Perú) vía el examen de admisión 2027-1, postulando a Ingeniería Mecatrónica, Electrónica o carrera afín",
+      "fecha_limite": "2027-02-15",
+      "hitos": [
+        {
+          "id": "examen-uni",
+          "nombre": "Examen de admisión UNI 2027-1",
+          "fecha": "2027-02-15",
+          "cubre": "Todo el temario de los cursos requeridos por este objetivo.",
+          "condicional": false
+        }
+      ],
+      "nivel_actual_al_inicio": "Egresado de secundaria hace ~10 años. Actualmente cursa Ing. Mecatrónica en la UNFV: llevó Cálculo y Física 1-2 universitarios, pero con una pausa de 3 años. Bases de matemática escolar (aritmética, álgebra, geometría, trigonometría), física y química comprometidas por el tiempo; hay memoria latente pero requiere reconstrucción sólida de fundamentos.",
+      "motivacion": "Deseo de probar la postulación a la UNI (influencia de su padre, poco apego a la UNFV) y evaluar reiniciar la carrera allí. Motivación laxa reconocida por el usuario; beneficio secundario fuerte: reforzar bases le ayuda directamente en sus semestres actuales de la UNFV. Cursará la UNFV en paralelo y dejará su trabajo de medio tiempo para liberar las 20 h semanales.",
+      "fecha_inicio": "2026-07-01",
+      "estado_setup": "completo",
+      "puntaje_objetivo": {
+        "escala": "0 a 20",
+        "rango_ingreso_referencia": "15.7 - 16.5",
+        "carrera_referencia": "Ingeniería Mecatrónica (UNI)",
+        "nota": "Puntaje aproximado del último ingresante a Mecatrónica en procesos recientes. La meta no es solo aprobar (>10) sino competir por un puntaje de ~16, que ubica en el tercio superior. Tenerlo presente al calibrar el nivel de exigencia de ejercicios y simulacros: la UNI exige precisión y velocidad, no solo saber el tema. Verificar el corte oficial del proceso 2027-1 cuando se publique."
+      },
+      "cursos_requeridos": [
+        {
+          "curso": "01-aritmetica",
+          "nivel_requerido": "avanzado"
+        },
+        {
+          "curso": "02-algebra",
+          "nivel_requerido": "avanzado"
+        },
+        {
+          "curso": "03-geometria",
+          "nivel_requerido": "avanzado"
+        },
+        {
+          "curso": "04-trigonometria",
+          "nivel_requerido": "avanzado"
+        },
+        {
+          "curso": "05-fisica",
+          "nivel_requerido": "avanzado"
+        },
+        {
+          "curso": "06-quimica",
+          "nivel_requerido": "avanzado"
+        },
+        {
+          "curso": "07-aptitud-academica",
+          "nivel_requerido": "avanzado"
+        },
+        {
+          "curso": "08-simulacros",
+          "nivel_requerido": "avanzado"
+        }
+      ],
+      "_nota_niveles": "El examen UNI exige ~16/20 para Mecatronica: velocidad y precision. TODO en 'avanzado', sin excepciones. OJO: lo que el semestre deje en 'base', este objetivo lo recoge y paga los saltos que faltan — no se lo encuentra gratis."
+    }
+  ]
 }

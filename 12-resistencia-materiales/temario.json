@@ -1,0 +1,379 @@
+{
+  "curso": "Resistencia de Materiales (UNFV, IV ciclo)",
+  "objetivo_del_curso": "Aprobar Resistencia de Materiales (código 28, plan 2019, 3 créditos) del 4to ciclo de Ing. Mecatrónica en la UNFV. El listón NO es dominio: son las bases suficientes para dar cara en el parcial (28.09.2026) y el final (23.11.2026). Es la base de Diseño de Máquinas y Elementos de Máquinas y Motores, y el primer curso donde se deja de calcular fuerzas para empezar a dimensionar piezas reales.",
+  "_aviso_temario_inferido": "ATENCIÓN: temario INFERIDO, pero con el ANCLA INFERIOR MÁS FUERTE de los cuatro cursos creados. (1) ABAJO, MUY SÓLIDO — el sílabo REAL de Física II (código 101060, ciclo 3) tiene como Unidad I 'Elasticidad', y su contenido literal es: esfuerzo y deformación, régimen elástico e inelástico, módulos de elasticidad, tipos de esfuerzo, tracción/compresión longitudinal, módulo de Young, Ley de Hooke, deformación lateral, módulo de Poisson, deformación por cizalladura o corte, módulo de cizalladura, deformación volumétrica, módulo de compresibilidad y fuerza elástica. Eso ES el fundamento de este curso, y por eso Física II es su requisito formal. Resistencia arranca justo donde esa unidad termina. (2) ARRIBA, INFERIDO — Resistencia alimenta '48 Diseño de Máquinas' y '52 Elementos de Máquinas y Motores' (VII-VIII ciclo), cuyos sílabos NO están publicados. (3) ESTÁNDAR — como Estática, es un curso muy estandarizado: Hibbeler, Beer & Johnston y Singer-Pytel lo cuentan casi igual. OBLIGATORIO revisar en la SEMANA 1 DE CLASES (10-14 agosto 2026). Lo más probable que cambie: cuánto entra de deflexión de vigas y de columnas (suelen recortarse en cursos de 3 créditos). Lo menos probable: que falten carga axial, torsión, flexión o círculo de Mohr.",
+  "_nota_secuencia_con_estatica": "CLAVE PARA PLANIFICAR. Estática (11-estatica) se cursa EN PARALELO, no antes. Pero Resistencia depende de dos temas suyos: '07-fuerzas-internas-cortante-momento' y '10-momentos-inercia'. La universidad resuelve esto secuenciando: el bloque de flexión de Resistencia cae DESPUÉS del parcial (semana 9+), justo cuando Estática ya ha cubierto fuerzas internas. Por eso el parcial de Resistencia es esfuerzo/deformación/carga axial/torsión — nada de eso necesita Estática todavía. CONSECUENCIA: si Estática se atrasa respecto a su calendario, Resistencia se bloquea en la semana 9. El grafo de prerrequisitos ya lo refleja y la cerradura lo arrastra sola, pero conviene saber POR QUÉ está así.",
+  "modo_estudio": {
+    "tipo": "ruta",
+    "cadencia_dias": null,
+    "prioridad": 2,
+    "condicion": null,
+    "condicion_urgente": null,
+    "nota": "Progresión lineal atada al calendario del semestre. Prioridad 2: va detrás de Estática a propósito, porque depende de su contenido aunque se cursen a la vez."
+  },
+  "bibliografia": [
+    {
+      "titulo": "Mecánica de Materiales",
+      "autor": "Hibbeler, Russell C.",
+      "capitulos_relevantes": "INFERIDA por estándar de la disciplina: es el texto más usado del mundo para este curso y el compañero natural de su 'Estática', que es la bibliografía inferida del curso paralelo. Su secuencia de capítulos es la que sigue este temario."
+    },
+    {
+      "titulo": "Resistencia de Materiales",
+      "autor": "Singer, Ferdinand L.; Pytel, Andrew",
+      "capitulos_relevantes": "INFERIDA: muy extendida en universidades peruanas para este curso concreto, más aún que Hibbeler en algunas escuelas. Vale la pena tenerla a mano por si el profesor sigue esta línea."
+    },
+    {
+      "titulo": "Mecánica de Materiales",
+      "autor": "Beer, Ferdinand P.; Johnston, E. Russell",
+      "capitulos_relevantes": "INFERIDA: la tercera opción clásica, con el mismo alcance."
+    },
+    {
+      "titulo": "Física Universitaria (vol. 1) — capítulo de elasticidad",
+      "autor": "Sears, Francis W.; Zemansky, Mark W.; Young, Hugh D.",
+      "capitulos_relevantes": "Bibliografía REAL de Física II en la UNFV. Sirve para reactivar la Unidad I (elasticidad), que es el fundamento directo de este curso y que el usuario ya llevó."
+    },
+    {
+      "titulo": "Sílabo real de Resistencia de Materiales (UNFV)",
+      "autor": "Universidad Nacional Federico Villarreal — EPIM",
+      "capitulos_relevantes": "AÚN NO DISPONIBLE ('En proceso'). Cuando el usuario lo consiga pasa a ser la fuente de verdad."
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cuaderno físico",
+      "url": null,
+      "uso": "Instrumento principal. Aquí todo empieza cortando la pieza y dibujando el DCL de la porción: sin corte no hay esfuerzo interno que calcular.",
+      "para_temas": null
+    },
+    {
+      "nombre": "WolframAlpha",
+      "url": "https://www.wolframalpha.com",
+      "uso": "Resolver los sistemas de la indeterminación estática y verificar integrales de deflexión.",
+      "para_temas": [
+        "04-carga-axial-indeterminacion",
+        "10-deflexion-vigas"
+      ]
+    },
+    {
+      "nombre": "GeoGebra",
+      "url": "https://www.geogebra.org/calculator",
+      "uso": "Construir el círculo de Mohr y ver cómo giran los esfuerzos al rotar el elemento. Es la forma más rápida de que Mohr deje de ser una receta memorizada.",
+      "para_temas": [
+        "08-transformacion-esfuerzo-mohr"
+      ]
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-esfuerzo",
+      "nombre": "Esfuerzo normal, cortante y de aplastamiento",
+      "descripcion": "Método de las secciones, esfuerzo normal medio, esfuerzo cortante medio (simple y doble), esfuerzo de aplastamiento, esfuerzo admisible y factor de seguridad; diseño simple de conexiones.",
+      "prerrequisitos_internos": [],
+      "prerrequisitos_externos": [
+        "11-estatica/04-equilibrio-cuerpo-rigido",
+        "05-fisica/06-estatica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 3,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Aplicar el método de las secciones para hallar las cargas internas en un punto",
+        "Calcular esfuerzo normal, cortante y de aplastamiento en conexiones con pernos y pasadores",
+        "Dimensionar un elemento a partir de un esfuerzo admisible y un factor de seguridad"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de esfuerzo tipo examen sin ayuda",
+      "referencias": [
+        "Hibbeler — Mecánica de Materiales, cap. 1",
+        "Singer-Pytel — cap. 1"
+      ]
+    },
+    {
+      "id": "02-deformacion-propiedades-materiales",
+      "nombre": "Deformación y propiedades mecánicas de los materiales",
+      "descripcion": "Deformación unitaria normal y cortante, ensayo de tracción, diagrama esfuerzo-deformación, Ley de Hooke, módulo de Young, módulo de Poisson, módulo de rigidez y sus relaciones; materiales dúctiles y frágiles.",
+      "prerrequisitos_internos": [
+        "01-esfuerzo"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 2,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Leer un diagrama esfuerzo-deformación e identificar límite elástico, fluencia, resistencia última y rotura",
+        "Relacionar esfuerzo y deformación mediante la Ley de Hooke y calcular deformaciones laterales con Poisson",
+        "Distinguir comportamiento dúctil de frágil y decir qué implica al diseñar"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de propiedades mecánicas sin ayuda",
+      "referencias": [
+        "Hibbeler — Mecánica de Materiales, caps. 2-3",
+        "Sears vol. 1 — cap. Elasticidad"
+      ],
+      "_nota_solapamiento": "SOLAPA FUERTE con la Unidad I de Física II, que el usuario YA LLEVÓ (esfuerzo, deformación, Young, Hooke, Poisson, cizalladura, compresibilidad). Trátalo como recuperación activa, no como contenido nuevo: pregúntale primero qué recuerda y ajusta. Si lo tiene fresco, este tema puede cerrarse en 1 sesión en vez de 2."
+    },
+    {
+      "id": "03-carga-axial",
+      "nombre": "Carga axial: deformación elástica y superposición",
+      "descripcion": "Deformación elástica de elementos con carga axial, principio de superposición, elementos con sección variable y cargas múltiples.",
+      "prerrequisitos_internos": [
+        "02-deformacion-propiedades-materiales"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 3,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Calcular la deformación total de una barra con cargas y secciones variables por tramos",
+        "Aplicar el principio de superposición para descomponer cargas complejas",
+        "Resolver deformaciones en sistemas de barras conectadas"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de carga axial sin ayuda",
+      "referencias": [
+        "Hibbeler — Mecánica de Materiales, cap. 4",
+        "Singer-Pytel — cap. 2"
+      ]
+    },
+    {
+      "id": "04-carga-axial-indeterminacion",
+      "nombre": "Indeterminación estática, esfuerzo térmico y concentración de esfuerzos",
+      "descripcion": "Elementos estáticamente indeterminados con carga axial, ecuaciones de compatibilidad, método de superposición, esfuerzo térmico y concentración de esfuerzos.",
+      "prerrequisitos_internos": [
+        "03-carga-axial"
+      ],
+      "prerrequisitos_externos": [
+        "02-algebra/12-sistemas-ecuaciones"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Reconocer cuándo un problema es estáticamente indeterminado y cuántas ecuaciones extra hacen falta",
+        "Plantear la ecuación de compatibilidad geométrica que cierra el sistema",
+        "Calcular esfuerzos térmicos en elementos restringidos"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de indeterminación y esfuerzo térmico sin ayuda",
+      "referencias": [
+        "Hibbeler — Mecánica de Materiales, cap. 4",
+        "Singer-Pytel — cap. 2"
+      ],
+      "_nota_criticidad": "Primer salto conceptual real del curso: la estática sola ya no basta, hay que añadir geometría de la deformación. Es donde más gente se queda. No lo aceleres."
+    },
+    {
+      "id": "05-torsion",
+      "nombre": "Torsión",
+      "descripcion": "Fórmula de la torsión, esfuerzo cortante en ejes circulares, ángulo de giro, transmisión de potencia, ejes estáticamente indeterminados a torsión.",
+      "prerrequisitos_internos": [
+        "04-carga-axial-indeterminacion"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Calcular el esfuerzo cortante máximo y el ángulo de giro en ejes circulares macizos y huecos",
+        "Dimensionar un eje que transmite una potencia dada a cierta velocidad de giro",
+        "Resolver ejes estáticamente indeterminados a torsión"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de torsión tipo examen sin ayuda",
+      "referencias": [
+        "Hibbeler — Mecánica de Materiales, cap. 5",
+        "Singer-Pytel — cap. 3"
+      ]
+    },
+    {
+      "id": "06-flexion",
+      "nombre": "Flexión: fórmula de la flexión",
+      "descripcion": "Deformación por flexión, eje neutro, fórmula de la flexión, módulo de sección, flexión en secciones compuestas y flexión asimétrica.",
+      "prerrequisitos_internos": [
+        "02-deformacion-propiedades-materiales"
+      ],
+      "prerrequisitos_externos": [
+        "11-estatica/07-fuerzas-internas-cortante-momento",
+        "11-estatica/10-momentos-inercia"
+      ],
+      "sesiones_por_nivel": {
+        "base": 2,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 5,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Localizar el eje neutro de una sección y calcular su momento de inercia",
+        "Calcular el esfuerzo por flexión máximo en una viga a partir de su diagrama de momento flector",
+        "Dimensionar una viga eligiendo el módulo de sección adecuado"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de flexión tipo examen sin ayuda",
+      "referencias": [
+        "Hibbeler — Mecánica de Materiales, cap. 6",
+        "Singer-Pytel — cap. 5"
+      ],
+      "_nota_criticidad": "EL CORAZÓN DEL CURSO, y donde se paga la deuda con Estática: necesita el diagrama de momento flector (Estática tema 07) y el momento de inercia de la sección (Estática tema 10). Si Estática se atrasa, este tema se bloquea y con él la mitad final del curso."
+    },
+    {
+      "id": "07-esfuerzo-cortante-transversal",
+      "nombre": "Esfuerzo cortante transversal",
+      "descripcion": "Fórmula del esfuerzo cortante, distribución en secciones comunes, flujo de cortante y centro de cortante.",
+      "prerrequisitos_internos": [
+        "06-flexion"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Calcular el esfuerzo cortante transversal en una sección usando el primer momento de área",
+        "Dibujar la distribución del cortante en secciones rectangulares y en perfiles I",
+        "Calcular el flujo de cortante en vigas compuestas (clavos, soldaduras, pernos)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de cortante transversal sin ayuda",
+      "referencias": [
+        "Hibbeler — Mecánica de Materiales, cap. 7"
+      ]
+    },
+    {
+      "id": "08-transformacion-esfuerzo-mohr",
+      "nombre": "Transformación de esfuerzo y círculo de Mohr",
+      "descripcion": "Estado de esfuerzo plano, ecuaciones de transformación, esfuerzos principales, esfuerzo cortante máximo, círculo de Mohr y teorías de falla básicas.",
+      "prerrequisitos_internos": [
+        "07-esfuerzo-cortante-transversal"
+      ],
+      "prerrequisitos_externos": [
+        "04-trigonometria/09-angulos-compuestos",
+        "04-trigonometria/10-angulos-multiples"
+      ],
+      "sesiones_por_nivel": {
+        "base": 2,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 5,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Transformar un estado de esfuerzo plano a ejes rotados con las ecuaciones",
+        "Determinar esfuerzos principales y su orientación, y el cortante máximo",
+        "Construir e interpretar el círculo de Mohr, sabiendo qué representa cada punto y no solo cómo dibujarlo"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de Mohr tipo examen sin ayuda",
+      "referencias": [
+        "Hibbeler — Mecánica de Materiales, cap. 9",
+        "Singer-Pytel — cap. 9"
+      ],
+      "_nota_criticidad": "Mohr es el tema que más se memoriza y menos se entiende de toda la carrera. Insiste en la interrogación elaborativa: que explique QUÉ es un punto del círculo antes de dibujar ninguno. Es la herramienta que reaparece en Diseño de Máquinas."
+    },
+    {
+      "id": "09-cargas-combinadas",
+      "nombre": "Cargas combinadas",
+      "descripcion": "Superposición de esfuerzos por carga axial, flexión, torsión y cortante; recipientes de pared delgada.",
+      "prerrequisitos_internos": [
+        "08-transformacion-esfuerzo-mohr"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 5,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Descomponer una carga compleja en sus efectos axial, flexionante y torsional",
+        "Superponer los esfuerzos y localizar el punto crítico de la sección",
+        "Calcular esfuerzos en recipientes cilíndricos y esféricos de pared delgada"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de cargas combinadas sin ayuda",
+      "referencias": [
+        "Hibbeler — Mecánica de Materiales, cap. 8"
+      ]
+    },
+    {
+      "id": "10-deflexion-vigas",
+      "nombre": "Deflexión de vigas",
+      "descripcion": "Ecuación de la curva elástica, método de integración doble, método de superposición y vigas estáticamente indeterminadas.",
+      "prerrequisitos_internos": [
+        "06-flexion"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 5,
+      "opcional": true,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Obtener la ecuación de la elástica por doble integración con sus condiciones de frontera",
+        "Calcular deflexiones y pendientes por superposición usando tablas",
+        "Resolver vigas estáticamente indeterminadas por superposición"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de deflexión sin ayuda",
+      "referencias": [
+        "Hibbeler — Mecánica de Materiales, cap. 12",
+        "Singer-Pytel — cap. 6"
+      ],
+      "_nota_opcional": "Marcado opcional: en cursos de 3 créditos, deflexión y columnas suelen recortarse o verse por encima. Confirmar en la semana 1 y quitarle el 'opcional' si el sílabo real lo exige."
+    },
+    {
+      "id": "11-pandeo-columnas",
+      "nombre": "Pandeo de columnas",
+      "descripcion": "Carga crítica, fórmula de Euler, efecto de las condiciones de apoyo, longitud efectiva y relación de esbeltez.",
+      "prerrequisitos_internos": [
+        "06-flexion"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 4,
+      "opcional": true,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Calcular la carga crítica de Euler de una columna según sus apoyos",
+        "Determinar la relación de esbeltez y decir si la columna falla por pandeo o por fluencia",
+        "Explicar por qué el pandeo es una falla de inestabilidad y no de resistencia — es la idea que hay que llevarse"
+      ],
+      "criterio_dominio": "Resuelve 7/10 problemas de pandeo sin ayuda",
+      "referencias": [
+        "Hibbeler — Mecánica de Materiales, cap. 13",
+        "Singer-Pytel — cap. 11"
+      ],
+      "_nota_opcional": "Marcado opcional por la misma razón que deflexión: es el cierre típico del curso y el primero en caerse si falta tiempo. Confirmar en la semana 1."
+    }
+  ],
+  "_nota_migracion_niveles": "MIGRACION MECANICA 2026-07-16 al modelo de dos dimensiones (ver 'El conocimiento se mide en DOS dimensiones' en el README raiz). 'sesiones_estimadas' y 'sesiones_estimadas_pasar' se convirtieron en 'sesiones_por_nivel' (coste INCREMENTAL por salto). El reparto es una APROXIMACION ARITMETICA, no pedagogia medida: para los cursos base, base=el antiguo coste 'pasar' y el resto hasta el antiguo coste 'dominar' se repartio entre intermedio y avanzado; para los cursos universitarios, base+intermedio suman el coste original (que se dimensiono para aprobar) y 'avanzado' es una estimacion que hoy ningun objetivo requiere. REVISAR con datos reales de historial.json. OJO — 'criterio_dominio' sigue siendo UN SOLO STRING en la mayoria de temas: es el criterio del nivel para el que se escribio (avanzado en los cursos base, intermedio en los universitarios). Los criterios de los otros niveles NO se fabricaron a proposito: se redactan cuando cada tema se estudia, que es cuando se sabe que distingue de verdad un nivel de otro. Si un tema tiene criterio_dominio como string, trata ese string como el criterio del nivel objetivo del curso y ESCRIBE los que falten al tocarlo."
+}

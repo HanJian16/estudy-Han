@@ -1,0 +1,365 @@
+{
+  "curso": "Estática (UNFV, IV ciclo)",
+  "objetivo_del_curso": "Aprobar Estática (código 29, plan 2019, 3 créditos) del 4to ciclo de Ing. Mecatrónica en la UNFV. El listón NO es dominio: son las bases suficientes para dar cara en el parcial (28.09.2026) y el final (23.11.2026). Es además el curso más rentable del semestre: alimenta directamente a Resistencia de Materiales (paralelo, mismo ciclo) y es prerrequisito de Dinámica (V ciclo), Diseño de Máquinas y Elementos de Máquinas.",
+  "_aviso_temario_inferido": "ATENCIÓN: temario INFERIDO. El sílabo oficial de Estática figura 'En proceso' en la web de la EPIM. OJO — AQUÍ EL ANCLA ES DISTINTA Y MÁS DÉBIL QUE EN MATEMÁTICA SUPERIOR O FÍSICA III: (1) El prerrequisito formal es Física II (código 19), cuyo sílabo REAL sí se tiene, pero Física II es elasticidad, oscilaciones, ondas, fluidos y termodinámica — NO contiene el fundamento de Estática. Es un requisito administrativo (una compuerta), no de contenido. El fundamento real es Física I (mecánica y vectores), del ciclo 2, cuyo sílabo NO está publicado (solo existen los de ciclos 1 y 3). Así que el 'pan de abajo' del sándwich aquí NO sostiene. (2) LO QUE SÍ SOSTIENE: Estática es el curso más estandarizado de la ingeniería. Hibbeler ('Ingeniería Mecánica: Estática') y Beer & Johnston ('Mecánica Vectorial para Ingenieros') son casi universales y su secuencia de unidades apenas varía entre universidades. La confianza aquí viene del estándar de la disciplina, no de un documento. (3) Estática es prerrequisito de '36 Dinámica' (V ciclo), lo que confirma que cubre el bloque clásico completo. OBLIGATORIO revisar en la SEMANA 1 DE CLASES (10-14 agosto 2026). Lo más probable que cambie: si entra trabajo virtual, y el corte exacto parcial/final. Lo menos probable: que falten centroides, momentos de inercia o fuerzas internas — sin eso, Resistencia de Materiales sería imposible.",
+  "_nota_paralelismo_con_resistencia": "CORRECCIÓN (2026-07-16): Estática y Resistencia de Materiales son PARALELOS, no secuenciales — ambos del IV ciclo, ambos con Física II como requisito formal. Se había supuesto que Resistencia dependía de Estática; formalmente NO. Pero en contenido SÍ: Resistencia necesita 'fuerzas internas' (diagramas de cortante y momento flector) y 'momentos de inercia' de este curso. CONSECUENCIA PRÁCTICA: hay que estudiar Estática ligeramente POR DELANTE de Resistencia dentro del semestre, sobre todo los temas 07 y 10. Por eso este curso tiene prioridad 1 y Resistencia irá con prioridad menor.",
+  "modo_estudio": {
+    "tipo": "ruta",
+    "cadencia_dias": null,
+    "prioridad": 1,
+    "condicion": null,
+    "condicion_urgente": null,
+    "nota": "Progresión lineal atada al calendario del semestre. Prioridad 1 (empatada con Matemática Superior) porque Resistencia de Materiales, que se cursa en paralelo, depende de su contenido: si Estática se atrasa, arrastra dos cursos en vez de uno."
+  },
+  "bibliografia": [
+    {
+      "titulo": "Ingeniería Mecánica: Estática",
+      "autor": "Hibbeler, Russell C.",
+      "capitulos_relevantes": "INFERIDA por estándar de la disciplina (no por documento): es el texto más usado del mundo para este curso. Su secuencia de capítulos es la que sigue este temario. Excelente banco de problemas, que es lo que se necesita aquí."
+    },
+    {
+      "titulo": "Mecánica Vectorial para Ingenieros: Estática",
+      "autor": "Beer, Ferdinand P.; Johnston, E. Russell",
+      "capitulos_relevantes": "INFERIDA por estándar: la alternativa clásica a Hibbeler, con el mismo alcance. Útil si el profesor sigue esta línea."
+    },
+    {
+      "titulo": "Física Universitaria (vol. 1)",
+      "autor": "Sears, Francis W.; Zemansky, Mark W.; Young, Hugh D.",
+      "capitulos_relevantes": "Consulta puntual para el bloque de equilibrio y momentos. Es la bibliografía REAL de Física II en la UNFV, así que el usuario ya la conoce."
+    },
+    {
+      "titulo": "Sílabo real de Estática (UNFV)",
+      "autor": "Universidad Nacional Federico Villarreal — EPIM",
+      "capitulos_relevantes": "AÚN NO DISPONIBLE ('En proceso'). Cuando el usuario lo consiga pasa a ser la fuente de verdad y este temario se corrige contra él. Es el curso donde más importa conseguirlo, porque su ancla documental es la más débil de los tres creados."
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cuaderno físico",
+      "url": null,
+      "uso": "Instrumento único e imprescindible. Estática ES el diagrama de cuerpo libre: un DCL mal hecho no se arregla con álgebra, y uno bien hecho casi resuelve el problema solo.",
+      "para_temas": null
+    },
+    {
+      "nombre": "WolframAlpha",
+      "url": "https://www.wolframalpha.com",
+      "uso": "Resolver los sistemas de ecuaciones que salen del equilibrio, y verificar integrales de centroides y momentos de inercia.",
+      "para_temas": [
+        "04-equilibrio-cuerpo-rigido",
+        "05-armaduras",
+        "09-centroides",
+        "10-momentos-inercia"
+      ]
+    },
+    {
+      "nombre": "GeoGebra",
+      "url": "https://www.geogebra.org/calculator",
+      "uso": "Verificar geometría de estructuras y descomposición de fuerzas en 3D cuando la visualización espacial falle.",
+      "para_temas": [
+        "01-vectores-fuerza",
+        "04-equilibrio-cuerpo-rigido"
+      ]
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-vectores-fuerza",
+      "nombre": "Vectores fuerza en 2D y 3D",
+      "descripcion": "Vectores cartesianos, vectores unitarios, vectores de posición, fuerza dirigida a lo largo de una línea, producto punto y proyecciones. El aparato operativo del curso entero.",
+      "prerrequisitos_internos": [],
+      "prerrequisitos_externos": [
+        "05-fisica/02-vectores",
+        "04-trigonometria/03-razones-angulos-agudos",
+        "04-trigonometria/04-triangulos-rectangulos-angulos-verticales"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 3,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Expresar una fuerza como vector cartesiano en 3D a partir de dos puntos de su línea de acción",
+        "Calcular la proyección de una fuerza sobre un eje o un plano usando el producto punto",
+        "Sumar sistemas de fuerzas concurrentes en 3D obteniendo la resultante"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de vectores fuerza en 3D sin ayuda",
+      "referencias": [
+        "Hibbeler — Estática, cap. 2"
+      ]
+    },
+    {
+      "id": "02-equilibrio-particula",
+      "nombre": "Equilibrio de una partícula",
+      "descripcion": "Diagrama de cuerpo libre, condición de equilibrio de fuerzas concurrentes en 2D y 3D, sistemas con cuerdas, poleas y resortes.",
+      "prerrequisitos_internos": [
+        "01-vectores-fuerza"
+      ],
+      "prerrequisitos_externos": [
+        "05-fisica/06-estatica",
+        "04-trigonometria/15-triangulos-oblicuangulos",
+        "02-algebra/12-sistemas-ecuaciones"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 3,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Construir el diagrama de cuerpo libre correcto de una partícula con cuerdas, poleas y resortes",
+        "Plantear y resolver las ecuaciones de equilibrio en 2D y 3D",
+        "Aplicar el teorema de Lamy cuando hay tres fuerzas concurrentes"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de equilibrio de partícula con DCL correcto sin ayuda",
+      "referencias": [
+        "Hibbeler — Estática, cap. 3"
+      ]
+    },
+    {
+      "id": "03-momentos-sistemas-equivalentes",
+      "nombre": "Momento de una fuerza y sistemas equivalentes",
+      "descripcion": "Momento respecto a un punto y respecto a un eje, producto cruz, teorema de Varignon, momento de un par, reducción de un sistema de fuerzas a fuerza y par resultantes.",
+      "prerrequisitos_internos": [
+        "01-vectores-fuerza"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Calcular el momento de una fuerza respecto a un punto y respecto a un eje cualquiera",
+        "Aplicar el teorema de Varignon para simplificar el cálculo descomponiendo la fuerza",
+        "Reducir un sistema cualquiera de fuerzas a una fuerza y un par en un punto dado"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de momentos y sistemas equivalentes sin ayuda",
+      "referencias": [
+        "Hibbeler — Estática, cap. 4"
+      ]
+    },
+    {
+      "id": "04-equilibrio-cuerpo-rigido",
+      "nombre": "Equilibrio de un cuerpo rígido",
+      "descripcion": "Diagrama de cuerpo libre de cuerpos rígidos, tipos de apoyo y sus reacciones, ecuaciones de equilibrio en 2D y 3D, restricciones redundantes e indeterminación estática.",
+      "prerrequisitos_internos": [
+        "02-equilibrio-particula",
+        "03-momentos-sistemas-equivalentes"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Identificar las reacciones de cada tipo de apoyo (rodillo, pasador, empotramiento) y dibujarlas bien",
+        "Plantear y resolver las ecuaciones de equilibrio de un cuerpo rígido en 2D y 3D",
+        "Reconocer si un problema es estáticamente determinado antes de intentar resolverlo"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de equilibrio de cuerpo rígido con DCL correcto sin ayuda",
+      "referencias": [
+        "Hibbeler — Estática, cap. 5"
+      ]
+    },
+    {
+      "id": "05-armaduras",
+      "nombre": "Análisis estructural: armaduras",
+      "descripcion": "Armaduras simples, hipótesis del análisis, método de los nodos, miembros de fuerza cero y método de las secciones.",
+      "prerrequisitos_internos": [
+        "04-equilibrio-cuerpo-rigido"
+      ],
+      "prerrequisitos_externos": [
+        "03-geometria/02-triangulos"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Resolver una armadura completa por el método de los nodos",
+        "Identificar miembros de fuerza cero por inspección antes de calcular nada",
+        "Hallar la fuerza en un miembro concreto por el método de las secciones, eligiendo bien el corte"
+      ],
+      "criterio_dominio": "Resuelve 8/10 armaduras tipo examen por ambos métodos sin ayuda",
+      "referencias": [
+        "Hibbeler — Estática, cap. 6"
+      ]
+    },
+    {
+      "id": "06-marcos-maquinas",
+      "nombre": "Análisis estructural: marcos y máquinas",
+      "descripcion": "Estructuras con miembros sometidos a varias fuerzas, desmembramiento, análisis de marcos y de máquinas.",
+      "prerrequisitos_internos": [
+        "05-armaduras"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Desmembrar un marco y dibujar el DCL de cada miembro respetando la tercera ley de Newton",
+        "Resolver marcos y máquinas con miembros de fuerza múltiple",
+        "Distinguir un marco de una armadura y decir por qué el método de nodos no sirve aquí"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de marcos y máquinas sin ayuda",
+      "referencias": [
+        "Hibbeler — Estática, cap. 6"
+      ]
+    },
+    {
+      "id": "07-fuerzas-internas-cortante-momento",
+      "nombre": "Fuerzas internas: diagramas de cortante y momento flector",
+      "descripcion": "Fuerzas internas en un punto (normal, cortante, momento flector), diagramas de fuerza cortante y momento flector en vigas, y relaciones entre carga distribuida, cortante y momento.",
+      "prerrequisitos_internos": [
+        "04-equilibrio-cuerpo-rigido"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 2,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 5,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Calcular fuerza normal, cortante y momento flector en una sección cualquiera de una viga",
+        "Construir los diagramas de cortante y momento flector completos, por tramos y por el método gráfico",
+        "Usar las relaciones diferenciales entre carga, cortante y momento para verificar el diagrama"
+      ],
+      "criterio_dominio": "Construye correctamente 8/10 diagramas de cortante y momento tipo examen",
+      "referencias": [
+        "Hibbeler — Estática, cap. 7"
+      ],
+      "_nota_criticidad": "EL TEMA MÁS IMPORTANTE DEL CURSO. Es el puente directo a Resistencia de Materiales, que se cursa EN PARALELO: sin diagramas de cortante y momento flector, Resistencia es literalmente imposible. Si hay que sacrificar algo en este curso, que no sea esto. Y conviene adelantarlo respecto al calendario del semestre si Resistencia lo pide antes."
+    },
+    {
+      "id": "08-friccion",
+      "nombre": "Fricción",
+      "descripcion": "Fricción seca, leyes de Coulomb, ángulo de rozamiento, aplicaciones: cuñas, tornillos, bandas y resistencia a la rodadura.",
+      "prerrequisitos_internos": [
+        "04-equilibrio-cuerpo-rigido"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Resolver problemas de equilibrio con fricción distinguiendo deslizamiento inminente de volcadura",
+        "Aplicar fricción a cuñas y tornillos de potencia",
+        "Resolver problemas de fricción en bandas y poleas"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de fricción tipo examen sin ayuda",
+      "referencias": [
+        "Hibbeler — Estática, cap. 8"
+      ]
+    },
+    {
+      "id": "09-centroides",
+      "nombre": "Centro de gravedad y centroides",
+      "descripcion": "Centro de gravedad, centro de masa y centroide de líneas, áreas y volúmenes; cuerpos compuestos; teoremas de Pappus-Guldinus; cargas distribuidas.",
+      "prerrequisitos_internos": [],
+      "prerrequisitos_externos": [
+        "03-geometria/09-areas",
+        "03-geometria/06-puntos-notables"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Calcular el centroide de áreas y volúmenes por integración",
+        "Calcular el centroide de cuerpos compuestos por el método de las partes, incluyendo huecos como áreas negativas",
+        "Reemplazar una carga distribuida por su resultante equivalente y ubicarla correctamente"
+      ],
+      "criterio_dominio": "Calcula 8/10 centroides tipo examen sin ayuda",
+      "referencias": [
+        "Hibbeler — Estática, cap. 9"
+      ]
+    },
+    {
+      "id": "10-momentos-inercia",
+      "nombre": "Momentos de inercia de áreas",
+      "descripcion": "Segundo momento de área, teorema de los ejes paralelos (Steiner), momentos de inercia de áreas compuestas, producto de inercia, ejes principales y círculo de Mohr para inercia.",
+      "prerrequisitos_internos": [
+        "09-centroides"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Calcular momentos de inercia de áreas por integración",
+        "Aplicar el teorema de los ejes paralelos en áreas compuestas",
+        "Determinar momentos de inercia principales y su orientación"
+      ],
+      "criterio_dominio": "Resuelve 8/10 ejercicios de momentos de inercia sin ayuda",
+      "referencias": [
+        "Hibbeler — Estática, cap. 10"
+      ],
+      "_nota_criticidad": "Junto con el tema 07, es lo que Resistencia de Materiales necesita de este curso: el momento de inercia de la sección es lo que determina cuánto flexiona una viga. Prioritario aunque caiga en el final."
+    },
+    {
+      "id": "11-trabajo-virtual",
+      "nombre": "Trabajo virtual",
+      "descripcion": "Principio del trabajo virtual, aplicación a sistemas de cuerpos rígidos conectados, energía potencial y criterios de estabilidad del equilibrio.",
+      "prerrequisitos_internos": [
+        "04-equilibrio-cuerpo-rigido"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 4,
+      "opcional": true,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Aplicar el principio del trabajo virtual a un sistema de cuerpos conectados",
+        "Determinar la estabilidad de una posición de equilibrio mediante la energía potencial"
+      ],
+      "criterio_dominio": "Resuelve 7/10 ejercicios de trabajo virtual sin ayuda",
+      "referencias": [
+        "Hibbeler — Estática, cap. 11"
+      ],
+      "_nota_opcional": "Marcado opcional: es el último capítulo de Hibbeler y en cursos de 16 semanas se queda fuera con frecuencia, o se ve muy por encima. Confirmar en la semana 1 y quitarle el 'opcional' si el sílabo real lo exige."
+    }
+  ],
+  "_nota_migracion_niveles": "MIGRACION MECANICA 2026-07-16 al modelo de dos dimensiones (ver 'El conocimiento se mide en DOS dimensiones' en el README raiz). 'sesiones_estimadas' y 'sesiones_estimadas_pasar' se convirtieron en 'sesiones_por_nivel' (coste INCREMENTAL por salto). El reparto es una APROXIMACION ARITMETICA, no pedagogia medida: para los cursos base, base=el antiguo coste 'pasar' y el resto hasta el antiguo coste 'dominar' se repartio entre intermedio y avanzado; para los cursos universitarios, base+intermedio suman el coste original (que se dimensiono para aprobar) y 'avanzado' es una estimacion que hoy ningun objetivo requiere. REVISAR con datos reales de historial.json. OJO — 'criterio_dominio' sigue siendo UN SOLO STRING en la mayoria de temas: es el criterio del nivel para el que se escribio (avanzado en los cursos base, intermedio en los universitarios). Los criterios de los otros niveles NO se fabricaron a proposito: se redactan cuando cada tema se estudia, que es cuando se sabe que distingue de verdad un nivel de otro. Si un tema tiene criterio_dominio como string, trata ese string como el criterio del nivel objetivo del curso y ESCRIBE los que falten al tocarlo."
+}

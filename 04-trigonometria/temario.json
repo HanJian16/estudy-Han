@@ -37,7 +37,11 @@
       "nombre": "Desmos",
       "url": "https://www.desmos.com/calculator",
       "uso": "Visualizar la circunferencia unitaria, gráficas de funciones trigonométricas y verificar soluciones de ecuaciones.",
-      "para_temas": ["07-circunferencia-trigonometrica", "12-funciones-trigonometricas", "14-ecuaciones-trigonometricas"]
+      "para_temas": [
+        "07-circunferencia-trigonometrica",
+        "12-funciones-trigonometricas",
+        "14-ecuaciones-trigonometricas"
+      ]
     },
     {
       "nombre": "WolframAlpha",
@@ -52,7 +56,11 @@
       "nombre": "Sistemas de medición angular",
       "descripcion": "Sistemas sexagesimal, centesimal y radial; conversiones y fórmula general de conversión.",
       "prerrequisitos_internos": [],
-      "sesiones_estimadas": 1,
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 2,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -60,14 +68,22 @@
         "Resolver problemas con la relación S/180 = C/200 = R/π"
       ],
       "criterio_dominio": "Resuelve 9/10 ejercicios de conversión y relación entre sistemas sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Sistemas de medición angular"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Sistemas de medición angular"
+      ]
     },
     {
       "id": "02-sector-circular",
       "nombre": "Longitud de arco y sector circular",
       "descripcion": "Longitud de arco, área de sector y trapecio circular, número de vueltas de una rueda y poleas.",
-      "prerrequisitos_internos": ["01-sistemas-medicion-angular"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "01-sistemas-medicion-angular"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 2,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -75,14 +91,22 @@
         "Resolver problemas de ruedas, poleas y número de vueltas"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de arcos y poleas tipo examen sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Sector circular"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Sector circular"
+      ]
     },
     {
       "id": "03-razones-angulos-agudos",
       "nombre": "Razones trigonométricas de ángulos agudos",
       "descripcion": "Definición en el triángulo rectángulo, triángulos notables (30-60, 45, 37-53), razones recíprocas y complementarias.",
-      "prerrequisitos_internos": ["01-sistemas-medicion-angular"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "01-sistemas-medicion-angular"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 2,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -91,14 +115,22 @@
         "Aplicar propiedades de razones recíprocas y de ángulos complementarios"
       ],
       "criterio_dominio": "Resuelve 9/10 ejercicios con triángulos notables sin ayuda y sin tabla",
-      "referencias": ["Lumbreras Trigonometría — cap. Razones trigonométricas"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Razones trigonométricas"
+      ]
     },
     {
       "id": "04-triangulos-rectangulos-angulos-verticales",
       "nombre": "Resolución de triángulos rectángulos y ángulos verticales",
       "descripcion": "Lados en función de razones trigonométricas, ángulos de elevación y depresión, problemas de alturas y distancias.",
-      "prerrequisitos_internos": ["03-razones-angulos-agudos"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "03-razones-angulos-agudos"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -107,14 +139,22 @@
         "Resolver problemas geométricos combinando dos o más triángulos rectángulos"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de alturas y distancias tipo examen sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Resolución de triángulos rectángulos"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Resolución de triángulos rectángulos"
+      ]
     },
     {
       "id": "05-angulos-posicion-normal",
       "nombre": "Razones trigonométricas de ángulos en posición normal",
       "descripcion": "Ángulos en el plano cartesiano, signos por cuadrante, ángulos cuadrantales y coterminales.",
-      "prerrequisitos_internos": ["03-razones-angulos-agudos"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "03-razones-angulos-agudos"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -123,14 +163,22 @@
         "Resolver problemas con ángulos cuadrantales y coterminales"
       ],
       "criterio_dominio": "Resuelve 8/10 ejercicios de posición normal sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Ángulos en posición normal"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Ángulos en posición normal"
+      ]
     },
     {
       "id": "06-reduccion-primer-cuadrante",
       "nombre": "Reducción al primer cuadrante",
       "descripcion": "Fórmulas de reducción para ángulos de cualquier magnitud, incluidos negativos y mayores a una vuelta.",
-      "prerrequisitos_internos": ["05-angulos-posicion-normal"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "05-angulos-posicion-normal"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -138,14 +186,22 @@
         "Calcular razones de ángulos negativos y mayores a 360°"
       ],
       "criterio_dominio": "Resuelve 8/10 ejercicios de reducción sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Reducción al primer cuadrante"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Reducción al primer cuadrante"
+      ]
     },
     {
       "id": "07-circunferencia-trigonometrica",
       "nombre": "Circunferencia trigonométrica",
       "descripcion": "Representación de seno, coseno y tangente como segmentos; variaciones, acotación y comparación de valores.",
-      "prerrequisitos_internos": ["06-reduccion-primer-cuadrante"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "06-reduccion-primer-cuadrante"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -154,14 +210,23 @@
         "Determinar variaciones (máximos y mínimos) de expresiones con seno y coseno"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de CT nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Circunferencia trigonométrica", "Exámenes UNI: preguntas de CT"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Circunferencia trigonométrica",
+        "Exámenes UNI: preguntas de CT"
+      ]
     },
     {
       "id": "08-identidades-fundamentales",
       "nombre": "Identidades trigonométricas fundamentales",
       "descripcion": "Identidades pitagóricas, recíprocas y por cociente; demostración, simplificación y problemas condicionales.",
-      "prerrequisitos_internos": ["05-angulos-posicion-normal"],
-      "sesiones_estimadas": 3,
+      "prerrequisitos_internos": [
+        "05-angulos-posicion-normal"
+      ],
+      "sesiones_por_nivel": {
+        "base": 2,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -170,14 +235,22 @@
         "Resolver problemas condicionales (dado senx + cosx = a, calcular...)"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de identidades nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Identidades trigonométricas"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Identidades trigonométricas"
+      ]
     },
     {
       "id": "09-angulos-compuestos",
       "nombre": "Identidades de ángulos compuestos",
       "descripcion": "Seno, coseno y tangente de suma y diferencia de ángulos; propiedades asociadas (a·senx + b·cosx).",
-      "prerrequisitos_internos": ["08-identidades-fundamentales"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "08-identidades-fundamentales"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -186,14 +259,22 @@
         "Resolver problemas con tangentes de suma (propiedad de los 45°, ángulos que suman condiciones)"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de ángulos compuestos tipo examen sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Ángulos compuestos"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Ángulos compuestos"
+      ]
     },
     {
       "id": "10-angulos-multiples",
       "nombre": "Ángulos múltiples",
       "descripcion": "Identidades del ángulo doble, mitad y triple; degradación de potencias.",
-      "prerrequisitos_internos": ["09-angulos-compuestos"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "09-angulos-compuestos"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -202,14 +283,22 @@
         "Degradar potencias de seno y coseno (sen²x, cos³x) para simplificar expresiones"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de ángulos múltiples nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Ángulos múltiples"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Ángulos múltiples"
+      ]
     },
     {
       "id": "11-transformaciones",
       "nombre": "Transformaciones trigonométricas",
       "descripcion": "Conversión de suma a producto y de producto a suma; series trigonométricas básicas.",
-      "prerrequisitos_internos": ["10-angulos-multiples"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "10-angulos-multiples"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -217,14 +306,23 @@
         "Simplificar expresiones y calcular sumas de senos o cosenos en progresión"
       ],
       "criterio_dominio": "Resuelve 7/10 ejercicios de transformaciones sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Transformaciones"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Transformaciones"
+      ]
     },
     {
       "id": "12-funciones-trigonometricas",
       "nombre": "Funciones trigonométricas",
       "descripcion": "Dominio, rango, periodo y gráficas de las funciones trigonométricas; amplitud y desplazamientos.",
-      "prerrequisitos_internos": ["07-circunferencia-trigonometrica", "10-angulos-multiples"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "07-circunferencia-trigonometrica",
+        "10-angulos-multiples"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -233,14 +331,23 @@
         "Resolver problemas de máximos y mínimos de funciones trigonométricas"
       ],
       "criterio_dominio": "Resuelve 7/10 problemas de funciones trigonométricas nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Funciones trigonométricas", "Exámenes UNI: preguntas de funciones trigonométricas"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Funciones trigonométricas",
+        "Exámenes UNI: preguntas de funciones trigonométricas"
+      ]
     },
     {
       "id": "13-funciones-inversas",
       "nombre": "Funciones trigonométricas inversas",
       "descripcion": "Definición, dominio y rango de arcoseno, arcocoseno y arcotangente; propiedades y cálculo de valores. Frecuencia media en el examen.",
-      "prerrequisitos_internos": ["12-funciones-trigonometricas"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "12-funciones-trigonometricas"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": true,
       "objetivos_aprendizaje": [
@@ -248,14 +355,22 @@
         "Aplicar propiedades de composición (sen(arcsen x), arcsen(sen x)) respetando dominios"
       ],
       "criterio_dominio": "Resuelve 7/10 ejercicios de funciones inversas sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Funciones inversas"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Funciones inversas"
+      ]
     },
     {
       "id": "14-ecuaciones-trigonometricas",
       "nombre": "Ecuaciones trigonométricas",
       "descripcion": "Soluciones principales y generales de ecuaciones trigonométricas elementales y reducibles a elementales.",
-      "prerrequisitos_internos": ["12-funciones-trigonometricas"],
-      "sesiones_estimadas": 2,
+      "prerrequisitos_internos": [
+        "12-funciones-trigonometricas"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 0
+      },
       "dificultad": 4,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -264,14 +379,22 @@
         "Contar soluciones de una ecuación en un intervalo dado"
       ],
       "criterio_dominio": "Resuelve 7/10 ecuaciones trigonométricas nivel UNI sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Ecuaciones trigonométricas"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Ecuaciones trigonométricas"
+      ]
     },
     {
       "id": "15-triangulos-oblicuangulos",
       "nombre": "Resolución de triángulos oblicuángulos",
       "descripcion": "Ley de senos, ley de cosenos, ley de tangentes y ley de proyecciones; aplicaciones geométricas.",
-      "prerrequisitos_internos": ["09-angulos-compuestos"],
-      "sesiones_estimadas": 1,
+      "prerrequisitos_internos": [
+        "09-angulos-compuestos"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 0,
+        "avanzado": 0
+      },
       "dificultad": 3,
       "opcional": false,
       "objetivos_aprendizaje": [
@@ -280,7 +403,10 @@
         "Resolver problemas geométricos que combinan leyes con propiedades de triángulos"
       ],
       "criterio_dominio": "Resuelve 8/10 problemas de triángulos oblicuángulos sin ayuda",
-      "referencias": ["Lumbreras Trigonometría — cap. Triángulos oblicuángulos"]
+      "referencias": [
+        "Lumbreras Trigonometría — cap. Triángulos oblicuángulos"
+      ]
     }
-  ]
+  ],
+  "_nota_migracion_niveles": "MIGRACION MECANICA 2026-07-16 al modelo de dos dimensiones (ver 'El conocimiento se mide en DOS dimensiones' en el README raiz). 'sesiones_estimadas' y 'sesiones_estimadas_pasar' se convirtieron en 'sesiones_por_nivel' (coste INCREMENTAL por salto). El reparto es una APROXIMACION ARITMETICA, no pedagogia medida: para los cursos base, base=el antiguo coste 'pasar' y el resto hasta el antiguo coste 'dominar' se repartio entre intermedio y avanzado; para los cursos universitarios, base+intermedio suman el coste original (que se dimensiono para aprobar) y 'avanzado' es una estimacion que hoy ningun objetivo requiere. REVISAR con datos reales de historial.json. OJO — 'criterio_dominio' sigue siendo UN SOLO STRING en la mayoria de temas: es el criterio del nivel para el que se escribio (avanzado en los cursos base, intermedio en los universitarios). Los criterios de los otros niveles NO se fabricaron a proposito: se redactan cuando cada tema se estudia, que es cuando se sabe que distingue de verdad un nivel de otro. Si un tema tiene criterio_dominio como string, trata ese string como el criterio del nivel objetivo del curso y ESCRIBE los que falten al tocarlo."
 }

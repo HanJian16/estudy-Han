@@ -1,0 +1,360 @@
+{
+  "curso": "Física III (UNFV, IV ciclo)",
+  "objetivo_del_curso": "Aprobar Física III (código 27, plan 2019, 4 créditos) del 4to ciclo de Ing. Mecatrónica en la UNFV. El listón NO es dominio: son las bases suficientes para dar cara en el parcial (28.09.2026) y el final (23.11.2026). El electromagnetismo es además la base física de toda la especialidad: Circuitos Eléctricos I-II, Máquinas Eléctricas, Electrónica y Control.",
+  "_aviso_temario_inferido": "ATENCIÓN: temario INFERIDO, no transcrito. El sílabo oficial de Física III figura 'En proceso' en la web de la EPIM. Se construyó por INFERENCIA POR SÁNDWICH: (1) ABAJO, SÓLIDO — el sílabo REAL de su prerrequisito, Física II (código 101060, ciclo 3, 4 créditos, 17 semanas, docente MSc. Bernabé A. Mejía C.), tiene 5 unidades: I Elasticidad, II Oscilaciones, III Ondas, IV Mecánica de fluidos, V Termodinámica. Su sumilla lo dice literal: 'cuerpos que se deforman por efecto de fuerzas externas, el movimiento oscilatorio, las ondas mecánicas, mecánica de fluidos y termodinámica'. NO hay electricidad ni magnetismo en Física I ni en Física II. (2) ARRIBA, INFERIDO — en la malla, Física III es prerrequisito de '35 Circuitos Eléctricos I' (V ciclo) y por detrás vienen Máquinas Eléctricas, Electrónica y Control; todos necesitan electromagnetismo. Sus sílabos NO están publicados. (3) CONCLUSIÓN: Física III = electricidad y magnetismo. No es conjetura por posición: es lo único del temario clásico de física para ingeniería que queda sin cubrir tras Física I (mecánica) y Física II (ondas/fluidos/termo), y encaja exactamente con lo que exigen los cursos posteriores. OBLIGATORIO: revisar en la SEMANA 1 DE CLASES (10-14 agosto 2026) contra el sílabo real. Lo más probable que cambie: el corte exacto parcial/final y cuánto entra de ecuaciones de Maxwell. Lo menos probable: que no sea electromagnetismo.",
+  "modo_estudio": {
+    "tipo": "ruta",
+    "cadencia_dias": null,
+    "prioridad": 2,
+    "condicion": null,
+    "condicion_urgente": null,
+    "nota": "Progresión lineal atada al calendario del semestre. Prioridad 2 entre los cursos del semestre: va detrás de Matemática Superior porque tira de su aparato matemático, pero por delante de los cursos de mecánica."
+  },
+  "bibliografia": [
+    {
+      "titulo": "Física Universitaria (vol. 2: Electromagnetismo)",
+      "autor": "Sears, Francis W.; Zemansky, Mark W.; Young, Hugh D.",
+      "capitulos_relevantes": "INFERIDA con base sólida: es la PRIMERA fuente citada en el sílabo REAL de Física II, unidad por unidad. El volumen 2 de la misma obra es exactamente electricidad y magnetismo. Altísima probabilidad de que continúe en Física III."
+    },
+    {
+      "titulo": "Física para ciencias e ingeniería (vol. 2)",
+      "autor": "Serway, Raymond A.; Jewett, John W.",
+      "capitulos_relevantes": "INFERIDA con base sólida: es la SEGUNDA fuente citada en el sílabo real de Física II, también unidad por unidad. Su volumen 2 cubre el mismo bloque. El usuario ya conoce a Serway de sus cursos previos en la UNFV."
+    },
+    {
+      "titulo": "Sílabo real de Física III (UNFV)",
+      "autor": "Universidad Nacional Federico Villarreal — EPIM",
+      "capitulos_relevantes": "AÚN NO DISPONIBLE ('En proceso' en https://web.unfv.edu.pe/facultades/fiei/escuelas/escuela-profesional-de-ingenieria-mecatronica/silabos). Cuando el usuario lo consiga pasa a ser la fuente de verdad y este temario se corrige contra él."
+    }
+  ],
+  "herramientas_recomendadas": [
+    {
+      "nombre": "Cuaderno físico",
+      "url": null,
+      "uso": "Instrumento principal: el electromagnetismo se resuelve dibujando el campo y eligiendo la superficie o el lazo. Sin diagrama no hay solución.",
+      "para_temas": null
+    },
+    {
+      "nombre": "PhET Simulations",
+      "url": "https://phet.colorado.edu/es/",
+      "uso": "Campos eléctricos, Ley de Gauss, circuitos DC y Ley de Faraday tienen simulaciones excelentes. El electromagnetismo es invisible: verlo mueve la intuición más que veinte problemas.",
+      "para_temas": [
+        "01-carga-campo-electrico",
+        "02-ley-de-gauss",
+        "06-circuitos-dc-kirchhoff",
+        "09-induccion-faraday-lenz"
+      ]
+    },
+    {
+      "nombre": "WolframAlpha",
+      "url": "https://www.wolframalpha.com",
+      "uso": "Verificar integrales de campo y potencial, y resolver los sistemas de ecuaciones que salen de las mallas de Kirchhoff.",
+      "para_temas": [
+        "02-ley-de-gauss",
+        "03-potencial-electrico",
+        "06-circuitos-dc-kirchhoff"
+      ]
+    }
+  ],
+  "temas": [
+    {
+      "id": "01-carga-campo-electrico",
+      "nombre": "Carga eléctrica, Ley de Coulomb y campo eléctrico",
+      "descripcion": "Carga y su conservación, conductores y aislantes, Ley de Coulomb, campo eléctrico de cargas puntuales y de distribuciones continuas, líneas de campo, dipolo eléctrico.",
+      "prerrequisitos_internos": [],
+      "prerrequisitos_externos": [
+        "05-fisica/02-vectores",
+        "05-fisica/13-electrostatica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 3,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Calcular la fuerza resultante sobre una carga por superposición vectorial",
+        "Calcular el campo eléctrico de distribuciones discretas y continuas de carga (hilo, anillo, disco)",
+        "Dibujar y leer líneas de campo, y explicar qué información contienen"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de Coulomb y campo tipo examen con diagrama correcto",
+      "referencias": [
+        "Sears-Zemansky vol. 2 — cap. Carga eléctrica y campo eléctrico",
+        "Serway vol. 2 — cap. Campos eléctricos"
+      ]
+    },
+    {
+      "id": "02-ley-de-gauss",
+      "nombre": "Ley de Gauss",
+      "descripcion": "Flujo eléctrico, Ley de Gauss y su aplicación a distribuciones con simetría (esférica, cilíndrica, plana); conductores en equilibrio electrostático.",
+      "prerrequisitos_internos": [
+        "01-carga-campo-electrico"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Calcular el flujo eléctrico a través de una superficie dada",
+        "Elegir la superficie gaussiana adecuada según la simetría del problema — que es la única decisión que importa aquí",
+        "Deducir el campo de esferas, cilindros y planos cargados, y justificar por qué el campo dentro de un conductor es cero"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de Gauss tipo examen eligiendo bien la superficie sin ayuda",
+      "referencias": [
+        "Sears-Zemansky vol. 2 — cap. Ley de Gauss",
+        "Serway vol. 2 — cap. Ley de Gauss"
+      ]
+    },
+    {
+      "id": "03-potencial-electrico",
+      "nombre": "Potencial eléctrico",
+      "descripcion": "Energía potencial eléctrica, potencial de cargas puntuales y distribuciones, superficies equipotenciales, gradiente de potencial y relación con el campo.",
+      "prerrequisitos_internos": [
+        "02-ley-de-gauss"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 3,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Calcular el potencial de distribuciones de carga por superposición e integración",
+        "Obtener el campo a partir del potencial mediante el gradiente, y viceversa",
+        "Aplicar conservación de la energía a cargas en movimiento dentro de un campo"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de potencial y energía tipo examen sin ayuda",
+      "referencias": [
+        "Sears-Zemansky vol. 2 — cap. Potencial eléctrico",
+        "Serway vol. 2 — cap. Potencial eléctrico"
+      ]
+    },
+    {
+      "id": "04-capacitancia-dielectricos",
+      "nombre": "Capacitancia y dieléctricos",
+      "descripcion": "Capacitores, capacitancia, asociaciones en serie y paralelo, energía almacenada, dieléctricos y su efecto en el campo.",
+      "prerrequisitos_internos": [
+        "03-potencial-electrico"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 3,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Calcular la capacitancia equivalente de asociaciones serie-paralelo",
+        "Calcular la energía almacenada y la densidad de energía del campo",
+        "Explicar qué le hace un dieléctrico al campo y a la capacitancia"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de capacitores tipo examen sin ayuda",
+      "referencias": [
+        "Sears-Zemansky vol. 2 — cap. Capacitancia y dieléctricos"
+      ]
+    },
+    {
+      "id": "05-corriente-resistencia",
+      "nombre": "Corriente, resistencia y fuerza electromotriz",
+      "descripcion": "Corriente eléctrica, densidad de corriente, resistividad y resistencia, Ley de Ohm, fuerza electromotriz y resistencia interna, potencia eléctrica.",
+      "prerrequisitos_internos": [
+        "04-capacitancia-dielectricos"
+      ],
+      "prerrequisitos_externos": [
+        "05-fisica/14-electrodinamica"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 2,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Relacionar corriente, densidad de corriente y velocidad de arrastre",
+        "Aplicar la Ley de Ohm y calcular resistencias equivalentes",
+        "Calcular potencia disipada y el efecto de la resistencia interna de una fuente"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de corriente y resistencia sin ayuda",
+      "referencias": [
+        "Sears-Zemansky vol. 2 — cap. Corriente, resistencia y fem"
+      ]
+    },
+    {
+      "id": "06-circuitos-dc-kirchhoff",
+      "nombre": "Circuitos de corriente continua y leyes de Kirchhoff",
+      "descripcion": "Leyes de Kirchhoff de nodos y mallas, circuitos de varias mallas, instrumentos de medición, circuitos RC (carga y descarga).",
+      "prerrequisitos_internos": [
+        "05-corriente-resistencia"
+      ],
+      "prerrequisitos_externos": [
+        "02-algebra/12-sistemas-ecuaciones"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "parcial",
+      "objetivos_aprendizaje": [
+        "Plantear el sistema de ecuaciones de un circuito por las leyes de Kirchhoff",
+        "Resolver ese sistema y verificar el signo de las corrientes obtenidas",
+        "Analizar la carga y descarga de un circuito RC y su constante de tiempo"
+      ],
+      "criterio_dominio": "Resuelve 8/10 circuitos de dos o tres mallas tipo examen sin ayuda",
+      "referencias": [
+        "Sears-Zemansky vol. 2 — cap. Circuitos de corriente directa"
+      ]
+    },
+    {
+      "id": "07-campo-magnetico-fuerza",
+      "nombre": "Campo magnético y fuerza magnética",
+      "descripcion": "Campo magnético, fuerza de Lorentz sobre cargas y sobre conductores con corriente, movimiento de partículas cargadas, momento de torsión sobre espiras, efecto Hall.",
+      "prerrequisitos_internos": [],
+      "prerrequisitos_externos": [
+        "05-fisica/15-electromagnetismo",
+        "05-fisica/05-movimiento-circular"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Calcular la fuerza magnética sobre cargas y corrientes usando el producto vectorial",
+        "Determinar la trayectoria de una partícula cargada en un campo magnético uniforme",
+        "Calcular el momento de torsión sobre una espira, que es el principio del motor eléctrico"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de fuerza magnética tipo examen con dirección correcta",
+      "referencias": [
+        "Sears-Zemansky vol. 2 — cap. Campo magnético y fuerzas magnéticas"
+      ]
+    },
+    {
+      "id": "08-fuentes-campo-biot-savart-ampere",
+      "nombre": "Fuentes del campo magnético: Biot-Savart y Ampère",
+      "descripcion": "Ley de Biot-Savart, campo de conductores rectos, espiras y solenoides, fuerza entre conductores paralelos, Ley de Ampère y materiales magnéticos.",
+      "prerrequisitos_internos": [
+        "07-campo-magnetico-fuerza"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Calcular el campo magnético por Biot-Savart en geometrías básicas",
+        "Aplicar la Ley de Ampère eligiendo el lazo adecuado — el análogo magnético de elegir la gaussiana",
+        "Calcular el campo de un solenoide y explicar por qué es la base del electroimán"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de Biot-Savart y Ampère tipo examen sin ayuda",
+      "referencias": [
+        "Sears-Zemansky vol. 2 — cap. Fuentes de campo magnético"
+      ]
+    },
+    {
+      "id": "09-induccion-faraday-lenz",
+      "nombre": "Inducción electromagnética: Faraday y Lenz",
+      "descripcion": "Flujo magnético, Ley de Faraday, Ley de Lenz, fem de movimiento, campos eléctricos inducidos, corrientes parásitas.",
+      "prerrequisitos_internos": [
+        "08-fuentes-campo-biot-savart-ampere"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 2,
+        "avanzado": 2
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Calcular la fem inducida aplicando la Ley de Faraday",
+        "Determinar el sentido de la corriente inducida por la Ley de Lenz y justificarlo por conservación de la energía",
+        "Resolver problemas de fem de movimiento (barra deslizante, espira que entra o sale del campo)"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de inducción tipo examen con el sentido correcto",
+      "referencias": [
+        "Sears-Zemansky vol. 2 — cap. Inducción electromagnética"
+      ]
+    },
+    {
+      "id": "10-inductancia-circuitos-rl-rlc",
+      "nombre": "Inductancia y circuitos RL, LC y RLC",
+      "descripcion": "Autoinductancia e inductancia mutua, energía en el campo magnético, circuitos RL, oscilaciones LC y circuitos RLC.",
+      "prerrequisitos_internos": [
+        "09-induccion-faraday-lenz"
+      ],
+      "prerrequisitos_externos": [],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 4,
+      "opcional": false,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Calcular la inductancia de un solenoide y la energía almacenada en el campo",
+        "Analizar la respuesta transitoria de un circuito RL y su constante de tiempo",
+        "Reconocer que el circuito LC es el mismo oscilador armónico que ya viste en Física II, con otro disfraz"
+      ],
+      "criterio_dominio": "Resuelve 8/10 problemas de inductancia y RL/LC/RLC sin ayuda",
+      "referencias": [
+        "Sears-Zemansky vol. 2 — cap. Inductancia"
+      ]
+    },
+    {
+      "id": "11-maxwell-ondas-electromagneticas",
+      "nombre": "Ecuaciones de Maxwell y ondas electromagnéticas",
+      "descripcion": "Corriente de desplazamiento, las cuatro ecuaciones de Maxwell en forma integral, ondas electromagnéticas, velocidad de la luz, vector de Poynting.",
+      "prerrequisitos_internos": [
+        "10-inductancia-circuitos-rl-rlc"
+      ],
+      "prerrequisitos_externos": [
+        "05-fisica/10-mas-ondas"
+      ],
+      "sesiones_por_nivel": {
+        "base": 1,
+        "intermedio": 1,
+        "avanzado": 1
+      },
+      "dificultad": 5,
+      "opcional": true,
+      "hito_id": "final",
+      "objetivos_aprendizaje": [
+        "Enunciar las cuatro ecuaciones de Maxwell y decir qué afirma físicamente cada una",
+        "Explicar cómo de ellas sale una onda que viaja a la velocidad de la luz",
+        "Calcular la energía transportada por una onda electromagnética con el vector de Poynting"
+      ],
+      "criterio_dominio": "Explica las cuatro ecuaciones con sus palabras y resuelve 7/10 ejercicios de ondas EM",
+      "referencias": [
+        "Sears-Zemansky vol. 2 — cap. Ondas electromagnéticas"
+      ],
+      "_nota_opcional": "Marcado opcional: en muchos cursos de Física III de 16 semanas Maxwell entra solo de forma introductoria o se queda fuera por falta de tiempo. Confirmar en la semana 1 y quitarle el 'opcional' si el sílabo real lo exige."
+    }
+  ],
+  "_nota_migracion_niveles": "MIGRACION MECANICA 2026-07-16 al modelo de dos dimensiones (ver 'El conocimiento se mide en DOS dimensiones' en el README raiz). 'sesiones_estimadas' y 'sesiones_estimadas_pasar' se convirtieron en 'sesiones_por_nivel' (coste INCREMENTAL por salto). El reparto es una APROXIMACION ARITMETICA, no pedagogia medida: para los cursos base, base=el antiguo coste 'pasar' y el resto hasta el antiguo coste 'dominar' se repartio entre intermedio y avanzado; para los cursos universitarios, base+intermedio suman el coste original (que se dimensiono para aprobar) y 'avanzado' es una estimacion que hoy ningun objetivo requiere. REVISAR con datos reales de historial.json. OJO — 'criterio_dominio' sigue siendo UN SOLO STRING en la mayoria de temas: es el criterio del nivel para el que se escribio (avanzado en los cursos base, intermedio en los universitarios). Los criterios de los otros niveles NO se fabricaron a proposito: se redactan cuando cada tema se estudia, que es cuando se sabe que distingue de verdad un nivel de otro. Si un tema tiene criterio_dominio como string, trata ese string como el criterio del nivel objetivo del curso y ESCRIBE los que falten al tocarlo."
+}
