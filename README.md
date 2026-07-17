@@ -189,7 +189,14 @@ PASO 5.5 — SELECTOR DE CLASE. Decide QUÉ CLASE toca hoy.
 
          (F) TEMA NUEVO — ninguna de las anteriores aplicó. Caso normal.
                → Próximo tema "no_iniciado" de un curso "ruta" cuyos
-                 prerrequisitos internos estén completados.
+                 prerrequisitos internos ya tengan nivel suficiente:
+                 su nivel_alcanzado NO es null (llegaron al menos a
+                 "base"). No exijas "avanzado" para arrancar el que
+                 sigue — un prerrequisito en "base" ya sostiene el
+                 tema nuevo; su profundidad definitiva se termina de
+                 subir cuando el objetivo que la pide lo cobre. Si un
+                 prerrequisito sigue en null, ese es el que toca, no
+                 este.
                → Si hay varios candidatos, gana el de MENOR "prioridad"
                  de curso (1 = lo primero). Si sigue sin estar claro,
                  pregunta.
@@ -284,7 +291,7 @@ Cuando en medio de una clase aparezca algo que no es necesario para el tema de h
 3. **¿Es una curiosidad legítima pero fuera de la ruta al objetivo?** → Contéstala en 2-3 frases, sin abrir clase, y sigue. No la conviertas en un desvío de media hora.
 4. **¿Es un hueco de base que no bloquea hoy pero va a estorbar después?** → Anótalo en `dificultades.json` con `resuelto: false` y sigue. Va a salir solo en una sesión futura por la vía del repaso.
 
-Además, **avisa cuando la clase se esté pasando de largo**. Si la sesión ya cubrió los `objetivos_aprendizaje` del tema, o ya lleva claramente más de lo que sugieren sus `sesiones_estimadas`, dilo y ofrece cerrar: "Ya cubrimos los objetivos del tema. ¿Cerramos aquí y dejamos lo demás para la próxima?" No decidas tú cerrar — pero tampoco dejes que la clase se estire tres horas sin que nadie lo mencione. **Terminar el tema de hoy vale más que cubrir cinco temas a medias**, y una clase cerrada limpia es la única que deja el `progreso.json` en un estado del que la siguiente sesión puede partir.
+Además, **avisa cuando la clase se esté pasando de largo**. Si la sesión ya cubrió los `objetivos_aprendizaje` del tema, o ya lleva claramente más de lo que sugieren sus `sesiones_por_nivel` hasta el nivel que toca hoy, dilo y ofrece cerrar: "Ya cubrimos los objetivos del tema. ¿Cerramos aquí y dejamos lo demás para la próxima?" No decidas tú cerrar — pero tampoco dejes que la clase se estire tres horas sin que nadie lo mencione. **Terminar el tema de hoy vale más que cubrir cinco temas a medias**, y una clase cerrada limpia es la única que deja el `progreso.json` en un estado del que la siguiente sesión puede partir.
 
 ### Tipos de clase
 
@@ -396,7 +403,9 @@ Son **ortogonales**. Un tema puede estar aprendido hondo y sin repasar (se desva
 
 > **Nota de cambio (2026-07-16):** existió un `pagado[tema] = sesiones` que llevaba la cuenta del esfuerzo gastado. Se eliminó: **el esfuerzo no es verificable y el estado sí.** El usuario lo señaló y tenía razón. Si ves un modelo que contabiliza sesiones para decidir si un tema está listo, es deuda.
 
-**`estado: "completado"` está DEPRECADO como medida de conocimiento.** Respondía a "¿está hecho?", que es una pregunta mal planteada: **¿hecho para quién?** Factorización puede estar terminada para aprobar un semestre y muy lejos de lo que exige un examen de admisión. `estado` se conserva solo como estado de flujo (`no_iniciado` / `en_progreso`), y "completado" pasa a ser **derivado**: un tema está completado *para un objetivo dado* si `nivel_alcanzado >= nivel_requerido` por ese objetivo. Nunca en absoluto.
+**"completado" como MEDIDA DE CONOCIMIENTO está DEPRECADO.** Respondía a "¿está hecho?", que es una pregunta mal planteada: **¿hecho para quién?** Factorización puede estar terminada para aprobar un semestre y muy lejos de lo que exige un examen de admisión. La doneness real es **derivada y relativa**: un tema está completado *para un objetivo dado* si `nivel_alcanzado >= nivel_requerido` por ese objetivo. Nunca en absoluto.
+
+**Cuidado con la palabra, porque `estado` sí tiene un valor `"completado"` — pero significa otra cosa.** `estado` es puro FLUJO, con tres valores: `no_iniciado` (nunca tocado), `en_progreso` (clase abierta, sin cerrar) y `completado` (**las clases activas sobre el tema terminaron y pasó a la escalera de repaso**). Ese `completado` de flujo NO afirma nada sobre cuánto se sabe: un tema puede estar `estado: "completado"` con `nivel_alcanzado: "base"`. El PASO 5.5 necesita esos tres valores para distinguir "arráncalo" (F) de "retómalo" (A) de "déjalo, ya está en mantenimiento". La profundidad la lleva `nivel_alcanzado`, y solo eso; el flujo lo lleva `estado`, y solo eso.
 
 **Cada objetivo declara qué nivel necesita**, por curso y con override por tema:
 
@@ -452,28 +461,7 @@ horas_necesarias  = horas_aprender + horas_mantener
 
 `minutos_por_repaso` se mide desde `historial.json` igual que `horas_por_sesion`. Mientras no haya datos, usa **12 minutos** y **declara que es una suposición**.
 
-### El listón: el mismo tema cuesta distinto según para qué
-
-Cada objetivo declara un **`liston`**:
-
-- **`"dominar"`** — hay que saberlo de verdad: velocidad, precisión, transferencia. Un examen de admisión competitivo, una certificación.
-- **`"pasar"`** — hay que refrescarlo lo justo para no perderse y aprobar. Sobrevivir un semestre.
-
-Y un tema puede declarar **dos precios**: `sesiones_estimadas` (el coste para dominar) y `sesiones_estimadas_pasar` (el coste para refrescar). Al cobrar un tema se usa el precio del listón del objetivo que lo pide; si el tema no declara el precio barato, se usa el caro.
-
-**Esto importa porque los cursos compartidos tienen listones distintos según quién pregunte.** Factorización cuesta 3 sesiones para competir en la UNI y 1 para no atascarse en fracciones parciales. Son el mismo tema y dos costes reales, no una aproximación.
-
-**COBRO POR DIFERENCIA (la regla que hace honesto todo esto).** `ya_cobrados` **no es un conjunto binario**: guarda a qué nivel se pagó cada tema. Si un objetivo con listón `pasar` paga factorización (1 sesión), un objetivo posterior con listón `dominar` **no se la encuentra gratis ni la paga entera: paga las 2 que faltan**.
-
-```
-al cobrar el tema T para el objetivo O:
-    necesita ← coste(T, O.liston)
-    ya       ← pagado[T]  (0 si nadie lo tocó)
-    cobrar   ← max(0, necesita − ya)
-    pagado[T] ← max(ya, necesita)
-```
-
-Sin esta regla, bajar el listón de un objetivo urgente parece gratis y no lo es: **el trabajo se aplaza, no desaparece.** En el plan real de este proyecto, el listón `pasar` del semestre le costó al objetivo UNI 70 horas adicionales en diciembre. Eso es un dato que el usuario merece ver antes de decidir, no después.
+> **Nota de cambio (2026-07-16):** aquí vivía la sección "El listón" (`liston` `dominar`/`pasar`, `sesiones_estimadas` / `sesiones_estimadas_pasar`, y un cobro por diferencia medido **en horas**). Se borró: la sustituye "El conocimiento se mide en DOS dimensiones". El listón no era otra cosa que **el `nivel_requerido` que cada objetivo declara** — `pasar` ≈ `base`/`intermedio`, `dominar` ≈ `avanzado` —, y el coste de un tema ya no es un precio fijo por listón sino la suma de los **saltos de nivel** que faltan (`sesiones_por_nivel`). Su idea más valiosa, el **cobro por diferencia**, sobrevive intacta: es el `proyectado[]` y el "cobro por SALTO DE NIVEL" del algoritmo de más abajo — un objetivo que necesita `avanzado` parte del nivel que otro ya dejó y paga solo lo que falta. Si ves `liston`, `sesiones_estimadas` o `ya_cobrados` en un archivo, es deuda.
 
 ### Los objetivos compiten en una cola con prioridad
 
@@ -494,13 +482,17 @@ horas_comprometidas_hasta(fecha) ← 0 para toda fecha
 nivel[tema]  ← progreso.nivel_alcanzado   # profundidad REAL, verificada
 proyectado[tema] ← nivel[tema]            # a dónde lo habrán subido los objetivos ya procesados
 
-# Cierre transitivo: un tema arrastra lo que necesita para existir
-cerradura(temas):
+# Cierre transitivo: un tema arrastra lo que necesita para existir.
+# CRITERIO DE PARADA: lo YA SUFICIENTE para ESTE objetivo, no un
+# "completado" absoluto — que es la pregunta mal planteada que el
+# rediseño elimina. Un tema en nivel 'base' está "completado" para el
+# semestre y sigue faltándole todo para la UNI: depende de quién pregunta.
+cerradura(temas, objetivo):
     pendientes ← temas
     resultado  ← conjunto vacío
     mientras pendientes:
         t ← saca uno
-        si t.estado == "completado":  continúa   # criterio de parada
+        si proyectado[t] >= nivel_requerido(t, objetivo):  continúa   # ya suficiente para este objetivo: ni se aprende ni se arrastran sus bases
         si t ya está en resultado:    continúa   # corta ciclos accidentales
         resultado += t
         pendientes += t.prerrequisitos_internos  (del mismo curso)
@@ -509,10 +501,10 @@ cerradura(temas):
 
 para cada objetivo ACTIVO, en orden de prioridad (1 primero):
     para cada hito NO condicional del objetivo, por fecha ascendente:
-        semilla ← temas no completados de sus cursos_requeridos
-                  que pertenecen a ese hito (por hito_id; si el temario
-                  no declara hito_id, todos los del curso)
-        temas ← cerradura(semilla)
+        semilla ← temas de sus cursos_requeridos que pertenecen a ese
+                  hito (por hito_id; si el temario no declara hito_id,
+                  todos los del curso) con proyectado[T] < nivel_requerido(T, objetivo)
+        temas ← cerradura(semilla, objetivo)
 
         # ---- 1. APRENDER: cobro por SALTO DE NIVEL, no por sesiones gastadas
         sesiones ← 0
@@ -592,7 +584,7 @@ Reglas:
 
 ### La escalera de repaso
 
-Cuando un tema pasa a `completado`, se le arma un repaso futuro en `progreso.json` con dos campos:
+**En cuanto un tema alcanza por primera vez un `nivel_alcanzado` no nulo** (llegó al menos a `base`), se le arma un repaso futuro en `progreso.json` con dos campos. Se ata a la PROFUNDIDAD alcanzada, no a `estado`: un tema en `base` ya empieza a olvidarse y necesita mantenimiento, esté `en_progreso` o `completado`. (Antes esto se disparaba "cuando el tema pasa a `completado`"; ese estado dejó de ser una medida de conocimiento — ver "El conocimiento se mide en DOS dimensiones".)
 
 - **`nivel_repaso`** — entero 1-5, índice en la escalera de intervalos.
 - **`fecha_proximo_repaso`** — `YYYY-MM-DD`, cuándo vuelve a entrar.
@@ -646,8 +638,8 @@ Con esa información adapta la sesión:
 - Refuerza las dificultades pendientes relevantes antes o durante la explicación.
 - Parte del nivel real que muestra `progreso.json`, no de cero.
 - No redefinas términos que ya están en el glosario del usuario con `nivel_dominio: "solido"`.
-- Verifica retrasos: si `sesiones_dedicadas` supera `sesiones_estimadas` en >50% para el tema actual, menciónalo y ofrece re-planificar.
-- **Arma la lista de temas a intercalar**: los temas `completado` con `fecha_proximo_repaso <= hoy`, ordenados del más vencido al menos vencido. Toma los 2-3 primeros — son los que alimentan el 30% de repaso del bloque de ejercicios (ver Método 3). Si para intercalar bien necesitas ver qué se hizo en esa clase, abre su `clases/NN-tema/README.md`: el coste de contexto es aceptable y los ejercicios salen mucho mejores.
+- Verifica retrasos: si `sesiones_dedicadas` del tema actual supera en >50% la suma de sus `sesiones_por_nivel` hasta el nivel que le pide su objetivo más urgente, menciónalo y ofrece re-planificar. Pasarse de presupuesto NO baja `nivel_alcanzado` — solo dice que le está costando más de lo estimado.
+- **Arma la lista de temas a intercalar**: los temas con escalera armada (`nivel_repaso` no nulo) y `fecha_proximo_repaso <= hoy`, ordenados del más vencido al menos vencido. Toma los 2-3 primeros — son los que alimentan el 30% de repaso del bloque de ejercicios (ver Método 3). Si para intercalar bien necesitas ver qué se hizo en esa clase, abre su `clases/NN-tema/README.md`: el coste de contexto es aceptable y los ejercicios salen mucho mejores.
 
 ---
 
@@ -657,17 +649,37 @@ Cuando el usuario indique que terminó, actualiza estos archivos:
 
 ### `progreso.json`
 
-**Del tema trabajado hoy:**
-- Cambia el `estado`: `"no_iniciado"` → `"en_progreso"` → `"completado"`.
-- Actualiza `porcentaje` según lo avanzado (0-100).
-- Actualiza `ultima_sesion` con fecha y hora actuales en formato ISO 8601 (`YYYY-MM-DDTHH:MM`). La hora es informativa: los repasos se calculan por día de calendario, no por hora.
-- Incrementa `sesiones_dedicadas` en 1.
-- **Si el tema pasó a `completado`**: arma su repaso con `nivel_repaso: 1` y `fecha_proximo_repaso` = mañana. Ver "La escalera de repaso".
+**Del tema trabajado hoy — lo primero es DECIDIR EL NIVEL, no marcar "hecho":**
+
+`nivel_alcanzado` es el campo central del modelo y **este protocolo es su ÚNICO escritor.** Si esto no corre, el rediseño entero es decorativo. Actualízalo así, en orden:
+
+1. **Averigua el nivel al que la clase de hoy apuntaba** (`nivel_objetivo_hoy`): recorre los objetivos ACTIVOS que requieren este curso y toma el MAYOR `nivel_requerido` para este tema (el default del curso en su `cursos_requeridos`, salvo que un `override` de tema lo suba). Ese es el techo que tiene sentido verificar hoy; no hace falta comprobar `avanzado` si ningún objetivo activo lo pide aún.
+
+2. **Lee el `criterio_dominio` del tema en su `temario.json`.**
+   - Si ya es un objeto por nivel (`base`/`intermedio`/`avanzado`), usa el criterio del nivel que estás evaluando.
+   - Si todavía es un solo string (herencia del modelo viejo), trátalo como el criterio del nivel para el que se escribió el curso. Y **si vas a verificar un nivel que no tiene criterio específico escrito, escríbelo AHORA** derivándolo de la `rubrica_niveles` del curso (ver "Reglas de calidad del temario"). Este es el único momento en que ese criterio se necesita —cuando decides si el nivel sube— y ni un minuto antes. Guárdalo en el `temario.json` convirtiendo el campo a objeto por nivel.
+
+3. **Verifica contra la evidencia REAL de la clase** (los ejercicios que resolvió + el Feynman de cierre), subiendo desde `nivel_alcanzado` actual **+1** hacia `nivel_objetivo_hoy`, **un nivel a la vez**:
+   - Si el usuario cumplió el criterio de ese nivel → sube `nivel_alcanzado` a ese nivel y evalúa el siguiente.
+   - En el PRIMER nivel cuyo criterio NO se cumplió → **detente ahí.** `nivel_alcanzado` se queda en el último verificado.
+   - **`nivel_alcanzado` solo sube con evidencia verificada, nunca por haber gastado la sesión.** Si el usuario estudió pero sigue fallando el criterio de `base`, `nivel_alcanzado` se queda como estaba (posiblemente `null`) y `estado` queda `en_progreso`. El plan tiene que poder decir "se sentó a estudiarlo y todavía no le sale" — un contador de esfuerzo diría "pagado, siguiente" y mentiría.
+   - **Nunca BAJES `nivel_alcanzado` al cerrar una clase de tema nuevo.** La profundidad no se pierde por una clase floja; el olvido lo modela `nivel_repaso`, no esto.
+
+4. **`estado` (flujo, NO conocimiento):**
+   - `no_iniciado` → `en_progreso` al arrancar la clase.
+   - `en_progreso` → `completado` **solo** si la clase se cerró de verdad y `nivel_alcanzado` llegó al `nivel_objetivo_hoy` (o el usuario decide dar por terminado el trabajo activo sobre el tema y pasarlo a mantenimiento). Aquí `completado` significa **"las clases activas sobre este tema terminaron y pasó a la escalera de repaso"** — NO es una medida de conocimiento (esa es `nivel_alcanzado`). Un tema puede quedar `completado` en `nivel_alcanzado: base`.
+   - **Si la clase se cortó a medias** (el usuario paró antes de que se pudiera verificar el criterio, o el handoff se interrumpió): `estado` se queda en `en_progreso` y `nivel_alcanzado` **NO sube**. Una clase que no llegó a verificar nada no cambia la profundidad. La rama (A) del PASO 5.5 la retomará.
+
+5. **`ultima_sesion`**: fecha y hora en ISO 8601 (`YYYY-MM-DDTHH:MM`). La hora es informativa; los repasos se cuentan por día de calendario.
+
+6. **`sesiones_dedicadas`**: +1.
+
+7. **Arma la escalera de repaso cuando el tema alcanza por primera vez un `nivel_alcanzado` no nulo** (llegó al menos a `base`): pon `nivel_repaso: 1` y `fecha_proximo_repaso` = mañana. Ver "La escalera de repaso". **La escalera se ata a la PROFUNDIDAD alcanzada, no a `estado`:** un tema que llegó a `base` ya empieza a olvidarse y necesita mantenimiento, esté `en_progreso` o `completado`. Si el tema ya tenía escalera armada de una sesión previa, no la reinicies aquí.
 
 **De los temas que se intercalaron en el bloque de ejercicios** (no del tema nuevo):
 - Si el usuario los resolvió bien: sube `nivel_repaso` en 1 (tope 5) y recalcula `fecha_proximo_repaso` = hoy + el intervalo del nivel nuevo.
 - Si falló: baja `nivel_repaso` a 1 y pon `fecha_proximo_repaso` = mañana. Además, registra la dificultad en `dificultades.json` como cualquier otra.
-- No toques su `estado`, `porcentaje` ni `sesiones_dedicadas`: un intercalado no es una sesión del tema viejo. Sí actualiza su `ultima_sesion`.
+- No toques su `estado`, `nivel_alcanzado` ni `sesiones_dedicadas`: un intercalado no es una sesión del tema viejo, y resolver bien un repaso confirma durabilidad (`nivel_repaso`), no más profundidad. Sí actualiza su `ultima_sesion`.
 - Si un tema intercalado resultó estar realmente roto (falló varios ejercicios, no solo uno), dilo al cerrar y sugiere que la próxima sesión sea una clase de `repaso`. La rama (B) del PASO 5.5 probablemente ya lo dispare sola, pero avisar es mejor que sorprender.
 
 ### `historial.json` (raíz) — APPEND, nunca overwrite
@@ -735,21 +747,21 @@ Agrega **una entrada al final** del array `sesiones`:
 
     **`presupuesto_horas` también son promesas, no mediciones.** Es lo que el usuario *dijo* que puede dedicar en cada periodo. Si el historial tiene ≥3 semanas de datos, compara contra las horas reales por semana **del periodo que corresponda** y, si difieren en más del 30%, dilo antes de dar por buena cualquier proyección. Un plan validado contra horas que no ocurren es un plan que miente con aritmética correcta.
 
-    **Nunca sumes las `sesiones_estimadas` de dos objetivos que comparten cursos.** Estudiar trigonometría una vez sirve a los dos pero consume horas una vez; sumarlas cuenta doble y vuelve a inflar el plan. El `ya_cobrados` del algoritmo existe exactamente para eso.
+    **Nunca cobres dos veces un curso que comparten dos objetivos.** Estudiar trigonometría una vez sirve a los dos pero consume horas una vez; contarla en ambos infla el plan. El `proyectado[]` del algoritmo existe exactamente para eso: el objetivo más urgente sube el nivel y paga los saltos, y el siguiente parte de ese nivel y solo paga la diferencia que le falte.
 
-    Si un objetivo no tiene hitos con fecha (todo `null`), sáltate esta validación para él — pero sus cursos siguen compitiendo por las horas de los demás, así que sus temas sí entran en `ya_cobrados` cuando les toque.
+    Si un objetivo no tiene hitos con fecha (todo `null`), sáltate esta validación para él — pero sus cursos siguen compitiendo por las horas de los demás, así que sus temas sí actualizan `proyectado[]` cuando les toque.
 11. **`modo_estudio` obligatorio**: todo `temario.json` declara cómo se estudia el curso (`ruta`, `cadencia` o `hito`). Sin este campo el PASO 5.5 no puede colocar el curso en ninguna clase y el curso queda huérfano — que es exactamente el bug que tuvo este proyecto hasta julio de 2026. Ver "Cómo se estudia cada curso" para la estructura y los valores.
 12. **El grafo crece desde la necesidad hacia atrás, nunca por completitud.** Cuando un curso nuevo necesite algo que no existe todavía:
     - **¿El tema falta en un curso que ya existe?** → agrégalo a ESE curso. No crees un curso paralelo ni una versión "para el otro objetivo".
     - **¿El curso entero no existe?** → créalo, pero **solo con los temas que hacen falta**, no con los treinta que "debería tener" un curso de esa materia. Un curso de trigonometría creado para dar soporte a Estática puede tener tres temas y estar perfecto.
-    - **Y hazlo transitivamente**: si el tema que agregas depende de otro que tampoco tienes, ese también entra, y así hacia atrás hasta tocar algo que el usuario ya domina (`completado` en su `progreso.json`) o que sea base real.
+    - **Y hazlo transitivamente**: si el tema que agregas depende de otro que tampoco tienes, ese también entra, y así hacia atrás hasta tocar algo que el usuario ya tiene a nivel suficiente (`nivel_alcanzado` que cubre lo que el tema nuevo necesita) o que sea base real.
     - **Ese es el criterio de parada**: se para cuando llegas a algo ya sabido, no cuando el curso "se ve completo". Añadir temas que nadie requiere es exactamente lo que hace que un plan no quepa.
 
 ---
 
 ## Re-planificación (dentro de un objetivo ya activo)
 
-**Bajo demanda**: si el usuario pregunta "¿voy bien?", "¿alcanzo con el deadline?", etc., compara `sesiones_dedicadas` acumuladas vs `sesiones_estimadas` planificadas. **Hazlo por objetivo, no en bloque** — si tiene dos objetivos activos, puede ir sobrado en uno y hundido en el otro, y un promedio te ocultaría las dos cosas.
+**Bajo demanda**: si el usuario pregunta "¿voy bien?", "¿alcanzo con el deadline?", etc., corre la cola con prioridad por hito (ver "Los objetivos compiten en una cola con prioridad") y compara `nivel_alcanzado` real tema a tema contra `nivel_requerido`, sumando las horas de los saltos que faltan + el mantenimiento. **Hazlo por objetivo, no en bloque** — si tiene dos objetivos activos, puede ir sobrado en uno y hundido en el otro, y un promedio te ocultaría las dos cosas.
 
 **Automática (solo si hay atraso grande)**: al inicio de una sesión, si detectas atraso >50% respecto al plan (temas completados vs. esperados según fecha), avisa proactivamente antes de arrancar contenido.
 
@@ -758,7 +770,7 @@ Agrega **una entrada al final** del array `sesiones`:
 Opciones a proponer cuando hay desvío:
 - Marcar temas `opcional: true` como omitidos.
 - Subir las horas de algún periodo de `presupuesto_horas` — solo si el usuario confirma que existen de verdad. No las inventes tú. Y fíjate en **qué periodo**: subir las de un tramo que ya pasó no sirve de nada.
-- **Bajar el `liston` de un objetivo** de `dominar` a `pasar`. Es la palanca más potente y la más malentendida: **no elimina trabajo, lo aplaza** (ver "El listón"). Cuando la propongas, di siempre cuánto le costará después al objetivo que sí necesita el listón alto.
+- **Bajar el `nivel_requerido` de un objetivo** en un curso (o quitar un `override`): de `avanzado` a `intermedio`, de `intermedio` a `base`. Es la palanca más potente y la más malentendida: **no elimina trabajo, lo aplaza** — el objetivo que sí necesita el nivel alto pagará después los saltos que este dejó sin subir (el `proyectado[]` lo hace explícito). Cuando la propongas, di siempre cuánto le costará después a ese otro objetivo.
 - Mover la fecha de un hito, si el hito es negociable (uno de examen universitario no lo es; uno autoimpuesto sí).
 - **Ceder desde el objetivo menos prioritario**: relajar la `cadencia_dias` de sus cursos (de cada 2 días a cada 4, por ejemplo) para que libere horas. Con el presupuesto en cola, es **la** palanca de reparto: no hay un número de horas que mover, así que se afloja el ritmo del que puede esperar. Propónsela al usuario, nunca la apliques por tu cuenta.
 
@@ -976,19 +988,19 @@ estudios/
             └── README.md         Apuntes y ejercicios de esa clase
 ```
 
-### Estados válidos en `progreso.json`
+### Valores de `estado` en `progreso.json` (FLUJO, no conocimiento)
 - `"no_iniciado"` — tema no tocado aún
-- `"en_progreso"` — clase iniciada pero no completada
-- `"completado"` — tema dominado según su `criterio_dominio`
+- `"en_progreso"` — clase abierta, sin cerrar (la rama (A) del PASO 5.5 la retoma)
+- `"completado"` — las clases activas sobre el tema terminaron y pasó a la escalera de repaso. **NO es una medida de conocimiento** (esa es `nivel_alcanzado`): un tema puede estar `completado` con `nivel_alcanzado: "base"`. La doneness real es derivada y relativa al objetivo (`nivel_alcanzado >= nivel_requerido`). Ver "El conocimiento se mide en DOS dimensiones".
 
 ### Campos de cada tema en `progreso.json`
 - `tema_id` — referencia al `id` del `temario.json`
-- `estado` — uno de los tres de arriba
-- `porcentaje` — 0-100
+- `estado` — uno de los tres de arriba (FLUJO)
+- `nivel_alcanzado` — PROFUNDIDAD real y verificable: `null` → `"base"` → `"intermedio"` → `"avanzado"`. Solo sube cuando el usuario cumple el `criterio_dominio` de ese nivel, nunca por gastar sesiones. Lo escribe únicamente el "Protocolo al CERRAR una clase". Ver "El conocimiento se mide en DOS dimensiones".
 - `ultima_sesion` — ISO 8601 con hora (`YYYY-MM-DDTHH:MM`), o `null` si nunca se tocó
 - `sesiones_dedicadas` — contador de sesiones del tema
-- `nivel_repaso` — 1-5, índice en la escalera de repaso. `null` mientras el tema no esté `completado`
-- `fecha_proximo_repaso` — `YYYY-MM-DD` de cuándo vuelve a entrar. `null` mientras el tema no esté `completado`
+- `nivel_repaso` — 1-5, índice en la escalera de repaso (DURABILIDAD). `null` mientras `nivel_alcanzado` sea `null` (aún no llegó a `base`)
+- `fecha_proximo_repaso` — `YYYY-MM-DD` de cuándo vuelve a entrar. `null` mientras `nivel_alcanzado` sea `null`
 
 ### Tipos válidos de dificultad en `dificultades.json`
 - `"conceptual"` — no entiende el concepto en sí
