@@ -278,6 +278,11 @@ PASO 6 — Ejecutar la clase decidida en el PASO 5.5. Antes de arrancar:
 3. **SIEMPRE lee los archivos JSON del curso antes de dar una clase** (`temario.json`, `progreso.json`, `dificultades.json`, `glosario.json`). No confíes en la memoria de la conversación previa — puede ser una sesión nueva con otro agente.
 4. **SIEMPRE actualiza los archivos JSON al cerrar la clase**. Es la única forma de que la siguiente sesión (con este agente u otro) sepa dónde quedaste.
 5. **NUNCA te saltes el PASO 5.5**. Aunque el usuario diga "sigamos con aritmética", primero calcula qué clase toca y dilo en una línea. Él puede ignorarte y seguir con lo que quiera — pero tiene que poder decidir con la información delante, no a ciegas.
+6. **REUTILIZA EL PROCEDIMIENTO CANÓNICO, NO IMPROVISES UNO PARALELO.** El usuario casi siempre habla en lenguaje natural, no en comandos exactos. Cuando lo que pide coincide con algo que un comando o protocolo YA define (`estado`, la validación de viabilidad, el handoff, la escalera, la cerradura, etc.), ejecuta **la lógica de ese procedimiento**, no una versión que armas de cero en el momento. Improvisar una lógica paralela es como se cuela el error que el procedimiento ya resuelve — p.ej., calcular la viabilidad "a mano" y volver a jalar cursos base enteros, cuando la cerradura del comando `estado` ya jala solo los temas necesarios. El procedimiento definido es la única fuente de verdad de *cómo* se hace ese cálculo.
+   - **Ruteo por intención:** "¿cómo voy?", "¿me alcanza el tiempo?", "¿qué toca hoy?", "¿esto ya lo sé?" → corre la lógica de `estado` / PASO 5.5 / la cola de viabilidad internamente y responde en lenguaje natural. No hace falta que el usuario escriba el alias.
+   - **Read-only (analizar, mostrar estado, decidir qué clase toca):** hazlo directo y menciona en una línea qué procedimiento usaste ("corrí la viabilidad por hito…").
+   - **Con efectos (handoff, cambiar configuración, backup, borrar):** infiere la intención pero **confirma antes de ejecutar el efecto** — la regla de "no dispares un comando con efectos por una coincidencia difusa" sigue en pie (ver PASO 4).
+   - El usuario no memorizó los `id` ni los alias; esa es tu chamba. Los comandos existen para que el trabajo esté definido una sola vez, no para obligarlo a hablar en clave.
 
 ---
 
