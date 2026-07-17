@@ -211,38 +211,20 @@
         {
           "curso": "13-estadistica-aplicada",
           "nivel_requerido": "intermedio"
-        },
-        {
-          "curso": "01-aritmetica",
-          "nivel_requerido": "base"
-        },
-        {
-          "curso": "02-algebra",
-          "nivel_requerido": "base",
-          "overrides": {
-            "05-factorizacion": "intermedio",
-            "06-fracciones-algebraicas": "intermedio"
-          }
-        },
-        {
-          "curso": "03-geometria",
-          "nivel_requerido": "base"
-        },
-        {
-          "curso": "04-trigonometria",
-          "nivel_requerido": "base"
-        },
-        {
-          "curso": "05-fisica",
-          "nivel_requerido": "base",
-          "overrides": {
-            "02-vectores": "intermedio"
-          }
         }
       ],
+      "base_por_cierre": {
+        "nota": "CORREGIDO 2026-07-17: el semestre YA NO requiere los cursos base (01-05) enteros. El semestre trata de sus 5 cursos universitarios; la base entra SOLO por la cerradura transitiva de los prerrequisitos_externos que esos cursos declaran (27 temas base concretos referenciados, no los ~74 completos). Requerir los cursos base enteros era la sobre-especificacion que el README advierte ('requerir cursos enteros donde bastan tres temas') e inflaba el parcial en ~82 h. La cerradura arrastra los temas base al nivel que cada prerrequisito necesita: 'base' por defecto.",
+        "overrides_intermedio": {
+          "02-algebra/05-factorizacion": "Las fracciones parciales (transformada inversa de Laplace en 09-mate-superior) exigen factorizar con soltura: necesita INTERMEDIO, no solo base.",
+          "02-algebra/06-fracciones-algebraicas": "SON la forma de la transformada inversa de Laplace: INTERMEDIO.",
+          "05-fisica/02-vectores": "Estatica entera es algebra vectorial: INTERMEDIO."
+        },
+        "nota_overrides": "Estos 3 temas base los arrastra el cierre a 'base' por defecto, pero el semestre los necesita a INTERMEDIO. Cuando se estudie el tema universitario que depende de ellos, subelos a intermedio. Es un ~5 h que el cierre a secas subestima; se documenta aqui para no perderlo (el schema de prerrequisitos_externos no lleva nivel)."
+      },
       "_nota_setup": "SETUP COMPLETO (2026-07-16): los 5 cursos del IV ciclo tienen temario. DECISION TOMADA: Liderazgo y Desarrollo Personal (codigo 16) NO recibe curso propio — el usuario dijo que no requiere reestudio tecnico, a lo sumo apoyo con formatos APA; crearle un temario seria inventar trabajo. Si resulta exigir mas de lo previsto, se crea entonces. AVISO: los 5 temarios son INFERIDOS (ningun silabo del IV ciclo esta publicado) y TODOS llevan la accion obligatoria de revisarse en la semana 1 de clases (10-14 agosto 2026) contra el silabo real del profesor.",
-      "_nota_viabilidad": "CRITICO (2026-07-16): con los 5 cursos, el hito parcial NO CABE. Ver el calculo en la conversacion. Dos causas que se suman: (a) ~2/3 de la carga del parcial no son los cursos universitarios sino la BASE (algebra, trigonometria, geometria en cero); (b) horas_semanales_disponibles=20 se fijo cuando el usuario NO tenia clases — 20 creditos son ~30 h/semana dentro de la universidad. PENDIENTE INMEDIATO: revisar el presupuesto de horas y recortar alcance. NO empezar a estudiar sin resolver esto.",
-      "_nota_niveles": "El semestre pide sus 5 cursos universitarios en 'intermedio' (aprobar los examenes) y la base solo en 'base' (refrescar lo justo). OVERRIDES: 11-estatica/07 y /10 en 'avanzado' porque Resistencia de Materiales depende de ellos y se cursa en paralelo; 02-algebra/05 y /06 en 'intermedio' porque las fracciones parciales SON la transformada inversa de Laplace; 05-fisica/02-vectores en 'intermedio' porque Estatica entera es algebra vectorial. Son los cuellos de botella de los que cuelga medio semestre."
+      "_nota_viabilidad": "RECALCULADO 2026-07-17 con el modelo honesto (aprender + mantener) y el presupuesto por periodos. Parcial (28 sep): disponible ~220 h; necesita ~272 h (aprender ~207 + mantenimiento ~65) => DEFICIT ~52 h con la base ya por cierre (antes de la correccion eran ~138 h). El final y la UNI en aislado caben (final ~213 vs 340; UNI ~325 vs 574) pero el reparto secuencial es optimista. TODO descansa sobre SUPUESTOS sin medir: 1.5 h/sesion, 12 min/repaso. DECISION DEL USUARIO (2026-07-17): NO tocar metas todavia; estudiar al ritmo de vacaciones y RECALCULAR en el checkpoint del 26-jul con h/sesion reales (primera medicion). El parcial esta 'apretado pero peleable' (~5 h/sem extra), no imposible.",
+      "_nota_niveles": "El semestre pide sus 5 cursos universitarios en 'intermedio' (aprobar los examenes). La base YA NO se pide entera: entra por la cerradura de prerrequisitos_externos (ver 'base_por_cierre'). OVERRIDES universitarios: 11-estatica/07 y /10 en 'avanzado' porque Resistencia de Materiales depende de ellos y se cursa en paralelo. Los 3 cuellos de botella de la base que necesitan intermedio (factorizacion, fracciones-algebraicas, vectores) estan en 'base_por_cierre.overrides_intermedio'."
     },
     {
       "id": "obj-1",
