@@ -1,6 +1,12 @@
 {
   "curso": "Trigonometría",
   "objetivo_del_curso": "Resolver problemas de trigonometría del nivel del examen de admisión UNI: razones trigonométricas, circunferencia trigonométrica, identidades, funciones y ecuaciones trigonométricas; y dominar las herramientas trigonométricas que exige Física (vectores, descomposición).",
+  "rubrica_niveles": {
+    "base": "Calcula razones trigonométricas y usa identidades básicas en el caso directo; ubica ángulos en la circunferencia trigonométrica.",
+    "intermedio": "Demuestra o simplifica identidades no triviales y resuelve ecuaciones trigonométricas sin ayuda, combinando con álgebra y geometría.",
+    "avanzado": "Reconoce qué identidad o sustitución abre el problema al leerlo, resuelve con velocidad de examen y aguanta los casos raros (ángulos múltiples, dominios, casos frontera).",
+    "_nota": "Rúbrica de CURSO (capacidades, NO la nota de un tercero). Define qué significa cada nivel EN ESTE CURSO; el criterio_dominio específico de cada tema se deriva de aquí cuando el tema se estudia. Ver 'Reglas de calidad del temario' en el README raíz."
+  },
   "modo_estudio": {
     "tipo": "ruta",
     "cadencia_dias": null,

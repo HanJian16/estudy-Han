@@ -1,6 +1,12 @@
 {
   "curso": "Nombre del curso",
   "objetivo_del_curso": "Qué debe saber hacer el usuario al terminar este curso — orientado al objetivo global",
+  "rubrica_niveles": {
+    "base": "Qué significa nivel BASE en ESTE curso, como CAPACIDAD (lo justo para no atascarse en lo que depende de estos temas). Ej: 'resuelve el ejercicio directo de cada tema reconociendo qué herramienta pide'.",
+    "intermedio": "Qué significa INTERMEDIO aquí: resuelve ejercicios variados sin ayuda y combina los temas del curso entre sí.",
+    "avanzado": "Qué significa AVANZADO aquí: reconoce el tipo de problema al leerlo, resuelve bajo presión de tiempo y aguanta los casos raros.",
+    "_nota": "OBLIGATORIO. Rúbrica de CURSO: define cada nivel EN ESTE CURSO como CAPACIDADES, NUNCA como el puntaje en el examen de un tercero (ata la medición a una entidad externa que puede no estar calibrada para todos los cursos). De aquí se DERIVA el criterio_dominio específico de cada tema, y se escribe recién cuando el tema se estudia — no por adelantado. Ver 'Reglas de calidad del temario' (regla 6) en el README raíz."
+  },
   "modo_estudio": {
     "tipo": "ruta",
     "cadencia_dias": null,

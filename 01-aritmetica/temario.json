@@ -1,6 +1,12 @@
 {
   "curso": "Aritmética",
   "objetivo_del_curso": "Resolver problemas de aritmética del nivel del examen de admisión UNI (numeración, divisibilidad, fracciones, proporcionalidad, porcentajes) con rapidez y enfoque de razonamiento, sirviendo además de base numérica para Álgebra, Química y Aptitud Académica.",
+  "rubrica_niveles": {
+    "base": "Resuelve el cálculo directo de cada tema (una operación de divisibilidad, una regla de tres simple, un porcentaje directo) reconociendo qué herramienta pide el enunciado; puede apoyarse en la teoría escrita.",
+    "intermedio": "Resuelve sin ayuda problemas que combinan dos o tres temas aritméticos (proporciones + porcentajes, fracciones + mezclas), sin consultar fórmulas.",
+    "avanzado": "Identifica el tipo de problema al leerlo, resuelve con la velocidad y precisión de un examen cronometrado, y no cae en las trampas típicas (datos escondidos, unidades, casos límite).",
+    "_nota": "Rúbrica de CURSO (capacidades, NO la nota de un tercero). Define qué significa cada nivel EN ESTE CURSO; el criterio_dominio específico de cada tema se deriva de aquí cuando el tema se estudia. Ver 'Reglas de calidad del temario' en el README raíz."
+  },
   "modo_estudio": {
     "tipo": "ruta",
     "cadencia_dias": null,

@@ -1,6 +1,12 @@
 {
   "curso": "Geometría",
   "objetivo_del_curso": "Resolver problemas de geometría plana, del espacio y analítica del nivel del examen de admisión UNI, dominando el uso de trazos auxiliares, propiedades métricas y cálculo de áreas y volúmenes.",
+  "rubrica_niveles": {
+    "base": "Aplica las propiedades y fórmulas directas (ángulos, áreas, volúmenes de figuras estándar) sobre una figura dada.",
+    "intermedio": "Resuelve sin ayuda problemas que exigen un trazo auxiliar o encadenar dos o tres propiedades.",
+    "avanzado": "Ve el trazo auxiliar o la relación clave con solo leer y dibujar el problema, resuelve con velocidad de examen, y sostiene los casos que combinan geometría plana, del espacio y analítica.",
+    "_nota": "Rúbrica de CURSO (capacidades, NO la nota de un tercero). Define qué significa cada nivel EN ESTE CURSO; el criterio_dominio específico de cada tema se deriva de aquí cuando el tema se estudia. Ver 'Reglas de calidad del temario' en el README raíz."
+  },
   "modo_estudio": {
     "tipo": "ruta",
     "cadencia_dias": null,

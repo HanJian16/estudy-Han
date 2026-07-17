@@ -1,6 +1,12 @@
 {
   "curso": "Física",
   "objetivo_del_curso": "Resolver problemas de física del nivel del examen de admisión UNI con métodos preuniversitarios rápidos (sin cálculo diferencial): mecánica, fluidos, calor, electricidad y magnetismo, aprovechando la base conceptual universitaria del usuario para priorizar destreza de resolución.",
+  "rubrica_niveles": {
+    "base": "Plantea y resuelve el problema tipo de cada tema con el método preuniversitario directo, identificando qué ley aplica.",
+    "intermedio": "Resuelve sin ayuda problemas que combinan varios conceptos (cinemática + dinámica, energía + fluidos) y arma el DCL o diagrama por su cuenta.",
+    "avanzado": "Modela un enunciado nuevo eligiendo el método más rápido, resuelve bajo presión de tiempo y maneja los casos trampa (sistemas ligados, unidades, condiciones límite).",
+    "_nota": "Rúbrica de CURSO (capacidades, NO la nota de un tercero). Define qué significa cada nivel EN ESTE CURSO; el criterio_dominio específico de cada tema se deriva de aquí cuando el tema se estudia. Ver 'Reglas de calidad del temario' en el README raíz."
+  },
   "modo_estudio": {
     "tipo": "ruta",
     "cadencia_dias": null,

@@ -1,6 +1,12 @@
 {
   "curso": "Química",
   "objetivo_del_curso": "Resolver problemas de química del nivel del examen de admisión UNI: estructura atómica, tabla periódica, enlace, nomenclatura, estequiometría, soluciones y química orgánica básica, combinando comprensión con la memorización sistemática que el curso exige.",
+  "rubrica_niveles": {
+    "base": "Resuelve el ejercicio directo de cada tema (una configuración electrónica, una nomenclatura, un balance simple) reconociendo el procedimiento.",
+    "intermedio": "Encadena pasos sin ayuda (estequiometría con reactivo limitante, cálculos de soluciones), conectando estructura con comportamiento.",
+    "avanzado": "Interpreta un problema no estándar con velocidad de examen y sostiene los casos con trampa (datos redundantes o escondidos, unidades, pureza y rendimiento).",
+    "_nota": "Rúbrica de CURSO (capacidades, NO la nota de un tercero). Define qué significa cada nivel EN ESTE CURSO; el criterio_dominio específico de cada tema se deriva de aquí cuando el tema se estudia. Ver 'Reglas de calidad del temario' en el README raíz."
+  },
   "modo_estudio": {
     "tipo": "ruta",
     "cadencia_dias": null,

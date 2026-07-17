@@ -1,6 +1,12 @@
 {
   "curso": "Álgebra",
   "objetivo_del_curso": "Resolver con fluidez problemas de álgebra del nivel del examen de admisión UNI: desde operatoria (exponentes, polinomios, factorización) hasta ecuaciones, inecuaciones, funciones y logaritmos. Es el curso de mayor peso en la prueba de Matemática y base operativa de Trigonometría y Física.",
+  "rubrica_niveles": {
+    "base": "Ejecuta la operatoria directa (productos notables, factorizar un caso reconocible, resolver una ecuación lineal o cuadrática estándar) identificando el método aplicable.",
+    "intermedio": "Encadena técnicas sin ayuda (factoriza para simplificar una fracción algebraica, resuelve sistemas e inecuaciones) y traduce enunciados a ecuaciones.",
+    "avanzado": "Reconoce la estructura de un problema no estándar, elige el camino más corto bajo presión de tiempo, y maneja los casos con trampa (restricciones de dominio, raíces extrañas, parámetros).",
+    "_nota": "Rúbrica de CURSO (capacidades, NO la nota de un tercero). Define qué significa cada nivel EN ESTE CURSO; el criterio_dominio específico de cada tema se deriva de aquí cuando el tema se estudia. Ver 'Reglas de calidad del temario' en el README raíz."
+  },
   "modo_estudio": {
     "tipo": "ruta",
     "cadencia_dias": null,

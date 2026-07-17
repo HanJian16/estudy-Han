@@ -1,6 +1,12 @@
 {
   "curso": "Simulacros y Estrategia de Examen",
   "objetivo_del_curso": "Convertir el conocimiento acumulado en puntaje real: dominar la estrategia del examen UNI (gestión del tiempo, decisión de responder/omitir bajo puntaje en contra) y resolver exámenes de admisión reales de años anteriores para detectar y cerrar vacíos antes del examen 2027-1.",
+  "rubrica_niveles": {
+    "base": "Completa un simulacro parcial siguiendo la estrategia básica (orden de ataque, marcar lo dudoso) sin colapsar por el tiempo.",
+    "intermedio": "Gestiona un simulacro completo con un criterio razonable de responder u omitir y revisa sus errores para no repetirlos.",
+    "avanzado": "Ejecuta la estrategia de examen de forma estable simulacro tras simulacro: gestiona tiempo y riesgo, omite con criterio de puntaje, y su rendimiento es reproducible, no cuestión de suerte.",
+    "_nota": "Rúbrica de CURSO (capacidades, NO la nota de un tercero). Define qué significa cada nivel EN ESTE CURSO; el criterio_dominio específico de cada tema se deriva de aquí cuando el tema se estudia. Ver 'Reglas de calidad del temario' en el README raíz."
+  },
   "modo_estudio": {
     "tipo": "hito",
     "cadencia_dias": 7,

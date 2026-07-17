@@ -1,6 +1,12 @@
 {
   "curso": "Aptitud Académica y Humanidades",
   "objetivo_del_curso": "Rendir bien la Prueba 1 del examen UNI: razonamiento matemático y verbal (el grueso del peso) más un repaso dirigido de humanidades (lenguaje, historia, geografía, economía, cívica/filosofía), priorizando lo que la UNI realmente pregunta y con práctica constante en dosis pequeñas.",
+  "rubrica_niveles": {
+    "base": "Resuelve los ejercicios directos de cada tipo (una analogía clara, un problema de razonamiento de un paso) reconociendo el patrón.",
+    "intermedio": "Resuelve sin ayuda ejercicios variados de razonamiento y sostiene un ritmo constante, sin atascarse en un solo tipo.",
+    "avanzado": "Reconoce el tipo y el atajo al leer, decide rápido cuándo responder u omitir, y mantiene precisión bajo la presión de tiempo real de la Prueba 1.",
+    "_nota": "Rúbrica de CURSO (capacidades, NO la nota de un tercero). Define qué significa cada nivel EN ESTE CURSO; el criterio_dominio específico de cada tema se deriva de aquí cuando el tema se estudia. Ver 'Reglas de calidad del temario' en el README raíz."
+  },
   "modo_estudio": {
     "tipo": "cadencia",
     "cadencia_dias": 3,
