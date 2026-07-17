@@ -4,16 +4,6 @@ Repositorio de estudio para retomar cursos de forma estructurada, usado junto co
 
 ---
 
-> # 🚧 MIGRACIÓN (interna) CERRADA — casi listo
->
-> El 2026-07-16 se rediseñó el núcleo del proyecto (el conocimiento pasa a medirse en dos dimensiones: **profundidad** `nivel_alcanzado` y **durabilidad** `nivel_repaso`). **Ese rediseño ya está completo y este README NO se contradice a sí mismo**: el modelo de dos dimensiones es la única verdad viva. `nivel_alcanzado` tiene su escritor (el "Protocolo al CERRAR una clase"), `porcentaje` está eliminado, y protocolos, plantillas y rúbricas están al día.
->
-> Solo quedan dos cosas, ambas en [`PENDIENTE.md`](PENDIENTE.md): (A) portar la arquitectura al repo del template (fuera de este repo, prompt listo en `_porteo-template.md`), y (B) la conversación de horas con el usuario. **Puedes operar con este README como única fuente de verdad ya.**
->
-> *Borra este aviso, `PENDIENTE.md` y `_porteo-template.md` cuando A y B estén cerrados.*
-
----
-
 # ⚠️ INSTRUCCIONES OBLIGATORIAS PARA EL AGENTE DE IA
 
 > **Si eres un agente de IA leyendo este README para asistir al usuario, ejecuta el siguiente algoritmo ANTES de responder cualquier cosa. Los pasos son estrictamente secuenciales.**
