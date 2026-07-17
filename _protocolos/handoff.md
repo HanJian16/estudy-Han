@@ -289,9 +289,10 @@ Extrae cada sección del bloque (ya revisada en el paso anterior) y actualiza lo
 **`historial.json`** — agrega **una entrada al final** (append, nunca sobreescribas) con `inicio` y `duracion_min` tomados de la Metadata del resumen, el `objetivo_id` del objetivo dueño del curso, `tema_principal`, `temas_intercalados`, y en `nota` el agente y modalidad de la sesión externa. Si el resumen no trajo duración, **pregúntasela al usuario** antes de escribir — no la inventes ni dejes el campo en null.
 
 **`progreso.json` — temas intercalados** (de la sección "Repaso intercalado" del resumen)
+- Si el tema se ejercitó (`bien` o `mal`): **incrementa `veces_repasado` en 1** (contador acumulativo, no se resetea).
 - `resultado: bien` → sube `nivel_repaso` en 1 (tope 5) y recalcula `fecha_proximo_repaso` = fecha del resumen + el intervalo del nivel nuevo (ver la escalera en el `README.md` raíz).
 - `resultado: mal` → pon `nivel_repaso: 1` y `fecha_proximo_repaso` = el día siguiente a la fecha del resumen. Registra además la dificultad correspondiente en `dificultades.json`.
-- `resultado: no se tocó` → no cambies nada de ese tema.
+- `resultado: no se tocó` → no cambies nada de ese tema (tampoco `veces_repasado`).
 - En todos los casos: **no toques su `estado`, `nivel_alcanzado` ni `sesiones_dedicadas`.** Sí actualiza su `ultima_sesion` si se tocó.
 
 **`glosario.json`**

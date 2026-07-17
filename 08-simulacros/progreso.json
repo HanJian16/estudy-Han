@@ -8,7 +8,8 @@
       "ultima_sesion": null,
       "sesiones_dedicadas": 0,
       "nivel_repaso": null,
-      "fecha_proximo_repaso": null
+      "fecha_proximo_repaso": null,
+      "veces_repasado": 0
     },
     {
       "tema_id": "02-simulacros-parciales-matematica",
@@ -17,7 +18,8 @@
       "ultima_sesion": null,
       "sesiones_dedicadas": 0,
       "nivel_repaso": null,
-      "fecha_proximo_repaso": null
+      "fecha_proximo_repaso": null,
+      "veces_repasado": 0
     },
     {
       "tema_id": "03-simulacros-parciales-fisica-quimica",
@@ -26,7 +28,8 @@
       "ultima_sesion": null,
       "sesiones_dedicadas": 0,
       "nivel_repaso": null,
-      "fecha_proximo_repaso": null
+      "fecha_proximo_repaso": null,
+      "veces_repasado": 0
     },
     {
       "tema_id": "04-simulacros-parciales-aptitud",
@@ -35,7 +38,8 @@
       "ultima_sesion": null,
       "sesiones_dedicadas": 0,
       "nivel_repaso": null,
-      "fecha_proximo_repaso": null
+      "fecha_proximo_repaso": null,
+      "veces_repasado": 0
     },
     {
       "tema_id": "05-simulacros-completos",
@@ -44,7 +48,8 @@
       "ultima_sesion": null,
       "sesiones_dedicadas": 0,
       "nivel_repaso": null,
-      "fecha_proximo_repaso": null
+      "fecha_proximo_repaso": null,
+      "veces_repasado": 0
     },
     {
       "tema_id": "06-repaso-final-cierre-vacios",
@@ -53,7 +58,8 @@
       "ultima_sesion": null,
       "sesiones_dedicadas": 0,
       "nivel_repaso": null,
-      "fecha_proximo_repaso": null
+      "fecha_proximo_repaso": null,
+      "veces_repasado": 0
     }
   ],
   "_nota_migracion": "2026-07-16: anadido 'nivel_alcanzado' (profundidad real, verificable). Los temas que estaban en estado 'completado' se migraron a nivel_alcanzado 'avanzado' porque se estudiaron con el liston del examen UNI. 'estado: completado' queda DEPRECADO como medida de conocimiento: la pregunta correcta es 'completado para que objetivo', y eso se deriva comparando nivel_alcanzado con el nivel que cada objetivo requiere. Ver el README raiz."

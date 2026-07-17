@@ -132,6 +132,9 @@ Emite una alerta por cada caso que se cumpla. **No las omitas por parecer alarmi
    `⚠ [Objetivo] requiere el curso [C] entero a nivel base, pero sus cursos propios ya dependen de [n]/[m] temas de [C] por prerrequisito. Probable sobre-especificación (regla 12 del checklist): considera quitar [C] de cursos_requeridos y dejar que el cierre traiga solo lo necesario.`
    **Excepción legítima, NO la marques:** cuando el objetivo TRATA de C y lo pide a un nivel MAYOR que el default del cierre (ej. la UNI pide toda la base a `avanzado`) — ahí el curso entero sí es lo que el objetivo quiere, no un arrastre. La distinción es el nivel: `base` = redundante con el cierre; `intermedio`/`avanzado` = el objetivo lo trata de verdad.
    Esta alerta existe porque **este proyecto ya cometió ese error dos veces** (el semestre listaba los 6 cursos base enteros); la regla de "jalar temas, no cursos" estaba escrita pero nada la verificaba. Esto la verifica.
+13. **Tema que se resiste (profundidad a re-verificar)** — un tema con `veces_repasado` alto (≥4) pero `nivel_repaso` bajo (≤2): se ha repasado muchas veces y aun así no consolida.
+   `⚠ [tema] repasado [N] veces y sigue en nivel_repaso [M]. No consolida: su nivel_alcanzado ([nivel]) probablemente ya no es real — re-verifícalo antes de darlo por sabido para cualquier objetivo.`
+   El `nivel_alcanzado` NO baja solo (la profundidad no se des-verifica automáticamente), pero este cruce es la señal de que quizás debería: trátalo como candidato a una clase de `repaso` dedicada y a re-comprobar el criterio de dominio. Es justo lo que `nivel_repaso` por sí solo esconde, porque se resetea al fallar y pierde el historial.
 
 **Sugiere correr `estado` cada 2-3 semanas.** Es barato, no arranca nada, y es el único momento en que el proyecto se audita a sí mismo.
 

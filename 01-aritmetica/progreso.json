@@ -9,7 +9,8 @@
       "ultima_sesion": "2026-07-02",
       "sesiones_dedicadas": 1,
       "nivel_repaso": 3,
-      "fecha_proximo_repaso": "2026-07-17"
+      "fecha_proximo_repaso": "2026-07-17",
+      "veces_repasado": 0
     },
     {
       "tema_id": "02-numeracion",
@@ -18,7 +19,8 @@
       "ultima_sesion": "2026-07-02",
       "sesiones_dedicadas": 2,
       "nivel_repaso": 3,
-      "fecha_proximo_repaso": "2026-07-17"
+      "fecha_proximo_repaso": "2026-07-17",
+      "veces_repasado": 0
     },
     {
       "tema_id": "03-cuatro-operaciones",
@@ -27,7 +29,8 @@
       "ultima_sesion": "2026-07-04",
       "sesiones_dedicadas": 3,
       "nivel_repaso": 3,
-      "fecha_proximo_repaso": "2026-07-19"
+      "fecha_proximo_repaso": "2026-07-19",
+      "veces_repasado": 0
     },
     {
       "tema_id": "04-divisibilidad",
@@ -36,7 +39,8 @@
       "ultima_sesion": "2026-07-08",
       "sesiones_dedicadas": 2,
       "nivel_repaso": 3,
-      "fecha_proximo_repaso": "2026-07-19"
+      "fecha_proximo_repaso": "2026-07-19",
+      "veces_repasado": 0
     },
     {
       "tema_id": "05-primos-mcd-mcm",
@@ -45,7 +49,8 @@
       "ultima_sesion": "2026-07-08",
       "sesiones_dedicadas": 1,
       "nivel_repaso": 3,
-      "fecha_proximo_repaso": "2026-07-21"
+      "fecha_proximo_repaso": "2026-07-21",
+      "veces_repasado": 0
     },
     {
       "tema_id": "06-fracciones",
@@ -54,7 +59,8 @@
       "ultima_sesion": "2026-07-10",
       "sesiones_dedicadas": 1,
       "nivel_repaso": 2,
-      "fecha_proximo_repaso": "2026-07-21"
+      "fecha_proximo_repaso": "2026-07-21",
+      "veces_repasado": 0
     },
     {
       "tema_id": "07-razones-proporciones",
@@ -63,7 +69,8 @@
       "ultima_sesion": "2026-07-10",
       "sesiones_dedicadas": 1,
       "nivel_repaso": 2,
-      "fecha_proximo_repaso": "2026-07-23"
+      "fecha_proximo_repaso": "2026-07-23",
+      "veces_repasado": 0
     },
     {
       "tema_id": "08-magnitudes-regla-de-tres",
@@ -72,7 +79,8 @@
       "ultima_sesion": "2026-07-11",
       "sesiones_dedicadas": 1,
       "nivel_repaso": 2,
-      "fecha_proximo_repaso": "2026-07-23"
+      "fecha_proximo_repaso": "2026-07-23",
+      "veces_repasado": 0
     },
     {
       "tema_id": "09-porcentajes",
@@ -81,7 +89,8 @@
       "ultima_sesion": null,
       "sesiones_dedicadas": 0,
       "nivel_repaso": null,
-      "fecha_proximo_repaso": null
+      "fecha_proximo_repaso": null,
+      "veces_repasado": 0
     },
     {
       "tema_id": "10-promedios-mezclas",
@@ -90,7 +99,8 @@
       "ultima_sesion": null,
       "sesiones_dedicadas": 0,
       "nivel_repaso": null,
-      "fecha_proximo_repaso": null
+      "fecha_proximo_repaso": null,
+      "veces_repasado": 0
     },
     {
       "tema_id": "11-interes-simple",
@@ -99,7 +109,8 @@
       "ultima_sesion": null,
       "sesiones_dedicadas": 0,
       "nivel_repaso": null,
-      "fecha_proximo_repaso": null
+      "fecha_proximo_repaso": null,
+      "veces_repasado": 0
     },
     {
       "tema_id": "12-estadistica",
@@ -108,7 +119,8 @@
       "ultima_sesion": null,
       "sesiones_dedicadas": 0,
       "nivel_repaso": null,
-      "fecha_proximo_repaso": null
+      "fecha_proximo_repaso": null,
+      "veces_repasado": 0
     }
   ],
   "_nota_migracion": "2026-07-16: anadido 'nivel_alcanzado' (profundidad real, verificable). Los temas que estaban en estado 'completado' se migraron a nivel_alcanzado 'avanzado' porque se estudiaron con el liston del examen UNI. 'estado: completado' queda DEPRECADO como medida de conocimiento: la pregunta correcta es 'completado para que objetivo', y eso se deriva comparando nivel_alcanzado con el nivel que cada objetivo requiere. Ver el README raiz."
