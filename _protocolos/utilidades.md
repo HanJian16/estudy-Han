@@ -21,20 +21,23 @@ Lee y agrega información de varios archivos para dar una foto rápida del progr
 
 ### Pasos del agente
 
-1. Lee `objetivo.json` → `presupuesto_horas` (línea de tiempo de periodos) y **todos** los `objetivos` con su `estado`, `prioridad`, `liston`, `hitos` y `cursos_requeridos`. Agrupa la salida por objetivo, ordenada por prioridad, y marca los `latente` y `completado` como tales.
+1. Lee `objetivo.json` → `presupuesto_horas` (línea de tiempo de periodos) y **todos** los `objetivos` con su `estado`, `prioridad`, `hitos` y `cursos_requeridos` (con sus `nivel_requerido` por curso y los `overrides` por tema). Agrupa la salida por objetivo, ordenada por prioridad, y marca los `latente` y `completado` como tales.
 1b. Detecta los **cursos compartidos**: los que aparecen en el `cursos_requeridos` de más de un objetivo activo. Merecen mención propia: son los que rinden doble.
 2. Lee `configuracion.json` → estado de las reglas.
 2b. Lee `historial.json` y calcula el **ritmo real**:
    - `horas_por_sesion` = promedio de `duracion_min`/60. Con <5 sesiones, no lo uses: di "aún sin medir" y usa 1.5 h declarándolo como suposición.
+   - `minutos_por_repaso` = **también se mide, no se inventa.** Toma las sesiones con `tipo_clase == "repaso"` y calcula `promedio(duracion_min / nº de temas repasados en esa sesión)`. Con <3 sesiones de repaso, di "aún sin medir" y usa **12 min** declarándolo como suposición. Este número alimenta el `horas_mantener` de las viabilidades de abajo, así que si es supuesto, dilo ahí también.
    - `horas_por_semana_real` = suma de duraciones de las últimas 4 semanas / 4. Con <3 semanas de datos, di "aún sin medir".
    - `horas_por_semana_real` **por objetivo** (filtrando por `objetivo_id`): revela a qué se está yendo el tiempo de verdad, que puede no ser lo que dice la prioridad.
 3. Para cada curso requerido por algún objetivo activo (si lo requieren varios, muéstralo una vez y marca cuáles):
    - Lee `temario.json` del curso → campo `modo_estudio`.
    - Lee `progreso.json` del curso.
-   - Cuenta temas por estado (`no_iniciado`, `en_progreso`, `completado`).
+   - Cuenta temas por estado de flujo (`no_iniciado`, `en_progreso`, `completado`).
+   - **Cuenta la PROFUNDIDAD real vs la requerida**, que es lo que de verdad dice si el curso está listo: por cada objetivo activo que lo pide, cuántos de sus temas ya tienen `nivel_alcanzado >= nivel_requerido` (curso + `overrides`) y cuántos no. "Listo para el semestre" y "listo para la UNI" son cuentas distintas sobre el mismo curso: muéstralas por separado si lo piden varios objetivos.
    - Suma `sesiones_dedicadas`.
    - Calcula la **última sesión del curso** = el `ultima_sesion` más reciente entre sus temas (o "nunca" si todos son `null`).
    - Lee `dificultades.json` del curso y cuenta las que tienen `resuelto: false`.
+3b. **Viabilidad y predicción de olvido.** Para cada objetivo activo, en orden de prioridad, y dentro de él cada hito no condicional por fecha, corre la **cola con prioridad** del README ("Los objetivos compiten en una cola con prioridad"): calcula `horas_aprender` (los saltos de nivel que faltan, partiendo del `nivel_alcanzado` real), `horas_mantener` (los repasos que la escalera dispara hasta el hito × `minutos_por_repaso`), descuenta lo ya comprometido por objetivos más prioritarios sin recobrar cursos ya pagados, y decide CABE / NO CABE. En la misma pasada, arma la **predicción de olvido**: por cada tema, si `retención(nivel_repaso proyectado)` es menor que los días desde su último repaso hasta la fecha del hito, ese tema llegará frío. Es un aviso obligatorio, no opcional (ver "La durabilidad" en el README).
 4. Corre el **PASO 5.5 del `README.md` raíz** (selector de clase) para saber qué clase tocaría, pero **no la arranques**.
 5. Calcula el **bloque de alertas** (ver abajo).
 6. Presenta el resumen al usuario con este formato (adaptando cifras reales):
@@ -56,16 +59,20 @@ PRÓXIMO HITO: [nombre] de [objetivo] — [fecha] — faltan [N] semanas
 ━━ [prioridad P] OBJETIVO [id]: [objetivo_final]   [ACTIVO / LATENTE / COMPLETADO]
     (si LATENTE) Despierta cuando: [condicion_activacion] → [aún no se cumple / ¡YA SE CUMPLE!]
     Hitos:
-      · [nombre] — [fecha] — faltan [N] sem — necesita [X] h, quedan [Y] h → [CABE / NO CABE por Z h]
+      · [nombre] — [fecha] — faltan [N] sem — necesita [X] h (aprender [Xa] + mantener [Xm]), quedan [Y] h → [CABE / NO CABE por Z h]
       · [nombre] — [fecha] — ... 
       · [nombre] — condicional, no se planifica
-    (viabilidad calculada con [H] h/sesión [medido/SUPUESTO], descontando [W] h ya reservadas
-     por objetivos más prioritarios, y sin recobrar los cursos ya pagados por ellos)
+    (viabilidad calculada con [H] h/sesión [medido/SUPUESTO] y [R] min/repaso [medido/SUPUESTO],
+     descontando [W] h ya reservadas por objetivos más prioritarios, y sin recobrar los cursos
+     ya pagados por ellos)
+    Llegarán FRÍOS a [hito]: [tema_id (nivel_repaso proyectado N ≈ retiene D días, y el hito
+      cae a E días de su último repaso)], ... → o "ninguno: todos llegan vivos"
 
     Cursos:
-      [Nombre curso 1] — [ruta/cadencia/hito] — [N/M] temas — [S] sesiones
+      [Nombre curso 1] — [ruta/cadencia/hito] — [S] sesiones
+        └── Profundidad: [X/M] temas ya en el nivel que este objetivo pide ([nivel_requerido])
         └── Última sesión: [fecha o NUNCA]
-        └── Tema en curso: [nombre del tema] ([porcentaje]%)
+        └── Tema en curso: [nombre del tema] (nivel_alcanzado: [nivel o —])
         └── Dificultades pendientes: [K]
         └── (si aplica) COMPARTIDO con: [otros objetivos que lo requieren]
 
@@ -106,7 +113,7 @@ Emite una alerta por cada caso que se cumpla. **No las omitas por parecer alarmi
    `⚠ [Curso] está en condición URGENTE: debería mandar sobre el resto de clases.`
 5. **Repasos desbordados** — más de 5 temas con `fecha_proximo_repaso` vencida.
    `⚠ [N] temas con repaso vencido. Se están acumulando más rápido de lo que se cierran.`
-6. **Atraso de plan** — `sum(sesiones_dedicadas)` de un curso supera en >50% sus `sesiones_estimadas` acumuladas.
+6. **Atraso de plan** — `sum(sesiones_dedicadas)` de un curso supera en >50% la suma de sus `sesiones_por_nivel` hasta los niveles requeridos por sus objetivos (el coste estimado de aprenderlo a ese nivel).
    `⚠ [Curso] va [N]% por encima de las sesiones estimadas.`
 7. **Latente que debería estar despierto** — un objetivo `latente` cuya `condicion_activacion` ya se cumple.
    `⚠ [Objetivo] cumple su condición de activación y sigue latente. Debería estar compitiendo por horas.`

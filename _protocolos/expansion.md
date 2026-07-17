@@ -9,7 +9,7 @@
 Aplica este protocolo cuando:
 
 1. **El usuario lo pide explícitamente**: "quiero aprender X además", "ya terminé mi objetivo, ¿ahora qué?", "quiero seguir con cálculo 2", etc.
-2. **El agente detecta que todo el plan actual está al 100%**: al leer todos los `progreso.json`, todos los temas están en `"completado"`. En ese caso, felicita al usuario y ofrece proactivamente ampliar el plan.
+2. **El agente detecta que los objetivos activos ya están cubiertos**: al recorrer sus `cursos_requeridos`, todos sus temas tienen `nivel_alcanzado >= nivel_requerido` (no basta `estado: "completado"`, que es solo flujo). En ese caso, felicita al usuario y ofrece proactivamente ampliar el plan.
 
 **NO aplicar** si el usuario solo quiere ajustar el plan actual (recortar temas, cambiar deadline, etc.) — eso es re-planificación, no ampliación.
 
@@ -22,7 +22,7 @@ Un nuevo objetivo **NO borra el pasado**. Todo lo que el usuario ya aprendió de
 - Los cursos ya generados **se mantienen** (no se borran carpetas).
 - Los `progreso.json` de cursos completados **se mantienen** (son evidencia del conocimiento).
 - Los `glosario.json` y `dificultades.json` **se conservan y crecen** — el vocabulario y las dificultades históricas son datos valiosos.
-- Los temas ya completados en cursos existentes **se cuentan como prerrequisitos ya cumplidos**.
+- Los temas ya estudiados en cursos existentes **se cuentan como prerrequisitos ya cumplidos hasta el nivel que alcanzaron** (`nivel_alcanzado`). Si el objetivo nuevo exige más nivel del que un tema tiene, no está "gratis": paga los saltos que falten (el `proyectado[]` del algoritmo lo hace explícito).
 
 ---
 
@@ -69,7 +69,7 @@ Haz las siguientes preguntas al usuario, una por una:
    Y cuando un curso nuevo necesite algo que no existe, aplica la **regla 12 del checklist de calidad** (crecimiento desde la necesidad hacia atrás):
    - Falta un tema en un curso que existe → agrégalo a ESE curso.
    - Falta el curso entero → créalo **solo con los temas necesarios**, no con los que "debería tener".
-   - Hazlo **transitivamente**, parando al llegar a algo que el usuario ya tiene `completado`.
+   - Hazlo **transitivamente**, parando al llegar a algo que el usuario ya tiene a nivel suficiente (`nivel_alcanzado` que cubre lo que el tema nuevo necesita).
 
 ---
 
@@ -148,7 +148,14 @@ Ejemplo con **tres objetivos en paralelo**, uno de ellos latente y con cursos co
           "cubre": "TODO el semestre. Solo si se jala una nota.", "condicional": true }
       ],
       "estado_setup": "completo",
-      "cursos_requeridos": ["04-trigonometria", "05-fisica", "09-mate-superior", "10-estatica"]
+      "cursos_requeridos": [
+        { "curso": "09-mate-superior", "nivel_requerido": "intermedio" },
+        { "curso": "10-estatica",      "nivel_requerido": "intermedio",
+          "overrides": { "07-fuerzas-internas": "avanzado" } },
+        { "curso": "04-trigonometria", "nivel_requerido": "base" },
+        { "curso": "05-fisica",        "nivel_requerido": "base",
+          "overrides": { "02-vectores": "intermedio" } }
+      ]
     },
     {
       "id": "obj-1",
@@ -162,7 +169,12 @@ Ejemplo con **tres objetivos en paralelo**, uno de ellos latente y con cursos co
           "cubre": "Todo el temario de sus cursos requeridos", "condicional": false }
       ],
       "estado_setup": "completo",
-      "cursos_requeridos": ["01-aritmetica", "04-trigonometria", "05-fisica", "07-aptitud-academica"]
+      "cursos_requeridos": [
+        { "curso": "01-aritmetica",       "nivel_requerido": "avanzado" },
+        { "curso": "04-trigonometria",    "nivel_requerido": "avanzado" },
+        { "curso": "05-fisica",           "nivel_requerido": "avanzado" },
+        { "curso": "07-aptitud-academica","nivel_requerido": "avanzado" }
+      ]
     },
     {
       "id": "obj-3",
@@ -173,22 +185,25 @@ Ejemplo con **tres objetivos en paralelo**, uno de ellos latente y con cursos co
       "fecha_limite": null,
       "hitos": [],
       "estado_setup": "completo",
-      "cursos_requeridos": ["11-dibujo-ingenieria", "12-geometria-descriptiva"]
+      "cursos_requeridos": [
+        { "curso": "11-dibujo-ingenieria",    "nivel_requerido": "avanzado" },
+        { "curso": "12-geometria-descriptiva", "nivel_requerido": "avanzado" }
+      ]
     }
   ]
 }
 ```
 
-Fíjate en que `04-trigonometria` y `05-fisica` están en **dos** objetivos a la vez. Eso es correcto y deliberado.
+Fíjate en que `04-trigonometria` y `05-fisica` están en **dos** objetivos a la vez, **y a niveles distintos**: `base` para el semestre (obj-2), `avanzado` para la UNI (obj-1). Eso es correcto y deliberado — es el mismo curso con dos exigencias reales. El objetivo más urgente (obj-2, prioridad 1) lo sube a `base` primero; obj-1 parte de ahí y paga solo los saltos hasta `avanzado`. Nunca se cobra dos veces.
 
 **Reglas:**
 - El objetivo nuevo se **agrega al array** `objetivos` con un `id` incremental (`obj-2`, `obj-3`, …). El orden del array da igual: manda `prioridad`.
 - Un objetivo pasa a `estado: "completado"` (con su `fecha_completado`) **solo cuando el usuario lo da por terminado** — nunca porque llegó uno nuevo. Se queda en el array: su historia es evidencia del conocimiento.
 - **No hay `horas_semanales` por objetivo.** Compiten por `presupuesto_horas` mediante la cola con prioridad (ver "El presupuesto" en el `README.md` raíz). Si ves `horas_semanales` dentro de un objetivo, o un `horas_semanales_disponibles` escalar en la raíz, es deuda de un esquema viejo: bórralo.
 - **Al añadir un objetivo, revisa si `presupuesto_horas` sigue siendo cierto.** Un objetivo nuevo suele venir con un cambio de vida (empieza un semestre, acaba un trabajo). Pregunta si la disponibilidad cambia y añade periodos si hace falta.
-- **Pon el `liston` del objetivo nuevo** (`dominar` o `pasar`). Si comparte cursos con otro objetivo de listón distinto, avisa al usuario del coste del cobro por diferencia ANTES de cerrar la ampliación.
+- **Fija el `nivel_requerido` de cada curso del objetivo nuevo** (`base`/`intermedio`/`avanzado`, con `overrides` por tema donde haga falta) según su listón mental. Si comparte un curso con otro objetivo a un nivel MÁS ALTO, avisa al usuario del coste de los saltos que ese objetivo tendrá que pagar (el cobro por diferencia, ahora sobre niveles) ANTES de cerrar la ampliación.
 - `cursos_requeridos` es **muchos-a-muchos**. Un curso en varios objetivos NO es un error: es lo normal y lo que hace que estudiarlo una vez rinda dos veces. **No lo dupliques ni lo muevas para "resolver" el solapamiento.**
-- **Nunca sumes las `sesiones_estimadas` de dos objetivos que comparten cursos** para estimar el total: cuenta doble. Usa el algoritmo de la cola, que cobra cada tema una vez.
+- **Nunca cobres dos veces un curso compartido** para estimar el total: usa el algoritmo de la cola con `proyectado[]`, que sube el nivel una vez y cobra a cada objetivo solo los saltos que le falten.
 
 ---
 

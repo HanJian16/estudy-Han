@@ -241,6 +241,20 @@ PASO 5.5 — SELECTOR DE CLASE. Decide QUÉ CLASE toca hoy.
               que falló. Es la red de seguridad de este paso entero.
               Ver también el comando `estado` en _protocolos/utilidades.md.
 
+           7. PREDICCIÓN DE OLVIDO — si hay un hito no condicional a la
+              vista (digamos, dentro de las próximas ~4 semanas), revisa
+              los temas que ese hito cubre y avisa de los que van a
+              LLEGAR FRÍOS: aquellos cuyo nivel_repaso no retiene la
+              distancia que falta hasta la fecha (retención(nivel_repaso)
+              < días de hoy al hito). DILO en una línea aunque otra rama
+              haya ganado: "Aviso: factorización llega al parcial en
+              nivel_repaso 2 (retiene ~3 días) y el examen está a 12
+              días de su último repaso: va a estar olvidada." Es lo
+              único que distingue un plan que cuenta horas de uno que
+              predice resultados (ver "La durabilidad"). No lo omitas
+              por no dar malas noticias; el cálculo completo por hito
+              vive en el comando `estado`.
+
     → Continúa al PASO 6 con el tipo de clase ya decidido.
 
 PASO 6 — Ejecutar la clase decidida en el PASO 5.5. Antes de arrancar:
@@ -597,7 +611,14 @@ Reglas:
 | 4 | 14 días |
 | 5 | 30 días |
 
-Cómo se mueve: al cerrar un tema por primera vez entra en `nivel_repaso: 1`. Cada vez que el usuario **resuelve bien** sus ejercicios de repaso, sube un nivel y se re-arma con el intervalo nuevo. Cada vez que **falla**, baja a `nivel_repaso: 1` y se re-arma para el día siguiente. Al llegar a 5 **no se apaga**: se re-arma cada 30 días indefinidamente — los temas cerrados en julio de 2026 tienen que seguir vivos en febrero de 2027.
+Cómo se mueve: al armar la escalera por primera vez entra en `nivel_repaso: 1`. Cada vez que el usuario **resuelve bien** sus ejercicios de repaso, sube un nivel y se re-arma con el intervalo nuevo. Cada vez que **falla**, baja a `nivel_repaso: 1` y se re-arma para el día siguiente.
+
+**La escalera es ADAPTATIVA al hito, no fija.** Sube solo hasta donde hace falta para llegar vivo, y ni un peldaño más — cada peldaño de más es un repaso que le robas a otro tema. El `nivel_repaso` OBJETIVO de un tema es **el menor nivel cuya retención cubre la distancia desde hoy hasta el hito no condicional más cercano que incluye ese tema** (tope 5). De ahí:
+
+- **Hito lejano** (un examen de admisión a 7 meses): ni el nivel 5 (retiene ~30 días) cubre la distancia de un solo toque, así que el objetivo es **5** y el tema se re-arma cada 30 días indefinidamente. Al llegar a 5 **no se apaga**: los temas cerrados en julio de 2026 tienen que seguir vivos en febrero de 2027.
+- **Hito cercano** (un parcial a 4 semanas): un `nivel_repaso: 3` (retiene ~7 días) puede bastar para cruzar la meta. Alcanzado el objetivo, el tema **se mantiene ahí** (se re-arma al mismo intervalo) en vez de seguir escalando hacia el 5 — forzar el 5 gastaría repasos que ese hito no necesita. La escalera **se trunca sola** además por otro lado: un tema cerrado en la semana 6 solo tiene sitio físico para 2-3 repasos antes del examen.
+
+Cuando un tema sirve a varios hitos (uno cercano y otro lejano), manda el **más lejano** para fijar el objetivo: hay que mantenerlo vivo hasta el último, no solo hasta el primero.
 
 Los intervalos se miden en **días de calendario, no en sesiones**. La curva del olvido es tiempo real: si el usuario estudia tres veces un martes, eso no adelanta ningún repaso.
 

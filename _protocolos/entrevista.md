@@ -62,7 +62,7 @@ Para `objetivo.json`:
 4. `estado: "activo"` y `condicion_activacion: null`. (Un objetivo `latente` solo aparece en ampliaciones, no en el setup inicial.)
 5. Pon su `fecha_inicio` con la fecha de hoy y su `cursos_requeridos` como array vacío (se poblará en Paso 4).
 6. Llena `presupuesto_horas` (raíz). **Es una línea de tiempo de periodos, no un número.** Pregunta al usuario si su disponibilidad va a cambiar en el horizonte del plan (vacaciones, un semestre que arranca, un trabajo que empieza o acaba) y crea un periodo por cada tramo distinto. Si es estable, un solo periodo con `"hasta": null` basta — pero **pregúntaselo, no lo asumas**: un escalar plano promedia mundos distintos y miente en ambas direcciones. **No hay presupuesto por objetivo**: los objetivos compiten por este (ver "El presupuesto" en el `README.md` raíz).
-6b. Pon el `liston` del objetivo: `"dominar"` si hay que saberlo de verdad (examen competitivo, certificación) o `"pasar"` si basta con aprobar. Determina qué precio se cobra de cada tema. Ver "El listón" en el `README.md` raíz.
+6b. **No hay un `liston` de objetivo.** Lo que antes era `dominar`/`pasar` ahora se declara con MÁS grano: cada entrada de `cursos_requeridos` lleva su `nivel_requerido` (`base` / `intermedio` / `avanzado`) y `overrides` por tema. Aún no pobles esto (los cursos se crean en el Paso 4), pero decide ya, con el usuario, el **listón mental** del objetivo — "¿esto es para dominarlo de verdad o para aprobar y seguir?" — porque de ahí saldrá el `nivel_requerido` por defecto que pondrás a cada curso: "pasar" ≈ `base`/`intermedio`, "dominar" ≈ `avanzado`. Ver "El conocimiento se mide en DOS dimensiones" en el `README.md` raíz.
 7. `prioridad: 1`. Es ordinal (1 = lo primero) y solo importa cuando haya más de un objetivo activo.
 8. Llena `hitos` con las fechas de corte reales del objetivo. Si solo hay una (un examen, una entrega), **un solo hito basta** — no inventes cortes que no existen. Si el objetivo no tiene ninguna fecha, deja el array vacío y `fecha_limite: null`.
 
@@ -122,7 +122,7 @@ Numera secuencialmente (`01-`, `02-`, etc.) respetando el orden de dependencias.
 
 En el `README.md` de cada curso puedes declarar los **prerrequisitos externos** en prosa, como resumen para el usuario. Pero la verdad operativa va **a nivel de tema**, en `prerrequisitos_externos` de cada tema del `temario.json` (formato `"curso/tema_id"`) — ver la regla 4 del checklist de calidad. Un prerrequisito declarado solo a nivel de curso arrastra el curso entero a la planificación e infla el plan.
 
-Registra los nombres de las carpetas creadas en el `cursos_requeridos` **del objetivo que los necesita**, dentro de `objetivos` en `objetivo.json`. Esa lista es la única fuente de verdad de qué objetivo requiere qué curso — no dupliques el dato dentro de los `temario.json`. Recuerda que es **muchos-a-muchos**: si más adelante otro objetivo necesita el mismo curso, se añade a su lista también, sin copiar la carpeta.
+Registra los nombres de las carpetas creadas en el `cursos_requeridos` **del objetivo que los necesita**, dentro de `objetivos` en `objetivo.json`. **Cada entrada lleva su `nivel_requerido`** (`base` / `intermedio` / `avanzado`, según el listón que decidiste en el Paso 6b) y, si un tema concreto es un cuello de botella del que cuelga otro curso, un `override` que lo suba por encima del default. Esa lista es la única fuente de verdad de qué objetivo requiere qué curso Y a qué nivel — no dupliques el dato dentro de los `temario.json`. Recuerda que es **muchos-a-muchos**: si más adelante otro objetivo necesita el mismo curso a otro nivel, se añade a su lista con SU `nivel_requerido`, sin copiar la carpeta.
 
 ---
 
@@ -172,21 +172,26 @@ Asigna también `prioridad` (entero): desempata cuando dos cursos compiten por l
 
 ### 5d. Validación temporal
 
-Después de generar el temario, calcula:
+Después de generar el temario, calcula la viabilidad **contando las dos partidas** — aprender y mantener — porque el mantenimiento cuesta horas reales y un plan que solo cuenta el aprendizaje miente diciendo "cabe" cuando no cabe:
 
 ```
-tiempo_estimado = suma(sesiones_estimadas) × HORAS_POR_SESION × 1.2 (buffer)
+horas_aprender   = Σ (saltos de nivel necesarios por tema, con sus sesiones_por_nivel,
+                      hasta el nivel_requerido del objetivo) × HORAS_POR_SESION × 1.2 (buffer)
+horas_mantener   = (nº de repasos que la escalera dispara entre el cierre estimado de cada
+                    tema y la fecha del hito) × minutos_por_repaso / 60
+tiempo_estimado  = horas_aprender + horas_mantener
 tiempo_disponible = integral de presupuesto_horas sobre [hoy, fecha_del_hito]
                     (NO es una multiplicación: los periodos tienen ritmos distintos)
 ```
 
-`HORAS_POR_SESION` sale de `historial.json` (promedio de `duracion_min`/60). Ver la regla 10 del checklist de calidad en el `README.md` raíz.
+`HORAS_POR_SESION` sale de `historial.json` (promedio de `duracion_min`/60) y `minutos_por_repaso` también (ver "El mantenimiento CUESTA HORAS" y la regla 10 del checklist de calidad en el `README.md` raíz). **No cuentes el 70/30 del intercalado aparte de la escalera: son el mismo fenómeno.**
 
-**En el setup inicial el historial está vacío por definición**, así que aquí siempre usarás el provisional de 1.5 h. **Dilo explícitamente al usuario:** *"esta estimación asume sesiones de 1.5 h; en unas semanas el historial dirá tu ritmo real y la reviso"*. Presentar una viabilidad calculada sobre una constante inventada como si fuera un hecho es la forma más fácil de que un plan nazca mintiendo.
+**En el setup inicial el historial está vacío por definición**, así que aquí usarás los provisionales de 1.5 h/sesión y 12 min/repaso. **Dilo explícitamente al usuario:** *"esta estimación asume sesiones de 1.5 h y repasos de 12 min; en unas semanas el historial dirá tu ritmo real y la reviso"*. Presentar una viabilidad calculada sobre constantes inventadas como si fueran un hecho es la forma más fácil de que un plan nazca mintiendo.
 
 Si `tiempo_estimado > tiempo_disponible`:
-- Reporta el desfase al usuario.
-- Propón opciones: (a) marcar temas como `opcional: true`, (b) aumentar horas/semana, (c) extender deadline.
+- Reporta el desfase al usuario, separando cuánto es aprender y cuánto mantener.
+- Propón opciones: (a) marcar temas como `opcional: true`, (b) bajar el `nivel_requerido` de algún curso (aplaza trabajo, no lo elimina), (c) aumentar horas/semana, (d) extender el hito si es negociable.
+- **Predicción de olvido:** avisa además de los temas que, al ritmo de repaso previsto, llegarán fríos al hito (su `nivel_repaso` no aguanta la distancia hasta la fecha). Es obligatorio, no opcional.
 
 Repite el paso 5 para cada curso de la lista.
 
@@ -211,4 +216,4 @@ Si en el futuro el usuario quiere agregar un objetivo nuevo —ya sea porque com
 - **No ejecutes el setup a la fuerza** si el usuario dice que solo quiere explorar. Pregunta primero.
 - **Guarda progreso**: si el usuario interrumpe el setup a mitad, guarda `objetivo.json` con lo que haya y `estado_setup: "incompleto"`. Retoma después.
 - **No inventes cursos que no sean necesarios**: el instinto de "por si acaso" hincha el plan y desmotiva al usuario. Recorta al mínimo viable para lograr el objetivo.
-- **Confirma antes de eliminar o crear directorios**. El Paso 0 (eliminar `02-algebra/`) requiere confirmación explícita del usuario.
+- **Confirma antes de eliminar o crear directorios**. El Paso 0 (eliminar `_ejemplo-algebra/`) requiere confirmación explícita del usuario.

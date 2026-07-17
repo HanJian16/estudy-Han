@@ -43,8 +43,8 @@ Esa línea es el marcador; reconócelo automáticamente sin necesidad de comando
 
 Un handoff cubre **exactamente una clase**, en el sentido definido en "Anatomía de una clase" del `README.md` raíz. Una clase tiene:
 
-- **Un `tema_principal`** — el `tema_id` que se va a trabajar. Es el único que puede cambiar de `estado` y `porcentaje`.
-- **Cero o más `temas_intercalados`** — `tema_id` ya `completado` que entran solo como ejercicios de repaso (el ~30% del bloque, ver Método 3 del README). De estos **solo se actualiza la escalera de repaso** (`nivel_repaso`, `fecha_proximo_repaso`, `ultima_sesion`), nunca su `estado` ni su `porcentaje`.
+- **Un `tema_principal`** — el `tema_id` que se va a trabajar. Es el único que puede cambiar de `estado` y `nivel_alcanzado`.
+- **Cero o más `temas_intercalados`** — `tema_id` ya con escalera armada que entran solo como ejercicios de repaso (el ~30% del bloque, ver Método 3 del README). De estos **solo se actualiza la escalera de repaso** (`nivel_repaso`, `fecha_proximo_repaso`, `ultima_sesion`), nunca su `estado` ni su `nivel_alcanzado`.
 
 Nunca generes un handoff con más de un `tema_principal`, ni permitas que el resumen de vuelta toque temas que no fueron declarados en el prompt de salida.
 
@@ -54,7 +54,7 @@ Si el usuario pide un handoff que cubra más de un tema nuevo (ej: "quiero lleva
 
 > **Nota de cambio (julio 2026):** esta regla decía "UN handoff = UN tema" y ordenaba rechazar cualquier resumen multi-tema. Eso era incompatible con el intercalado: una clase normal toca el tema nuevo *más* ejercicios de 2-3 temas viejos, así que todo handoff devolvía un resumen que la fase de VUELTA descartaba a medias — perdiendo justo lo que alimenta la escalera de repaso. El límite ahora está en la clase, no en el tema.
 
-**Resumen parcial permitido dentro del mismo tema.** El tema puede no completarse en la sesión externa (el usuario se cansa, tiene que salir, no llega al Feynman). En ese caso, el resumen es válido igual — reflejará avance parcial (`estado_sugerido: en_progreso`, porcentaje bajo, dificultades sin resolver). El siguiente handoff sobre este mismo tema se genera igual, y su prompt de SALIDA incluye automáticamente el estado actual (que ya refleja el avance parcial previo). Nunca fuerces al usuario a "terminar el tema" para poder cerrar un handoff.
+**Resumen parcial permitido dentro del mismo tema.** El tema puede no completarse en la sesión externa (el usuario se cansa, tiene que salir, no llega al Feynman). En ese caso, el resumen es válido igual — reflejará avance parcial (`estado_sugerido: en_progreso`, "Nivel demostrado: no verificado" o el nivel que dé la evidencia parcial, dificultades sin resolver). El siguiente handoff sobre este mismo tema se genera igual, y su prompt de SALIDA incluye automáticamente el estado actual (que ya refleja el avance parcial previo). Nunca fuerces al usuario a "terminar el tema" para poder cerrar un handoff.
 
 ---
 
@@ -71,7 +71,7 @@ Pregunta al usuario:
 
 **Excepción:** si la clase es de tipo `repaso` (rama B del PASO 5.5), no hay tema nuevo. En ese caso el `tema_principal` es el tema vencido más crítico y el resto van como intercalados, y el prompt debe decirle al agente destino que es una sesión de repaso, no de contenido nuevo.
 
-**Validaciones antes de generar el prompt:** todos los `tema_id` (principal e intercalados) deben existir en un `temario.json` del proyecto. Si alguno no existe, avisa y pide corrección. Los intercalados además deben estar en `estado: "completado"` — no se intercala un tema que nunca se estudió.
+**Validaciones antes de generar el prompt:** todos los `tema_id` (principal e intercalados) deben existir en un `temario.json` del proyecto. Si alguno no existe, avisa y pide corrección. Los intercalados además deben tener la escalera armada (`nivel_repaso` no nulo, es decir `nivel_alcanzado` al menos `base`) — no se intercala un tema que nunca se estudió.
 
 ### Paso 1.2: Recolectar el contexto
 
@@ -120,8 +120,11 @@ No abras ningún tema nuevo que no sea el principal, aunque yo te lleve por la c
 - **Objetivos de aprendizaje:**
   - [objetivo 1]
   - [objetivo 2]
-- **Criterio de dominio esperado:** [criterio_dominio]
-- **Estado actual:** [estado, porcentaje]%, [sesiones_dedicadas] sesiones dedicadas hasta ahora.
+- **Nivel al que apunto hoy:** [nivel_objetivo_hoy: base / intermedio / avanzado] — el mayor `nivel_requerido` para este tema entre mis objetivos activos.
+- **Criterio de dominio por nivel** (cómo se verifica que llegué a cada uno):
+  - [Si `criterio_dominio` es objeto por nivel, lista cada nivel hasta el objetivo: "base: …", "intermedio: …", "avanzado: …". Si todavía es un solo string, dalo como el criterio del nivel objetivo y dilo.]
+- **Nivel que ya tengo verificado:** [nivel_alcanzado actual, o "ninguno todavía — es la primera vez que lo trabajo a fondo"]
+- **Estado de flujo:** [estado], [sesiones_dedicadas] sesiones dedicadas hasta ahora.
 
 ## Temas de repaso intercalado
 
@@ -172,8 +175,9 @@ Cuando termine nuestra conversación, dame un mensaje que empiece exactamente co
 - Duración real: X minutos (pregúntamelo si no lo sabes con certeza — este dato alimenta mi seguimiento de horas, así que una estimación tuya a ojo no sirve)
 
 ## Progreso del tema principal
-- Estado sugerido: [en_progreso | completado]
-- Porcentaje estimado: X (0-100)
+- Estado sugerido: [en_progreso | completado]  ← "completado" = terminamos el trabajo activo del tema hoy; NO afirma que lo domino
+- Nivel demostrado: [no verificado | base | intermedio | avanzado] ← el nivel MÁS ALTO cuyo criterio de dominio (te los pasé arriba) cumplí HOY con evidencia real: ejercicios resueltos sin ayuda + el Feynman de cierre. Si no llegué a cumplir ni el criterio más básico que trabajamos, pon "no verificado". Sé estricto: este campo decide si mi profundidad sube o no, así que no lo infles por esfuerzo ni por buena actitud — solo por lo que de verdad resolví.
+- Evidencia del nivel: [1-2 frases concretas: qué resolví sin ayuda que justifica ese nivel, o qué fallé que impidió subir. Esto es lo que deja que mi otra sesión confíe (o no) en el nivel reportado.]
 - Puntos que quedaron sin cubrir: [lista o "ninguno"]
 
 ## Repaso intercalado
@@ -215,7 +219,7 @@ Si no había intercalados, escribe "no hubo".]
 
 Un solo `=== HANDOFF-RESUMEN ===` por conversación, y siempre referido a la clase que te pasé arriba: el tema principal `[tema_id]` más sus temas de repaso intercalado. Si por algún motivo terminamos hablando de un tema nuevo distinto, no lo incluyas en el resumen — avísame que lo dejaremos para otro handoff.
 
-**Resumen parcial es perfectamente válido.** Si tengo que cortar la sesión sin haber completado el tema (cansancio, tiempo, se puso complicado, lo que sea), pídeme el resumen de todos modos con lo que sí llegamos a cubrir — `Estado sugerido: en_progreso`, porcentaje realista, dificultades sin resolver listadas. No me exijas terminar el tema para cerrar; prefiero un resumen parcial fiel a que no haya ningún resumen. Puedo hacer otro handoff después para retomar.
+**Resumen parcial es perfectamente válido.** Si tengo que cortar la sesión sin haber completado el tema (cansancio, tiempo, se puso complicado, lo que sea), pídeme el resumen de todos modos con lo que sí llegamos a cubrir — `Estado sugerido: en_progreso`, un "Nivel demostrado" honesto (probablemente "no verificado" si quedó a medias), dificultades sin resolver listadas. No me exijas terminar el tema para cerrar; prefiero un resumen parcial fiel a que no haya ningún resumen. Puedo hacer otro handoff después para retomar.
 ````
 
 Después de generar el bloque, dile al usuario:
@@ -251,7 +255,7 @@ Validaciones antes de procesar:
 
 2. **Verificar que nada se salió del alcance declarado.** Los únicos temas que este resumen puede tocar son el principal y los intercalados listados en Metadata. Si en el cuerpo hay actualizaciones vinculadas a un `tema_id` fuera de esa lista, **detén el procesamiento** y avisa: "Este resumen toca temas que no estaban en el alcance del handoff ([lista]). Voy a procesar solo el tema principal y sus intercalados declarados, y descartar el resto. ¿Confirmas o prefieres corregir el resumen antes?"
 
-3. **Verificar el reparto correcto de actualizaciones.** El tema principal es el único que puede cambiar `estado` y `porcentaje`. Si el resumen sugiere cambiar el estado de un tema *intercalado*, ignora ese cambio (de un intercalado solo se actualiza la escalera de repaso) y menciónalo al usuario en el reporte final.
+3. **Verificar el reparto correcto de actualizaciones.** El tema principal es el único que puede cambiar `estado` y `nivel_alcanzado`. Si el resumen sugiere cambiar el estado o el nivel de un tema *intercalado*, ignora ese cambio (de un intercalado solo se actualiza la escalera de repaso) y menciónalo al usuario en el reporte final.
 
 4. **Verificar coincidencia con `handoff_pendiente`.** Si `objetivo.json` tiene `handoff_pendiente`, el `tema_principal` del resumen debe coincidir. Si no coincide, avisa: "El resumen es de un tema distinto al handoff pendiente ([tema_pendiente]). ¿Fue intencional?" y espera respuesta antes de continuar. Si los intercalados no coinciden exactamente, no es motivo de alarma — la sesión externa pudo no llegar a todos; procesa los que sí reporta.
 
@@ -276,10 +280,11 @@ Qué hacer en cada caso:
 Extrae cada sección del bloque (ya revisada en el paso anterior) y actualiza los archivos:
 
 **`progreso.json` — tema principal**
-- Actualiza `estado` y `porcentaje` con lo sugerido.
+- Actualiza `estado` (flujo) con lo sugerido.
+- **Actualiza `nivel_alcanzado` con la MISMA regla que el "Protocolo al CERRAR una clase"**: súbelo solo si el resumen reporta un "Nivel demostrado" verificado MAYOR que el actual, y solo hasta ese nivel. Nunca por encima de lo que la evidencia del resumen justifica, y **nunca lo bajes**. Si el resumen dice "no verificado" o su "Evidencia del nivel" es floja o no cuadra con lo que muestran los "Ejercicios trabajados"/"Feynman", `nivel_alcanzado` NO cambia. La única diferencia con una clase presencial es que la verificación la hizo el agente externo: **si dudas de esa verificación, díselo al usuario y pídele que confirme antes de subir el nivel** — no subas profundidad a ciegas por un reporte de terceros.
 - Incrementa `sesiones_dedicadas` en 1.
 - Actualiza `ultima_sesion` con la fecha y hora del resumen (ISO 8601, `YYYY-MM-DDTHH:MM`). Si el resumen trajo solo la fecha sin hora, guárdala sin hora en vez de inventarla.
-- Si pasó a `completado`, arma su repaso: `nivel_repaso: 1`, `fecha_proximo_repaso` = el día siguiente a la fecha del resumen.
+- **Arma la escalera cuando `nivel_alcanzado` pase por primera vez a no nulo** (llegó al menos a `base`): `nivel_repaso: 1`, `fecha_proximo_repaso` = el día siguiente a la fecha del resumen. Si ya tenía escalera, no la reinicies. Se ata a la profundidad alcanzada, no a `estado`.
 
 **`historial.json`** — agrega **una entrada al final** (append, nunca sobreescribas) con `inicio` y `duracion_min` tomados de la Metadata del resumen, el `objetivo_id` del objetivo dueño del curso, `tema_principal`, `temas_intercalados`, y en `nota` el agente y modalidad de la sesión externa. Si el resumen no trajo duración, **pregúntasela al usuario** antes de escribir — no la inventes ni dejes el campo en null.
 
@@ -287,7 +292,7 @@ Extrae cada sección del bloque (ya revisada en el paso anterior) y actualiza lo
 - `resultado: bien` → sube `nivel_repaso` en 1 (tope 5) y recalcula `fecha_proximo_repaso` = fecha del resumen + el intervalo del nivel nuevo (ver la escalera en el `README.md` raíz).
 - `resultado: mal` → pon `nivel_repaso: 1` y `fecha_proximo_repaso` = el día siguiente a la fecha del resumen. Registra además la dificultad correspondiente en `dificultades.json`.
 - `resultado: no se tocó` → no cambies nada de ese tema.
-- En todos los casos: **no toques su `estado`, `porcentaje` ni `sesiones_dedicadas`.** Sí actualiza su `ultima_sesion` si se tocó.
+- En todos los casos: **no toques su `estado`, `nivel_alcanzado` ni `sesiones_dedicadas`.** Sí actualiza su `ultima_sesion` si se tocó.
 
 **`glosario.json`**
 - Por cada término en "Términos nuevos aprendidos": si no existe, crea entrada nueva con la estructura completa (usando `tema_id` del resumen, `curso` correspondiente, `fecha_aprendido` = fecha resumen). Si ya existe, actualiza `nivel_dominio` y `fecha_ultimo_uso`.
@@ -313,7 +318,7 @@ Elimina el campo `handoff_pendiente` de `objetivo.json`.
 Muestra un resumen breve de lo actualizado:
 ```
 Handoff procesado:
-- Tema principal [X] avanzó de Y% a Z%.
+- Tema principal [X]: nivel_alcanzado [antes] → [después] ([verificado / sin cambio: la evidencia no alcanzó el siguiente nivel]); estado [antes] → [después].
 - Repaso intercalado: [tema A] subió a nivel N (próximo: fecha); [tema B] volvió a nivel 1 (próximo: mañana).
 - N términos nuevos en glosario.
 - M dificultades nuevas registradas, K resueltas.
