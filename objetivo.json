@@ -16,7 +16,7 @@
       "desde": "2026-11-29",
       "hasta": null,
       "horas_semanales": 20,
-      "nota": "POST-SEMESTRE. Acabadas las clases vuelve la disponibilidad alta, justo cuando la UNI pasa a ser prioritaria y toca subir el liston de la base. VALOR POR CONFIRMAR en noviembre."
+      "nota": "POST-SEMESTRE. Acabadas las clases vuelve la disponibilidad alta, justo cuando la UNI pasa a ser prioritaria y toca subir el nivel_requerido de la base a 'avanzado'. VALOR POR CONFIRMAR en noviembre."
     }
   ],
   "nota_presupuesto": "El presupuesto NO es un número único: es una LÍNEA DE TIEMPO de periodos, porque la disponibilidad del usuario cambia radicalmente según esté de vacaciones o en clases. Un escalar plano promedia dos mundos distintos y miente en ambas direcciones — infla las semanas de clase e infravalora las de vacaciones. (Antes existía 'horas_semanales_disponibles: 20'; se sustituyó el 2026-07-16 al detectar que las 10.6 semanas hasta el parcial son 3.6 de vacaciones + 7.0 de semestre.) NO se reparte por objetivo: los objetivos compiten por este presupuesto y el PASO 5.5 los ordena por prioridad. Ver 'Objetivos paralelos' en el README raíz. Y OJO: TODOS estos números son PROMESAS/ESTIMACIONES, no mediciones. Contrástalos con las horas reales de historial.json en cuanto haya 3 semanas de datos.",

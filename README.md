@@ -698,7 +698,7 @@ Cuando el usuario indique que terminó, actualiza estos archivos:
 7. **Arma la escalera de repaso cuando el tema alcanza por primera vez un `nivel_alcanzado` no nulo** (llegó al menos a `base`): pon `nivel_repaso: 1` y `fecha_proximo_repaso` = mañana. Ver "La escalera de repaso". **La escalera se ata a la PROFUNDIDAD alcanzada, no a `estado`:** un tema que llegó a `base` ya empieza a olvidarse y necesita mantenimiento, esté `en_progreso` o `completado`. Si el tema ya tenía escalera armada de una sesión previa, no la reinicies aquí.
 
 **De los temas que se intercalaron en el bloque de ejercicios** (no del tema nuevo):
-- Si el usuario los resolvió bien: sube `nivel_repaso` en 1 (tope 5) y recalcula `fecha_proximo_repaso` = hoy + el intervalo del nivel nuevo.
+- Si el usuario los resolvió bien: sube `nivel_repaso` en 1 (tope 5, o el objetivo adaptativo del tema si es menor — ver "La escalera de repaso") y recalcula `fecha_proximo_repaso` = hoy + el intervalo del nivel nuevo.
 - Si falló: baja `nivel_repaso` a 1 y pon `fecha_proximo_repaso` = mañana. Además, registra la dificultad en `dificultades.json` como cualquier otra.
 - No toques su `estado`, `nivel_alcanzado` ni `sesiones_dedicadas`: un intercalado no es una sesión del tema viejo, y resolver bien un repaso confirma durabilidad (`nivel_repaso`), no más profundidad. Sí actualiza su `ultima_sesion`.
 - Si un tema intercalado resultó estar realmente roto (falló varios ejercicios, no solo uno), dilo al cerrar y sugiere que la próxima sesión sea una clase de `repaso`. La rama (B) del PASO 5.5 probablemente ya lo dispare sola, pero avisar es mejor que sorprender.

@@ -4,6 +4,7 @@
 **Tipo de clase:** [continuacion | repaso | cadencia | hito | tema-nuevo] — el que decidió el PASO 5.5 del `README.md` raíz
 **Fecha:** YYYY-MM-DDTHH:MM
 **Número de sesión para este tema:** N (coincide con `sesiones_dedicadas` en `progreso.json`)
+**Nivel al cerrar:** `nivel_alcanzado` [null → base → intermedio → avanzado] verificado hoy (o "sin cambio" si la clase no llegó a verificar el siguiente nivel) — debe coincidir con lo que quedó en `progreso.json`.
 
 ## Objetivo de esta sesión
 Qué se buscó lograr específicamente hoy (subconjunto de los `objetivos_aprendizaje` del tema).
