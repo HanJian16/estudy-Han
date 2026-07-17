@@ -4,15 +4,13 @@ Repositorio de estudio para retomar cursos de forma estructurada, usado junto co
 
 ---
 
-> # 🚧 MIGRACIÓN ABIERTA — LEE ESTO PRIMERO
+> # 🚧 MIGRACIÓN (interna) CERRADA — casi listo
 >
-> **Existe [`PENDIENTE.md`](PENDIENTE.md) en la raíz. Léelo ANTES de tocar nada.**
+> El 2026-07-16 se rediseñó el núcleo del proyecto (el conocimiento pasa a medirse en dos dimensiones: **profundidad** `nivel_alcanzado` y **durabilidad** `nivel_repaso`). **Ese rediseño ya está completo y este README NO se contradice a sí mismo**: el modelo de dos dimensiones es la única verdad viva. `nivel_alcanzado` tiene su escritor (el "Protocolo al CERRAR una clase"), `porcentaje` está eliminado, y protocolos, plantillas y rúbricas están al día.
 >
-> El 2026-07-16 se rediseñó el núcleo del proyecto (el conocimiento pasó a medirse en dos dimensiones: profundidad y durabilidad). **Los datos ya usan el modelo nuevo, pero parte de ESTE README todavía describe el viejo y se contradice a sí mismo.** `PENDIENTE.md` dice qué parte manda y qué falta cerrar.
+> Solo quedan dos cosas, ambas en [`PENDIENTE.md`](PENDIENTE.md): (A) portar la arquitectura al repo del template (fuera de este repo, prompt listo en `_porteo-template.md`), y (B) la conversación de horas con el usuario. **Puedes operar con este README como única fuente de verdad ya.**
 >
-> Lo más importante que debes saber: **`nivel_alcanzado` es el campo central del modelo y hoy no lo escribe nadie**, porque el "Protocolo al CERRAR una clase" aún no sabe que existe. Hasta que eso se arregle, el rediseño es decorativo.
->
-> *Borra este aviso y el archivo cuando la migración esté cerrada.*
+> *Borra este aviso, `PENDIENTE.md` y `_porteo-template.md` cuando A y B estén cerrados.*
 
 ---
 

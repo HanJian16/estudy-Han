@@ -2,13 +2,11 @@
 
 > Este archivo se carga automáticamente al iniciar la sesión. Su único propósito es redirigir al documento principal para no duplicar contenido.
 
-## 🚧 HAY UNA MIGRACIÓN ABIERTA (desde 2026-07-16)
+## 🚧 MIGRACIÓN INTERNA CERRADA (2026-07-16 → completada)
 
-**Antes que nada, lee [`PENDIENTE.md`](PENDIENTE.md) en la raíz.**
+El núcleo del proyecto se rediseñó al modelo de dos dimensiones (profundidad + durabilidad) y **ese rediseño ya está completo**: el `README.md` NO se contradice a sí mismo y es la única fuente de verdad viva. Puedes seguirlo directamente.
 
-El núcleo del proyecto se rediseñó y la migración quedó a medias **a propósito**: los datos ya usan el modelo nuevo, pero parte del `README.md` todavía describe el viejo y **se contradice a sí mismo**. `PENDIENTE.md` dice qué parte manda, qué falta y por qué.
-
-Si el `README.md` y `PENDIENTE.md` se contradicen mientras la migración siga abierta, **manda `PENDIENTE.md`**. Cuando esté cerrada, se borra el archivo y este aviso, y el `README.md` vuelve a ser la única verdad.
+Queda [`PENDIENTE.md`](PENDIENTE.md) solo por dos cosas fuera del flujo normal: portar la arquitectura al repo del template (prompt en `_porteo-template.md`) y la conversación de horas con el usuario. Léelo si vas a trabajar en eso; para una sesión de estudio normal, el `README.md` basta.
 
 ---
 
