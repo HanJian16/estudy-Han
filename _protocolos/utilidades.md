@@ -128,6 +128,10 @@ Emite una alerta por cada caso que se cumpla. **No las omitas por parecer alarmi
    Es la alerta que solo el historial puede dar. Un plan puede tener la aritmética perfecta y aun así estar validado contra un usuario imaginario.
 11. **Ritmo sin medir** — `historial.json` tiene menos de 5 sesiones.
    `⚠ Ritmo real aún sin medir ([N] sesiones). Las viabilidades de arriba asumen 1.5 h/sesión — trátalas como estimaciones, no como hechos.`
+12. **Sobre-especificación de curso (jalar un curso entero donde bastan temas)** — un objetivo lista en `cursos_requeridos` un curso C con `nivel_requerido: "base"` (= lo que el cierre ya daría por defecto) y, al mismo tiempo, los OTROS cursos de ese objetivo ya referencian temas de C por `prerrequisitos_externos`. Señal de que C está declarado de más: el cierre transitivo lo traería igual, y **solo los temas que hacen falta**, en vez del curso completo.
+   `⚠ [Objetivo] requiere el curso [C] entero a nivel base, pero sus cursos propios ya dependen de [n]/[m] temas de [C] por prerrequisito. Probable sobre-especificación (regla 12 del checklist): considera quitar [C] de cursos_requeridos y dejar que el cierre traiga solo lo necesario.`
+   **Excepción legítima, NO la marques:** cuando el objetivo TRATA de C y lo pide a un nivel MAYOR que el default del cierre (ej. la UNI pide toda la base a `avanzado`) — ahí el curso entero sí es lo que el objetivo quiere, no un arrastre. La distinción es el nivel: `base` = redundante con el cierre; `intermedio`/`avanzado` = el objetivo lo trata de verdad.
+   Esta alerta existe porque **este proyecto ya cometió ese error dos veces** (el semestre listaba los 6 cursos base enteros); la regla de "jalar temas, no cursos" estaba escrita pero nada la verificaba. Esto la verifica.
 
 **Sugiere correr `estado` cada 2-3 semanas.** Es barato, no arranca nada, y es el único momento en que el proyecto se audita a sí mismo.
 

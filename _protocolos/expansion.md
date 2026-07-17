@@ -64,6 +64,8 @@ Haz las siguientes preguntas al usuario, una por una:
 
    `cursos_requeridos` lista los cursos de los que el objetivo **trata**, no todo lo que toca. Lo que haga falta de otros cursos entra solo a través de los `prerrequisitos_externos` de sus temas — y solo los temas nombrados. Un objetivo de aprobar un semestre requiere sus cursos universitarios; de la base arrastra tres temas de geometría, no los trece.
 
+   **VERIFICACIÓN OBLIGATORIA antes de cerrar (no es opcional):** por cada curso que pongas en `cursos_requeridos` a `nivel_requerido: "base"`, comprueba que el objetivo TRATA de él de verdad. Si el objetivo solo lo necesita porque OTRO de sus cursos lo referencia por prerrequisito, **NO lo pongas** — el cierre transitivo lo traerá, y solo los temas que hagan falta. Ponerlo entero es la sobre-especificación que infla el plan y que este proyecto ya cometió dos veces con la base del semestre. Es la misma comprobación que la **alerta 12** del comando `estado` (`_protocolos/utilidades.md`): córrela mentalmente aquí. Regla del pulgar: un curso a `base` que ya lo referencian otros cursos del objetivo casi siempre sobra; a `intermedio`/`avanzado` suele ser legítimo (el objetivo lo trata de verdad).
+
    Si el objetivo nuevo trata de cursos que ya existen (el Paso 2 de análisis de reutilización te lo dice), **añade esas carpetas a su `cursos_requeridos` sin duplicar nada**: es muchos-a-muchos. No copies el curso, no lo muevas, no crees una versión paralela.
 
    Y cuando un curso nuevo necesite algo que no existe, aplica la **regla 12 del checklist de calidad** (crecimiento desde la necesidad hacia atrás):
