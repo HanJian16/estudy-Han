@@ -1,5 +1,28 @@
 # Plan de Estudios
 
+> # ⚠️ LEE ESTO ANTES QUE NADA — LÍMITES REALES DE ESTE PROYECTO
+>
+> **Escrito el 2026-07-18 tras una sesión entera dedicada a auditar el proyecto, en la que el usuario cazó personalmente cinco fallos estructurales que ningún mecanismo del proyecto detectó. Está aquí, al principio, porque cada sesión nueva tiene que verlo. No lo borres para que el README quede más limpio: lo que quedaría limpio es la mentira.**
+>
+> ## Tres cosas que este proyecto NO puede garantizar hoy
+>
+> **1. Nada obliga al agente a seguir estos protocolos.** Son texto que entra en su contexto. Lo predisponen fuertemente, y no hay ningún mecanismo que los imponga. `CLAUDE.md` se carga solo, pero **cargarse no es ejecutarse**. Es posible abrir una sesión y que el algoritmo de arranque no corra — sobre todo si el usuario pide algo estrecho ("corrige esta errata"). El 2026-07-18 el agente incumplió cinco reglas distintas **teniéndolas leídas en el mismo contexto**.
+>
+> **2. Un archivo de rastro demuestra que un paso OCURRIÓ, no que se hiciera bien.** Todos los marcadores de este proyecto (`[SIM:]`, `[SIN ANALIZAR]`, `ultima_auditoria`) los escribe el propio agente. Puede escribir cualquier cosa en ellos. Un script comprueba que la tabla del simulacro existe; **no puede comprobar que el simulacro fuera serio**. Trátalos como señal débil, no como prueba.
+>
+> **3. Escribir una regla NO cambia el comportamiento del agente.** Está demostrado en este repo, dos veces con el mismo problema: existía la regla de no citar objetivos por su `id` interno, y el agente escribió `obj-1`/`obj-2` durante toda la sesión del 18-jul; se añadió la regla general contra la jerga, y la incumplió en cada mensaje posterior, incluido aquel en que la concedía.
+>
+> ## Qué SÍ funciona, con evidencia
+>
+> **Ejecutar código.** El 2026-07-18, cinco de cinco veces que se corrió un script contra los datos reales apareció un fallo que llevaba semanas escondido: la cerradura contaba **27 temas base donde hay 49**; siete temas ya estudiados se caían del repaso; una comprobación silenciaba los cursos del objetivo prioritario; otra se disparaba sobre su propia documentación; y un refactor "obvio" resultó tocar 202 puntos. **Ninguno se encontró leyendo. Todos, ejecutando.**
+>
+> ## La consecuencia operativa, para esta sesión y todas
+>
+> - **Desconfía de lo que este README afirma sobre los datos. Verifícalo corriendo algo.** Las cifras en prosa se pudren; los JSON no mienten.
+> - **Cuando el agente diga que hizo una comprobación, pídele la salida.** Sin salida, no la hizo.
+> - **Todo lo que se pueda ejecutar debe ejecutarse, no leerse.** Escribir más protocolos es el método que ya falló; ver [`PENDIENTE.md`](PENDIENTE.md), prioridad 1: migrar la contabilidad de este proyecto a funciones reales con tests.
+> - **La regla 6 (reutilizar el procedimiento canónico) y todo lo demás siguen vigentes.** Esto no anula el proyecto: dice con qué grado de confianza tratarlo mientras no exista el motor.
+
 Repositorio de estudio para retomar cursos de forma estructurada, usado junto con un agente de IA (Claude Code, GPT, agente local, etc.) como tutor. Este proyecto es una **plantilla**: no asume qué quieres aprender. En el primer arranque, el agente entrevista al usuario y genera todo el plan personalizado (cursos, temarios, bibliografía, timeline).
 
 ---
@@ -15,6 +38,19 @@ Repositorio de estudio para retomar cursos de forma estructurada, usado junto co
 > **Nota — convención de comandos sin barra, en todo el proyecto:** ningún comando de este proyecto (arranque, configuración, utilidades, handoff) empieza con `/`. Herramientas como Claude Code interceptan los comandos que empiezan con `/` a nivel de la propia interfaz, antes de que el mensaje le llegue al agente como texto — así que un comando con `/` definido aquí podría nunca llegar a activarse, o chocar con un comando propio de la herramienta (ej. el `/init` interno de Claude Code, que hace algo completamente distinto: generar un archivo `CLAUDE.md`). Por eso, en vez de barras, cada comando tiene una **forma completa** en palabras (frase natural, ej. "mostrar estado") y un **alias corto** en forma de acrónimo intuitivo sin barra (ej. `estado`, `hndff`, `ucs on`). Esto evita el choque ahora y ante cualquier comando nuevo que la herramienta agregue en el futuro. Ver la tabla completa de comandos y alias en `_protocolos/configuracion.md`, `_protocolos/utilidades.md` y `_protocolos/handoff.md`.
 
 ```
+PASO 0 — ANTES DE CUALQUIER COSA, Y EN CADA MENSAJE (no solo al
+         arrancar la sesión): lee _protocolos/capas.md y aplícalo.
+         Desglosa el mensaje en acciones discretas, verifica las
+         RESTRICCIONES VIGENTES, y relee los protocolos de la capa a la
+         que pertenece cada acción ANTES de ejecutarla.
+
+         Existe porque el modo de falla de este proyecto no es ignorar
+         los protocolos: es creer que se recuerdan y actuar desde el
+         recuerdo comprimido. NO lo saltes por creer que ya te los
+         sabes — esa creencia ES el síntoma.
+
+         → Continúa al PASO 1.
+
 PASO 1 — ¿Existe el archivo "objetivo.json" en la raíz del proyecto?
 
     ├── NO existe
@@ -91,6 +127,31 @@ PASO 4 — ¿El usuario está invocando el protocolo de handoff?
           → Si el usuario dijo algo PARECIDO pero no idéntico ni al
             comando completo ni al alias corto, NO invoques el
             protocolo — pregunta si quiere usar la forma exacta y espera.
+          → Continúa al PASO 4.5.
+
+PASO 4.5 — ¿El usuario está invocando la COORDINACIÓN CON LA AGENDA
+         ("Ángela", el proyecto aparte que maneja su calendario)?
+         Se activa SOLO si:
+           (a) El usuario escribe "generame el prompt para Angela"
+               (alias: "sync"). Al comparar, IGNORA acentos y
+               mayúsculas: "genérame el prompt para Ángela" es la
+               misma frase.
+           O
+           (b) El usuario pega un bloque cuya PRIMERA línea es
+                 >>> ANGELA AL HABLA
+
+    ├── SÍ
+    │     → Lee _protocolos/coordinacion-agenda.md y aplica la
+    │       dirección que corresponda:
+    │         (a) SALIDA  → genera RECONCILIACIÓN + DEMANDA usando los
+    │                       formatos LITERALES de ese archivo.
+    │         (b) ENTRADA → procesa lo que ella manda (ASIGNACIÓN u
+    │                       otro mensaje) y actualiza lo que toque.
+    │     → TODO lo que generes para ella va envuelto en las marcas
+    │       de autoría:   >>> RICHARD AL HABLA   …   <<< FIN
+    │     → FIN del algoritmo.
+    │
+    └── NO
           → Continúa al PASO 5.
 
 PASO 5 — ¿El usuario está pidiendo agregar un NUEVO objetivo distinto
@@ -116,22 +177,86 @@ PASO 5.5 — SELECTOR DE CLASE. Decide QUÉ CLASE toca hoy.
          una vez al día o tres (ver "Varias sesiones el mismo día"
          más abajo).
 
-         Lee objetivo.json y recorre los cursos de TODOS los objetivos
-         con estado "activo" (cada uno tiene su cursos_requeridos).
-         Los objetivos "latente" y "completado" NO compiten.
+         Lee objetivo.json y toma los objetivos con estado "activo"
+         (los "latente" y "completado" NO compiten).
 
-         UN CURSO PUEDE ESTAR EN VARIOS OBJETIVOS. No busques "su"
-         dueño — no existe. Calcula su URGENCIA EFECTIVA:
+         EL UNIVERSO DE CANDIDATOS SE CALCULA CON LA CERRADURA, NO CON
+         cursos_requeridos A SECAS. Esto es obligatorio y es la parte
+         que más fácil se salta:
 
-             urgencia_efectiva(curso) = la del objetivo ACTIVO más
-             urgente que lo requiere.
+             cursos_requeridos es el TRONCO — los cursos de los que el
+             objetivo TRATA. La CERRADURA es el ÁRBOL COMPLETO: los
+             temas que hay que saber para que el tronco sea posible,
+             obtenidos recorriendo prerrequisitos_externos hacia atrás.
+
+         Para cada objetivo ACTIVO, arma DOS conjuntos. No es
+         redundancia: responden a preguntas distintas y confundirlos
+         hace que se pierda trabajo ya hecho.
+
+         (1) POR APRENDER — qué falta estudiar:
+             aprender(objetivo) = temas del tronco
+                                ∪ cerradura(semilla, objetivo)
+             Usa la MISMA función cerradura() de la sección "Los
+             objetivos compiten en una cola con prioridad". NO escribas
+             una versión propia: es la misma pregunta y tiene que dar
+             la misma respuesta. Esta cerradura CORTA en lo que ya está
+             a nivel suficiente — correcto, porque lo sabido no hay que
+             aprenderlo.
+             → La usan la rama (F) y la viabilidad.
+
+         (2) POR MANTENER — qué hay que conservar vivo:
+             mantener(objetivo) = TODOS los temas del árbol de
+             dependencias del objetivo que tengan escalera armada
+             (nivel_repaso != null), recorriendo prerrequisitos
+             internos y externos **SIN cortar por nivel alcanzado**.
+             → La usan la rama (C) y la lista de intercalado del
+               "Protocolo al INICIAR".
+
+         POR QUÉ DOS Y NO UNA (bug real, 2026-07-18): cerradura() corta
+         en lo ya sabido, que es lo correcto para "¿qué me falta
+         aprender?" y exactamente lo contrario de lo que necesita el
+         repaso — donde lo ya sabido ES el objeto. Al cablear el
+         selector a cerradura() a secas, los 7 temas de aritmética ya
+         estudiados de los que depende el semestre quedaban fuera del
+         universo de repaso y se habrían desvanecido en silencio: 12
+         sesiones de trabajo perdidas sin que ninguna alerta se
+         quejara. Un tema que ya costó horas y del que el objetivo
+         prioritario depende NO puede caerse del radar por estar
+         aprendido.
+
+         LA URGENCIA SE CALCULA POR TEMA, NO POR CURSO:
+
+             urgencia_efectiva(TEMA) = la del objetivo ACTIVO más
+             urgente que lo necesita, por CUALQUIERA de las dos vías
+             (tronco o cerradura).
              "Más urgente" = menor "prioridad" ordinal; si empatan,
              el de hito sin cumplir más cercano en fecha.
 
-         De ese objetivo salen la fecha y la prioridad que usarás
-         para ese curso. Esto es lo que impide que un curso base
-         compartido (trigonometría) herede la fecha lejana del
-         objetivo que lo creó cuando otro lo necesita YA.
+         POR QUÉ POR TEMA Y NO POR CURSO: de los 17 temas de álgebra,
+         el semestre necesita 8 (factorización, fracciones algebraicas,
+         complejos, matrices…) y los otros 9 solo sirven a la UNI. Dar
+         al CURSO entero la urgencia del semestre sería volver a jalar
+         cursos completos donde bastan temas — el error de
+         sobre-especificación (patrón P7 de ERRORES.md), que este
+         proyecto ya cometió dos veces.
+
+         De ahí salen la fecha y la prioridad de cada tema. Esto es lo
+         que impide que un tema base compartido (factorización) herede
+         la fecha lejana del objetivo que lo creó cuando otro lo
+         necesita YA.
+
+         > BUG REAL QUE ESTO ARREGLA (P9, detectado 2026-07-18). Este
+         > paso leía cursos_requeridos y nada más. Como el semestre solo
+         > lista sus 5 cursos universitarios —la base entra por
+         > cerradura—, los 27 temas base que necesita para el parcial de
+         > septiembre heredaban la urgencia de la UNI (febrero 2027) y
+         > se posponían justo cuando eran urgentes. Es el bug de
+         > trigonometría resucitado por la puerta de atrás: se arregló
+         > en los datos y volvió por el selector, porque dos sitios
+         > respondían la misma pregunta con representaciones distintas.
+         > Y era peor si el objetivo de la UNI pasaba a "latente": los
+         > cursos base se quedaban SIN NINGÚN objetivo activo que los
+         > listara y desaparecían del selector por completo.
 
          De cada curso lee:
            - temario.json  → campo "modo_estudio" (tipo, cadencia_dias,
@@ -151,7 +276,10 @@ PASO 5.5 — SELECTOR DE CLASE. Decide QUÉ CLASE toca hoy.
                  propósito: en el endgame, el simulacro ES el repaso —
                  revela los vacíos reales mejor que cualquier otra cosa.
 
-         (C) REPASO — ¿hay 3 o más temas con fecha_proximo_repaso <= hoy,
+         (C) REPASO — sobre el conjunto mantener(objetivo) definido
+             arriba (NO sobre aprender(): el repaso trata justamente de
+             lo ya sabido, que cerradura() excluye a propósito).
+             ¿Hay 3 o más temas con fecha_proximo_repaso <= hoy,
              O algún tema vencido por más del DOBLE de su intervalo?
                → Clase de repaso dedicada: sin tema nuevo, ejercicios
                  mezclados de los temas vencidos.
@@ -176,18 +304,34 @@ PASO 5.5 — SELECTOR DE CLASE. Decide QUÉ CLASE toca hoy.
                → Propón esa clase.
 
          (F) TEMA NUEVO — ninguna de las anteriores aplicó. Caso normal.
-               → Próximo tema "no_iniciado" de un curso "ruta" cuyos
-                 prerrequisitos internos ya tengan nivel suficiente:
-                 su nivel_alcanzado NO es null (llegaron al menos a
-                 "base"). No exijas "avanzado" para arrancar el que
-                 sigue — un prerrequisito en "base" ya sostiene el
-                 tema nuevo; su profundidad definitiva se termina de
-                 subir cuando el objetivo que la pide lo cobre. Si un
-                 prerrequisito sigue en null, ese es el que toca, no
-                 este.
-               → Si hay varios candidatos, gana el de MENOR "prioridad"
-                 de curso (1 = lo primero). Si sigue sin estar claro,
-                 pregunta.
+               → Candidatos: los temas "no_iniciado" del conjunto
+                 temas(objetivo) calculado arriba CON LA CERRADURA —
+                 no solo los de los cursos del tronco.
+               → El tema debe tener sus prerrequisitos con nivel
+                 suficiente, y hay que mirar LOS DOS TIPOS:
+                   · prerrequisitos_internos (del mismo curso), y
+                   · prerrequisitos_externos ("curso/tema_id").
+                 "Nivel suficiente" = su nivel_alcanzado NO es null
+                 (llegaron al menos a "base"). No exijas "avanzado"
+                 para arrancar el que sigue — un prerrequisito en
+                 "base" ya sostiene el tema nuevo; su profundidad
+                 definitiva se termina de subir cuando el objetivo que
+                 la pide lo cobre.
+               → Si algún prerrequisito (interno U EXTERNO) sigue en
+                 null, ESE es el que toca, no este. Baja por la cadena
+                 hasta encontrar uno que sí se pueda estudiar hoy.
+               → Si hay varios candidatos, gana el de mayor URGENCIA
+                 EFECTIVA (la del tema, calculada arriba); solo si
+                 empatan, el de MENOR "prioridad" de curso (1 = lo
+                 primero). Si sigue sin estar claro, pregunta.
+
+               OJO — LOS EXTERNOS SE COMPRUEBAN AQUÍ, AL ELEGIR, NO
+               DESPUÉS. El "Protocolo al INICIAR" también los mira,
+               pero eso es una red de seguridad, no la decisión: si
+               llegas allí y descubres que faltaba un prerrequisito
+               externo, este paso ya eligió mal y no hay ruta de vuelta
+               definida. Elegir un tema cuyas bases externas no existen
+               es garantizar una clase que se atasca a los diez minutos.
 
          REGLAS DE ESTE PASO (no las rompas):
 
@@ -216,18 +360,39 @@ PASO 5.5 — SELECTOR DE CLASE. Decide QUÉ CLASE toca hoy.
               evalúan contra los hitos del objetivo que le da su
               urgencia efectiva.
 
-           6. CANARIO — ANTES de anunciar la clase elegida, revisa si
-              algún curso está siendo IGNORADO por el sistema:
-                - un curso "cadencia" vencido por más de 3× su
-                  cadencia_dias, o
-                - un curso "hito" cuya condición ya se cumple pero que
-                  sigue sin tocarse (todos sus ultima_sesion en null).
-              Si encuentras alguno, DILO en una línea aunque otra rama
-              haya ganado: "Aviso: simulacros cumple condición hace 3
-              semanas y sigue sin tocarse."
-              Esto existe porque un disparador que falla no avisa de
-              que falló. Es la red de seguridad de este paso entero.
-              Ver también el comando `estado` en _protocolos/utilidades.md.
+           6. PRE-FLIGHT (antes CANARIO) — ANTES de anunciar la clase
+              elegida, CORRE LAS ALERTAS "BARATAS" del bloque de alertas
+              de _protocolos/utilidades.md. Ese archivo las clasifica en
+              una tabla: BARATAS (solo leen JSON y hacen aritmética
+              directa) y CARAS (exigen la cola de viabilidad completa).
+              Aquí corren TODAS las BARATAS, siempre, sin excepción.
+
+              NO LAS COPIES AQUÍ NI LAS REESCRIBAS DE MEMORIA: ábrelas y
+              léelas. Su texto vive en un solo sitio a propósito — dos
+              copias se desincronizan y la que leas será la vieja.
+
+              Reporta CADA una que se cumpla, en una línea, AUNQUE OTRA
+              RAMA YA HAYA GANADO y aunque no tengan que ver con la clase
+              de hoy. No filtres por "relevancia": una alerta que se
+              silencia por parecer fuera de tema es exactamente el fallo
+              que esto existe para atrapar.
+
+              Las CARAS no corren aquí (no caben en un arranque), pero la
+              alerta 15 —que sí es barata— comprueba si la última
+              auditoría venció y te lo dice. Así, no correrlas es
+              VISIBLE en vez de silencioso.
+
+              POR QUÉ ESTE PASO CAMBIÓ (2026-07-18): antes solo cubría
+              dos condiciones (cadencia abandonada e hito sin tocar).
+              Las otras doce alertas existían, estaban bien escritas, y
+              su único invocador era que el usuario escribiera `estado` a
+              mano. En una sesión fría eso no pasa. Caso real: el agente
+              propuso una clase de un objetivo secundario teniendo leído
+              el déficit de 52 h del objetivo prioritario, porque la
+              alerta que lo detecta (la 9) no tenía forma de dispararse.
+              Un disparador que falla no avisa de que falló — y una
+              alerta que solo dispara a mano, en una sesión sin contexto,
+              es decoración con buena letra.
 
            7. PREDICCIÓN DE OLVIDO — si hay un hito no condicional a la
               vista (digamos, dentro de las próximas ~4 semanas), revisa
@@ -270,6 +435,7 @@ PASO 6 — Ejecutar la clase decidida en el PASO 5.5. Antes de arrancar:
 5. **NUNCA te saltes el PASO 5.5**. Aunque el usuario diga "sigamos con aritmética", primero calcula qué clase toca y dilo en una línea. Él puede ignorarte y seguir con lo que quiera — pero tiene que poder decidir con la información delante, no a ciegas.
 6. **REUTILIZA EL PROCEDIMIENTO CANÓNICO, NO IMPROVISES UNO PARALELO.** El usuario casi siempre habla en lenguaje natural, no en comandos exactos. Cuando lo que pide coincide con algo que un comando o protocolo YA define (`estado`, la validación de viabilidad, el handoff, la escalera, la cerradura, etc.), ejecuta **la lógica de ese procedimiento**, no una versión que armas de cero en el momento. Improvisar una lógica paralela es como se cuela el error que el procedimiento ya resuelve — p.ej., calcular la viabilidad "a mano" y volver a jalar cursos base enteros, cuando la cerradura del comando `estado` ya jala solo los temas necesarios. El procedimiento definido es la única fuente de verdad de *cómo* se hace ese cálculo.
    - **Ruteo por intención:** "¿cómo voy?", "¿me alcanza el tiempo?", "¿qué toca hoy?", "¿esto ya lo sé?" → corre la lógica de `estado` / PASO 5.5 / la cola de viabilidad internamente y responde en lenguaje natural. No hace falta que el usuario escriba el alias.
+   - **NO ESTÁS SOLO: existe un agente de agenda externo ("Ángela").** Maneja el calendario real del usuario, las fechas y su disponibilidad semanal por frentes. Si lo que pregunta toca **cuántas horas tiene, qué cabe esta semana, o la fecha de un examen**, eso NO lo resuelves tú solo con `objetivo.json`: **ella manda en fechas y disponibilidad; tú mandas en temario y en lo que de verdad se estudió.** Dilo y ofrece generar el sync. Ver `_protocolos/coordinacion-agenda.md` (PASO 4.5).
    - **Read-only (analizar, mostrar estado, decidir qué clase toca):** hazlo directo y menciona en una línea qué procedimiento usaste ("corrí la viabilidad por hito…").
    - **Con efectos (handoff, cambiar configuración, backup, borrar):** infiere la intención pero **confirma antes de ejecutar el efecto** — la regla de "no dispares un comando con efectos por una coincidencia difusa" sigue en pie (ver PASO 4).
    - El usuario no memorizó los `id` ni los alias; esa es tu chamba. Los comandos existen para que el trabajo esté definido una sola vez, no para obligarlo a hablar en clave.
@@ -334,7 +500,7 @@ Cada `temario.json` declara, a nivel de curso, **cómo se estudia**. El PASO 5.5
 
 **Las condiciones se escriben en prosa pero deben ser ARITMÉTICA VERIFICABLE, no juicio.** Un agente distinto en una sesión distinta tiene que llegar al mismo resultado. Escribe la cuenta exacta: qué se cuenta, sobre qué universo, y el umbral. Mal: `"cuando ya se cubrió lo suficiente"`. Bien: `"cuenta los temas con opcional:false de todos los cursos con modo_estudio.tipo == 'ruta'; si los que están en estado 'completado' son ≥70% de ese total, se cumple"`.
 
-**Ninguna condición es infalible, y por eso existe la regla 5 (CANARIO) del PASO 5.5 y el bloque de alertas del comando `estado`.** El seguro no es un disparador perfecto: es que un disparador que no dispara se vea. Un curso que existe y nunca se estudia es el bug que este proyecto tuvo desde su creación hasta julio de 2026 — y lo que lo hizo grave no fue el disparador ausente, sino que nada lo hacía visible.
+**Ninguna condición es infalible, y por eso existe la regla 6 (PRE-FLIGHT) del PASO 5.5, que corre en cada arranque las alertas BARATAS del bloque de alertas del comando `estado`.** El seguro no es un disparador perfecto: es que un disparador que no dispara se vea. Un curso que existe y nunca se estudia es el bug que este proyecto tuvo desde su creación hasta julio de 2026 — y lo que lo hizo grave no fue el disparador ausente, sino que nada lo hacía visible.
 
 **Para agregar un módulo nuevo** (inglés, lo que sea): se genera su curso normal y se le pone `modo_estudio.tipo: "cadencia"` con su `cadencia_dias`. El PASO 5.5 lo recoge automáticamente. No se toca el algoritmo. Un curso nuevo distinto al objetivo actual pasa por `_protocolos/expansion.md`.
 
@@ -392,6 +558,8 @@ horas_disponibles(hasta_fecha) =
 ```
 
 Un periodo con `"hasta": null` se extiende indefinidamente. Y **todos estos valores son promesas del usuario, no mediciones**: contrástalos con las horas reales de `historial.json` en cuanto haya 3 semanas de datos (ver regla 10).
+
+> **Las horas realmente disponibles no se deciden aquí.** Existe un agente de agenda externo (**"Ángela"**, un proyecto de Claude.ai aparte que maneja el calendario real del usuario) que negocia semana a semana una **banda de horas** con piso y techo, contra el resto de sus frentes (trabajo, universidad, casa). `presupuesto_horas` sigue siendo **la promesa de fondo**; la **asignación operativa de cada semana** sale del sync dominical con ella. **Si hay una banda vigente y difiere del `presupuesto_horas`, manda la banda** — es la que está contrastada contra la realidad del calendario. Ver [`_protocolos/coordinacion-agenda.md`](_protocolos/coordinacion-agenda.md), que dispara el PASO 4.5.
 
 ### El conocimiento se mide en DOS dimensiones, y ninguna es "completado"
 
@@ -956,6 +1124,13 @@ Este proyecto usa un conjunto específico de técnicas pedagógicas con respaldo
   - Para expresiones triviales (un exponente, una raíz, una fracción simple) basta texto plano/Unicode en el chat (`x^2`, `√`, `a/b`, `2^2 = 4`) — ahí no hace falta ni archivo ni widget.
   - Ante la duda de si conviene mostrar el widget: hazlo. El costo de un widget de más es bajo; el costo de una fórmula que el usuario no puede leer en medio de la explicación rompe el flujo de la clase.
   - **Excepción — handoff hacia otro agente (`_protocolos/handoff.md`):** todo lo anterior aplica a esta sesión de Claude Code, que no renderiza LaTeX en el chat. Pero el prompt de SALIDA de un handoff no se queda en este chat: el usuario lo copia y lo pega en otra sesión externa (Claude web/app, ChatGPT, un agente local, etc. — de texto o de voz), que sí renderiza LaTeX nativamente sin necesidad de widget. Por eso, **dentro del bloque copiable del handoff de SALIDA, sí puedes usar LaTeX normal (`$...$`, `$$...$$`)** si el tema lo requiere — ahí no es un error, es el formato correcto para el agente destino. Esta excepción es solo para ese bloque específico; el resto del chat (todo lo que no sea el contenido a copiar) sigue la regla normal.
+- **NUNCA CITES UN IDENTIFICADOR INTERNO SIN DECIR QUÉ ES, EN LA MISMA FRASE.** Vale para todo el vocabulario del proyecto: `alerta 18`, `P8`, `Rama 2C`, `PASO 5.5`, `obj-1`, `mantener()`, `[SIM:]`, nombres de campo. **El usuario no escribió esos nombres: los pidió como funciones.** Recordar el número es trabajo del agente, que tiene los archivos abiertos; el usuario tiene una vida y vuelve a este proyecto cada varios días.
+  - Mal: *"la alerta 18 no dispara; sin el acotado sería P8 puro"*.
+  - Bien: *"la comprobación de cambios sin probar no salta; sin acotarla llenaría la pantalla de avisos, que es como una alerta se acaba ignorando"*.
+  - **Regla práctica:** si borras el identificador y la frase deja de entenderse, la frase estaba mal. El identificador es un añadido opcional entre paréntesis, nunca el sujeto.
+  - Aplica **igual en tablas, resúmenes y avisos de una línea** — que es justo donde más se cuela, porque aprietan por ser breves.
+  - Esta es la misma regla que ya rige para los objetivos (**nunca `obj-1`, siempre "el del examen UNI"**), extendida a todo lo demás. El usuario la pidió el 2026-07-18 tras recibir una tabla entera escrita en identificadores que no podía resolver.
+  - **En los ARCHIVOS del proyecto sí se usan los identificadores** —los lee el agente, que tiene el archivo delante— pero ahí van siempre con su enlace o su nombre completo. La regla estricta es para **lo que le dices al usuario**.
 - Nunca asumas el nivel del usuario — léelo de `progreso.json`, `dificultades.json` y `glosario.json`.
 - Prioriza las dificultades sin resolver si son prerrequisito del tema actual.
 - Si el usuario pregunta "¿por dónde empiezo?", lee todos los `progreso.json` y recomienda según las dependencias declaradas en cada `README.md` de curso.
@@ -973,14 +1148,18 @@ estudios/
 ├── CLAUDE.md                     ← Puntero que Claude Code carga automáticamente al iniciar; solo redirige a README.md (no duplica contenido).
 ├── .gitignore                    ← Ignora _backups/ y archivos temporales típicos
 ├── objetivo.json                 ← Se genera en el setup inicial (no existe al principio). Contiene el presupuesto global de horas y el array "objetivos": cada uno con su "estado" (activo/latente/completado), su "prioridad" ordinal, sus "hitos" y sus "cursos_requeridos" (muchos-a-muchos: un curso puede servir a varios objetivos).
+├── ERRORES.md                    ← Catálogo de los errores que este proyecto YA cometió, por PATRÓN (no por incidente), + el protocolo de cómo documentar uno nuevo. Lo invocan la Capa 1 de capas.md (al detectar un error) y su Capa 2A (antes de crear o modificar una regla). Varios patrones se han cometido dos veces.
+├── VERSIONES.md                  ← Qué tiene el proyecto en cada versión: añadido / cambiado / eliminado, con enlace a los patrones de ERRORES.md que cada versión cerró. Lo escribe el cierre obligatorio de la Capa 2. Existe porque nada invoca a git: el historial de commits guarda el grano fino, este archivo el grano que se usa al decidir.
 ├── configuracion.json            ← Ajustes del proyecto (ej: modo una clase por sesión). Se crea con defaults si falta.
 ├── historial.json                ← Registro APPEND-ONLY de sesiones (fecha/hora, duración real, tipo de clase, curso, temas). Única fuente de verdad sobre cuánto tiempo se estudia; alimenta las validaciones de deadline y el comando `estado`. Nunca se sobreescriben entradas.
 ├── _protocolos/
+│   ├── capas.md                  ← PASO 0: qué releer antes de actuar (capas 1/2/3) + restricciones vigentes
 │   ├── entrevista.md             ← Protocolo del PRIMER arranque (no hay objetivo.json)
 │   ├── expansion.md              ← Protocolo para AGREGAR nuevos objetivos (ya hay uno completo)
 │   ├── handoff.md                ← Protocolo de puente entre agentes/sesiones (texto o voz)
 │   ├── configuracion.md          ← Comandos para activar/desactivar reglas (ej: un tema por sesión)
-│   └── utilidades.md             ← Comandos rápidos: mostrar estado, generar backup
+│   ├── utilidades.md             ← Comandos rápidos: mostrar estado, generar backup
+│   └── coordinacion-agenda.md    ← Coordinación con "Ángela" (agenda externa): marcas, loop dominical, formatos
 ├── _recursos/
 │   └── herramientas.md           ← Guía detallada de herramientas externas (WolframAlpha, Desmos, etc.) — con protocolo de actualización
 ├── _backups/                     ← Backups locales generados con el comando `backup` (opcional; ignorado por git)

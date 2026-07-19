@@ -8,6 +8,12 @@
     "_nota": "Rúbrica de CURSO (capacidades, NO la nota de un tercero). Define qué significa cada nivel EN ESTE CURSO; el criterio_dominio específico de cada tema se deriva de aquí cuando el tema se estudia. Ver 'Reglas de calidad del temario' en el README raíz."
   },
   "_aviso_temario_inferido": "ATENCIÓN: temario INFERIDO, no transcrito. El sílabo oficial de Física III figura 'En proceso' en la web de la EPIM. Se construyó por INFERENCIA POR SÁNDWICH: (1) ABAJO, SÓLIDO — el sílabo REAL de su prerrequisito, Física II (código 101060, ciclo 3, 4 créditos, 17 semanas, docente MSc. Bernabé A. Mejía C.), tiene 5 unidades: I Elasticidad, II Oscilaciones, III Ondas, IV Mecánica de fluidos, V Termodinámica. Su sumilla lo dice literal: 'cuerpos que se deforman por efecto de fuerzas externas, el movimiento oscilatorio, las ondas mecánicas, mecánica de fluidos y termodinámica'. NO hay electricidad ni magnetismo en Física I ni en Física II. (2) ARRIBA, INFERIDO — en la malla, Física III es prerrequisito de '35 Circuitos Eléctricos I' (V ciclo) y por detrás vienen Máquinas Eléctricas, Electrónica y Control; todos necesitan electromagnetismo. Sus sílabos NO están publicados. (3) CONCLUSIÓN: Física III = electricidad y magnetismo. No es conjetura por posición: es lo único del temario clásico de física para ingeniería que queda sin cubrir tras Física I (mecánica) y Física II (ondas/fluidos/termo), y encaja exactamente con lo que exigen los cursos posteriores. OBLIGATORIO: revisar en la SEMANA 1 DE CLASES (10-14 agosto 2026) contra el sílabo real. Lo más probable que cambie: el corte exacto parcial/final y cuánto entra de ecuaciones de Maxwell. Lo menos probable: que no sea electromagnetismo.",
+  "silabo_validado": {
+    "validado": false,
+    "fecha": null,
+    "fuente": null,
+    "_nota": "Interruptor de la alerta 14 del comando `estado`. Ponlo en true, con fecha y fuente, SOLO cuando este temario se haya contrastado contra el sílabo REAL del profesor (semana 1 de clases). Quien DISPARA esa revisión es Ángela, la agenda externa, que tiene el recordatorio de la semana 1 y trae la confirmación por el sync dominical (ver _protocolos/coordinacion-agenda.md). Mientras siga en false y las clases ya hayan empezado, `estado` avisa. Ver _aviso_temario_inferido para qué se infirió y por qué."
+  },
   "modo_estudio": {
     "tipo": "ruta",
     "cadencia_dias": null,

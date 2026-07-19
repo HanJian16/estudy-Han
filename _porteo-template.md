@@ -59,6 +59,24 @@ El modelo viejo medía un tema con un solo eje difuso ("¿está completado?", a 
 
 18. **Reglas de calidad del temario** (checklist): en particular la **regla 4** (prerrequisitos a nivel de tema), la **regla 11** (`modo_estudio` obligatorio) y la **regla 12** (el grafo crece desde la necesidad hacia atrás, parando en lo ya sabido — un curso creado para dar soporte a otro puede tener tres temas y estar perfecto).
 
+19. **CABLEADO DE LAS ALERTAS: invocador automático, no manual** (añadido 2026-07-18 — **el más importante de esta lista para una sesión fría**, y el que sustituye al "CANARIO" que mencionan los items 7 y 14). Porta las cuatro piezas juntas, no sueltas:
+    - **Clasificar cada alerta por coste** en el bloque de alertas de `utilidades.md`: **BARATAS** (solo leen JSON + aritmética directa) vs **CARAS** (exigen la cola de viabilidad). Regla de default: **una alerta sin coste declarado se trata como BARATA**, porque el fallo caro siempre es el detector que no dispara.
+    - **La regla 6 del PASO 5.5 corre TODAS las BARATAS en cada arranque**, automáticamente, y **apunta al bloque de alertas en vez de copiarlo** (dos copias se desincronizan y se lee la vieja). Reporta todas las que se cumplan aunque otra rama haya ganado y aunque no tengan que ver con la clase de hoy.
+    - **Checkpoint fechado** `objetivo.json → ultima_auditoria` (`fecha`, `vence_a_los_dias`), cuyo **único escritor es el comando `estado`**, más una alerta BARATA que avisa cuando vence. Hace que **no correr lo caro sea visible** en vez de silencioso.
+    - **Item nuevo en el checklist de Capa 2A de `capas.md`:** toda regla declara si su invocador **corre solo o depende de que alguien se acuerde**; un invocador manual **NO cuenta como cableado**. Y declara **en qué momento hace falta**, verificando que el protocolo que corre en ese momento la invoque.
+
+    **Por qué (fallo real, 2026-07-18):** este proyecto tenía 14 alertas bien escritas —incluida una que detectaba exactamente el problema que se estaba produciendo— y **las 14 dependían de que el usuario escribiera `estado` a mano.** En una sesión fría eso no ocurre. El agente propuso una clase de un objetivo secundario teniendo leído el déficit de 52 h del prioritario, y el usuario tuvo que sacárselo a la fuerza en dos mensajes. **La lección general: leer los protocolos no basta si la regla que hace falta vive en el protocolo de OTRA acción.** Ese fallo no se arregla leyendo más — se arregla cableando. Un template que porte las alertas sin su cableado automático hereda el bug entero con apariencia de estar completo.
+
+    **Corolario para el ruido:** al cablear alertas al arranque, una alerta que se cumple para muchos cursos a la vez debe **agregarse en una línea**, no enumerarse. Doce líneas entierran a la que importaba y a las dos semanas el usuario salta el bloque — que es cómo una red de seguridad se apaga sola sin que nadie la apague.
+
+20. **EL SELECTOR (PASO 5.5) TRABAJA CON DOS CONJUNTOS, NO CON `cursos_requeridos`** (añadido 2026-07-18, patrón P9). `cursos_requeridos` es solo el **tronco** — los cursos de los que el objetivo *trata*. El árbol real sale de la cerradura. Porta las tres cosas:
+    - **`aprender(objetivo)` = tronco ∪ `cerradura(semilla, objetivo)`** — usando la MISMA función `cerradura()` de la viabilidad, no una copia. Corta en lo que ya está a nivel suficiente. La usan la rama (F) y la viabilidad.
+    - **`mantener(objetivo)` = todos los temas del árbol de dependencias CON escalera armada, SIN cortar por nivel alcanzado.** La usan la rama (C) y la lista de intercalado.
+    - **La urgencia efectiva se calcula POR TEMA, no por curso**, y un tema puede entrar por el tronco o por la cerradura.
+    - La rama (F) comprueba `prerrequisitos_externos` **al elegir**, no después.
+
+    **Por qué (dos bugs encadenados, el mismo día):** *(a)* con el selector leyendo solo `cursos_requeridos`, un objetivo que lista únicamente sus cursos "propios" deja sus prerrequisitos base heredando la urgencia de OTRO objetivo —el que sí los lista— y se posponen justo cuando son urgentes. Peor: si ese otro objetivo pasa a `latente`, desaparecen del selector por completo. *(b)* Al arreglar (a) usando `cerradura()` a secas apareció el segundo: la cerradura **corta en lo ya sabido** —correcto para "¿qué me falta aprender?" y exactamente lo contrario de lo que necesita el repaso, donde lo ya sabido ES el objeto—. Eso dejaba fuera del radar de repaso los temas ya estudiados de los que el objetivo prioritario depende, y se habrían desvanecido en silencio. **Un arreglo destapó el otro: si portas solo `aprender()`, portas el segundo bug.**
+
 ### Qué NO portar (contenido personal, no arquitectura)
 
 - Ninguno de los cursos reales (`01-...` a `13-...`): sus `temario.json`, `progreso.json`, `glosario.json`, `dificultades.json`, `clases/`.

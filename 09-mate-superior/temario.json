@@ -8,6 +8,12 @@
     "_nota": "Rúbrica de CURSO (capacidades, NO la nota de un tercero). Define qué significa cada nivel EN ESTE CURSO; el criterio_dominio específico de cada tema se deriva de aquí cuando el tema se estudia. Ver 'Reglas de calidad del temario' en el README raíz."
   },
   "_aviso_temario_inferido": "ATENCIÓN: este temario es una INFERENCIA, no una transcripción. El sílabo oficial de Matemática Superior figura 'En proceso' en la web de la EPIM y no está publicado. Se construyó por INFERENCIA POR SÁNDWICH con pan de abajo firme y pan de arriba débil: (1) ABAJO, sólido — el sílabo REAL de su prerrequisito, Matemática Aplicada (código 100957, ciclo 3), dice exactamente dónde termina el alumno: funciones de varias variables, integrales múltiples, EDOs de primer orden y EDOs de orden superior con variación de parámetros. NO cubre Laplace, Fourier, EDPs ni variable compleja. (2) ARRIBA, inferido — Matemática Superior es prerrequisito de '33 Ingeniería de Procesos', y detrás vienen Procesamiento Digital de Señales, Control I y Control II; esos cursos necesitan Laplace y Fourier sí o sí. El sílabo de esos cursos NO está publicado, así que ese lado se apoya en el grafo de la malla y en el estándar de la disciplina, no en un documento. (3) El usuario confirmó el 2026-07-16 que el contenido inferido 'encaja' con lo que le han dicho. OBLIGATORIO: revisar este temario en la SEMANA 1 DE CLASES (10-14 de agosto de 2026), cuando el profesor presente el sílabo real, y corregir lo que no cuadre. Lo más probable que cambie: el orden de las unidades y el corte exacto parcial/final. Lo menos probable: que Laplace y Fourier no estén.",
+  "silabo_validado": {
+    "validado": false,
+    "fecha": null,
+    "fuente": null,
+    "_nota": "Interruptor de la alerta 14 del comando `estado`. Ponlo en true, con fecha y fuente, SOLO cuando este temario se haya contrastado contra el sílabo REAL del profesor (semana 1 de clases). Quien DISPARA esa revisión es Ángela, la agenda externa, que tiene el recordatorio de la semana 1 y trae la confirmación por el sync dominical (ver _protocolos/coordinacion-agenda.md). Mientras siga en false y las clases ya hayan empezado, `estado` avisa. Ver _aviso_temario_inferido para qué se infirió y por qué."
+  },
   "modo_estudio": {
     "tipo": "ruta",
     "cadencia_dias": null,

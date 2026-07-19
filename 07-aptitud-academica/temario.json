@@ -13,7 +13,8 @@
     "prioridad": 4,
     "condicion": null,
     "condicion_urgente": null,
-    "nota": "Módulo de dosis pequeñas y constantes: el razonamiento se entrena con práctica variada y frecuente, no con bloques largos de teoría. Cadencia de 3 días ≈ 2.3 sesiones por semana, que es lo que pide el README de este curso. Ver también la nota general del curso sobre no profundizar humanidades más de lo que el examen exige."
+    "nota": "Módulo de dosis pequeñas y constantes: el razonamiento se entrena con práctica variada y frecuente, no con bloques largos de teoría. Cadencia de 3 días ≈ 2.3 sesiones por semana. OJO: este curso NO compite ahora mismo — su único objetivo (obj-1, examen UNI) está en estado 'latente' desde el 2026-07-18, así que la rama D del PASO 5.5 no lo ve. Cuando obj-1 despierte (al cerrar el semestre), esta cadencia entra en vigor tal cual: para entonces la UNI será prioridad 1 con ~11 semanas hasta el examen, y 3 días es el ritmo correcto. Ver también la nota general del curso sobre no profundizar humanidades más de lo que el examen exige.",
+    "_nota_cadencia": "El 2026-07-18 esta cadencia se relajó a 7 días para liberar horas al parcial, y ese mismo día se REVIRTIÓ a 3 al poner obj-1 en latente: la latencia hace el mismo trabajo de forma más limpia (el curso entero deja de competir, no solo más despacio). Mantener las dos palancas a la vez era tener dos mecanismos para un mismo fin — el tipo de duplicación que se desincroniza. Si algún día se reactiva obj-1 y hace falta ceder horas SIN apagarlo entero, la palanca de relajar cadencia_dias sigue disponible: ver 'Ceder desde el objetivo menos prioritario' en el README y la alerta 9 de _protocolos/utilidades.md."
   },
   "bibliografia": [
     {
