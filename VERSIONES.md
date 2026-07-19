@@ -34,6 +34,21 @@ Nació el 2026-07-18: la Rama 2C se saltó cuatro veces en un día pese a estar 
 
 ---
 
+## v3.2 — El plan del motor · 2026-07-19
+
+> Sesión de consulta con Fable sobre si "migrar los protocolos a código" era el mejor camino. Veredicto: la dirección es correcta, pero al plan le faltaban los **hooks de Claude Code** (SessionStart/PostToolUse — corren en la máquina, fuera del agente, en cada sesión, no solo al commitear) y le sobraba alcance ("migrar todo" → núcleo de ~6 módulos + poda de prosa). Salió el paso a paso ejecutable completo, pensado para que lo ejecute Sonnet 5/Opus 4.8 un paso por sesión sin contexto previo.
+
+**Añadido**
+- **`PLAN-MOTOR.md`**: las 5 fases de la migración (verificador+hooks, alertas, grafo/selector/viabilidad, poda, backlog) con reglas de ejecución, criterios de aceptación por comando, tests de regresión atados a las cifras reales documentadas (49 temas base, 65 del parcial, ~215 h, déficit ~44 h) y modelo recomendado por paso. Detalla la Prioridad 1 de `PENDIENTE.md` sin duplicar su porqué. [SIM: 2026-07-19]
+
+**Cambiado**
+- **`PENDIENTE.md`** apunta al plan; matiza el "después del semestre" (Fases 0–2 adelantables en huecos) y marca el hook de git como PLANIFICADO (paso 1.3 del plan). [SIM: no aplica — punteros y estado, sin lógica que ejecutar]
+- **`CLAUDE.md`** corregido: decía que `PENDIENTE.md` quedaba "por una sola cosa" (el porteo) cuando contenía la Prioridad 1 entera desde el 18-jul. [SIM: no aplica — corrección de texto; el error está documentado como caso nuevo del patrón de arrastre]
+
+**Errores:** nueva instancia del patrón **P9** en `ERRORES.md` (el puntero de `CLAUDE.md` quedó viejo al modificar `PENDIENTE.md`; lo cazó la revisión completa, no un mecanismo del proyecto). Y el simulacro del propio plan cazó dos fallos del plan antes de darse por hecho: una cifra en prosa equivocada (150 temas donde son 160) y un falso positivo del futuro detector de punteros (ejemplos entre backticks) — ambos corregidos en el mismo turno.
+
+---
+
 ## v3.1 — El verificador · 2026-07-18
 
 > v3 construyó el ciclo; v3.1 lo hace **comprobable sin depender de la memoria de nadie**. Salió entera de que el usuario rechazara el arreglo anterior: *"si el detector es que yo note que falta la tabla, el verificador es mi memoria — y el proyecto existe porque la memoria es frágil."*

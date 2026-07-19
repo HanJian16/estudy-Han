@@ -12,6 +12,8 @@
 
 > **Decidido por el usuario el 2026-07-18.** Se ejecutará **después del semestre** (~diciembre 2026) o cuando haya hueco. **Muy probablemente se desarrolle con otro agente (Fable), no con Claude Code** — por las limitaciones que se documentan más abajo, que son la razón de existir de este apartado.
 >
+> **ACTUALIZACIÓN 2026-07-19 — ya existe el paso a paso ejecutable: [`PLAN-MOTOR.md`](PLAN-MOTOR.md).** Lo generó Fable tras una revisión completa del proyecto; la ejecución de cada paso será con Sonnet 5 / Opus 4.8 siguiendo ese plan, un paso por sesión. Dos matices que el plan incorpora sobre lo escrito aquí: (1) además del hook de git, existen **hooks de Claude Code** (SessionStart, PostToolUse) que corren en la máquina, fuera del agente, en cada sesión — son el enforcement primario, no solo el commit; (2) el "después del semestre" se acotó: las **Fases 0–2** del plan (verificador + hooks + alertas) son baratas, protegen la expansión —donde el proyecto se rompe— y pueden adelantarse en huecos; las Fases 3–5 (grafo, selector, viabilidad, poda) siguen para después del semestre. **Este apartado conserva el PORQUÉ y el inventario; el CÓMO vive solo en el plan** — no los dupliques.
+>
 > **Este documento está escrito para leerse en frío, sin nada del contexto de la sesión que lo originó.** Si eres un agente que llega aquí sin haber vivido el 18-jul-2026, todo lo que necesitas está en este texto. No hay que reconstruir nada de ninguna conversación.
 
 ## Por qué. La evidencia, no la opinión
@@ -146,7 +148,7 @@ Regla de migración: **cuando un procedimiento pasa a función, su descripción 
 - **Rápido.** Un hook lento se desactiva a la semana.
 - **Escrito en Python** (ya está disponible en la máquina y es lo que se ha usado para todas las verificaciones de este proyecto).
 
-**Estado: NO EMPEZADO.** El usuario lo pidió expresamente y aprobó su prioridad; solo falta escribirlo.
+**Estado: PLANIFICADO.** El usuario lo pidió expresamente y aprobó su prioridad. Es el **Paso 1.3 de [`PLAN-MOTOR.md`](PLAN-MOTOR.md)** (y los hooks de Claude Code, que este apartado no contemplaba, son su Paso 1.4).
 
 ---
 
@@ -175,7 +177,7 @@ Lo que falta es una **auditoría TÉCNICA**: revisar que el proyecto **como sist
 
 **Y el problema de fondo que esto destapa: las decisiones arbitrarias acumuladas.** El usuario lo señaló el 2026-07-18: *"¿cuántas decisiones arbitrarias habrás tomado en sesiones anteriores que ya olvidaste, y qué errores salieron de ahí?"* Es la pregunta correcta y nadie la puede contestar hoy — precisamente porque no había registro. Desde ahora `VERSIONES.md` y `ERRORES.md` lo dejan por escrito, pero **todo lo anterior a v3 es opaco**: hay criterios metidos en los archivos sin que conste quién los decidió, por qué, ni contra qué alternativa. La auditoría técnica es la vía para sacarlos a la luz uno a uno y validarlos o tirarlos.
 
-**Estado: NO EMPEZADA.** Decisión explícita del usuario: dejarla anotada, no desarrollarla ahora.
+**Estado: NO EMPEZADA.** Decisión explícita del usuario: dejarla anotada, no desarrollarla ahora. Recogida como item del backlog (Fase 5) de [`PLAN-MOTOR.md`](PLAN-MOTOR.md).
 
 ---
 

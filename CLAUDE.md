@@ -14,7 +14,7 @@ El `README.md` empieza con un bloque titulado **"LÍMITES REALES DE ESTE PROYECT
 
 El núcleo del proyecto se rediseñó al modelo de dos dimensiones (profundidad + durabilidad) y **ese rediseño ya está completo**: el `README.md` NO se contradice a sí mismo y es la única fuente de verdad viva. Puedes seguirlo directamente.
 
-Queda [`PENDIENTE.md`](PENDIENTE.md) por **una sola cosa** fuera del flujo normal: portar la arquitectura al repo del template (prompt en `_porteo-template.md`). Léelo si vas a trabajar en eso; para una sesión de estudio normal, el `README.md` basta.
+Fuera del flujo normal quedan **dos frentes**, ambos en [`PENDIENTE.md`](PENDIENTE.md): (1) la **Prioridad 1** — migrar la contabilidad del proyecto a un motor de código con hooks; su paso a paso ejecutable vive en [`PLAN-MOTOR.md`](PLAN-MOTOR.md) y solo se trabaja cuando el usuario pide expresamente "ejecuta el paso X.Y del plan del motor" — y (2) portar la arquitectura al repo del template (prompt en `_porteo-template.md`). Para una sesión de estudio normal, el `README.md` basta.
 
 La coordinación con la agenda externa ("Ángela") vive en [`_protocolos/coordinacion-agenda.md`](_protocolos/coordinacion-agenda.md) y la dispara el **PASO 4.5** del `README.md`. No necesitas leerla salvo que toque un sync.
 
