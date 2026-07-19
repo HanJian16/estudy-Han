@@ -40,6 +40,7 @@ Nació el 2026-07-18: la Rama 2C se saltó cuatro veces en un día pese a estar 
 
 **Añadido**
 - **`PLAN-MOTOR.md`**: las 5 fases de la migración (verificador+hooks, alertas, grafo/selector/viabilidad, poda, backlog) con reglas de ejecución, criterios de aceptación por comando, tests de regresión atados a las cifras reales documentadas (49 temas base, 65 del parcial, ~215 h, déficit ~44 h) y modelo recomendado por paso. Detalla la Prioridad 1 de `PENDIENTE.md` sin duplicar su porqué. [SIM: 2026-07-19]
+- **Paso 3.6 del plan — auditoría de cierre de Fase 3, reservada a Fable 5** (decisión del usuario, mismo día): re-derivación independiente de las cifras, tests tratados como sospechosos (¿alguien los ajustó para que pasen?), grep de prosa superviviente, prueba de sesión fría con hooks, y barrido de punteros semánticos. Escrita para invocarse en frío con "toca la auditoría de Fase 3 del plan del motor". [SIM: 2026-07-19]
 
 **Cambiado**
 - **`PENDIENTE.md`** apunta al plan; matiza el "después del semestre" (Fases 0–2 adelantables en huecos) y marca el hook de git como PLANIFICADO (paso 1.3 del plan). [SIM: no aplica — punteros y estado, sin lógica que ejecutar]

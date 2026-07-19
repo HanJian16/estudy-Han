@@ -29,6 +29,7 @@ Marca cada paso al cerrarlo: `[x]`, fecha y hash corto del commit. **Prohibido e
 | 3.3 | `selector.py` — el PASO 5.5 completo | Opus 4.8 | `[ ]` |
 | 3.4 | `viabilidad.py` — cola con prioridad + alertas CARAS | Opus 4.8 | `[ ]` |
 | 3.5 | Poda de la prosa algorítmica del README | Opus 4.8 | `[ ]` |
+| 3.6 | Auditoría de cierre de Fase 3 | **Fable 5** | `[ ]` |
 | 4.1 | Poda de los meta-protocolos (capas, simulacro) | Opus 4.8 | `[ ]` |
 | 4.2 | Decisión de porteo del motor al template | — (usuario) | `[ ]` |
 
@@ -101,7 +102,7 @@ _motor/
 
 - **Sonnet 5** por defecto: los pasos marcados Sonnet están especificados hasta el nivel de comando y no exigen decisiones de diseño.
 - **Opus 4.8 (effort high)** en los pasos marcados Opus: portar la lógica más delicada (grafo, selector, viabilidad) y decidir qué prosa muere. Ahí una lectura superficial reintroduce los bugs que este proyecto ya pagó.
-- **Fable no hace falta para ejecutar.** Si el usuario quiere, una única revisión con Fable al cerrar la Fase 3 (el punto de más riesgo) es el mejor uso de sus tokens.
+- **Fable 5 no ejecuta pasos: audita.** Su único punto en el plan es el **Paso 3.6** (auditoría de cierre de Fase 3, el punto de más riesgo). Decidido por el usuario el 2026-07-19.
 
 ---
 
@@ -316,6 +317,22 @@ Reglas de implementación:
 6. El **aviso de LÍMITES REALES** del inicio del README se actualiza: el punto 1 ("nada obliga al agente") se matiza — el arranque, la validación de JSON y las alertas ya corren fuera del agente; lo que sigue siendo prosa (juicio pedagógico, protocolos de cierre) sigue bajo el aviso. **No borres el aviso**: acótalo a lo que sigue siendo verdad.
 
 **Criterio de aceptación:** además del verificador limpio, una prueba de sesión fría: abrir una sesión nueva y pedir "¿qué clase toca hoy?" — debe correr el selector y pegar su salida, no improvisar el cálculo.
+
+---
+
+## Paso 3.6 — Auditoría de cierre de Fase 3  `[ ]`  (Fable 5, ~1 sesión — decidido por el usuario el 2026-07-19)
+
+**Quién y cuándo:** la ejecuta **Fable 5**, en una sesión propia, cuando los pasos 3.1–3.5 estén marcados. Es el único punto del plan reservado para Fable: la Fase 3 concentra el riesgo (la lógica más delicada + la poda más grande) y el usuario prefiere gastar aquí sus tokens de Fable en vez de en la ejecución. El prompt del usuario puede ser tan corto como *"toca la auditoría de Fase 3 del plan del motor"* — este apartado es todo el contexto que la sesión necesita.
+
+**Qué NO es:** releer el código y opinar que se ve bien. La lección fundacional de este proyecto (aviso del README, 2026-07-18) es que la revisión por lectura no caza esta clase de errores. Todo veredicto de esta auditoría se sostiene en una **ejecución pegada** o en una **re-derivación independiente**, nunca en "lo revisé".
+
+**Qué hace, en orden:**
+1. **Re-derivación independiente:** recalcular desde los JSON crudos (sin usar `_motor/`) al menos: el tamaño de la cerradura del objetivo prioritario, el conjunto `mantener()`, la clase que el selector debería proponer hoy, y el CABE/NO CABE del hito más cercano. Comparar contra la salida de los módulos. Toda divergencia es un hallazgo.
+2. **Revisar los tests como sospechosos, no como evidencia:** ¿los tests de regresión siguen anclados a los números documentados o alguien los "ajustó para que pasen" (violando la regla 3 de ejecución)? Revisar el historial de git de `_motor/tests/` buscando cambios de cifras esperadas.
+3. **Verificar que la prosa murió de verdad:** grep de los algoritmos podados (ramas del selector, pseudocódigo de la cola, CUENTA de alertas) sobre TODO el repo. Si una descripción algorítmica sobrevive en un `.md` además del código, es la divergencia anunciada — hallazgo.
+4. **Prueba de sesión fría real:** abrir una sesión nueva de Claude Code (el usuario la abre; Fable dicta qué pedir): ¿el bloque del verificador aparece inyectado al arranque? ¿Ante "¿qué clase toca hoy?" el agente corre `python -m _motor.selector` y pega su salida, o improvisa el cálculo en prosa? Lo segundo es fallo de cableado aunque el número salga igual.
+5. **Barrido de dependencias silenciosas** (el patrón de "quién más leía esto"): por cada sección podada en 3.5 y 2.3, ¿qué archivos apuntaban a ella y adónde apuntan ahora? `python -m _motor.verificar` limpio es necesario pero no suficiente — los punteros semánticos ("ver la sección X") no los caza un script.
+6. **Cierre:** cada hallazgo se documenta en `ERRORES.md` ANTES de arreglarse (procedimiento de ese archivo); el reporte final lista hallazgos con severidad y qué paso los introdujo; la entrada de `VERSIONES.md` de esta auditoría enlaza a los patrones tocados. Si no hay hallazgos, decirlo explícitamente con la evidencia de cada comprobación — "sin hallazgos" es un resultado; no decir nada no lo es.
 
 ---
 
