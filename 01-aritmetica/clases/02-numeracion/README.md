@@ -124,3 +124,23 @@ Ninguna dificultad nueva del usuario esta sesión (los tropiezos de los ejercici
 
 ## Próximos pasos (sesión 2 — cierre del tema)
 `02-numeracion` completado. Siguiente tema en la ruta según `temario.json`: `03-cuatro-operaciones` (prerrequisito `02-numeracion` ya cumplido). Por estar activo el modo "un tema por sesión", abrir una sesión nueva para arrancarlo.
+
+---
+
+# Repaso — 2026-07-22
+
+**Tipo:** repaso (rama C del PASO 5.5, sesión dedicada de repaso mezclado sobre 5 temas de aritmética vencidos). No cuenta como sesión nueva de temario — `sesiones_dedicadas` sin cambio.
+
+## Ejercicio trabajado
+> Cita textual, sin resumir ni parafrasear.
+
+1. **Enunciado:** Halla el valor de $a+b$ si se cumple que $\overline{ab}_{(9)}=\overline{ba}_{(7)}$.
+   **Respuesta del usuario (textual, transcripción de voz):** "eso sí recordaba, tenía que pasarlos a base diez [...] lo que me quedó que nueve a más b, es igual a siete b más a, y haciendo la resolución, me sale que a es seis y b es ocho, con una suma de catorce [...] fue porque, pues, haciendo la igualdad me salía que Ochoa es igual a seis b, entonces era seis y b era ocho, pero revisando también podrían ser que a es tres y b es cuatro [...] pongo ambas por si acaso."
+   **Anotación del agente:** el álgebra fue perfecta (9a+b=7b+a → 4a=3b → a=3t, b=4t), y encontró correctamente las dos soluciones de la familia (t=1 y t=2). El error fue no filtrar la segunda por validez de cifra: en $\overline{ba}_{(7)}$ tanto $a$ como $b$ deben ser cifras de base 7 (máximo 6), así que $b=8$ (de t=2) es inválido. Única respuesta correcta: $a+b=7$ (de $a=3,b=4$). Mismo patrón de `dif-02-04` (2026-07-02): no aplicar la regla de cifra máxima reflexivamente sobre una solución concreta, aunque la regla se sepa en abstracto. Registrado como `dif-02-05`.
+   **Verificación posterior (pregunta de control):** "si obtengo una cifra que vale ocho y el número completo está inscrito en base seis [...] eso indicaría que o resolví el problema mal o que el problema está mal planteado, porque no es posible que haya una cifra de valor superior al valor de la base." — correcto y sin ayuda; confirma que `dif-02-05` quedó resuelta en la misma sesión.
+
+## Dudas / puntos flojos
+`dif-02-05` (nueva, resuelta con verificación en la misma sesión): ver arriba. También el usuario reportó haber releído brevemente el desarrollo de descomposición polinómica de este tema (dudaba si la ecuación debía plantearse "por la propia base" o por base 10) antes de resolver — confirmó que era por la propia base, que es lo correcto.
+
+## Repaso intercalado (registro cruzado, ver también los otros 4 README de esta misma sesión)
+`02-numeracion` — **resultado:** mal (cifra inválida no filtrada) — nivel_repaso: 3 → 1, próximo: 2026-07-23.

@@ -393,3 +393,19 @@ N = 138"
 Hilo del inverso modular cerrado — el usuario se sintió sólido tras la ronda de confirmación (3 ejercicios independientes correctos: n=3 para inverso de 4 mod 11, N=40 y N=138 en dos problemas de aplicación completos). No queda pendiente nada de `04-divisibilidad` para avanzar en el temario.
 
 **Marcado explícitamente por el usuario para repaso espaciado futuro** (lo sintió "lógicamente confuso" pese a resolverlo bien, y no quiere que se olvide): revisar en una sesión futura — sin apoyo paso a paso — un problema nuevo de combinación de congruencias con coeficiente≠±1, y opcionalmente el Feynman completo que no se llegó a hacer en esta sesión. Buen candidato para repasar cuando `dificultades.json` indique que pasaron algunos días desde `fecha_ultimo_repaso` de `dif-04-03` (2026-07-09), según el método de Repetición Espaciada del proyecto.
+
+---
+
+# Repaso — 2026-07-22
+
+**Tipo:** repaso (rama C del PASO 5.5, sesión dedicada de repaso mezclado sobre 5 temas de aritmética vencidos). No cuenta como sesión nueva de temario — `sesiones_dedicadas` sin cambio.
+
+## Ejercicio trabajado
+> Cita textual, sin resumir ni parafrasear.
+
+1. **Enunciado:** ¿Cuál es el menor número de tres cifras que al dividirse entre 7 deja residuo 3 y al dividirse entre 5 deja residuo 2?
+   **Respuesta del usuario (textual, transcripción de voz):** "La división entre cinco me da una idea. Si para que quede residuo dos, el tercer número [...] debe ser o cero o cinco, para que sea exacta, pero como queda dos, debería ser o dos o siete [...] Luego, simplemente haces el cálculo rápido [...] siete por quince, ciento cinco, luego ciento doce, etcétera [...] El primer número que cumple es ciento veintidós, porque menos tres con el tres de resto queda ciento diecinueve, que es múltiplo de siete, y ciento veintidós te deja un residuo de dos cuando lo divides entre cinco."
+   **Anotación del agente:** correcto (122) y con método válido (filtrar por última cifra según el residuo de 5, luego tantear múltiplos de 7 cercanos). El usuario reportó haber consultado el criterio de divisibilidad por 7 durante el ejercicio por curiosidad (confundía si era igual al de 11 y 13), pero él mismo identificó — correctamente — que no lo necesitaba para este problema: la palanca real fue el módulo 5, resuelto sin apoyo. Se cuenta como resolución limpia.
+
+## Repaso intercalado (registro cruzado, ver también los otros 4 README de esta misma sesión)
+`04-divisibilidad` — **resultado:** bien (consulta tangencial, no usada en la resolución real) — nivel_repaso: 3 → 4, próximo: 2026-08-05.

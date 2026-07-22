@@ -48,6 +48,17 @@ Nació el 2026-07-18: la Rama 2C se saltó cuatro veces en un día pese a estar 
 
 ---
 
+## v3.4 — Alerta 9a mira la cerradura, no solo el tronco · 2026-07-22
+
+> Detectado en el PRE-FLIGHT de una sesión normal, antes de aplicarlo (no después): con obj-2 activo y `01-aritmetica` ganando el selector por rama F, la alerta 9a —tal como estaba escrita— habría dicho que la clase "sirve solo a un objetivo secundario" porque `01-aritmetica` no aparece en el `cursos_requeridos` de obj-2. Falso: entra por la cerradura (`base_por_cierre`) y sostiene a obj-2 directamente. El usuario pidió priorizar el arreglo porque, sin él, dispararía en cada sesión de base mientras el semestre siga en su ventana de vacaciones — no es un caso raro, es el caso normal de las próximas semanas.
+
+**Cambiado**
+- **`_protocolos/utilidades.md`, alerta 9a**: la condición de "no sirve a P" ya no mira solo `cursos_requeridos` (el tronco); ahora exige además que el curso esté fuera de `aprender(P) ∪ mantener(P)` (la cerradura) antes de disparar. [SIM: 2026-07-22]
+
+**Errores:** nueva instancia de **P9** en `ERRORES.md` (cursos_requeridos vs. cerradura volvió a responder la pregunta equivocada, esta vez dentro de una alerta en vez del selector).
+
+---
+
 ## v3.2 — El plan del motor · 2026-07-19
 
 > Sesión de consulta con Fable sobre si "migrar los protocolos a código" era el mejor camino. Veredicto: la dirección es correcta, pero al plan le faltaban los **hooks de Claude Code** (SessionStart/PostToolUse — corren en la máquina, fuera del agente, en cada sesión, no solo al commitear) y le sobraba alcance ("migrar todo" → núcleo de ~6 módulos + poda de prosa). Salió el paso a paso ejecutable completo, pensado para que lo ejecute Sonnet 5/Opus 4.8 un paso por sesión sin contexto previo.

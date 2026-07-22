@@ -396,6 +396,17 @@
     "fecha_ultimo_uso": "2026-07-10"
   },
   {
+    "termino": "Cantidad de divisores de N que son múltiplos de m",
+    "definicion": "Para contar cuántos divisores de N son múltiplos de un m que divide a N, NO basta con aplicar la regla de (exponente+1) sobre los primos de m — eso ignora la libertad de incluir cualquier potencia de los primos de N que no están en m. La técnica correcta: dividir N entre m primero, y contar los divisores de ese cociente N/m con la regla normal.",
+    "curso": "Aritmética",
+    "tema_id": "05-primos-mcd-mcm",
+    "ejemplo": "Divisores de 3600 múltiplos de 15: 3600=2⁴×3²×5², 3600/15=240=2⁴×3×5 → (4+1)(1+1)(1+1)=20 divisores (no 9, que sale de aplicar la regla solo sobre 3 y 5 e ignorar el factor libre 2⁴).",
+    "terminos_relacionados": ["cantidad de divisores (regla)", "descomposición canónica"],
+    "nivel_dominio": "reconoce",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
     "termino": "Fracción equivalente",
     "definicion": "Fracciones que representan el mismo valor: son múltiplos de una misma fracción base (numerador y denominador multiplicados por el mismo factor), o dan el mismo resultado al simplificarse por separado.",
     "curso": "Aritmética",
@@ -735,5 +746,137 @@
     "nivel_dominio": "solido",
     "fecha_aprendido": "2026-07-11",
     "fecha_ultimo_uso": "2026-07-11"
+  },
+  {
+    "termino": "Tanto por ciento (%)",
+    "definicion": "Fracción de denominador 100. x% de A = (x/100) × A. Equivale a la fracción x/100 o al decimal x÷100.",
+    "curso": "Aritmética",
+    "tema_id": "09-porcentajes",
+    "ejemplo": "40% de 4700 = (40/100) × 4700 = 1880. Y 40% = 40/100 = 2/5 = 0.4.",
+    "terminos_relacionados": ["multiplicador porcentual (operador)", "cuarta proporcional"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Multiplicador porcentual (operador)",
+    "definicion": "Forma directa de aplicar un aumento o descuento sin pasar por dos pasos: aumento de x% → multiplicador (1+x/100); descuento de x% → multiplicador (1−x/100). Se multiplica el total por ese número directamente.",
+    "curso": "Aritmética",
+    "tema_id": "09-porcentajes",
+    "ejemplo": "Aumento de 15% sobre 200: 200×1.15=230. Descuento de 15% sobre 200: 200×0.85=170.",
+    "terminos_relacionados": ["tanto por ciento (%)", "porcentajes sucesivos"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Porcentajes sucesivos",
+    "definicion": "Cuando se aplican dos o más aumentos/descuentos uno tras otro (no simultáneos), cada uno actúa sobre el resultado del anterior, no sobre el valor original — por eso los porcentajes NO se suman ni se restan entre sí. El efecto neto se calcula multiplicando los operadores (multiplicadores) entre sí.",
+    "curso": "Aritmética",
+    "tema_id": "09-porcentajes",
+    "ejemplo": "100 sube 20% y luego baja 20%: NO vuelve a 100 (da 96), porque 1.20×0.80=0.96, no 1. Dos descuentos sucesivos de 10% y 20%: 0.90×0.80=0.72 → equivalen a un descuento único de 28%, no de 30%.",
+    "terminos_relacionados": ["multiplicador porcentual (operador)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Precio de costo, de lista y de venta",
+    "definicion": "Precio de costo (Pc): lo que cuesta comprar o producir el artículo. Precio de lista (Pl): el precio marcado, ANTES de cualquier descuento. Precio de venta (Pv): lo que realmente se cobra, DESPUÉS de aplicar el descuento sobre el precio de lista.",
+    "curso": "Aritmética",
+    "tema_id": "09-porcentajes",
+    "ejemplo": "Un artículo cuesta 150 (Pc). Se marca en 180 con 20% de ganancia incluida (Pl=180). Con 10% de descuento sobre ese precio marcado, se vende en 162 (Pv=162).",
+    "terminos_relacionados": ["ganancia y pérdida", "multiplicador porcentual (operador)"],
+    "nivel_dominio": "vacilante",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Ganancia y pérdida (y % de ganancia sobre el costo)",
+    "definicion": "Ganancia = Pv − Pc (si el resultado es negativo, es pérdida). % de ganancia sobre el costo = (Ganancia/Pc) × 100.",
+    "curso": "Aritmética",
+    "tema_id": "09-porcentajes",
+    "ejemplo": "Se compra en 60 y se vende en 75: ganancia = 15, %ganancia sobre costo = (15/60)×100 = 25%.",
+    "terminos_relacionados": ["precio de costo, de lista y de venta"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Promedio Ponderado (PP)",
+    "definicion": "Generalización del promedio simple donde cada valor tiene un peso distinto: PP = (Σ peso·valor) / (Σ peso). El promedio aritmético normal es el caso particular donde todos los pesos valen 1.",
+    "curso": "Aritmética",
+    "tema_id": "10-promedios-mezclas",
+    "ejemplo": "Práctica (peso 1) = 14, examen (peso 2) = 18 → PP = (14×1 + 18×2)/(1+2) = 50/3 ≈ 16.67.",
+    "terminos_relacionados": ["reparto proporcional", "promedio aritmético (MA)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Promedio Aritmético (MA)",
+    "definicion": "MA = (a1+a2+...+an)/n. Es el que preserva la SUMA: si reemplazas todos los valores por MA, la suma total no cambia. Caso particular del promedio ponderado con todos los pesos iguales.",
+    "curso": "Aritmética",
+    "tema_id": "10-promedios-mezclas",
+    "ejemplo": "MA de 40 y 60 = 50; 40+60=100 y 50+50=100 (la suma se preserva).",
+    "terminos_relacionados": ["promedio ponderado (pp)", "promedio geométrico (mg)", "promedio armónico (mh)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Promedio Geométrico (MG)",
+    "definicion": "MG = ⁿ√(a1·a2·...·an). Preserva el PRODUCTO: útil cuando los valores son multiplicadores/tasas de crecimiento sucesivas (ver porcentajes sucesivos) y se busca una tasa constante equivalente que reproduzca el mismo resultado final tras n periodos.",
+    "curso": "Aritmética",
+    "tema_id": "10-promedios-mezclas",
+    "ejemplo": "Capital crece 10% un año (×1.10) y 20% el siguiente (×1.20): producto total=1.32. MG=√1.32≈1.1489 → tasa anual equivalente ≈14.89%, NO el 15% del promedio aritmético de 10% y 20%.",
+    "terminos_relacionados": ["porcentajes sucesivos", "multiplicador porcentual (operador)", "promedio aritmético (ma)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Promedio Armónico (MH)",
+    "definicion": "MH = n / (1/a1 + 1/a2 + ... + 1/an). Preserva el TOTAL de la 'otra' cantidad cuando el numerador de una razón se mantiene fijo entre los casos y lo que varía es la tasa (ej. misma distancia a velocidades distintas → preserva el tiempo total; mismo gasto en soles a precios distintos → preserva el gasto total). NO aplica a mezclas donde las CANTIDADES son distintas y fijas de antemano — eso es promedio ponderado simple.",
+    "curso": "Aritmética",
+    "tema_id": "10-promedios-mezclas",
+    "ejemplo": "Ida a 40 km/h, vuelta a 60 km/h, misma distancia: MH=2/(1/40+1/60)=48 km/h (no 50, el MA). Gastas S/100 dos veces en gasolina a S/4/L y S/5/L: precio promedio real = MH(4,5) = 40/9 ≈ 4.44 soles/L (no 4.50).",
+    "terminos_relacionados": ["promedio aritmético (ma)", "promedio geométrico (mg)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Propiedad MA ≥ MG ≥ MH",
+    "definicion": "Para cualquier conjunto de valores positivos no todos iguales, el promedio aritmético siempre es mayor que el geométrico, que a su vez es siempre mayor que el armónico. Se igualan los tres solo cuando todos los valores son iguales entre sí.",
+    "curso": "Aritmética",
+    "tema_id": "10-promedios-mezclas",
+    "ejemplo": "Con 40 y 60: MA=50, MG≈48.99, MH=48. Cumple 50≥48.99≥48.",
+    "terminos_relacionados": ["promedio aritmético (ma)", "promedio geométrico (mg)", "promedio armónico (mh)"],
+    "nivel_dominio": "reconoce",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Precio medio en mezclas",
+    "definicion": "Al mezclar cantidades de un mismo tipo de producto (ej. café) a precios distintos, el precio de venta que no genera ganancia ni pérdida es el promedio ponderado: (Σ cantidad·precio) / (Σ cantidad). Cuidado: el divisor es la SUMA de todas las cantidades, no una sola de ellas.",
+    "curso": "Aritmética",
+    "tema_id": "10-promedios-mezclas",
+    "ejemplo": "3 kg a S/40 + 5 kg a S/28 → (3×40+5×28)/(3+5) = 260/8 = 32.50 soles/kg.",
+    "terminos_relacionados": ["promedio ponderado (pp)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Ley de una aleación (quilates)",
+    "definicion": "La ley es la fracción del peso total que es metal puro. Se expresa como fracción sobre 24 ('quilates': 24/24 = oro puro). Al mezclar piezas de distinta ley, la ley resultante es el promedio ponderado: (Σ peso·ley) / (Σ peso).",
+    "curso": "Aritmética",
+    "tema_id": "10-promedios-mezclas",
+    "ejemplo": "6g de ley 18/24 (=4.5g oro puro) + 4g de ley 12/24 (=2g oro puro) → ley final = 6.5/10 = 0.65 = 15.6 quilates.",
+    "terminos_relacionados": ["precio medio en mezclas", "promedio ponderado (pp)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
   }
 ]

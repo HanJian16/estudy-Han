@@ -257,7 +257,11 @@
         "Resolver problemas comerciales relacionando precio de costo, venta, lista, ganancia y descuento",
         "Traducir enunciados de porcentaje encadenado ('el 20% del 30% de...') a operaciones directas"
       ],
-      "criterio_dominio": "Resuelve 8/10 problemas de porcentaje y aplicaciones comerciales tipo examen sin ayuda",
+      "criterio_dominio": {
+        "base": "Resuelve el cálculo directo de un porcentaje de una cantidad y aumentos/descuentos simples de un solo paso, reconociendo que la operación es multiplicar por el equivalente decimal (no dividir), pudiendo apoyarse en la teoría escrita.",
+        "intermedio": "Resuelve sin ayuda problemas que combinan dos o más operaciones porcentuales en un mismo enunciado (descuentos o aumentos sucesivos, porcentaje encadenado sobre una cantidad, o precio de costo + ganancia + descuento), sin consultar fórmulas.",
+        "avanzado": "Resuelve 8/10 problemas de porcentaje y aplicaciones comerciales tipo examen sin ayuda, con velocidad y sin caer en trampas típicas (confundir sobre qué base actúa un descuento sucesivo, invertir ganancia sobre costo vs. sobre venta)."
+      },
       "referencias": [
         "Lumbreras Aritmética — cap. Tanto por ciento",
         "Exámenes UNI: preguntas de porcentajes"
@@ -282,7 +286,10 @@
         "Resolver problemas de precio medio en mezclas",
         "Resolver problemas de aleaciones y ley (quilates)"
       ],
-      "criterio_dominio": "Resuelve 7/10 problemas variados de promedios, mezclas y aleaciones sin ayuda",
+      "criterio_dominio": {
+        "base": "Resuelve el cálculo directo de cada sub-tema (un promedio simple/ponderado/geométrico/armónico, un precio medio en mezcla de dos componentes, una ley de aleación) reconociendo qué fórmula aplica; puede apoyarse en la teoría escrita.",
+        "_nota": "Convertido a objeto por nivel el 2026-07-22 (primera sesión del tema), derivado de la rubrica_niveles del curso. Solo se escribió 'base' porque es el único nivel que algún objetivo ACTIVO pide hoy (obj-2, vía cerradura, sin override) — 'intermedio' y 'avanzado' se derivarán el día que un objetivo activo los exija. El string original ('Resuelve 7/10 problemas variados... sin ayuda') se escribió para el estándar de la UNI (avanzado) y queda descartado."
+      },
       "referencias": [
         "Lumbreras Aritmética — cap. Promedios / Mezclas"
       ]

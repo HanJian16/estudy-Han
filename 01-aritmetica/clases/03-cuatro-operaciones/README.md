@@ -243,3 +243,19 @@ Se le pidió explicar con sus palabras el error repetido de la sesión 2 (confun
 
 ## Cierre del tema
 `03-cuatro-operaciones` completado (100%) el 2026-07-04 tras 3 sesiones. Criterio de dominio (8/10 problemas de planteo y sumas notables sin ayuda) cumplido: de los 10 ejercicios entre sesión 2 y 3 evaluados sobre el patrón de lectura de datos, solo 2 fallas (ambas en sesión 2, mismo patrón), 0 fallas en la sesión de repaso dedicada a ese patrón. Siguiente tema: `04-divisibilidad` (vigilar notación d/q, ya trabajada en `dif-03-02` resuelta, y el desliz puntual de residuo defecto/exceso de esta sesión).
+
+---
+
+# Repaso — 2026-07-22
+
+**Tipo:** repaso (rama C del PASO 5.5, sesión dedicada de repaso mezclado sobre 5 temas de aritmética vencidos). No cuenta como sesión nueva de temario — `sesiones_dedicadas` sin cambio.
+
+## Ejercicio trabajado
+> Cita textual, sin resumir ni parafrasear.
+
+1. **Enunciado:** Para numerar todas las páginas de un libro se emplearon 2016 cifras. ¿Cuántas páginas tiene el libro?
+   **Respuesta del usuario (textual, transcripción de voz):** "en tres muere, porque la cantidad total de cifras para los todos los números de tres cifras ya es dos mil setecientos [...] para uno solo, son nueve. Entonces, con eso ya pasamos la cantidad total [...] lo que hago fue agarrar las dos mil dieciséis, las resto las ciento ochenta y nueve que ya tenemos del de la de las primeras dos partes, de una y dos cifras, y queda en mil ochocientos veintisiete cifras para las de tercer [...] Luego, ese mil ochocientos veintisiete lo divide entre tres, sale seiscientos nueve [...] eso se le suma los noventa y nueve primeros, así que serían setecientos ocho páginas."
+   **Anotación del agente:** correcto (708 páginas) y sin necesidad de consultar apuntes. Aplicó bien el método del rectángulo (agrupar por cantidad de cifras: 9+180+609×3=2016) sin errores, incluyendo el descuento correcto del bloque de 2 cifras.
+
+## Repaso intercalado (registro cruzado, ver también los otros 4 README de esta misma sesión)
+`03-cuatro-operaciones` — **resultado:** bien, sin consulta — nivel_repaso: 3 → 4, próximo: 2026-08-05.

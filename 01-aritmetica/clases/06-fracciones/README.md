@@ -157,3 +157,23 @@ Ninguno persistente. El único hueco detectado (regla de exponentes en división
 
 ## Próximos pasos
 Iniciar el siguiente tema del curso de Aritmética: `07-razones-proporciones`. Reforzar de pasada que la regla de exponentes en división es "resta de exponentes", no "quedarse con el menor" (ver `dif-06-01`).
+
+---
+
+# Repaso — 2026-07-22
+
+**Tipo:** repaso (rama C del PASO 5.5, sesión dedicada de repaso mezclado sobre 5 temas de aritmética vencidos). No cuenta como sesión nueva de temario — `sesiones_dedicadas` sin cambio.
+
+## Ejercicios trabajados
+> Cita textual, sin resumir ni parafrasear.
+
+1. **Enunciado:** Un caño llena un tanque vacío en 4 horas y un desagüe lo vacía en 6 horas. Si estando el tanque vacío se abren ambos a la vez, ¿en cuánto tiempo se llenará?
+   **Respuesta del usuario (textual, transcripción de voz):** "lo convertí a fracciones, dicen que la llave llena en cuatro horas, así que sobre la ciudad de llenado es un cuarto, y la de vaciado es de seis horas, así que es un sexto. Lo único que hice fue restar ahí, me quedó un doceavo, que es doce horas. Y con eso quedado, o sea, ambas abiertas en doce horas se llena el tanque."
+   **Anotación del agente:** correcto (12 horas) y sin ayuda. Aplicó bien la resta de tasas (1/4 − 1/6 = 1/12) para el caso con desagüe, distinto del ejemplo de dos llaves sumando tasas ya visto en la sesión original de este tema.
+
+2. **Enunciado:** Gasté los 2/5 de mi dinero y luego los 3/4 de lo que me quedaba. Si al final me quedan S/ 60, ¿cuánto tenía al inicio?
+   **Respuesta del usuario (textual, transcripción de voz):** "x menos los dos quintos de x, eso me quedan tres quintos de x [...] a estos tres quintos de x se le resta los tres cuartos multiplicados por los tres quintos de x [...] lo que me da que sea tres x entre cinco menos nueve x entre veinte [...] eso me queda a tres x entre veinte. Eso es sesenta, entonces de ahí me sale que x es cuatrocientos, y haciendo la verificación sale correcto, porque los dos quintos de cuatrocientos son ciento sesenta, cuatrocientos menos ciento sesenta quedaría doscientos cuarenta, y los tres cuartos de doscientos cuarenta son ciento ochenta. Entonces, doscientos cuarenta menos ciento ochenta quedaría sesenta, y se comprueba."
+   **Anotación del agente:** correcto (x=400), planteo algebraico completo y verificación final por sustitución numérica sin que se le pidiera — buena práctica autónoma.
+
+## Repaso intercalado (registro cruzado, ver también los otros 4 README de esta misma sesión)
+`06-fracciones` — **resultado:** bien, ambos ejercicios sin consulta — nivel_repaso: 2 → 3, próximo: 2026-07-29.

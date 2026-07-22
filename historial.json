@@ -1,5 +1,36 @@
 {
   "nota": "Registro append-only de sesiones de estudio. NUNCA se sobreescribe una entrada existente: solo se agregan al final. Es la única fuente de verdad sobre CUÁNTO TIEMPO se estudia de verdad. Ver _plantillas/plantilla-historial.json para la descripción de cada campo.",
   "nota_arranque": "Creado el 2026-07-16, cuando el plan ya llevaba 12 sesiones (temas 01-08 de aritmética). Esas 12 sesiones NO están aquí: se registraron antes de que este archivo existiera y su duración real no se conoce — inventarla sería exactamente el problema que este archivo viene a resolver. Sus fechas siguen en los progreso.json y en los README de clase. El historial arranca vacío a propósito y empieza a medir desde la próxima sesión.",
-  "sesiones": []
+  "sesiones": [
+    {
+      "inicio": "2026-07-22T11:00",
+      "duracion_min": 75,
+      "tipo_clase": "repaso",
+      "objetivo_id": "obj-2",
+      "curso": "01-aritmetica",
+      "tema_principal": null,
+      "temas_intercalados": ["02-numeracion", "03-cuatro-operaciones", "04-divisibilidad", "05-primos-mcd-mcm", "06-fracciones"],
+      "nota": "PRIMERA sesión medida de historial.json — el ritmo real (horas_por_sesion, minutos_por_repaso) sigue sin medir con confianza hasta acumular más datos. Duración APROXIMADA: el usuario no tenía la hora exacta del primer mensaje a mano y estimó un rango de 60-90 min ('el primer mensaje dice 1 hour ago, podría ser casi dos horas'); se usó el punto medio (75 min) declarándolo como estimación, no medición exacta. inicio también es aproximado (hora actual menos 75 min)."
+    },
+    {
+      "inicio": "2026-07-22T12:20",
+      "duracion_min": 42,
+      "tipo_clase": "tema-nuevo",
+      "objetivo_id": "obj-2",
+      "curso": "01-aritmetica",
+      "tema_principal": "09-porcentajes",
+      "temas_intercalados": [],
+      "nota": "Duración EXACTA (medida real, dada por el usuario: 12:20 a 1:02). Sin repaso intercalado formal (nada vencido hoy); hubo puente conceptual con 07-razones-proporciones sin ejercicios dedicados."
+    },
+    {
+      "inicio": "2026-07-22T15:10",
+      "duracion_min": 83,
+      "tipo_clase": "tema-nuevo",
+      "objetivo_id": "obj-2",
+      "curso": "01-aritmetica",
+      "tema_principal": "10-promedios-mezclas",
+      "temas_intercalados": [],
+      "nota": "Duración EXACTA (medida real, dada por el usuario: 15:10 a 16:33). Tercera sesión del día (regla 3 del PASO 5.5 mencionada al arrancar; el usuario decidió seguir con tema nuevo de todos modos, sin repaso vencido real que ofrecer como alternativa). Sin repaso intercalado formal; hubo puentes conceptuales con 07-razones-proporciones (reparto ponderado) y 09-porcentajes (multiplicador porcentual, para promedio geométrico) sin ejercicios dedicados aparte."
+    }
+  ]
 }

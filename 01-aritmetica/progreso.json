@@ -16,51 +16,51 @@
       "tema_id": "02-numeracion",
       "estado": "completado",
       "nivel_alcanzado": "avanzado",
-      "ultima_sesion": "2026-07-02",
+      "ultima_sesion": "2026-07-22T12:04",
       "sesiones_dedicadas": 2,
-      "nivel_repaso": 3,
-      "fecha_proximo_repaso": "2026-07-17",
-      "veces_repasado": 0
+      "nivel_repaso": 1,
+      "fecha_proximo_repaso": "2026-07-23",
+      "veces_repasado": 1
     },
     {
       "tema_id": "03-cuatro-operaciones",
       "estado": "completado",
       "nivel_alcanzado": "avanzado",
-      "ultima_sesion": "2026-07-04",
+      "ultima_sesion": "2026-07-22T12:04",
       "sesiones_dedicadas": 3,
-      "nivel_repaso": 3,
-      "fecha_proximo_repaso": "2026-07-19",
-      "veces_repasado": 0
+      "nivel_repaso": 4,
+      "fecha_proximo_repaso": "2026-08-05",
+      "veces_repasado": 1
     },
     {
       "tema_id": "04-divisibilidad",
       "estado": "completado",
       "nivel_alcanzado": "avanzado",
-      "ultima_sesion": "2026-07-08",
+      "ultima_sesion": "2026-07-22T12:04",
       "sesiones_dedicadas": 2,
-      "nivel_repaso": 3,
-      "fecha_proximo_repaso": "2026-07-19",
-      "veces_repasado": 0
+      "nivel_repaso": 4,
+      "fecha_proximo_repaso": "2026-08-05",
+      "veces_repasado": 1
     },
     {
       "tema_id": "05-primos-mcd-mcm",
       "estado": "completado",
       "nivel_alcanzado": "avanzado",
-      "ultima_sesion": "2026-07-08",
+      "ultima_sesion": "2026-07-22T12:04",
       "sesiones_dedicadas": 1,
-      "nivel_repaso": 3,
-      "fecha_proximo_repaso": "2026-07-21",
-      "veces_repasado": 0
+      "nivel_repaso": 1,
+      "fecha_proximo_repaso": "2026-07-23",
+      "veces_repasado": 1
     },
     {
       "tema_id": "06-fracciones",
       "estado": "completado",
       "nivel_alcanzado": "avanzado",
-      "ultima_sesion": "2026-07-10",
+      "ultima_sesion": "2026-07-22T12:04",
       "sesiones_dedicadas": 1,
-      "nivel_repaso": 2,
-      "fecha_proximo_repaso": "2026-07-21",
-      "veces_repasado": 0
+      "nivel_repaso": 3,
+      "fecha_proximo_repaso": "2026-07-29",
+      "veces_repasado": 1
     },
     {
       "tema_id": "07-razones-proporciones",
@@ -84,22 +84,22 @@
     },
     {
       "tema_id": "09-porcentajes",
-      "estado": "no_iniciado",
-      "nivel_alcanzado": null,
-      "ultima_sesion": null,
-      "sesiones_dedicadas": 0,
-      "nivel_repaso": null,
-      "fecha_proximo_repaso": null,
+      "estado": "completado",
+      "nivel_alcanzado": "intermedio",
+      "ultima_sesion": "2026-07-22T13:02",
+      "sesiones_dedicadas": 1,
+      "nivel_repaso": 1,
+      "fecha_proximo_repaso": "2026-07-23",
       "veces_repasado": 0
     },
     {
       "tema_id": "10-promedios-mezclas",
-      "estado": "no_iniciado",
-      "nivel_alcanzado": null,
-      "ultima_sesion": null,
-      "sesiones_dedicadas": 0,
-      "nivel_repaso": null,
-      "fecha_proximo_repaso": null,
+      "estado": "completado",
+      "nivel_alcanzado": "base",
+      "ultima_sesion": "2026-07-22T16:33",
+      "sesiones_dedicadas": 1,
+      "nivel_repaso": 1,
+      "fecha_proximo_repaso": "2026-07-23",
       "veces_repasado": 0
     },
     {

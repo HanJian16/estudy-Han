@@ -158,3 +158,20 @@ Quedó explícito que el inverso modular (necesario para combinar congruencias c
 
 ## Próximos pasos
 `05-primos-mcd-mcm` completado (criterio de dominio alcanzado: 13 ejercicios variados resueltos, con las 2 correcciones en el momento — regla de cantidad de divisores y justificación estructural de MCD — ya superadas dentro de la misma sesión). Continuar con el siguiente tema del curso de Aritmética (`06-fracciones`). Opcionalmente, aprovechar que ya tiene MCD/Euclides sólido para retomar el hilo pendiente del inverso modular en combinación de congruencias con coeficiente≠±1 (visto parcialmente en `04-divisibilidad`), como tema futuro de congruencias avanzadas.
+
+---
+
+# Repaso — 2026-07-22
+
+**Tipo:** repaso (rama C del PASO 5.5, sesión dedicada de repaso mezclado sobre 5 temas de aritmética vencidos). No cuenta como sesión nueva de temario — `sesiones_dedicadas` sin cambio.
+
+## Ejercicio trabajado
+> Cita textual, sin resumir ni parafrasear.
+
+1. **Enunciado:** ¿Cuántos divisores de 3600 son múltiplos de 15?
+   **Respuesta del usuario (textual, transcripción de voz):** "lo que hice fue sacarle la descomposición canónica. Me quedó dos a la cuarta por tres al cuadrado por cinco al cuadrado, y lo que hice fue hacer la suma como para calcular la cantidad total de divisores que tiene el número, pero solo de tres y cinco, que son los multiplicadores de divisores de quince [...] tres tiene elevado la potencia dos y cinco elevado la potencia dos, se le suma uno, serían tres por tres, y eso es nueve, nueve divisores de tres mil seiscientos son múltiplos de quince. No soy seguro si esa sea la manera correcta [...] cuando revisé la documentación, no encontré un caso exacto similar a este."
+   **Anotación del agente:** descomposición canónica correcta ($2^4\times3^2\times5^2$), pero conteo equivocado: aplicó $(2+1)(2+1)=9$ usando solo los exponentes de 3 y 5, ignorando por completo la libertad de incluir cualquier potencia de 2 (0 a 4) en el divisor. Técnica correcta: dividir 3600 entre 15 primero (=240=$2^4\times3\times5$) y contar los divisores de ese cociente: $(4+1)(1+1)(1+1)=20$. El usuario consultó la documentación buscando un ejercicio similar ya visto (no encontró ninguno, confirmando que resolvió sin muleta) — la falla es genuina, no por consulta insuficiente. Registrado como `dif-05-02`.
+   **Verificación posterior (pregunta de control):** "¿cuántos divisores de novecientos son múltiplos de diez? [...] divides la cantidad [...] de novecientos entre diez, quedan noventa, y eso le haces descomposición canónica [...] sería dos por tres el cuadrado por cinco [...] a eso le llevas la cantidad de exponentes, que sería dos por tres por dos, tres por dos seis, seis por dos doce, doce divisores de novecientos múltiplos de diez." — correcto (12) y sin ayuda, aplicando ya la técnica de dividir primero; confirma que `dif-05-02` quedó resuelta en la misma sesión.
+
+## Repaso intercalado (registro cruzado, ver también los otros 4 README de esta misma sesión)
+`05-primos-mcd-mcm` — **resultado:** mal (técnica de conteo incompleta, corregida y verificada en la sesión) — nivel_repaso: 3 → 1, próximo: 2026-07-23.

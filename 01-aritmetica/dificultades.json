@@ -222,6 +222,19 @@
     "estrategia_que_ayuda": "Se le señaló releer literalmente qué significa 'dañarse' en el contexto de llaves que funcionan. Corrigió de inmediato y replanteó con 3 llaves (5-2) en vez de sumar."
   },
   {
+    "id": "dif-02-05",
+    "curso": "Aritmética",
+    "tema_id": "02-numeracion",
+    "tipo": "conceptual",
+    "descripcion": "En repaso (sesión 2026-07-22), resolvió correctamente el álgebra de un problema de cifras equivalentes entre bases 9 y 7 (9a+b=7b+a → 4a=3b), pero dio como respuestas válidas ambas soluciones de la familia (a=3,b=4 y a=6,b=8) sin verificar que b=8 no es una cifra válida en base 7 (máximo permitido: 6). Recurrencia del mismo patrón que dif-02-04 (usar una cifra igual o mayor a la base), esta vez no al inventar un ejemplo sino al no filtrar una solución derivada algebraicamente.",
+    "error_tipico": "Verificar la restricción de cifra máxima de una base al enunciar la regla en abstracto, pero no aplicarla reflexivamente sobre cada solución concreta que arroja el álgebra — incluida una que 'sale bien' de la ecuación.",
+    "fecha_deteccion": "2026-07-22",
+    "fecha_ultimo_repaso": "2026-07-22",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Tras la corrección, se verificó con una pregunta de control ('cifra vale 8 en un número escrito en base 6') y el usuario identificó de inmediato que la cifra invalida la solución. Reforzar: cuando un número está escrito en dos bases a la vez (o un problema mezcla varias), manda la restricción MÁS estricta entre todas, y toda cifra derivada —no solo la inventada— debe pasar ese filtro antes de aceptarse como respuesta."
+  },
+  {
     "id": "dif-08-05",
     "curso": "Aritmética",
     "tema_id": "08-magnitudes-regla-de-tres",
@@ -233,5 +246,44 @@
     "veces_repasado": 1,
     "resuelto": true,
     "estrategia_que_ayuda": "Autocorrección propia e inmediata ('me mala mía... son inversamente proporcionales, no se dividen, se multiplican'), sin necesidad de guía externa. Llegó al resultado correcto (x=40 horas) en el mismo intento."
+  },
+  {
+    "id": "dif-05-02",
+    "curso": "Aritmética",
+    "tema_id": "05-primos-mcd-mcm",
+    "tipo": "conceptual",
+    "descripcion": "En repaso (sesión 2026-07-22), al contar cuántos divisores de 3600 son múltiplos de 15, aplicó la regla de cantidad de divisores (exponente+1, multiplicando) SOLO sobre los primos de 15 (3 y 5), dando (2+1)(2+1)=9 e ignorando por completo la libertad de incluir cualquier potencia de 2 (0 a 4) en el divisor, que también cuenta.",
+    "error_tipico": "Al contar divisores de N que son múltiplos de un m que divide a N, tratar el problema como 'contar divisores usando solo los primos de m' en vez de dividir N entre m primero y contar los divisores de N/m (que incluye los primos de N que no son de m).",
+    "fecha_deteccion": "2026-07-22",
+    "fecha_ultimo_repaso": "2026-07-22",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Corregido explicando la técnica general: divisores de N múltiplos de m = divisores de N/m (aquí 3600/15=240=2⁴×3×5, con (4+1)(1+1)(1+1)=20 divisores). Verificado con una pregunta de control (divisores de 900 múltiplos de 10 → 900/10=90=2×3²×5, (1+1)(2+1)(1+1)=12) que el usuario resolvió correctamente y sin ayuda, aplicando la técnica de dividir primero."
+  },
+  {
+    "id": "dif-10-01",
+    "curso": "Aritmética",
+    "tema_id": "10-promedios-mezclas",
+    "tipo": "operativa",
+    "descripcion": "En un problema de precio medio en mezcla (3 kg de café a S/40/kg + 5 kg a S/28/kg), calculó correctamente el costo ponderado de cada componente (120 y 140, suma 260) pero al dividir usó solo la cantidad del segundo componente (5 kg) en vez de la suma total de kilos de la mezcla (8 kg), dando 52 en vez de 32.50.",
+    "error_tipico": "Al dividir la suma ponderada entre el total, usar la cantidad de una sola parte en vez de la suma de TODAS las partes — mismo patrón que dif-08-01 (reparto proporcional: divisor por entidad en vez de un solo divisor sobre la suma de pesos).",
+    "fecha_deteccion": "2026-07-22",
+    "fecha_ultimo_repaso": "2026-07-22",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Se le preguntó directamente cuántos kilos había en total en la mezcla (sumando los dos componentes); se autocorrigió de inmediato (260/8=32.50) sin necesitar más guía."
+  },
+  {
+    "id": "dif-10-02",
+    "curso": "Aritmética",
+    "tema_id": "10-promedios-mezclas",
+    "tipo": "conceptual",
+    "descripcion": "En el Feynman de cierre, al explicar el promedio armónico usó como ejemplo una mezcla de café/harina/azúcar (que en realidad se resuelve con promedio ponderado/aritmético, como el propio usuario ya había resuelto minutos antes) en vez de un caso de tasas con una cantidad fija tipo velocidad. Confundió el ESCENARIO de aplicación de MH con el de la mezcla, aunque tenía la fórmula correcta.",
+    "error_tipico": "Asociar el promedio armónico a 'situaciones con pesos distintos' en general (que es cierto de los tres promedios) en vez de a su condición específica: una cantidad (el numerador de la razón, ej. distancia o gasto fijo) se mantiene CONSTANTE entre los casos y lo que varía es la tasa.",
+    "fecha_deteccion": "2026-07-22",
+    "fecha_ultimo_repaso": "2026-07-22",
+    "veces_repasado": 1,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Se le pidió revisar su propia solución del problema de la mezcla de café (¿qué fórmula usó ahí realmente?) para que notara la discrepancia él mismo; luego, al pedirle articular qué cantidad se preserva en cada promedio, recordó su propia respuesta correcta de minutos antes ('MA preserva la suma, MG el producto, MH la suma de la otra cantidad'). Terminó de anclarlo con un ejemplo nuevo fuera de velocidad (gasto fijo de S/100 en gasolina a dos precios distintos), que resolvió por lógica pura y verificó después contra la fórmula (2/(1/4+1/5)=40/9), coincidiendo. El usuario expresó incomodidad por 'resolver sin saber qué es lo que resuelve' — se le explicó que razonar desde la estructura antes que reconocer el nombre es más sólido, no más débil; el reconocimiento instantáneo del tipo de problema es criterio de nivel avanzado (rubrica del curso), no de base."
   }
 ]
