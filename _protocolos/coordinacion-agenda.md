@@ -74,6 +74,30 @@ Bloques **genéricos "Temario"** (solo reservan tiempo). Richard decide el tema 
 - **Estable** (loop, formatos, estas reglas) → sus instrucciones (las lee cada conversación).
 - **Dinámico** (horas, hitos, prioridades) → evento **ESTADO ACTUAL** (lunes) + campo **DEADLINES**.
 
+## Almacenamiento (lado Richard)
+
+La asignación operativa de cada semana vive en **`sync-estado.json`** (raíz del repo). Existe por una razón concreta: la RECONCILIACIÓN del sync siguiente tiene que reportar el `agendado`, y ese número lo **negocia Ángela** — no se deriva de ningún dato del repo, así que sin un archivo viviría solo en el chat y una sesión fría no podría reconciliar (fallo P3, cazado el 2026-07-22).
+
+- **Lo ESCRIBE (sobreescribe, no append) el PASO 4.5 ENTRADA**, cada vez que se procesa una ASIGNACIÓN de Ángela. Guarda **solo la semana vigente**: la anterior se pisa a propósito, porque una vez reconciliada su `agendado` ya quedó en la línea MEDICIÓN de Ángela (acumulativa, lado de ella).
+- **Lo LEE el PASO 4.5 SALIDA** al armar la RECONCILIACIÓN (`agendado`).
+- **NO se mezcla con `historial.json`.** Ese es el registro append-only de lo **ejecutado**; `sync-estado.json` es lo **planificado**. Separar planificado de ejecutado es deliberado (mezclarlos es cómo un plan empieza a mentir sobre lo que de verdad pasó).
+
+Especimen literal del esquema (así, textual — el archivo real vive en la raíz):
+
+```json
+{
+  "sync_fecha": "YYYY-MM-DD",
+  "sync_num": 1,
+  "fuente": "Angela",
+  "semana": { "desde": "YYYY-MM-DD", "hasta": "YYYY-MM-DD" },
+  "frente": "Temario",
+  "agendado_h": 26,
+  "bloques": [ { "dia": "YYYY-MM-DD", "tramos": ["HH:MM-HH:MM"], "h": 5 } ],
+  "banda_vigente": { "min_h": 20, "max_h": 28, "nota": "…" },
+  "sync_nota": "novedades, restricciones barridas y su estado"
+}
+```
+
 ## Fechas
 
 **Ángela manda.** Parcial (~28-sep) y final (~23-nov) son **PROVISIONALES**: el inicio 10-ago es el peor caso y puede correrse al 17-ago → todo corre ~1 semana. Richard planifica internamente contra la fecha provisional (su escalera de repaso necesita un blanco); Ángela **no** compromete calendario real hasta su verificación de la **semana 1 de clases**, tras la cual avisa y la escalera re-apunta. Examen UNI 15-feb-2027 igual de provisional. Feriados nacionales (30-ago, 8-oct) sí firmes.
@@ -103,9 +127,11 @@ El sync es el **barrido de restricciones**: las que dependen de Ángela (fechas,
 
 **RECONCILIACIÓN — Richard → Ángela:**
 
+> **De dónde salen las dos cifras de `agendado/real` (no las inventes ni las saques del chat):** el **agendado** se lee de `sync-estado.json` (`agendado_h`), que lo dejó escrito el sync anterior al procesar la ASIGNACIÓN; el **real** se suma de las sesiones de `historial.json` cuya fecha cae en la `semana` y cuyo frente es Temario. Una sesión fría que no lea esos dos archivos NO puede producir esta línea — ese fue el fallo P3 del 2026-07-22 que creó `sync-estado.json`. Ver "Almacenamiento (lado Richard)".
+
 ```
 Semana cerrada: <lunes DD-mmm a domingo DD-mmm>
-Temario agendado/real: <N>/<N> h
+Temario agendado/real: <agendado_h de sync-estado.json>/<suma real de historial.json> h
 Se hizo: <temas y sesiones>
 No se hizo: <bloques caídos + causa si se sabe>
 Ejecución cruzada: <horas de Temario ocurridas dentro de bloques de otro frente | "ninguna">
@@ -155,6 +181,6 @@ Este protocolo lo dispara el **PASO 4.5** del `README.md` raíz, en dos direccio
 | Disparador | Dirección | Qué se hace |
 |---|---|---|
 | El usuario escribe `generame el prompt para Angela` (alias `sync`; se ignoran acentos y mayúsculas) | SALIDA | Generar RECONCILIACIÓN + DEMANDA con los formatos literales de arriba |
-| El usuario pega un bloque cuya primera línea es `>>> ANGELA AL HABLA` | ENTRADA | Procesar su ASIGNACIÓN u otro mensaje y actualizar lo que toque |
+| El usuario pega un bloque cuya primera línea es `>>> ANGELA AL HABLA` | ENTRADA | Procesar su ASIGNACIÓN u otro mensaje y actualizar lo que toque. Si trae una ASIGNACIÓN, **SOBREESCRIBIR `sync-estado.json`** con la semana, `agendado_h`, bloques y banda (ver "Almacenamiento (lado Richard)") — sin eso la RECONCILIACIÓN del próximo sync no tiene de dónde leer el agendado |
 
 Sin este cableado el archivo sería una regla sin invocador — el modo de falla que este proyecto ya sufrió con los cursos huérfanos. Si alguna vez se mueve o renombra este archivo, actualizar el PASO 4.5.

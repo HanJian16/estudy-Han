@@ -1,0 +1,26 @@
+{
+  "_nota": "Asignacion operativa VIGENTE de la semana, negociada con Angela en el sync (PASO 4.5 del README). UNICO proposito: que la RECONCILIACION del proximo sync pueda leer el 'agendado' de Temario. Angela lo tiene en su calendario; Richard lo necesita en el repo porque una sesion fria no puede leer el chat ni la memoria del otro agente. Ver ERRORES.md P3, caso 2026-07-22.",
+  "_como_se_usa": "Lo SOBREESCRIBE (no append) el PASO 4.5 ENTRADA cada vez que Angela manda una ASIGNACION nueva. Lo LEE el PASO 4.5 SALIDA al generar la RECONCILIACION (campo 'Temario agendado/real': el agendado sale de aqui, el real de historial.json). Guarda SOLO la semana vigente; la anterior se pisa a proposito: una vez reconciliada, su agendado ya vive en la linea MEDICION de Angela (acumulativa, lado de ella). El registro de lo EJECUTADO vive en historial.json (append-only) y NO se mezcla aqui: separar planificado de ejecutado es deliberado.",
+  "sync_fecha": "2026-07-22",
+  "sync_num": 1,
+  "fuente": "Angela",
+  "semana": {
+    "desde": "2026-07-20",
+    "hasta": "2026-07-26"
+  },
+  "frente": "Temario",
+  "agendado_h": 26,
+  "bloques": [
+    { "dia": "2026-07-22", "tramos": ["10:15-12:45", "14:00-16:30"], "h": 5 },
+    { "dia": "2026-07-23", "tramos": ["09:30-12:30", "14:00-17:00"], "h": 6 },
+    { "dia": "2026-07-24", "tramos": ["09:30-12:30", "14:00-17:00"], "h": 6 },
+    { "dia": "2026-07-25", "tramos": ["09:30-12:00", "13:30-16:00"], "h": 5 },
+    { "dia": "2026-07-26", "tramos": ["09:30-12:00", "14:00-15:30"], "h": 4 }
+  ],
+  "banda_vigente": {
+    "min_h": 20,
+    "max_h": 28,
+    "nota": "Banda semanal que Angela negocia contra los demas frentes. Vigente para la ventana de vacaciones (hasta 2026-08-09). MANDA sobre presupuesto_horas de objetivo.json (ver README, 'El presupuesto')."
+  },
+  "sync_nota": "Primer sync del loop. Corrio martes 21-jul (no domingo 19: se cayo por falta de tokens de la ventana semanal, compartida con Angela). La semana real de Temario es mie-dom; lun-mar (20-21 jul) se perdieron y por eso el agendado de 26 h ya esta repartido solo en mie-dom. Sin RECONCILIACION en este sync (0 sesiones previas en historial.json; la primera medicion real es el checkpoint del 26-jul). Restricciones barridas, todas SIN CAMBIO: (1) MacroDroid caido -> alarmas a mano; si una falla, un bloque puede arrancar tarde o morir y se vera como real<agendado. (2) Banda 20-28 h/sem vigente; Angela asigno 26, dentro de banda. (3) Fechas del semestre provisionales (inicio 10-ago peor caso, parcial ~28-sep, final ~23-nov) hasta que Han verifique el calendario oficial en la semana 1 de clases (10-14 ago)."
+}

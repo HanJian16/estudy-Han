@@ -127,8 +127,9 @@ La tabla de versiones estuvo aquí unas horas el 2026-07-18 y se sacó: un versi
 - *2026-07-18* — Se acordó "relajamos la cadencia, no la matamos" y no se escribió el número ni se tocó el `temario.json` hasta que el usuario siguió preguntando.
 - *2026-07-18* — La regla del simulacro obligatorio se **propuso** y el agente dio a entender que estaba puesta. No lo estaba. El usuario preguntó *"creo que ya lo has agregado, ¿no?"* y la respuesta honesta era **no**.
 - *2026-07-18* — Los números del cálculo de horas liberadas (~21 h) vivían solo en el chat hasta que se guardaron en `_cadencia_temporal`.
+- *2026-07-22 (latente, cazado antes de morder)* — El formato de RECONCILIACIÓN de `coordinacion-agenda.md` (cerrado el 17-jul) exige reportar `Temario agendado/real`, pero el `agendado` es un número **negociado con Ángela, no derivable de ningún dato del repo**, y no se le dio hogar en ningún archivo del lado Richard. Es decir: la RECONCILIACIÓN del sync N+1 **no podía producirse en una sesión fría** — su input vivía solo en el chat y en el calendario de Ángela. No disparó antes porque este (2026-07-22) fue el **primer** sync y aún no había un segundo que reconciliar. → Arreglado creando `sync-estado.json` (ver [`VERSIONES.md`](VERSIONES.md) v3.3).
 
-**Cómo se caza:** Capa 1 — *"el estado vive en ARCHIVOS del repo"*. Regla práctica: **si al terminar la sesión la decisión no está en un archivo, no se tomó.** Y nunca digas "ya está agregado" sin haberlo escrito en ese mismo turno.
+**Cómo se caza:** Capa 1 — *"el estado vive en ARCHIVOS del repo"*. Regla práctica: **si al terminar la sesión la decisión no está en un archivo, no se tomó.** Y nunca digas "ya está agregado" sin haberlo escrito en ese mismo turno. Variante estructural (caso del 22-jul): cuando un formato pide reportar un dato, pregúntate **de dónde lo lee una sesión fría** — si la respuesta es "del chat" o "de la memoria del otro agente", falta un archivo.
 
 ---
 

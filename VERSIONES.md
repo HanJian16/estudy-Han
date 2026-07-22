@@ -34,6 +34,20 @@ Nació el 2026-07-18: la Rama 2C se saltó cuatro veces en un día pese a estar 
 
 ---
 
+## v3.3 — Hogar de la asignación semanal · 2026-07-22
+
+> Primer sync real del loop con Ángela (corrió martes 21-jul, no domingo, por falta de tokens). Al procesar su ASIGNACIÓN se destapó que la RECONCILIACIÓN —que existe en el formato desde el 17-jul— exige reportar el `agendado`, un número que negocia Ángela y que no vivía en ningún archivo del repo: habría que sacarlo del chat, imposible en sesión fría. Fallo latente, cazado antes de morder porque este fue el primer sync y aún no había un segundo que reconciliar.
+
+**Añadido**
+- **`sync-estado.json`** (raíz): asignación operativa de la semana vigente (semana, `agendado_h`, bloques, banda). Único escritor: PASO 4.5 ENTRADA (sobreescribe al procesar cada ASIGNACIÓN). Único lector: PASO 4.5 SALIDA (la RECONCILIACIÓN lee `agendado`). Guarda solo la semana vigente; el histórico de agendado queda en la línea MEDICIÓN de Ángela tras reconciliar. No se mezcla con `historial.json` (planificado vs ejecutado, separación deliberada). [SIM: 2026-07-22]
+
+**Cambiado**
+- **`_protocolos/coordinacion-agenda.md`**: (a) nueva sección "Almacenamiento (lado Richard)" con el esquema literal y el cableado escritura/lectura; (b) el formato de RECONCILIACIÓN ahora dice de dónde salen las dos cifras (`agendado` de `sync-estado.json`, `real` de `historial.json`), con nota anti-sesión-fría; (c) la fila ENTRADA de la tabla de Invocación ordena sobreescribir `sync-estado.json` al recibir una ASIGNACIÓN. [SIM: 2026-07-22]
+
+**Errores:** nueva instancia de **P3** en `ERRORES.md` (un formato pedía reportar un dato sin darle hogar en el repo → viviría solo en el chat). El cableado de lectura/escritura en el protocolo cierra además el riesgo P1/P2 (store nuevo sin invocador, o invocador en el sitio equivocado).
+
+---
+
 ## v3.2 — El plan del motor · 2026-07-19
 
 > Sesión de consulta con Fable sobre si "migrar los protocolos a código" era el mejor camino. Veredicto: la dirección es correcta, pero al plan le faltaban los **hooks de Claude Code** (SessionStart/PostToolUse — corren en la máquina, fuera del agente, en cada sesión, no solo al commitear) y le sobraba alcance ("migrar todo" → núcleo de ~6 módulos + poda de prosa). Salió el paso a paso ejecutable completo, pensado para que lo ejecute Sonnet 5/Opus 4.8 un paso por sesión sin contexto previo.
