@@ -878,5 +878,49 @@
     "nivel_dominio": "solido",
     "fecha_aprendido": "2026-07-22",
     "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Frecuencia absoluta (fi), relativa (hi) y acumulada (Fi)",
+    "definicion": "En una tabla de frecuencias: fi es cuántas veces aparece un valor; hi = fi/total es la fracción que representa (multiplicada por 100, es el porcentaje); Fi es la suma de fi hasta esa fila inclusive — 'inclusive' porque la fila de un valor X ya cuenta a los que valen X, no solo a los anteriores.",
+    "curso": "Aritmética",
+    "tema_id": "12-estadistica",
+    "ejemplo": "Tabla con fi = 5,10,15,10 (total 40) en valores 12,14,16,18: Fi = 5,15,30,40. El 75% de los datos vale 16 o menos se lee directo del Fi=30 de la fila del 16, no de la fila anterior.",
+    "terminos_relacionados": ["marca de clase", "clase mediana"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Media, moda y mediana en tabla de frecuencias (datos simples)",
+    "definicion": "Media = Σ(xi·fi)/Σfi (el mismo promedio ponderado ya conocido, con fi como peso). Moda = el valor con mayor fi. Mediana = el valor en la posición central (total/2, y total/2+1 si el total es par), que se localiza con la columna Fi.",
+    "curso": "Aritmética",
+    "tema_id": "12-estadistica",
+    "ejemplo": "xi=12,14,16,18 con fi=5,10,15,10 (total 40): media=620/40=15.5; moda=16 (fi=15, la mayor); mediana=16 (las posiciones 20 y 21 caen en la fila de Fi=30).",
+    "terminos_relacionados": ["frecuencia absoluta (fi), relativa (hi) y acumulada (fi)", "promedio ponderado (pp)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Marca de clase",
+    "definicion": "En datos agrupados en intervalos, es el punto medio de cada intervalo: (límite inferior + límite superior)/2. Reemplaza al 'valor suelto' de la tabla simple, pero SIGUE necesitando ponderarse por la frecuencia del intervalo — no promediar las marcas de clase directamente sin peso.",
+    "curso": "Aritmética",
+    "tema_id": "12-estadistica",
+    "ejemplo": "Intervalo [20-30⟩ → marca de clase = 25. Media agrupada con marcas 15,25,35,45 y fi=8,12,15,5: (15×8+25×12+35×15+45×5)/40 = 1170/40 = 29.25 (NO el promedio simple de las marcas, que da 30).",
+    "terminos_relacionados": ["clase modal", "clase mediana", "promedio ponderado (pp)"],
+    "nivel_dominio": "vacilante",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
+  },
+  {
+    "termino": "Clase modal y clase mediana",
+    "definicion": "En datos agrupados, moda y mediana ya no son un valor puntual sino un INTERVALO completo. Clase modal = el intervalo con mayor fi. Clase mediana = el primer intervalo cuya Fi alcanza o supera total/2 (se localiza igual que en la tabla simple, con la columna Fi).",
+    "curso": "Aritmética",
+    "tema_id": "12-estadistica",
+    "ejemplo": "Intervalos con fi=8,12,15,5 (total 40, Fi=8,20,35,40): clase modal=[30-40⟩ (fi=15, la mayor); clase mediana=[20-30⟩ (primera con Fi>=20).",
+    "terminos_relacionados": ["marca de clase", "frecuencia absoluta (fi), relativa (hi) y acumulada (fi)"],
+    "nivel_dominio": "solido",
+    "fecha_aprendido": "2026-07-22",
+    "fecha_ultimo_uso": "2026-07-22"
   }
 ]

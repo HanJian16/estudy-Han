@@ -285,5 +285,18 @@
     "veces_repasado": 1,
     "resuelto": true,
     "estrategia_que_ayuda": "Se le pidió revisar su propia solución del problema de la mezcla de café (¿qué fórmula usó ahí realmente?) para que notara la discrepancia él mismo; luego, al pedirle articular qué cantidad se preserva en cada promedio, recordó su propia respuesta correcta de minutos antes ('MA preserva la suma, MG el producto, MH la suma de la otra cantidad'). Terminó de anclarlo con un ejemplo nuevo fuera de velocidad (gasto fijo de S/100 en gasolina a dos precios distintos), que resolvió por lógica pura y verificó después contra la fórmula (2/(1/4+1/5)=40/9), coincidiendo. El usuario expresó incomodidad por 'resolver sin saber qué es lo que resuelve' — se le explicó que razonar desde la estructura antes que reconocer el nombre es más sólido, no más débil; el reconocimiento instantáneo del tipo de problema es criterio de nivel avanzado (rubrica del curso), no de base."
+  },
+  {
+    "id": "dif-12-01",
+    "curso": "Aritmética",
+    "tema_id": "12-estadistica",
+    "tipo": "aplicacion",
+    "descripcion": "Al calcular la media de una tabla de datos agrupados en intervalos, usó las marcas de clase (15, 25, 35, 45) pero las promedió de forma simple sin ponderar por sus frecuencias (8, 12, 15, 5), pese a haber aplicado correctamente el peso por frecuencia minutos antes en una tabla de datos simples.",
+    "error_tipico": "Al cambiar el formato de los datos (de tabla simple a agrupada en intervalos), perder de vista la estructura de ponderación ya dominada y tratar los nuevos 'valores' (marcas de clase) como si todos pesaran igual.",
+    "fecha_deteccion": "2026-07-22",
+    "fecha_ultimo_repaso": "2026-07-22",
+    "veces_repasado": 0,
+    "resuelto": true,
+    "estrategia_que_ayuda": "Preguntar explícitamente en qué parte de su cálculo habían entrado los pesos (fi) bastó para que se autocorrigiera de inmediato y aplicara Σ(marca·fi)/Σfi correctamente. Mismo patrón general que dif-08-01 y dif-10-01 (olvidar aplicar una estructura de ponderación/suma total ya dominada al cambiar el contexto o formato del problema) — vigilar si reaparece en un cuarto contexto distinto."
   }
 ]

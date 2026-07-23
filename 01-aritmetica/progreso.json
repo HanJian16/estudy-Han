@@ -114,12 +114,12 @@
     },
     {
       "tema_id": "12-estadistica",
-      "estado": "no_iniciado",
-      "nivel_alcanzado": null,
-      "ultima_sesion": null,
-      "sesiones_dedicadas": 0,
-      "nivel_repaso": null,
-      "fecha_proximo_repaso": null,
+      "estado": "completado",
+      "nivel_alcanzado": "base",
+      "ultima_sesion": "2026-07-22T19:55",
+      "sesiones_dedicadas": 1,
+      "nivel_repaso": 1,
+      "fecha_proximo_repaso": "2026-07-23",
       "veces_repasado": 0
     }
   ],

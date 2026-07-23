@@ -31,6 +31,16 @@
       "tema_principal": "10-promedios-mezclas",
       "temas_intercalados": [],
       "nota": "Duración EXACTA (medida real, dada por el usuario: 15:10 a 16:33). Tercera sesión del día (regla 3 del PASO 5.5 mencionada al arrancar; el usuario decidió seguir con tema nuevo de todos modos, sin repaso vencido real que ofrecer como alternativa). Sin repaso intercalado formal; hubo puentes conceptuales con 07-razones-proporciones (reparto ponderado) y 09-porcentajes (multiplicador porcentual, para promedio geométrico) sin ejercicios dedicados aparte."
+    },
+    {
+      "inicio": "2026-07-22T19:20",
+      "duracion_min": 35,
+      "tipo_clase": "tema-nuevo",
+      "objetivo_id": "obj-2",
+      "curso": "01-aritmetica",
+      "tema_principal": "12-estadistica",
+      "temas_intercalados": ["09-porcentajes", "10-promedios-mezclas"],
+      "nota": "Duración APROXIMADA (el usuario estimó inicio ~19:20 y cierre ~19:55, sin hora exacta a mano). Cuarta sesión del día: 09-porcentajes y 10-promedios-mezclas ya se habían cerrado hoy como tema-nuevo, así que no hubo repaso vencido formal que intercalar (nada vence hasta mañana) — el intercalado vino del piso del 30% del Método 3, conectando con esos dos temas recién cerrados vía el promedio ponderado y el operador porcentual."
     }
   ]
 }
